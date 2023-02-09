@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xctp:Popup
+    x:Class="DiscordWebhookRemoteApp.Pages.Popups.WebhookAddEditPopup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customItems="clr-namespace:DiscordWebhookRemoteApp.CustomItems"
+    xmlns:helpers="clr-namespace:DiscordWebhookRemoteApp.Helpers"
+    xmlns:popups="clr-namespace:DiscordWebhookRemoteApp.Pages.Popups"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:xctp="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
+    xct:CornerRadiusEffect.CornerRadius="15"
+    Size="{x:Static popups:PopupSize.Small}"
+    Color="Transparent">
+
+    <Frame
+        Margin="5"
+        BackgroundColor="{x:Static helpers:ThemeColors.BackColor}"
+        BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+        CornerRadius="15">
+        <StackLayout>
+            <Frame
+                Padding="10"
+                BackgroundColor="Transparent"
+                BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                CornerRadius="15"
+                HasShadow="True">
+                <customItems:BorderlessEntry
+                    x:Name="entryName"
+                    Placeholder="Name"
+                    PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                    TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+            </Frame>
+            <Frame
+                Padding="10"
+                BackgroundColor="Transparent"
+                BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                CornerRadius="15"
+                HasShadow="True">
+                <customItems:BorderlessEntry
+                    x:Name="entryUrl"
+                    Placeholder="Url"
+                    PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                    TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+            </Frame>
+            <StackLayout
+                HorizontalOptions="Center"
+                Orientation="Horizontal"
+                VerticalOptions="EndAndExpand">
+                <Button
+                    Margin="0,0,10,0"
+                    xct:TouchEffect.NativeAnimation="true"
+                    xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                    xct:TouchEffect.PressedAnimationDuration="500"
+                    xct:TouchEffect.PressedOpacity="0.6"
+                    xct:TouchEffect.PressedScale="0.98"
+                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                    BorderWidth="1"
+                    Clicked="DeleteWebhook_Clicked"
+                    CornerRadius="15"
+                    HorizontalOptions="Center"
+                    Text="Delete"
+                    TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                    VerticalOptions="Center" />
+
+                <Button
+                    Margin="0,0,10,0"
+                    xct:TouchEffect.NativeAnimation="true"
+                    xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                    xct:TouchEffect.PressedAnimationDuration="500"
+                    xct:TouchEffect.PressedOpacity="0.6"
+                    xct:TouchEffect.PressedScale="0.98"
+                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                    BorderWidth="1"
+                    Clicked="SaveWebhook_Clicked"
+                    CornerRadius="15"
+                    HorizontalOptions="Center"
+                    Text="Save"
+                    TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                    VerticalOptions="Center" />
+            </StackLayout>
+        </StackLayout>
+    </Frame>
+</xctp:Popup>

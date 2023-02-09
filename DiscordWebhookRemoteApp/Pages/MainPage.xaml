@@ -1,0 +1,421 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DiscordWebhookRemoteApp.Pages.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:adscontrol="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
+    xmlns:local="clr-namespace:DiscordWebhookRemoteApp.Helpers"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:xctv="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
+    xct:StatusBarEffect.Color="{x:Static local:ThemeColors.StatusBarColor}"
+    xct:StatusBarEffect.Style="{x:Static local:ThemeColors.StatusBarStyle}"
+    BackgroundColor="{x:Static local:ThemeColors.BackColor}">
+
+    <StackLayout>
+        <Grid VerticalOptions="FillAndExpand">
+            <ScrollView>
+                <StackLayout>
+                    <StackLayout>
+                        <StackLayout Margin="0,10,0,25" BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}">
+                            <Label
+                                Margin="0,-10"
+                                FontSize="Large"
+                                HorizontalOptions="Center"
+                                Text="-----------------------------"
+                                TextColor="{x:Static local:ThemeColors.TextColor}" />
+                            <Label
+                                Margin="0,-10"
+                                FontSize="Large"
+                                HorizontalOptions="Center"
+                                Text="Webhook Hub"
+                                TextColor="{x:Static local:ThemeColors.TextColor}" />
+                            <Label
+                                Margin="0,-10"
+                                FontSize="Large"
+                                HorizontalOptions="Center"
+                                Text="-----------------------------"
+                                TextColor="{x:Static local:ThemeColors.TextColor}" />
+                        </StackLayout>
+                    </StackLayout>
+
+                    <Frame
+                        Padding="5,10"
+                        BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
+                        BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                        CornerRadius="15"
+                        HasShadow="True">
+                        <StackLayout>
+                            <Label
+                                Margin="10,0,0,0"
+                                FontSize="Small"
+                                HorizontalOptions="Start"
+                                Text="Select Webhook"
+                                TextColor="{x:Static local:ThemeColors.TextColor}" />
+                            <ScrollView HorizontalScrollBarVisibility="Never" Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout x:Name="blSavedWebhooks" Orientation="Horizontal">
+                                        <!--<BindableLayout.ItemsSource>
+                                        <x:Array Type="{x:Type local:webhookItems}">
+                                            <local:webhookItems ID="0" name="awhgfjsasg" />
+                                            <local:webhookItems ID="1" name="jhgfjsjawg" />
+                                            <local:webhookItems ID="2" name="mjhgkfm" />
+                                            <local:webhookItems ID="3" name="aöçmhgf" />
+                                            <local:webhookItems ID="5" name="dhdkdrsh" />
+                                        </x:Array>
+                                    </BindableLayout.ItemsSource>-->
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <Frame
+                                                    xct:TouchEffect.NativeAnimation="true"
+                                                    xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                                                    xct:TouchEffect.PressedAnimationDuration="500"
+                                                    xct:TouchEffect.PressedOpacity="0.6"
+                                                    xct:TouchEffect.PressedScale="0.98"
+                                                    AutomationId="{Binding ID}"
+                                                    BackgroundColor="Transparent"
+                                                    BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                                                    CornerRadius="35"
+                                                    HeightRequest="50"
+                                                    WidthRequest="50">
+                                                    <Label
+                                                        Margin="-10"
+                                                        FontSize="Small"
+                                                        HorizontalTextAlignment="Center"
+                                                        TextColor="{x:Static local:ThemeColors.TextColor}"
+                                                        VerticalOptions="Center">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding name}" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                    <Frame.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="WebhookSelect_Tapped" />
+                                                    </Frame.GestureRecognizers>
+                                                </Frame>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                    <StackLayout>
+                                        <Frame
+                                            xct:TouchEffect.NativeAnimation="true"
+                                            xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                                            xct:TouchEffect.PressedAnimationDuration="500"
+                                            xct:TouchEffect.PressedOpacity="0.6"
+                                            xct:TouchEffect.PressedScale="0.98"
+                                            BackgroundColor="Transparent"
+                                            BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                                            CornerRadius="35"
+                                            HeightRequest="50"
+                                            HorizontalOptions="CenterAndExpand"
+                                            VerticalOptions="CenterAndExpand"
+                                            WidthRequest="50">
+                                            <Image
+                                                xct:IconTintColorEffect.TintColor="{x:Static local:ThemeColors.TextColor}"
+                                                Scale=".35"
+                                                Source="plus64px.png" />
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="WebhookAdd_Tapped" />
+                                            </Frame.GestureRecognizers>
+                                        </Frame>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ScrollView>
+                            <Grid>
+                                <Label
+                                    Grid.Column="0"
+                                    Margin="10,10,0,10"
+                                    FontSize="Small"
+                                    HorizontalOptions="Start"
+                                    TextColor="{x:Static local:ThemeColors.TextColor}"
+                                    VerticalOptions="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Selected: " />
+                                            <Span Text="none" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Button
+                                    Grid.Column="1"
+                                    Margin="0,10,10,10"
+                                    xct:TouchEffect.NativeAnimation="true"
+                                    xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                                    xct:TouchEffect.PressedAnimationDuration="500"
+                                    xct:TouchEffect.PressedOpacity="0.6"
+                                    xct:TouchEffect.PressedScale="0.98"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                                    BorderWidth="1"
+                                    Clicked="webhookEditDelete_Clicked"
+                                    CornerRadius="15"
+                                    FontSize="Small"
+                                    HeightRequest="40"
+                                    HorizontalOptions="Center"
+                                    Text="Edit &amp; Delete"
+                                    TextColor="{x:Static local:ThemeColors.TextColor}"
+                                    VerticalOptions="Center" />
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                        Padding="5,10"
+                        BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
+                        BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                        CornerRadius="15"
+                        HasShadow="True">
+                        <StackLayout>
+                            <StackLayout HeightRequest="65" Orientation="Horizontal">
+                                <Image
+                                    x:Name="imgWebhookImage"
+                                    Margin="10,0,0,0"
+                                    xct:CornerRadiusEffect.CornerRadius="25"
+                                    Source="https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Entry
+                                    x:Name="entryWebhookName"
+                                    Margin="10,0,0,0"
+                                    HorizontalOptions="FillAndExpand"
+                                    Placeholder="Webhook Name"
+                                    PlaceholderColor="{x:Static local:ThemeColors.TransparentTextColor}"
+                                    TextColor="{x:Static local:ThemeColors.TextColor}" />
+                                <Button
+                                    Margin="0,0,10,0"
+                                    xct:TouchEffect.NativeAnimation="true"
+                                    xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                                    xct:TouchEffect.PressedAnimationDuration="500"
+                                    xct:TouchEffect.PressedOpacity="0.6"
+                                    xct:TouchEffect.PressedScale="0.98"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                                    BorderWidth="1"
+                                    Clicked="webhookSaveLoad_Clicked"
+                                    CornerRadius="15"
+                                    Text="Save &amp; Load"
+                                    TextColor="{x:Static local:ThemeColors.TextColor}"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                        Padding="10"
+                        BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
+                        BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                        CornerRadius="15"
+                        HasShadow="True">
+                        <StackLayout>
+                            <Label
+                                Margin="10,0,0,0"
+                                FontSize="Small"
+                                HorizontalOptions="Start"
+                                Text="Message Content"
+                                TextColor="{x:Static local:ThemeColors.TextColor}" />
+                            <Frame
+                                Padding="10"
+                                BackgroundColor="Transparent"
+                                BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                                CornerRadius="15"
+                                HasShadow="True">
+                                <xctv:Expander
+                                    x:Name="expMessageContent"
+                                    AnimationLength="250"
+                                    PropertyChanged="expMessageContent_PropertyChanged">
+                                    <xctv:Expander.Header>
+                                        <StackLayout Orientation="Horizontal">
+                                            <CheckBox
+                                                x:Name="cbMessageContent"
+                                                CheckedChanged="cbMessageContent_CheckedChanged"
+                                                VerticalOptions="Center"
+                                                Color="{x:Static local:ThemeColors.TextColor}" />
+                                            <Label
+                                                Margin="0,0,0,0"
+                                                FontSize="Body"
+                                                HorizontalOptions="Start"
+                                                Text="Content"
+                                                TextColor="{x:Static local:ThemeColors.TextColor}"
+                                                VerticalOptions="Center" />
+                                            <StackLayout
+                                                HorizontalOptions="EndAndExpand"
+                                                Rotation="90"
+                                                VerticalOptions="Center">
+                                                <Image
+                                                    x:Name="imgMCExpand"
+                                                    Scale="0.8"
+                                                    Source="downarrow32px.png" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </xctv:Expander.Header>
+                                    <xctv:Expander.Content>
+                                        <StackLayout>
+                                            <Editor
+                                                x:Name="entryContentMessage"
+                                                Margin="10,0,0,0"
+                                                HeightRequest="200"
+                                                HorizontalOptions="FillAndExpand"
+                                                Placeholder="Message"
+                                                PlaceholderColor="{x:Static local:ThemeColors.TransparentTextColor}"
+                                                TextColor="{x:Static local:ThemeColors.TextColor}" />
+                                        </StackLayout>
+                                    </xctv:Expander.Content>
+                                </xctv:Expander>
+                            </Frame>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame
+                        Padding="10"
+                        BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
+                        BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                        CornerRadius="15"
+                        HasShadow="True">
+                        <StackLayout>
+                            <Label
+                                Margin="10,0,0,0"
+                                FontSize="Small"
+                                HorizontalOptions="Start"
+                                Text="File"
+                                TextColor="{x:Static local:ThemeColors.TextColor}" />
+                            <Frame
+                                Padding="10"
+                                BackgroundColor="Transparent"
+                                BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                                CornerRadius="15"
+                                HasShadow="True">
+                                <xctv:Expander
+                                    x:Name="expFileSend"
+                                    AnimationLength="250"
+                                    PropertyChanged="expFileSend_PropertyChanged">
+                                    <xctv:Expander.Header>
+                                        <StackLayout Orientation="Horizontal">
+                                            <CheckBox
+                                                x:Name="cbFileSend"
+                                                CheckedChanged="cbFileSend_CheckedChanged"
+                                                VerticalOptions="Center"
+                                                Color="{x:Static local:ThemeColors.TextColor}" />
+                                            <Label
+                                                Margin="0,0,0,0"
+                                                FontSize="Body"
+                                                HorizontalOptions="Start"
+                                                Text="Send File"
+                                                TextColor="{x:Static local:ThemeColors.TextColor}"
+                                                VerticalOptions="Center" />
+                                            <StackLayout
+                                                HorizontalOptions="EndAndExpand"
+                                                Rotation="90"
+                                                VerticalOptions="Center">
+                                                <Image
+                                                    x:Name="imgFExpand"
+                                                    Scale="0.8"
+                                                    Source="downarrow32px.png" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </xctv:Expander.Header>
+                                    <xctv:Expander.Content>
+                                        <StackLayout Margin="0,10,0,0" Orientation="Horizontal">
+                                            <Button
+                                                x:Name="btnFileSelect"
+                                                Margin="10,0,0,0"
+                                                xct:TouchEffect.NativeAnimation="true"
+                                                xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                                                xct:TouchEffect.PressedAnimationDuration="500"
+                                                xct:TouchEffect.PressedOpacity="0.6"
+                                                xct:TouchEffect.PressedScale="0.98"
+                                                BackgroundColor="Transparent"
+                                                BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                                                BorderWidth="1"
+                                                Clicked="btnFileSelect_Clicked"
+                                                CornerRadius="15"
+                                                HorizontalOptions="Start"
+                                                Text="Select File"
+                                                TextColor="{x:Static local:ThemeColors.TextColor}"
+                                                VerticalOptions="Center" />
+                                            <Label
+                                                Margin="20,0,0,0"
+                                                FontSize="Body"
+                                                HorizontalOptions="Start"
+                                                TextColor="{x:Static local:ThemeColors.TextColor}"
+                                                VerticalOptions="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Selected: " />
+                                                        <Span x:Name="lblSelectedFile" Text="none" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </StackLayout>
+                                    </xctv:Expander.Content>
+                                </xctv:Expander>
+                            </Frame>
+                        </StackLayout>
+                    </Frame>
+                    <!--<Frame
+                    Padding="10"
+                    BackgroundColor="Transparent"
+                    BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                    CornerRadius="15"
+                    HasShadow="True" />-->
+
+                    <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                        <Button
+                            Margin="0,0,10,0"
+                            xct:TouchEffect.NativeAnimation="true"
+                            xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                            xct:TouchEffect.PressedAnimationDuration="500"
+                            xct:TouchEffect.PressedOpacity="0.6"
+                            xct:TouchEffect.PressedScale="0.98"
+                            BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
+                            BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                            BorderWidth="1"
+                            Clicked="clearContent_Clicked"
+                            CornerRadius="15"
+                            HorizontalOptions="Center"
+                            Text="Clear"
+                            TextColor="{x:Static local:ThemeColors.TextColor}"
+                            VerticalOptions="Center" />
+
+                        <Button
+                            Margin="0,0,10,0"
+                            xct:TouchEffect.NativeAnimation="true"
+                            xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                            xct:TouchEffect.PressedAnimationDuration="500"
+                            xct:TouchEffect.PressedOpacity="0.6"
+                            xct:TouchEffect.PressedScale="0.98"
+                            BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
+                            BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                            BorderWidth="1"
+                            Clicked="sendContent_Clicked"
+                            CornerRadius="15"
+                            HorizontalOptions="Center"
+                            Text="Send"
+                            TextColor="{x:Static local:ThemeColors.TextColor}"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+            <!--<StackLayout VerticalOptions="EndAndExpand">
+                <Image x:Name="testImg" />
+                <Button
+                    Clicked="Button_Clicked"
+                    HorizontalOptions="Center"
+                    Text="Send Test Message"
+                    VerticalOptions="Center" />
+                <Button
+                    Clicked="Button_Clicked2"
+                    HorizontalOptions="Center"
+                    Text="SendFile"
+                    VerticalOptions="Center" />
+            </StackLayout>-->
+
+        </Grid>
+        <adscontrol:MTAdView
+            x:Name="adsBottom"
+            AdsId="ca-app-pub-3881259676793306/6797209579"
+            HeightRequest="{OnIdiom Phone=50,
+                                    Tablet=90}"
+            IsVisible="false"
+            VerticalOptions="End" />
+    </StackLayout>
+</ContentPage>
