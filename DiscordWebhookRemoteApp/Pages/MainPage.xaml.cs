@@ -31,14 +31,32 @@ namespace DiscordWebhookRemoteApp.Pages
 
         DiscordWebhook hook = new DiscordWebhook();
 
-        bool sendFile = false, sendMessage = false, sendEmbed = false;
-        string filepath = "";
+        bool sendFile = false, sendMessage = false, sendEmbed = false, webhookSelected = false;
+        string selectedUrl = "", webhookImageUrl = "", webhookName = "", filepath = "";
+        int selectedId = -1;
         public MainPage()
         {
             InitializeComponent();
             BindingContext = this;
             BindableLayout.SetItemsSource(blSavedWebhooks, References.WebhookList);
-
+            DisplayAlert("Hello!", "This is the first version of my app. Please post your feedback in google play comments.", "Ok");
+            Theme.ThemeChanged += (s, e) =>
+            {
+                switch (AppInfo.RequestedTheme)
+                {
+                    case AppTheme.Unspecified:
+                        ChangeAppTheme.DarkTheme();
+                        break;
+                    case AppTheme.Light:
+                        ChangeAppTheme.LightTheme();
+                        break;
+                    case AppTheme.Dark:
+                        ChangeAppTheme.DarkTheme();
+                        break;
+                    default:
+                        break;
+                }
+            };
         }
 
         private void Button_Clicked(object sender, EventArgs e)
@@ -131,21 +149,49 @@ namespace DiscordWebhookRemoteApp.Pages
             await App.Current.MainPage.Navigation.ShowPopupAsync(popup);
             BindableLayout.SetItemsSource(blSavedWebhooks, References.WebhookList);
         }
+
         private void WebhookSelect_Tapped(object sender, EventArgs e)
         {
-            var selected = sender as Frame;
-            Debug.WriteLine(selected.AutomationId);
+            var selected = References.WebhookList.Where(x => x.ID == Convert.ToInt32((sender as Frame).AutomationId)).FirstOrDefault();
+            hook.Url = selected.url;
+            selectedUrl = selected.url;
+            selectedId = selected.ID;
+            lblSelectedUrl.Text = selected.name;
+            webhookSelected = true;
+        }
+        private async void webhookEditDelete_Clicked(object sender, EventArgs e)
+        {
+            if (webhookSelected)
+            {
+                Popup popup = new WebhookAddEditPopup(selectedId);
+                var res = await App.Current.MainPage.Navigation.ShowPopupAsync(popup);
+                Debug.WriteLine(res);
+                if (res == "delete")
+                {
+                    selectedId = -1;
+                    selectedUrl = "";
+                    webhookSelected = false;
+                    lblSelectedUrl.Text = "none";
+                }
+                else
+                {
+                    var selected = References.WebhookList.Where(x => x.ID == selectedId).FirstOrDefault();
+                    hook.Url = selected.url;
+                    selectedUrl = selected.url;
+                    selectedId = selected.ID;
+                    lblSelectedUrl.Text = selected.name;
+                    webhookSelected = true;
+                }
+            }
+            BindableLayout.SetItemsSource(blSavedWebhooks, References.WebhookList);
         }
         private void webhookSaveLoad_Clicked(object sender, EventArgs e)
         {
 
         }
-        private void webhookEditDelete_Clicked(object sender, EventArgs e)
-        {
-
-        }
         private void clearContent_Clicked(object sender, EventArgs e)
         {
+
         }
         private void sendContent_Clicked(object sender, EventArgs e)
         {

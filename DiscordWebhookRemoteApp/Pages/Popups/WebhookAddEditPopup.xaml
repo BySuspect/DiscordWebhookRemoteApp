@@ -17,9 +17,9 @@
         BackgroundColor="{x:Static helpers:ThemeColors.BackColor}"
         BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
         CornerRadius="15">
-        <StackLayout>
+        <StackLayout Margin="0,10,0,0">
             <Frame
-                Padding="10"
+                Padding="10,0"
                 BackgroundColor="Transparent"
                 BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                 CornerRadius="15"
@@ -31,15 +31,16 @@
                     TextColor="{x:Static helpers:ThemeColors.TextColor}" />
             </Frame>
             <Frame
-                Padding="10"
+                Padding="10,0"
                 BackgroundColor="Transparent"
                 BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                 CornerRadius="15"
                 HasShadow="True">
                 <customItems:BorderlessEntry
                     x:Name="entryUrl"
-                    Placeholder="Url"
+                    Placeholder="Url" 
                     PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                    TextChanged="entryUrl_TextChanged"
                     TextColor="{x:Static helpers:ThemeColors.TextColor}" />
             </Frame>
             <StackLayout

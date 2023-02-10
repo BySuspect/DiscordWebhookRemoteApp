@@ -9,7 +9,8 @@
     xmlns:xctv="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
     xct:StatusBarEffect.Color="{x:Static local:ThemeColors.StatusBarColor}"
     xct:StatusBarEffect.Style="{x:Static local:ThemeColors.StatusBarStyle}"
-    BackgroundColor="{x:Static local:ThemeColors.BackColor}">
+    BackgroundColor="{x:Static local:ThemeColors.BackColor}"
+    BackgroundImageSource="{x:Static local:ThemeColors.backgroundImg}">
 
     <StackLayout>
         <Grid VerticalOptions="FillAndExpand">
@@ -132,7 +133,7 @@
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="Selected: " />
-                                            <Span Text="none" />
+                                            <Span x:Name="lblSelectedUrl" Text="none" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>

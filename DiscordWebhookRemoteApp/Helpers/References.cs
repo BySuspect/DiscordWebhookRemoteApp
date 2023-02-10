@@ -7,6 +7,30 @@ using Xamarin.CommunityToolkit.Effects;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+using Discord;
+using Discord.Webhook;
+using System.IO;
+using System.Net.Http.Headers;
+using System.Net.Http;
+using Xamarin.Forms.PlatformConfiguration;
+using static System.Net.Mime.MediaTypeNames;
+using static Xamarin.Essentials.AppleSignInAuthenticator;
+using Xamarin.Essentials;
+using Xamarin.Forms.Shapes;
+using Xamarin.Forms.Xaml;
+using DiscordWebhookRemoteApp.Helpers;
+using System.Diagnostics;
+using Xamarin.CommunityToolkit.Extensions;
+using Xamarin.CommunityToolkit.UI.Views;
+using DiscordWebhookRemoteApp.Pages.Popups;
+
 namespace DiscordWebhookRemoteApp.Helpers
 {
     public static class References
@@ -17,7 +41,7 @@ namespace DiscordWebhookRemoteApp.Helpers
             get
             {
                 _webhookList = JsonConvert.DeserializeObject<List<webhookItems>>(Preferences.Get("savedwebhookItems", "[]"));
-                _webhookList.OrderBy(x => x.ID).ToList();
+                //_webhookList = _webhookList.OrderBy(x => x.ID).ToList();
                 return _webhookList;
             }
             set
@@ -45,6 +69,7 @@ namespace DiscordWebhookRemoteApp.Helpers
             ThemeColors.BackColor = Color.White;
             ThemeColors.StatusBarColor = Color.White;
             ThemeColors.StatusBarStyle = StatusBarStyle.DarkContent;
+            ThemeColors.backgroundImg = null;
         }
         public static void DarkTheme()
         {
@@ -55,6 +80,7 @@ namespace DiscordWebhookRemoteApp.Helpers
             ThemeColors.BackColor = Color.Black;
             ThemeColors.StatusBarColor = Color.Black;
             ThemeColors.StatusBarStyle = StatusBarStyle.LightContent;
+            ThemeColors.backgroundImg = null;
         }
         public static void ForDenizTheme()
         {
@@ -65,6 +91,7 @@ namespace DiscordWebhookRemoteApp.Helpers
             ThemeColors.BackColor = Color.FromHex("#fc03d7");
             ThemeColors.StatusBarColor = Color.FromHex("#fc03d7");
             ThemeColors.StatusBarStyle = StatusBarStyle.DarkContent;
+            ThemeColors.backgroundImg = "wallpaperfordeniz.jpg";
         }
     }
     public static class ThemeColors
@@ -76,5 +103,26 @@ namespace DiscordWebhookRemoteApp.Helpers
         public static Color BackColor { get; set; }
         public static Color StatusBarColor { get; set; }
         public static StatusBarStyle StatusBarStyle { get; set; }
+        public static ImageSource backgroundImg { get; set; }
     }
+    public class ThemeChangedEventArgs : EventArgs
+    {
+        public ThemeChangedEventArgs(string newTheme)
+        {
+            NewTheme = newTheme;
+        }
+
+        public string NewTheme { get; private set; }
+    }
+    public delegate void ThemeChangedEventHandler(object sender, ThemeChangedEventArgs e);
+    public static class Theme
+    {
+        public static event ThemeChangedEventHandler ThemeChanged;
+
+        public static void OnThemeChanged(string newTheme)
+        {
+            ThemeChanged?.Invoke(null, new ThemeChangedEventArgs(newTheme));
+        }
+    }
+
 }
