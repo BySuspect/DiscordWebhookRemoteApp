@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
 	<style name="MainTheme" parent="MainTheme.Base">
+		<!-- açışışta title olmaması için-->
+		<item name="android:windowNoTitle">true</item>
+		<!-- uygulama tam ekrandamı açılsın -->
+		<item name="android:windowFullscreen">false</item>
+		<!-- tam çözemedim -->
+		<item name="android:windowContentOverlay">@null</item>
+		<!-- üst status bar -->
+		<item name="android:windowActionBar">true</item>
+
+		<!--<item name="android:windowBackground">@drawable/splash_bacground</item>-->
+
+		<!-- Detaylı Resim -->
+		<!-- https://docs.microsoft.com/tr-tr/xamarin/android/user-interface/material-theme-images/screen-attributes-sml.png -->
+		<!-- android üst çubuğun açık tema rengi -->
+		<!-- <item name="colorPrimary">#FFA600</item> -->
+		<!-- android üst çubuğun koyu tema rengi -->
+		<!-- <item name="colorPrimaryDark">#FFA600</item> -->
+		<!-- Onay Kutusu yada bazı görünümlerin alt renkleri -->
+		<item name="colorAccent">#5FBB24</item>
+		<!-- uygulamanın genel arkaplan rengi -->
+		<item name="android:windowBackground">#FFFFFF</item>
+		<!-- android alt navigasyon tuş arkaplan rengi -->
+		<item name="android:navigationBarColor">#000000</item>
+
 		<!-- As of Xamarin.Forms 4.6 the theme has moved into the Forms binary -->
 		<!-- If you want to override anything you can do that here. -->
 		<!-- Underneath are a couple of entries to get you started. -->
@@ -13,5 +37,14 @@
 		<!-- colorAccent is used as the default value for colorControlActivated
          which is used to tint widgets -->
 		<!--<item name="colorAccent">#FF4081</item>-->
+	</style>
+	<style name="SplashTheme" parent ="Theme.AppCompat.Light.NoActionBar">
+		<item name="android:windowBackground">@drawable/splash_screen</item>
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:windowFullscreen">true</item>
+		<item name="android:windowContentOverlay">@null</item>
+		<item name="android:windowActionBar">true</item>
+		<item name="android:statusBarColor">@color/splash_background</item>
+		<item name="android:navigationBarColor">@color/splash_background</item>
 	</style>
 </resources>
