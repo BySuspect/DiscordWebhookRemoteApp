@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:adscontrol="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
+    xmlns:customItems="clr-namespace:DiscordWebhookRemoteApp.CustomItems"
     xmlns:local="clr-namespace:DiscordWebhookRemoteApp.Helpers"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     xmlns:xctv="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
@@ -13,7 +14,7 @@
     BackgroundImageSource="{x:Static local:ThemeColors.backgroundImg}">
 
     <StackLayout>
-        <Grid VerticalOptions="FillAndExpand">
+        <Grid HorizontalOptions="{OnIdiom Phone=Fill, Tablet=Center}" VerticalOptions="FillAndExpand">
             <ScrollView>
                 <StackLayout>
                     <StackLayout>
@@ -152,37 +153,49 @@
                                     CornerRadius="15"
                                     FontSize="Small"
                                     HeightRequest="40"
-                                    HorizontalOptions="Center"
+                                    HorizontalOptions="EndAndExpand"
                                     Text="Edit &amp; Delete"
                                     TextColor="{x:Static local:ThemeColors.TextColor}"
                                     VerticalOptions="Center" />
                             </Grid>
                         </StackLayout>
                     </Frame>
+
                     <Frame
-                        Padding="5,10"
+                        Padding="5,10,5,10"
                         BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
                         BorderColor="{x:Static local:ThemeColors.BorderColor}"
                         CornerRadius="15"
                         HasShadow="True">
                         <StackLayout>
+                            <Label
+                                Margin="10,0,0,0"
+                                FontSize="Small"
+                                HorizontalOptions="Start"
+                                Text="Webhook Profile"
+                                TextColor="{x:Static local:ThemeColors.TextColor}" />
                             <StackLayout HeightRequest="65" Orientation="Horizontal">
                                 <Image
                                     x:Name="imgWebhookImage"
                                     Margin="10,0,0,0"
-                                    xct:CornerRadiusEffect.CornerRadius="25"
-                                    Source="https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif">
+                                    xct:CornerRadiusEffect.CornerRadius="255"
+                                    HeightRequest="55"
+                                    IsAnimationPlaying="True"
+                                    Source="https://imgur.com/pYrJMQJ.png"
+                                    WidthRequest="55">
                                     <Image.GestureRecognizers>
-                                        <TapGestureRecognizer />
+                                        <TapGestureRecognizer Tapped="WebhookImage_Tapped" />
                                     </Image.GestureRecognizers>
                                 </Image>
-                                <Entry
+                                <customItems:BorderlessEntry
                                     x:Name="entryWebhookName"
                                     Margin="10,0,0,0"
+                                    Completed="entryWebhookName_Completed"
                                     HorizontalOptions="FillAndExpand"
                                     Placeholder="Webhook Name"
                                     PlaceholderColor="{x:Static local:ThemeColors.TransparentTextColor}"
-                                    TextColor="{x:Static local:ThemeColors.TextColor}" />
+                                    TextColor="{x:Static local:ThemeColors.TextColor}"
+                                    Unfocused="entryWebhookName_Unfocused" />
                                 <Button
                                     Margin="0,0,10,0"
                                     xct:TouchEffect.NativeAnimation="true"
@@ -195,12 +208,14 @@
                                     BorderWidth="1"
                                     Clicked="webhookSaveLoad_Clicked"
                                     CornerRadius="15"
+                                    HorizontalOptions="EndAndExpand"
                                     Text="Save &amp; Load"
                                     TextColor="{x:Static local:ThemeColors.TextColor}"
                                     VerticalOptions="Center" />
                             </StackLayout>
                         </StackLayout>
                     </Frame>
+
                     <Frame
                         Padding="10"
                         BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
@@ -235,7 +250,7 @@
                                                 Margin="0,0,0,0"
                                                 FontSize="Body"
                                                 HorizontalOptions="Start"
-                                                Text="Content"
+                                                Text="Send Message"
                                                 TextColor="{x:Static local:ThemeColors.TextColor}"
                                                 VerticalOptions="Center" />
                                             <StackLayout
@@ -352,6 +367,7 @@
                             </Frame>
                         </StackLayout>
                     </Frame>
+
                     <!--<Frame
                     Padding="10"
                     BackgroundColor="Transparent"
@@ -409,7 +425,10 @@
                     Text="SendFile"
                     VerticalOptions="Center" />
             </StackLayout>-->
-
+            <!--<Button
+                Clicked="Button_Clicked_1"
+                HorizontalOptions="Center"
+                VerticalOptions="End" />-->
         </Grid>
         <adscontrol:MTAdView
             x:Name="adsBottom"
@@ -418,5 +437,21 @@
                                     Tablet=90}"
             IsVisible="false"
             VerticalOptions="End" />
+        <StackLayout VerticalOptions="EndAndExpand">
+            <!--<Label
+                 FontSize="Small"
+                 HorizontalOptions="Center"
+                 HorizontalTextAlignment="Center"
+                 Text="Made By Shiroko💜"
+                 TextColor="{x:Static local:ThemeColors.TextColor}"
+                 VerticalOptions="EndAndExpand" />-->
+            <Label
+                FontSize="Small"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="Designed By Zen💜"
+                TextColor="{x:Static local:ThemeColors.TextColor}"
+                VerticalOptions="End" />
+        </StackLayout>
     </StackLayout>
 </ContentPage>

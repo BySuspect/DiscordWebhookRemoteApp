@@ -114,6 +114,7 @@ namespace DiscordWebhookRemoteApp.Helpers
 
         public string NewTheme { get; private set; }
     }
+
     public delegate void ThemeChangedEventHandler(object sender, ThemeChangedEventArgs e);
     public static class Theme
     {

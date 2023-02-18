@@ -31,8 +31,18 @@ namespace DiscordWebhookRemoteApp.Pages
 
         DiscordWebhook hook = new DiscordWebhook();
 
-        bool sendFile = false, sendMessage = false, sendEmbed = false, webhookSelected = false;
-        string selectedUrl = "", webhookImageUrl = "", webhookName = "", filepath = "";
+        bool sendFile = false,
+            sendMessage = false,
+            sendEmbed = false,
+            webhookSelected = false,
+            webhookProfileAvatar = false,
+            webhookProfileName = false;
+
+        string selectedUrl = "",
+            webhookImageUrl = "",
+            webhookName = "",
+            filepath = "";
+
         int selectedId = -1;
         public MainPage()
         {
@@ -42,20 +52,7 @@ namespace DiscordWebhookRemoteApp.Pages
             DisplayAlert("Hello!", "This is the first version of my app. Please post your feedback in google play comments.", "Ok");
             Theme.ThemeChanged += (s, e) =>
             {
-                switch (AppInfo.RequestedTheme)
-                {
-                    case AppTheme.Unspecified:
-                        ChangeAppTheme.DarkTheme();
-                        break;
-                    case AppTheme.Light:
-                        ChangeAppTheme.LightTheme();
-                        break;
-                    case AppTheme.Dark:
-                        ChangeAppTheme.DarkTheme();
-                        break;
-                    default:
-                        break;
-                }
+                Debug.WriteLine("theme changed: " + e.NewTheme);
             };
         }
 
@@ -76,7 +73,7 @@ namespace DiscordWebhookRemoteApp.Pages
             embed.Color = Color.Red; //alpha will be ignored, you can use any RGB color
             embed.Footer = new EmbedFooter() { Text = "Footer Text", IconUrl = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif" };
             embed.Image = new EmbedMedia() { Url = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif", Width = 150, Height = 150 }; //valid for thumb and video
-            //embed.Provider = new EmbedProvider() { Name = "Provider Name", Url = "Provider Url" };
+                                                                                                                                                                                //embed.Provider = new EmbedProvider() { Name = "Provider Name", Url = "Provider Url" };
             embed.Author = new EmbedAuthor() { Name = "Author Name", Url = "https://google.com/", IconUrl = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif" };
 
             //fields
@@ -92,7 +89,7 @@ namespace DiscordWebhookRemoteApp.Pages
             embed2.Color = Color.Red; //alpha will be ignored, you can use any RGB color
             embed2.Footer = new EmbedFooter() { Text = "Footer Text", IconUrl = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif" };
             embed2.Image = new EmbedMedia() { Url = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif", Width = 150, Height = 150 }; //valid for thumb and video
-            //embed2.Provider = new EmbedProvider() { Name = "Provider Name", Url = "Provider Url" };
+                                                                                                                                                                                 //embed2.Provider = new EmbedProvider() { Name = "Provider Name", Url = "Provider Url" };
             embed2.Author = new EmbedAuthor() { Name = "Author Name", Url = "https://google.com/", IconUrl = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif" };
 
             //set embed
@@ -131,7 +128,7 @@ namespace DiscordWebhookRemoteApp.Pages
                     if (filest.Length < 8388235)
                     {
                         //file
-                        hook.Send(message, new FileInfo(result.FullPath));
+                        filepath = result.FullPath;
                     }
                     else _ = DisplayAlert("Error", "File can only be 8mb maximum", "Ok");
                 }
@@ -185,19 +182,124 @@ namespace DiscordWebhookRemoteApp.Pages
             }
             BindableLayout.SetItemsSource(blSavedWebhooks, References.WebhookList);
         }
-        private void webhookSaveLoad_Clicked(object sender, EventArgs e)
+        private async void WebhookImage_Tapped(object sender, EventArgs e)
+        {
+            try
+            {
+                string oldAvatarUrl = "";
+                if (webhookProfileAvatar) oldAvatarUrl = webhookImageUrl;
+                string result = await DisplayPromptAsync("Webhook Image", "Only \".jpg\", \".jpeg\", \".png\", \".gif\" Supported!", accept: "Ok", cancel: "Cancel", placeholder: "Image url.", initialValue: oldAvatarUrl);
+                Debug.WriteLine(result);
+                if (!string.IsNullOrEmpty(result.Trim()))
+                {
+                    string[] imageExtensions = { ".jpg", ".jpeg", ".png", ".gif" };
+
+                    bool isImageUrl = imageExtensions.Any(result.EndsWith);
+
+                    if (isImageUrl)
+                    {
+                        webhookImageUrl = result.Trim();
+                        imgWebhookImage.Source = result.Trim();
+                        webhookProfileAvatar = true;
+                    }
+                    else
+                    {
+                        _ = DisplayAlert("Error!", "This is not an image URL.", "Ok");
+                    }
+                }
+                else
+                {
+                    webhookImageUrl = "";
+                    imgWebhookImage.Source = "https://imgur.com/pYrJMQJ.png";
+                    webhookProfileAvatar = false;
+                }
+            }
+            catch { }
+        }
+
+        private void entryWebhookName_Completed(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(entryWebhookName.Text))
+            {
+                Debug.WriteLine("name empty");
+                webhookName = "";
+                webhookProfileName = false;
+            }
+            else
+            {
+                Debug.WriteLine(entryWebhookName.Text);
+                webhookName = entryWebhookName.Text;
+                webhookProfileName = true;
+            }
+
+        }
+
+        private void entryWebhookName_Unfocused(object sender, FocusEventArgs e) => entryWebhookName_Completed(null, null);
+
+        private async void Button_Clicked_1(object sender, EventArgs e)
         {
 
         }
-        private void clearContent_Clicked(object sender, EventArgs e)
-        {
 
+        private async void webhookSaveLoad_Clicked(object sender, EventArgs e)
+        {
+            _ = DisplayAlert("Hello!", "This feature is coming soon...", "Ok");
+            //Popup popup = new WebhookProfileSaveEditPopup(imgWebhookImage.Source.ToString(), entryWebhookName.Text);
+            //var res = await App.Current.MainPage.Navigation.ShowPopupAsync(popup);
+        }
+        private async void clearContent_Clicked(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Warning!", "Are you sure about to clear content?", "Yes", "No");
+            Debug.WriteLine("Answer: " + answer);
+            if (answer)
+            {
+                cbFileSend.IsChecked = false;
+                cbMessageContent.IsChecked = false;
+                entryContentMessage.Text = "";
+                filepath = "";
+                lblSelectedFile.Text = "none";
+                entryWebhookName.Text = "";
+                imgWebhookImage.Source = "https://imgur.com/pYrJMQJ.png";
+            }
         }
         private void sendContent_Clicked(object sender, EventArgs e)
         {
-            DiscordMessage message = new DiscordMessage();
-            message.Content = entryContentMessage.Text;
-            hook.Send(message);
+            if (webhookSelected)
+            {
+                DiscordMessage message = new DiscordMessage();
+
+                if (webhookProfileName)
+                    message.Username = webhookName;
+
+                if (webhookProfileAvatar)
+                    message.AvatarUrl = webhookImageUrl;
+
+                if (sendMessage)
+                {
+                    if (!string.IsNullOrEmpty(entryContentMessage.Text))
+                    {
+                        message.Content = entryContentMessage.Text;
+                    }
+                }
+
+                try
+                {
+                    if (sendFile && !string.IsNullOrEmpty(filepath))
+                        hook.Send(message, new FileInfo(filepath));
+                    else
+                    {
+                        hook.Send(message);
+                        cbFileSend.IsChecked = false;
+                    }
+                }
+                catch
+                {
+                    _ = DisplayAlert("Warning!", "Send Error!!", "Ok");
+                    Debug.WriteLine("Send Error!!");
+                }
+            }
+            else
+                _ = DisplayAlert("Warning!", "First select Webhook!", "Ok");
         }
 
         private void cbMessageContent_CheckedChanged(object sender, CheckedChangedEventArgs e)
