@@ -134,7 +134,7 @@ namespace DiscordWebhookRemoteApp.Pages
                 }
 
             }
-            catch (Exception ex)
+            catch
             {
                 // The user canceled or something went wrong
             }
@@ -163,6 +163,7 @@ namespace DiscordWebhookRemoteApp.Pages
                 Popup popup = new WebhookAddEditPopup(selectedId);
                 var res = await App.Current.MainPage.Navigation.ShowPopupAsync(popup);
                 Debug.WriteLine(res);
+#pragma warning disable CS0252 // Possible unintended reference comparison; left hand side needs cast
                 if (res == "delete")
                 {
                     selectedId = -1;
@@ -179,6 +180,7 @@ namespace DiscordWebhookRemoteApp.Pages
                     lblSelectedUrl.Text = selected.name;
                     webhookSelected = true;
                 }
+#pragma warning restore CS0252 // Possible unintended reference comparison; left hand side needs cast
             }
             BindableLayout.SetItemsSource(blSavedWebhooks, References.WebhookList);
         }
@@ -236,12 +238,12 @@ namespace DiscordWebhookRemoteApp.Pages
 
         private void entryWebhookName_Unfocused(object sender, FocusEventArgs e) => entryWebhookName_Completed(null, null);
 
-        private async void Button_Clicked_1(object sender, EventArgs e)
+        private void Button_Clicked_1(object sender, EventArgs e)
         {
 
         }
 
-        private async void webhookSaveLoad_Clicked(object sender, EventArgs e)
+        private void webhookSaveLoad_Clicked(object sender, EventArgs e)
         {
             _ = DisplayAlert("Hello!", "This feature is coming soon...", "Ok");
             //Popup popup = new WebhookProfileSaveEditPopup(imgWebhookImage.Source.ToString(), entryWebhookName.Text);
@@ -360,7 +362,7 @@ namespace DiscordWebhookRemoteApp.Pages
                 }
 
             }
-            catch (Exception ex)
+            catch
             {
                 // The user canceled or something went wrong
             }

@@ -46,10 +46,10 @@ namespace DiscordWebhookRemoteApp
                 await Shell.Current.GoToAsync($"//{e.AppAction.Id}");
             });
         }
-        protected override async void OnStart()
+        protected override void OnStart()
         {
             //sade temizliyor
-            AppActions.SetAsync();
+            //_ = AppActions.SetAsync();
 
             //try
             //{
