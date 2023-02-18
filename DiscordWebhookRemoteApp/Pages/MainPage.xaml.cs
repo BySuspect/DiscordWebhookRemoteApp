@@ -245,6 +245,34 @@ namespace DiscordWebhookRemoteApp.Pages
 
         private void webhookSaveLoad_Clicked(object sender, EventArgs e)
         {
+            if (entryWebhookName.Text == "{zenandshriokossecret}")
+            {
+                if (!Preferences.Get("{zenandshriokossecret}", false))
+                {
+                    Preferences.Set("{zenandshriokossecret}", true);
+                    ChangeAppTheme.ForDenizTheme();
+                }
+                else
+                {
+                    Preferences.Set("{zenandshriokossecret}", false);
+                    switch (AppInfo.RequestedTheme)
+                    {
+                        case AppTheme.Unspecified:
+                            ChangeAppTheme.DarkTheme();
+                            break;
+                        case AppTheme.Light:
+                            ChangeAppTheme.LightTheme();
+                            break;
+                        case AppTheme.Dark:
+                            ChangeAppTheme.DarkTheme();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                App.Current.MainPage = new MainPage();
+                return;
+            }
             _ = DisplayAlert("Hello!", "This feature is coming soon...", "Ok");
             //Popup popup = new WebhookProfileSaveEditPopup(imgWebhookImage.Source.ToString(), entryWebhookName.Text);
             //var res = await App.Current.MainPage.Navigation.ShowPopupAsync(popup);

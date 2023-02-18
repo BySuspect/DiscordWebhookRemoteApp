@@ -28,7 +28,8 @@ namespace DiscordWebhookRemoteApp
                 default:
                     break;
             }
-            //ChangeAppTheme.ForDenizTheme();
+            if (Preferences.Get("{zenandshriokossecret}", false))
+                ChangeAppTheme.ForDenizTheme();
             MainPage = new MainPage();
         }
 
