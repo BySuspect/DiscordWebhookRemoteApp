@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DiscordWebhookRemoteApp.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -154,7 +155,11 @@ By visiting this page on our website: https://awgstudiosapps.web.app/contactus";
             // Save preference indicating that the user has accepted the privacy policy
             Preferences.Set("privacy_policy_accepted", true);
             btnaccept.IsEnabled = false;
-            App.Current.MainPage = new MainPage();
+            App.Current.MainPage = new NavigationPage(new MainPage())
+            {
+                BarBackgroundColor = ThemeColors.BackColor,
+                BarTextColor = ThemeColors.TextColor,
+            };
         }
 
         private async void PrivacyPolicy_Tapped(object sender, EventArgs e)

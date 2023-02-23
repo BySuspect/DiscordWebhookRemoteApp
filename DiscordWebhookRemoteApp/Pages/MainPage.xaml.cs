@@ -55,7 +55,65 @@ namespace DiscordWebhookRemoteApp.Pages
                 Debug.WriteLine("theme changed: " + e.NewTheme);
             };
         }
+        private async void sendContent_Clicked(object sender, EventArgs e)
+        {
+            if (webhookSelected)
+            {
+                Loodinglayout.IsVisible = true;
+                DiscordMessage message = new DiscordMessage();
 
+                if (webhookProfileName)
+                    message.Username = webhookName;
+
+                if (webhookProfileAvatar)
+                    message.AvatarUrl = webhookImageUrl;
+
+                if (sendMessage)
+                {
+                    if (!string.IsNullOrEmpty(entryContentMessage.Text))
+                    {
+                        message.Content = entryContentMessage.Text;
+                    }
+                }
+
+                try
+                {
+                    if (sendFile && !string.IsNullOrEmpty(filepath))
+                        hook.Send(message, new FileInfo(filepath));
+                    else
+                    {
+                        hook.Send(message);
+                        cbFileSend.IsChecked = false;
+                    }
+                }
+                catch
+                {
+                    _ = DisplayAlert("Warning!", "Send Error!!", "Ok");
+                    Debug.WriteLine("Send Error!!");
+                }
+                await Task.Delay(1000);
+                Loodinglayout.IsVisible = false;
+            }
+            else
+                _ = DisplayAlert("Warning!", "First select Webhook!", "Ok");
+        }
+        private async void clearContent_Clicked(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Warning!", "Are you sure about to clear content?", "Yes", "No");
+            Debug.WriteLine("Answer: " + answer);
+            if (answer)
+            {
+                cbFileSend.IsChecked = false;
+                cbMessageContent.IsChecked = false;
+                entryContentMessage.Text = "";
+                filepath = "";
+                lblSelectedFile.Text = "none";
+                entryWebhookName.Text = "";
+                imgWebhookImage.Source = "https://imgur.com/pYrJMQJ.png";
+            }
+        }
+
+        #region testArea
         private void Button_Clicked(object sender, EventArgs e)
         {
             DiscordMessage message = new DiscordMessage();
@@ -139,14 +197,189 @@ namespace DiscordWebhookRemoteApp.Pages
                 // The user canceled or something went wrong
             }
         }
+        private void Button_Clicked_1(object sender, EventArgs e)
+        {
 
+        }
+        #endregion
+
+        private async void DiscordButton_Clicked(object sender, EventArgs e)
+        {
+            await Browser.OpenAsync("https://discord.gg/aX4unxzZek");
+        }
+
+
+
+        //---------------------------------------------------------------------------------------------------
+
+
+        #region Send File
+        private void cbFileSend_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            expFileSend.IsExpanded = cbFileSend.IsChecked;
+        }
+        private void expFileSend_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            cbFileSend.IsChecked = expFileSend.IsExpanded;
+            sendFile = cbFileSend.IsChecked;
+            //Debug.WriteLine(sendFile);
+            if (expFileSend.IsExpanded)
+            {
+                (imgFExpand.Parent as StackLayout).RotateTo(0, 100);
+            }
+            else (imgFExpand.Parent as StackLayout).RotateTo(90, 100);
+        }
+        private async void btnFileSelect_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var result = await FilePicker.PickAsync();
+                if (result != null)
+                {
+                    var filest = new FileInfo(result.FullPath);
+                    //discord max file size
+                    if (filest.Length < 8388235)
+                    {
+                        lblSelectedFile.Text = result.FileName;
+                        filepath = result.FullPath;
+                    }
+                    else
+                    {
+                        _ = DisplayAlert("Error", "File can only be 8mb maximum", "Ok");
+                        lblSelectedFile.Text = "";
+                        filepath = "";
+                    }
+                }
+
+            }
+            catch
+            {
+                // The user canceled or something went wrong
+            }
+        }
+        #endregion
+
+        #region Send Message
+        private void cbMessageContent_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            expMessageContent.IsExpanded = cbMessageContent.IsChecked;
+        }
+        private void expMessageContent_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            cbMessageContent.IsChecked = expMessageContent.IsExpanded;
+            sendMessage = cbMessageContent.IsChecked;
+            //Debug.WriteLine(sendMessage);
+            if (expMessageContent.IsExpanded)
+            {
+                (imgMCExpand.Parent as StackLayout).RotateTo(0, 100);
+            }
+            else (imgMCExpand.Parent as StackLayout).RotateTo(90, 100);
+        }
+        #endregion
+
+        #region Send Embed
+
+        #endregion
+
+        #region Webhook Profile
+        private void webhookSaveLoad_Clicked(object sender, EventArgs e)
+        {
+            #region easterEgg
+            if (entryWebhookName.Text == "{zenandshriokossecret}")
+            {
+                if (!Preferences.Get("{zenandshriokossecret}", false))
+                {
+                    Preferences.Set("{zenandshriokossecret}", true);
+                    ChangeAppTheme.ForDenizTheme();
+                }
+                else
+                {
+                    Preferences.Set("{zenandshriokossecret}", false);
+                    switch (AppInfo.RequestedTheme)
+                    {
+                        case AppTheme.Unspecified:
+                            ChangeAppTheme.DarkTheme();
+                            break;
+                        case AppTheme.Light:
+                            ChangeAppTheme.LightTheme();
+                            break;
+                        case AppTheme.Dark:
+                            ChangeAppTheme.DarkTheme();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                App.Current.MainPage = new MainPage();
+                return;
+            }
+            #endregion
+
+            _ = DisplayAlert("Hello!", "This feature is coming soon...", "Ok");
+            //Popup popup = new WebhookProfileSaveEditPopup(imgWebhookImage.Source.ToString(), entryWebhookName.Text);
+            //var res = await App.Current.MainPage.Navigation.ShowPopupAsync(popup);
+        }
+        private async void WebhookImage_Tapped(object sender, EventArgs e)
+        {
+            try
+            {
+                string oldAvatarUrl = "";
+                if (webhookProfileAvatar) oldAvatarUrl = webhookImageUrl;
+                string result = await DisplayPromptAsync("Webhook Image", "Only \".jpg\", \".jpeg\", \".png\", \".gif\" Supported!", accept: "Ok", cancel: "Cancel", placeholder: "Image url.", initialValue: oldAvatarUrl);
+                Debug.WriteLine(result);
+                if (!string.IsNullOrEmpty(result.Trim()))
+                {
+                    string[] imageExtensions = { ".jpg", ".jpeg", ".png", ".gif" };
+
+                    bool isImageUrl = imageExtensions.Any(result.EndsWith);
+
+                    if (isImageUrl)
+                    {
+                        webhookImageUrl = result.Trim();
+                        imgWebhookImage.Source = result.Trim();
+                        webhookProfileAvatar = true;
+                    }
+                    else
+                    {
+                        _ = DisplayAlert("Error!", "This is not an image URL.", "Ok");
+                    }
+                }
+                else
+                {
+                    webhookImageUrl = "";
+                    imgWebhookImage.Source = "https://imgur.com/pYrJMQJ.png";
+                    webhookProfileAvatar = false;
+                }
+            }
+            catch { }
+        }
+        private void entryWebhookName_Completed(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(entryWebhookName.Text))
+            {
+                Debug.WriteLine("name empty");
+                webhookName = "";
+                webhookProfileName = false;
+            }
+            else
+            {
+                Debug.WriteLine(entryWebhookName.Text);
+                webhookName = entryWebhookName.Text;
+                webhookProfileName = true;
+            }
+
+        }
+        private void entryWebhookName_Unfocused(object sender, FocusEventArgs e) =>
+            entryWebhookName_Completed(null, null);
+        #endregion
+
+        #region Webhook Url
         private async void WebhookAdd_Tapped(object sender, EventArgs e)
         {
             Popup popup = new WebhookAddEditPopup();
             await App.Current.MainPage.Navigation.ShowPopupAsync(popup);
             BindableLayout.SetItemsSource(blSavedWebhooks, References.WebhookList);
         }
-
         private void WebhookSelect_Tapped(object sender, EventArgs e)
         {
             var selected = References.WebhookList.Where(x => x.ID == Convert.ToInt32((sender as Frame).AutomationId)).FirstOrDefault();
@@ -184,224 +417,6 @@ namespace DiscordWebhookRemoteApp.Pages
             }
             BindableLayout.SetItemsSource(blSavedWebhooks, References.WebhookList);
         }
-        private async void WebhookImage_Tapped(object sender, EventArgs e)
-        {
-            try
-            {
-                string oldAvatarUrl = "";
-                if (webhookProfileAvatar) oldAvatarUrl = webhookImageUrl;
-                string result = await DisplayPromptAsync("Webhook Image", "Only \".jpg\", \".jpeg\", \".png\", \".gif\" Supported!", accept: "Ok", cancel: "Cancel", placeholder: "Image url.", initialValue: oldAvatarUrl);
-                Debug.WriteLine(result);
-                if (!string.IsNullOrEmpty(result.Trim()))
-                {
-                    string[] imageExtensions = { ".jpg", ".jpeg", ".png", ".gif" };
-
-                    bool isImageUrl = imageExtensions.Any(result.EndsWith);
-
-                    if (isImageUrl)
-                    {
-                        webhookImageUrl = result.Trim();
-                        imgWebhookImage.Source = result.Trim();
-                        webhookProfileAvatar = true;
-                    }
-                    else
-                    {
-                        _ = DisplayAlert("Error!", "This is not an image URL.", "Ok");
-                    }
-                }
-                else
-                {
-                    webhookImageUrl = "";
-                    imgWebhookImage.Source = "https://imgur.com/pYrJMQJ.png";
-                    webhookProfileAvatar = false;
-                }
-            }
-            catch { }
-        }
-
-        private void entryWebhookName_Completed(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(entryWebhookName.Text))
-            {
-                Debug.WriteLine("name empty");
-                webhookName = "";
-                webhookProfileName = false;
-            }
-            else
-            {
-                Debug.WriteLine(entryWebhookName.Text);
-                webhookName = entryWebhookName.Text;
-                webhookProfileName = true;
-            }
-
-        }
-
-        private void entryWebhookName_Unfocused(object sender, FocusEventArgs e) => entryWebhookName_Completed(null, null);
-
-        private void Button_Clicked_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private async void DiscordButton_Clicked(object sender, EventArgs e)
-        {
-            await Browser.OpenAsync("https://discord.gg/aX4unxzZek");
-        }
-
-        private void webhookSaveLoad_Clicked(object sender, EventArgs e)
-        {
-            if (entryWebhookName.Text == "{zenandshriokossecret}")
-            {
-                if (!Preferences.Get("{zenandshriokossecret}", false))
-                {
-                    Preferences.Set("{zenandshriokossecret}", true);
-                    ChangeAppTheme.ForDenizTheme();
-                }
-                else
-                {
-                    Preferences.Set("{zenandshriokossecret}", false);
-                    switch (AppInfo.RequestedTheme)
-                    {
-                        case AppTheme.Unspecified:
-                            ChangeAppTheme.DarkTheme();
-                            break;
-                        case AppTheme.Light:
-                            ChangeAppTheme.LightTheme();
-                            break;
-                        case AppTheme.Dark:
-                            ChangeAppTheme.DarkTheme();
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                App.Current.MainPage = new MainPage();
-                return;
-            }
-            _ = DisplayAlert("Hello!", "This feature is coming soon...", "Ok");
-            //Popup popup = new WebhookProfileSaveEditPopup(imgWebhookImage.Source.ToString(), entryWebhookName.Text);
-            //var res = await App.Current.MainPage.Navigation.ShowPopupAsync(popup);
-        }
-        private async void clearContent_Clicked(object sender, EventArgs e)
-        {
-            bool answer = await DisplayAlert("Warning!", "Are you sure about to clear content?", "Yes", "No");
-            Debug.WriteLine("Answer: " + answer);
-            if (answer)
-            {
-                cbFileSend.IsChecked = false;
-                cbMessageContent.IsChecked = false;
-                entryContentMessage.Text = "";
-                filepath = "";
-                lblSelectedFile.Text = "none";
-                entryWebhookName.Text = "";
-                imgWebhookImage.Source = "https://imgur.com/pYrJMQJ.png";
-            }
-        }
-        private async void sendContent_Clicked(object sender, EventArgs e)
-        {
-            if (webhookSelected)
-            {
-                Loodinglayout.IsVisible = true;
-                DiscordMessage message = new DiscordMessage();
-
-                if (webhookProfileName)
-                    message.Username = webhookName;
-
-                if (webhookProfileAvatar)
-                    message.AvatarUrl = webhookImageUrl;
-
-                if (sendMessage)
-                {
-                    if (!string.IsNullOrEmpty(entryContentMessage.Text))
-                    {
-                        message.Content = entryContentMessage.Text;
-                    }
-                }
-
-                try
-                {
-                    if (sendFile && !string.IsNullOrEmpty(filepath))
-                        hook.Send(message, new FileInfo(filepath));
-                    else
-                    {
-                        hook.Send(message);
-                        cbFileSend.IsChecked = false;
-                    }
-                }
-                catch
-                {
-                    _ = DisplayAlert("Warning!", "Send Error!!", "Ok");
-                    Debug.WriteLine("Send Error!!");
-                }
-                await Task.Delay(1000);
-                Loodinglayout.IsVisible = false;
-            }
-            else
-                _ = DisplayAlert("Warning!", "First select Webhook!", "Ok");
-        }
-
-        private void cbMessageContent_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            expMessageContent.IsExpanded = cbMessageContent.IsChecked;
-        }
-
-        private void expMessageContent_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            cbMessageContent.IsChecked = expMessageContent.IsExpanded;
-            sendMessage = cbMessageContent.IsChecked;
-            //Debug.WriteLine(sendMessage);
-            if (expMessageContent.IsExpanded)
-            {
-                (imgMCExpand.Parent as StackLayout).RotateTo(0, 100);
-            }
-            else (imgMCExpand.Parent as StackLayout).RotateTo(90, 100);
-        }
-
-        //---------------------------------------------------------------------------------------------------
-        private void cbFileSend_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            expFileSend.IsExpanded = cbFileSend.IsChecked;
-        }
-        private void expFileSend_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            cbFileSend.IsChecked = expFileSend.IsExpanded;
-            sendFile = cbFileSend.IsChecked;
-            //Debug.WriteLine(sendFile);
-            if (expFileSend.IsExpanded)
-            {
-                (imgFExpand.Parent as StackLayout).RotateTo(0, 100);
-            }
-            else (imgFExpand.Parent as StackLayout).RotateTo(90, 100);
-        }
-
-
-        private async void btnFileSelect_Clicked(object sender, EventArgs e)
-        {
-            try
-            {
-                var result = await FilePicker.PickAsync();
-                if (result != null)
-                {
-                    var filest = new FileInfo(result.FullPath);
-                    //discord max file size
-                    if (filest.Length < 8388235)
-                    {
-                        lblSelectedFile.Text = result.FileName;
-                        filepath = result.FullPath;
-                    }
-                    else
-                    {
-                        _ = DisplayAlert("Error", "File can only be 8mb maximum", "Ok");
-                        lblSelectedFile.Text = "";
-                        filepath = "";
-                    }
-                }
-
-            }
-            catch
-            {
-                // The user canceled or something went wrong
-            }
-        }
+        #endregion
     }
 }
