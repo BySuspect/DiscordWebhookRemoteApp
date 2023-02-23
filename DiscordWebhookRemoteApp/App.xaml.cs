@@ -30,7 +30,15 @@ namespace DiscordWebhookRemoteApp
             }
             if (Preferences.Get("{zenandshriokossecret}", false))
                 ChangeAppTheme.ForDenizTheme();
-            MainPage = new MainPage();
+
+#if DEBUG
+            //Preferences.Set("privacy_policy_accepted", false);
+#endif
+
+            if (Preferences.Get("privacy_policy_accepted", false))
+                MainPage = new MainPage();
+            else
+                MainPage = new PrivacyPolicyPage();
         }
 
         void AppActions_OnAppAction(object sender, AppActionEventArgs e)

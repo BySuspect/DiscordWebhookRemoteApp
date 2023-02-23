@@ -49,7 +49,7 @@ namespace DiscordWebhookRemoteApp.Pages
             InitializeComponent();
             BindingContext = this;
             BindableLayout.SetItemsSource(blSavedWebhooks, References.WebhookList);
-            DisplayAlert("Hello!", "This is the first version of my app. Please post your feedback in google play comments.", "Ok");
+            //DisplayAlert("Hello!", "This is the first version of my app. Please post your feedback in google play comments.", "Ok");
             Theme.ThemeChanged += (s, e) =>
             {
                 Debug.WriteLine("theme changed: " + e.NewTheme);
@@ -243,6 +243,11 @@ namespace DiscordWebhookRemoteApp.Pages
 
         }
 
+        private async void DiscordButton_Clicked(object sender, EventArgs e)
+        {
+            await Browser.OpenAsync("https://discord.gg/aX4unxzZek");
+        }
+
         private void webhookSaveLoad_Clicked(object sender, EventArgs e)
         {
             if (entryWebhookName.Text == "{zenandshriokossecret}")
@@ -292,10 +297,11 @@ namespace DiscordWebhookRemoteApp.Pages
                 imgWebhookImage.Source = "https://imgur.com/pYrJMQJ.png";
             }
         }
-        private void sendContent_Clicked(object sender, EventArgs e)
+        private async void sendContent_Clicked(object sender, EventArgs e)
         {
             if (webhookSelected)
             {
+                Loodinglayout.IsVisible = true;
                 DiscordMessage message = new DiscordMessage();
 
                 if (webhookProfileName)
@@ -327,6 +333,8 @@ namespace DiscordWebhookRemoteApp.Pages
                     _ = DisplayAlert("Warning!", "Send Error!!", "Ok");
                     Debug.WriteLine("Send Error!!");
                 }
+                await Task.Delay(1000);
+                Loodinglayout.IsVisible = false;
             }
             else
                 _ = DisplayAlert("Warning!", "First select Webhook!", "Ok");

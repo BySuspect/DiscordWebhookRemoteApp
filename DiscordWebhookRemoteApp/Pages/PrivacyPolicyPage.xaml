@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DiscordWebhookRemoteApp.Pages.PrivacyPolicyPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xct:StatusBarEffect.Color="Black"
+    xct:StatusBarEffect.Style="LightContent"
+    BackgroundColor="Black">
+    <ContentPage.Content>
+        <!--#region privacy policy-->
+        <StackLayout Margin="25" VerticalOptions="Center">
+            <Label
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                Text="Privacy Policy"
+                TextColor="LightBlue">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="PrivacyPolicy_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+            <ScrollView>
+                <StackLayout>
+                    <Label x:Name="lblPolicy" TextColor="White" />
+                </StackLayout>
+            </ScrollView>
+            <Button
+                x:Name="btnaccept"
+                xct:TouchEffect.NativeAnimation="true"
+                xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                xct:TouchEffect.PressedAnimationDuration="500"
+                xct:TouchEffect.PressedOpacity="0.6"
+                xct:TouchEffect.PressedScale="0.98"
+                Clicked="btnPrivacyPolicyAccept"
+                HorizontalOptions="Center"
+                Text="Accept" />
+        </StackLayout>
+        <!--#endregion-->
+    </ContentPage.Content>
+</ContentPage>

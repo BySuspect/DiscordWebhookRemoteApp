@@ -52,7 +52,7 @@ namespace Discord.Webhook
             string bound = "------------------------" + DateTime.Now.Ticks.ToString("x");
             WebClient webhookRequest = new WebClient();
             webhookRequest.Headers.Add("Content-Type", "multipart/form-data; boundary=" + bound);
-            
+
             MemoryStream stream = new MemoryStream();
             for (int i = 0; i < files.Length; i++)
                 SetFile(stream, bound, i, files[i]);
