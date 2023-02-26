@@ -36,7 +36,11 @@ namespace DiscordWebhookRemoteApp.Pages
             sendEmbed = false,
             webhookSelected = false,
             webhookProfileAvatar = false,
-            webhookProfileName = false;
+            webhookProfileName = false,
+            embedAuthor = false,
+            embedBody = false,
+            embedImages = false,
+            embedFooter = false;
 
         string selectedUrl = "",
             webhookImageUrl = "",
@@ -54,6 +58,20 @@ namespace DiscordWebhookRemoteApp.Pages
             {
                 Debug.WriteLine("theme changed: " + e.NewTheme);
             };
+        }
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            var fRes = await Database.FirebaseDatabase.GetData();
+            if (fRes != null)
+            {
+                if (fRes.Settings.TestingMode.IsOnTest && References.Version == fRes.Settings.TestingMode.Version)
+                {
+                    adsBottom.IsVisible = false;
+                }
+            }
+
         }
         private async void sendContent_Clicked(object sender, EventArgs e)
         {
@@ -79,10 +97,10 @@ namespace DiscordWebhookRemoteApp.Pages
                 try
                 {
                     if (sendFile && !string.IsNullOrEmpty(filepath))
-                        hook.Send(message, new FileInfo(filepath));
+                        await hook.Send(message, new FileInfo(filepath));
                     else
                     {
-                        hook.Send(message);
+                        await hook.Send(message);
                         cbFileSend.IsChecked = false;
                     }
                 }
@@ -212,6 +230,15 @@ namespace DiscordWebhookRemoteApp.Pages
 
         //---------------------------------------------------------------------------------------------------
 
+        private void expEmbedAuthor_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+
+        }
+
+        private void cbEmbedAuthor_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+
+        }
 
         #region Send File
         private void cbFileSend_CheckedChanged(object sender, CheckedChangedEventArgs e)
@@ -229,6 +256,47 @@ namespace DiscordWebhookRemoteApp.Pages
             }
             else (imgFExpand.Parent as StackLayout).RotateTo(90, 100);
         }
+
+        private void expEmbedBody_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+
+        }
+
+        private void cbEmbedBody_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+
+        }
+
+        private void expEmbedFields_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+
+        }
+
+        private void cbEmbedFields_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+
+        }
+
+        private void expEmbedImages_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+
+        }
+
+        private void cbEmbedImages_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+
+        }
+
+        private void expEmbedFooter_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+
+        }
+
+        private void cbEmbedFooter_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+
+        }
+
         private async void btnFileSelect_Clicked(object sender, EventArgs e)
         {
             try
@@ -278,7 +346,21 @@ namespace DiscordWebhookRemoteApp.Pages
         #endregion
 
         #region Send Embed
-
+        private void cbEmbedContent_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            expEmbedContent.IsExpanded = cbEmbedContent.IsChecked;
+        }
+        private void expEmbedContent_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            cbEmbedContent.IsChecked = expEmbedContent.IsExpanded;
+            sendEmbed = cbEmbedContent.IsChecked;
+            //Debug.WriteLine(sendMessage);
+            if (expEmbedContent.IsExpanded)
+            {
+                (imgEExpand.Parent as StackLayout).RotateTo(0, 100);
+            }
+            else (imgEExpand.Parent as StackLayout).RotateTo(90, 100);
+        }
         #endregion
 
         #region Webhook Profile

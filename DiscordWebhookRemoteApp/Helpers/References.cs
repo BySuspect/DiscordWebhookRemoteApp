@@ -28,7 +28,8 @@ namespace DiscordWebhookRemoteApp.Helpers
 {
     public static class References
     {
-        static string Version = "0.1.1beta";
+        public static string Version = "0.2beta";
+
         static List<webhookItems> _webhookList;
         public static List<webhookItems> WebhookList
         {
