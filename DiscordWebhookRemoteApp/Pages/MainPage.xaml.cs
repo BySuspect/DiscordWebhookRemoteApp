@@ -101,7 +101,6 @@ namespace DiscordWebhookRemoteApp.Pages
                     else
                     {
                         await hook.Send(message);
-                        cbFileSend.IsChecked = false;
                     }
                 }
                 catch
@@ -121,14 +120,25 @@ namespace DiscordWebhookRemoteApp.Pages
             Debug.WriteLine("Answer: " + answer);
             if (answer)
             {
-                cbFileSend.IsChecked = false;
-                cbMessageContent.IsChecked = false;
                 entryContentMessage.Text = "";
                 filepath = "";
                 lblSelectedFile.Text = "none";
                 entryWebhookName.Text = "";
                 imgWebhookImage.Source = "https://imgur.com/pYrJMQJ.png";
             }
+        }
+        private async void embedBodyColorPicker_Tapped(object sender, EventArgs e)
+        {
+            var oldColor = embedBodyColorPicker.Color;
+            Popup popup = new ColorPickerPopup(this, oldColor);
+            var res = await App.Current.MainPage.Navigation.ShowPopupAsync(popup);
+            var t = embedBodyColorPicker.Color.ToHex();
+#pragma warning disable CS0252 // Possible unintended reference comparison; left hand side needs cast
+            if (res == null || res == "cancel")
+            {
+                embedBodyColorPicker.Color = oldColor;
+            }
+#pragma warning restore CS0252 // Possible unintended reference comparison; left hand side needs cast
         }
 
         #region testArea
@@ -149,7 +159,7 @@ namespace DiscordWebhookRemoteApp.Pages
             embed.Color = Color.Red; //alpha will be ignored, you can use any RGB color
             embed.Footer = new EmbedFooter() { Text = "Footer Text", IconUrl = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif" };
             embed.Image = new EmbedMedia() { Url = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif", Width = 150, Height = 150 }; //valid for thumb and video
-                                                                                                                                                                                //embed.Provider = new EmbedProvider() { Name = "Provider Name", Url = "Provider Url" };
+            embed.Thumbnail = new EmbedMedia() { Url = "https://cdn.discordapp.com/avatars/272665050672660501/a_25129c94f0e743d18fd9dc276ff05606.gif" };                                                                                                                                    //embed.Provider = new EmbedProvider() { Name = "Provider Name", Url = "Provider Url" };
             embed.Author = new EmbedAuthor() { Name = "Author Name", Url = "https://google.com/", IconUrl = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif" };
 
             //fields
@@ -226,77 +236,9 @@ namespace DiscordWebhookRemoteApp.Pages
             await Browser.OpenAsync("https://discord.gg/aX4unxzZek");
         }
 
-
-
         //---------------------------------------------------------------------------------------------------
 
-        private void expEmbedAuthor_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-
-        }
-
-        private void cbEmbedAuthor_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-
-        }
-
         #region Send File
-        private void cbFileSend_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            expFileSend.IsExpanded = cbFileSend.IsChecked;
-        }
-        private void expFileSend_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            cbFileSend.IsChecked = expFileSend.IsExpanded;
-            sendFile = cbFileSend.IsChecked;
-            //Debug.WriteLine(sendFile);
-            if (expFileSend.IsExpanded)
-            {
-                (imgFExpand.Parent as StackLayout).RotateTo(0, 100);
-            }
-            else (imgFExpand.Parent as StackLayout).RotateTo(90, 100);
-        }
-
-        private void expEmbedBody_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-
-        }
-
-        private void cbEmbedBody_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-
-        }
-
-        private void expEmbedFields_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-
-        }
-
-        private void cbEmbedFields_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-
-        }
-
-        private void expEmbedImages_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-
-        }
-
-        private void cbEmbedImages_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-
-        }
-
-        private void expEmbedFooter_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-
-        }
-
-        private void cbEmbedFooter_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-
-        }
-
         private async void btnFileSelect_Clicked(object sender, EventArgs e)
         {
             try
@@ -324,42 +266,6 @@ namespace DiscordWebhookRemoteApp.Pages
             {
                 // The user canceled or something went wrong
             }
-        }
-        #endregion
-
-        #region Send Message
-        private void cbMessageContent_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            expMessageContent.IsExpanded = cbMessageContent.IsChecked;
-        }
-        private void expMessageContent_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            cbMessageContent.IsChecked = expMessageContent.IsExpanded;
-            sendMessage = cbMessageContent.IsChecked;
-            //Debug.WriteLine(sendMessage);
-            if (expMessageContent.IsExpanded)
-            {
-                (imgMCExpand.Parent as StackLayout).RotateTo(0, 100);
-            }
-            else (imgMCExpand.Parent as StackLayout).RotateTo(90, 100);
-        }
-        #endregion
-
-        #region Send Embed
-        private void cbEmbedContent_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            expEmbedContent.IsExpanded = cbEmbedContent.IsChecked;
-        }
-        private void expEmbedContent_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            cbEmbedContent.IsChecked = expEmbedContent.IsExpanded;
-            sendEmbed = cbEmbedContent.IsChecked;
-            //Debug.WriteLine(sendMessage);
-            if (expEmbedContent.IsExpanded)
-            {
-                (imgEExpand.Parent as StackLayout).RotateTo(0, 100);
-            }
-            else (imgEExpand.Parent as StackLayout).RotateTo(90, 100);
         }
         #endregion
 

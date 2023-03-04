@@ -19,7 +19,7 @@
     <ContentPage.Content>
         <StackLayout Margin="0,5,0,0">
             <Grid HorizontalOptions="{OnIdiom Phone=Fill, Tablet=Center}" VerticalOptions="FillAndExpand">
-                <ScrollView>
+                <ScrollView HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
                     <StackLayout>
 
                         <!--#region Webhooks Select Area-->
@@ -28,7 +28,6 @@
                             BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
                             BorderColor="{x:Static local:ThemeColors.BorderColor}"
                             CornerRadius="15"
-                            HasShadow="True"
                             IsVisible="False">
                             <StackLayout>
                                 <Label
@@ -124,8 +123,8 @@
                                     </Label>
                                     <Button
                                         Grid.Column="1"
-                                        Margin="0,10,10,10"
-                                        Padding="10,0"
+                                        Margin="0,5,10,5"
+                                        Padding="10,5,10,5"
                                         xct:TouchEffect.NativeAnimation="true"
                                         xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
                                         xct:TouchEffect.PressedAnimationDuration="500"
@@ -153,7 +152,6 @@
                             BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
                             BorderColor="{x:Static local:ThemeColors.BorderColor}"
                             CornerRadius="15"
-                            HasShadow="True"
                             IsVisible="False">
                             <StackLayout>
                                 <Label
@@ -207,12 +205,11 @@
 
                         <!--#region Send Message Area-->
                         <Frame
-                            Padding="10"
+                            Padding="5"
                             BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
                             BorderColor="{x:Static local:ThemeColors.BorderColor}"
                             CornerRadius="15"
-                            HasShadow="True"
-                            IsVisible="False">
+                            IsVisible="True">
                             <StackLayout>
                                 <Label
                                     Margin="10,0,0,0"
@@ -221,53 +218,45 @@
                                     Text="Message Content"
                                     TextColor="{x:Static local:ThemeColors.TextColor}" />
                                 <Frame
-                                    Padding="10"
+                                    Padding="5"
                                     BackgroundColor="Transparent"
                                     BorderColor="{x:Static local:ThemeColors.BorderColor}"
-                                    CornerRadius="15"
-                                    HasShadow="True">
-                                    <xctv:Expander
+                                    CornerRadius="15">
+                                    <customItems:CustomExpander
                                         x:Name="expMessageContent"
-                                        AnimationLength="250"
-                                        PropertyChanged="expMessageContent_PropertyChanged">
-                                        <xctv:Expander.Header>
-                                            <StackLayout Orientation="Horizontal">
-                                                <CheckBox
-                                                    x:Name="cbMessageContent"
-                                                    CheckedChanged="cbMessageContent_CheckedChanged"
-                                                    VerticalOptions="Center"
-                                                    Color="{x:Static local:ThemeColors.TextColor}" />
-                                                <Label
-                                                    Margin="0,0,0,0"
-                                                    FontSize="Body"
-                                                    HorizontalOptions="Start"
-                                                    Text="Send Message"
-                                                    TextColor="{x:Static local:ThemeColors.TextColor}"
-                                                    VerticalOptions="Center" />
-                                                <StackLayout
-                                                    HorizontalOptions="EndAndExpand"
-                                                    Rotation="90"
-                                                    VerticalOptions="Center">
-                                                    <Image
-                                                        x:Name="imgMCExpand"
-                                                        Scale="0.8"
-                                                        Source="downarrow32px.png" />
-                                                </StackLayout>
-                                            </StackLayout>
-                                        </xctv:Expander.Header>
-                                        <xctv:Expander.Content>
-                                            <StackLayout>
-                                                <Editor
+                                        AnimationLength="450"
+                                        CollapseAnimationEasing="SpringOut"
+                                        ExpandAnimationEasing="SpringIn"
+                                        HeaderText="Send Message">
+                                        <customItems:CustomExpander.Content>
+                                            <Grid>
+                                                <customItems:CustomEditor
                                                     x:Name="entryContentMessage"
-                                                    Margin="10,0,0,0"
+                                                    Margin="10,5,5,25"
                                                     HeightRequest="200"
                                                     HorizontalOptions="FillAndExpand"
+                                                    MaxLength="2000"
                                                     Placeholder="Message"
                                                     PlaceholderColor="{x:Static local:ThemeColors.TransparentTextColor}"
                                                     TextColor="{x:Static local:ThemeColors.TextColor}" />
-                                            </StackLayout>
-                                        </xctv:Expander.Content>
-                                    </xctv:Expander>
+                                                <Label
+                                                    Margin="5"
+                                                    Padding="0,0,10,0"
+                                                    FontSize="Small"
+                                                    HorizontalOptions="EndAndExpand"
+                                                    TextColor="{Binding Source={x:Reference entryContentMessage}, Path=SizeLabelTextColor}"
+                                                    VerticalOptions="EndAndExpand">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="{Binding Source={x:Reference entryContentMessage}, Path=TextLenght}" />
+                                                            <Span Text="/" />
+                                                            <Span Text="{Binding Source={x:Reference entryContentMessage}, Path=MaxLength}" />
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                            </Grid>
+                                        </customItems:CustomExpander.Content>
+                                    </customItems:CustomExpander>
                                 </Frame>
                             </StackLayout>
                         </Frame>
@@ -275,11 +264,10 @@
 
                         <!--#region Send Embed Area-->
                         <Frame
-                            Padding="10"
+                            Padding="5"
                             BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
                             BorderColor="{x:Static local:ThemeColors.BorderColor}"
-                            CornerRadius="15"
-                            HasShadow="True">
+                            CornerRadius="15">
                             <StackLayout>
                                 <Label
                                     Margin="10,0,0,0"
@@ -288,54 +276,30 @@
                                     Text="Embed Content"
                                     TextColor="{x:Static local:ThemeColors.TextColor}" />
                                 <Frame
-                                    Padding="10"
+                                    Padding="5"
                                     BackgroundColor="Transparent"
                                     BorderColor="{x:Static local:ThemeColors.BorderColor}"
-                                    CornerRadius="15"
-                                    HasShadow="True">
-                                    <xctv:Expander
+                                    CornerRadius="15">
+                                    <customItems:CustomExpander
                                         x:Name="expEmbedContent"
-                                        AnimationLength="250"
-                                        IsExpanded="True"
-                                        PropertyChanged="expEmbedContent_PropertyChanged">
-                                        <xctv:Expander.Header>
-                                            <StackLayout Orientation="Horizontal">
-                                                <CheckBox
-                                                    x:Name="cbEmbedContent"
-                                                    CheckedChanged="cbEmbedContent_CheckedChanged"
-                                                    VerticalOptions="Center"
-                                                    Color="{x:Static local:ThemeColors.TextColor}" />
-                                                <Label
-                                                    Margin="0,0,0,0"
-                                                    FontSize="Body"
-                                                    HorizontalOptions="Start"
-                                                    Text="Send Embed"
-                                                    TextColor="{x:Static local:ThemeColors.TextColor}"
-                                                    VerticalOptions="Center" />
-                                                <StackLayout
-                                                    HorizontalOptions="EndAndExpand"
-                                                    Rotation="90"
-                                                    VerticalOptions="Center">
-                                                    <Image
-                                                        x:Name="imgEExpand"
-                                                        Scale="0.8"
-                                                        Source="downarrow32px.png" />
-                                                </StackLayout>
-                                            </StackLayout>
-                                        </xctv:Expander.Header>
-                                        <xctv:Expander.Content>
-                                            <StackLayout Margin="10">
-
+                                        AnimationLength="450"
+                                        CollapseAnimationEasing="SpringOut"
+                                        ExpandAnimationEasing="SpringIn"
+                                        HeaderText="Send Embed"
+                                        IsExpanded="True">
+                                        <customItems:CustomExpander.Content>
+                                            <StackLayout>
                                                 <!--#region Author-->
                                                 <Frame
-                                                    Padding="10,10,10,10"
+                                                    Padding="5"
                                                     BackgroundColor="Transparent"
                                                     BorderColor="{x:Static local:ThemeColors.BorderColor}"
-                                                    CornerRadius="15"
-                                                    HasShadow="True">
+                                                    CornerRadius="15">
                                                     <customItems:CustomExpander
                                                         x:Name="expEmbedAuthor"
-                                                        AnimationLength="250"
+                                                        AnimationLength="450"
+                                                        CollapseAnimationEasing="SpringOut"
+                                                        ExpandAnimationEasing="SpringIn"
                                                         HeaderText="Author"
                                                         IsExpanded="False">
                                                         <customItems:CustomExpander.Content>
@@ -344,15 +308,16 @@
                                                                     Padding="5"
                                                                     BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
                                                                     BorderColor="{x:Static local:ThemeColors.BorderColor}"
-                                                                    CornerRadius="15">
+                                                                    CornerRadius="15"
+                                                                    HeightRequest="50">
                                                                     <StackLayout HeightRequest="65" Orientation="Horizontal">
                                                                         <Image
                                                                             Margin="10,0,0,0"
                                                                             xct:CornerRadiusEffect.CornerRadius="255"
-                                                                            HeightRequest="55"
+                                                                            HeightRequest="50"
                                                                             IsAnimationPlaying="True"
                                                                             Source="https://imgur.com/pYrJMQJ.png"
-                                                                            WidthRequest="55">
+                                                                            WidthRequest="50">
                                                                             <Image.GestureRecognizers>
                                                                                 <TapGestureRecognizer />
                                                                             </Image.GestureRecognizers>
@@ -360,7 +325,7 @@
                                                                         <Grid HorizontalOptions="FillAndExpand">
                                                                             <customItems:CustomEntry
                                                                                 x:Name="EntryAuthorName"
-                                                                                Margin="10,0,0,0"
+                                                                                Margin="10,0,10,0"
                                                                                 MaxLength="256"
                                                                                 Placeholder="Author"
                                                                                 PlaceholderColor="{x:Static local:ThemeColors.TransparentTextColor}"
@@ -370,7 +335,7 @@
                                                                                 FontSize="Small"
                                                                                 HorizontalOptions="EndAndExpand"
                                                                                 TextColor="{Binding Source={x:Reference EntryAuthorName}, Path=SizeLabelTextColor}"
-                                                                                VerticalOptions="Center">
+                                                                                VerticalOptions="End">
                                                                                 <Label.FormattedText>
                                                                                     <FormattedString>
                                                                                         <Span Text="{Binding Source={x:Reference EntryAuthorName}, Path=TextLenght}" />
@@ -404,16 +369,17 @@
 
                                                 <!--#region Body-->
                                                 <Frame
-                                                    Padding="10,10,10,10"
+                                                    Padding="5"
                                                     BackgroundColor="Transparent"
                                                     BorderColor="{x:Static local:ThemeColors.BorderColor}"
-                                                    CornerRadius="15"
-                                                    HasShadow="True">
+                                                    CornerRadius="15">
                                                     <customItems:CustomExpander
                                                         x:Name="expEmbedBody"
-                                                        AnimationLength="250"
+                                                        AnimationLength="450"
+                                                        CollapseAnimationEasing="SpringOut"
+                                                        ExpandAnimationEasing="SpringIn"
                                                         HeaderText="Body"
-                                                        IsExpanded="False">
+                                                        IsExpanded="True">
                                                         <customItems:CustomExpander.Content>
                                                             <StackLayout Margin="0,10">
                                                                 <Frame
@@ -421,42 +387,66 @@
                                                                     BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
                                                                     BorderColor="{x:Static local:ThemeColors.BorderColor}"
                                                                     CornerRadius="15">
-                                                                    <StackLayout HeightRequest="65" Orientation="Horizontal">
-                                                                        <Image
-                                                                            Margin="10,0,0,0"
-                                                                            xct:CornerRadiusEffect.CornerRadius="255"
-                                                                            HeightRequest="55"
-                                                                            IsAnimationPlaying="True"
-                                                                            Source="https://imgur.com/pYrJMQJ.png"
-                                                                            WidthRequest="55">
-                                                                            <Image.GestureRecognizers>
-                                                                                <TapGestureRecognizer />
-                                                                            </Image.GestureRecognizers>
-                                                                        </Image>
-                                                                        <Grid HorizontalOptions="FillAndExpand">
+                                                                    <Grid>
+                                                                        <StackLayout
+                                                                            Margin="10,0,10,0"
+                                                                            HeightRequest="50"
+                                                                            HorizontalOptions="FillAndExpand"
+                                                                            VerticalOptions="Center">
                                                                             <customItems:CustomEntry
-                                                                                x:Name="EntryAuthorName"
-                                                                                Margin="10,0,0,0"
+                                                                                x:Name="EntryBodyTitle"
                                                                                 MaxLength="256"
-                                                                                Placeholder="Author"
+                                                                                Placeholder="Title"
                                                                                 PlaceholderColor="{x:Static local:ThemeColors.TransparentTextColor}"
                                                                                 TextColor="{x:Static local:ThemeColors.TextColor}" />
-                                                                            <Label
-                                                                                Padding="0,0,10,0"
-                                                                                FontSize="Small"
-                                                                                HorizontalOptions="EndAndExpand"
-                                                                                TextColor="{Binding Source={x:Reference EntryAuthorName}, Path=SizeLabelTextColor}"
-                                                                                VerticalOptions="Center">
-                                                                                <Label.FormattedText>
-                                                                                    <FormattedString>
-                                                                                        <Span Text="{Binding Source={x:Reference EntryAuthorName}, Path=TextLenght}" />
-                                                                                        <Span Text="/" />
-                                                                                        <Span Text="{Binding Source={x:Reference EntryAuthorName}, Path=MaxLength}" />
-                                                                                    </FormattedString>
-                                                                                </Label.FormattedText>
-                                                                            </Label>
-                                                                        </Grid>
-                                                                    </StackLayout>
+                                                                        </StackLayout>
+                                                                        <Label
+                                                                            Padding="0,0,10,0"
+                                                                            FontSize="Small"
+                                                                            HorizontalOptions="EndAndExpand"
+                                                                            TextColor="{Binding Source={x:Reference EntryBodyTitle}, Path=SizeLabelTextColor}"
+                                                                            VerticalOptions="End">
+                                                                            <Label.FormattedText>
+                                                                                <FormattedString>
+                                                                                    <Span Text="{Binding Source={x:Reference EntryBodyTitle}, Path=TextLenght}" />
+                                                                                    <Span Text="/" />
+                                                                                    <Span Text="{Binding Source={x:Reference EntryBodyTitle}, Path=MaxLength}" />
+                                                                                </FormattedString>
+                                                                            </Label.FormattedText>
+                                                                        </Label>
+                                                                    </Grid>
+                                                                </Frame>
+                                                                <Frame
+                                                                    Padding="5"
+                                                                    BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
+                                                                    BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                                                                    CornerRadius="15">
+                                                                    <Grid>
+                                                                        <customItems:CustomEditor
+                                                                            x:Name="entryBodyContent"
+                                                                            Margin="10,5,5,25"
+                                                                            HeightRequest="200"
+                                                                            HorizontalOptions="FillAndExpand"
+                                                                            MaxLength="4096"
+                                                                            Placeholder="Description"
+                                                                            PlaceholderColor="{x:Static local:ThemeColors.TransparentTextColor}"
+                                                                            TextColor="{x:Static local:ThemeColors.TextColor}" />
+                                                                        <Label
+                                                                            Margin="5"
+                                                                            Padding="0,0,10,0"
+                                                                            FontSize="Small"
+                                                                            HorizontalOptions="EndAndExpand"
+                                                                            TextColor="{Binding Source={x:Reference entryBodyContent}, Path=SizeLabelTextColor}"
+                                                                            VerticalOptions="EndAndExpand">
+                                                                            <Label.FormattedText>
+                                                                                <FormattedString>
+                                                                                    <Span Text="{Binding Source={x:Reference entryBodyContent}, Path=TextLenght}" />
+                                                                                    <Span Text="/" />
+                                                                                    <Span Text="{Binding Source={x:Reference entryBodyContent}, Path=MaxLength}" />
+                                                                                </FormattedString>
+                                                                            </Label.FormattedText>
+                                                                        </Label>
+                                                                    </Grid>
                                                                 </Frame>
                                                                 <Frame
                                                                     Padding="5"
@@ -471,6 +461,31 @@
                                                                             PlaceholderColor="{x:Static local:ThemeColors.TransparentTextColor}"
                                                                             TextColor="{x:Static local:ThemeColors.TextColor}" />
                                                                     </StackLayout>
+                                                                </Frame>
+                                                                <Frame
+                                                                    Padding="5"
+                                                                    BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
+                                                                    BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                                                                    CornerRadius="15">
+                                                                    <Grid>
+                                                                        <customItems:CustomBoxView
+                                                                            x:Name="embedBodyColorPicker"
+                                                                            CornerRadius="255"
+                                                                            HeightRequest="30" 
+                                                                            HorizontalOptions="FillAndExpand"
+                                                                            VerticalOptions="Center"
+                                                                            Color="#000000" />
+                                                                        <Label
+                                                                            FontAttributes="Bold"
+                                                                            FontSize="Caption"
+                                                                            HorizontalOptions="Center"
+                                                                            Text="Embed Color"
+                                                                            TextColor="{Binding Source={x:Reference embedBodyColorPicker}, Path=EmbedReverseColor}"
+                                                                            VerticalOptions="Center" />
+                                                                        <Grid.GestureRecognizers>
+                                                                            <TapGestureRecognizer Tapped="embedBodyColorPicker_Tapped" />
+                                                                        </Grid.GestureRecognizers>
+                                                                    </Grid>
                                                                 </Frame>
                                                             </StackLayout>
                                                         </customItems:CustomExpander.Content>
@@ -480,74 +495,20 @@
 
                                                 <!--#region Fields-->
                                                 <Frame
-                                                    Padding="10,10,10,10"
+                                                    Padding="5"
                                                     BackgroundColor="Transparent"
                                                     BorderColor="{x:Static local:ThemeColors.BorderColor}"
-                                                    CornerRadius="15"
-                                                    HasShadow="True">
+                                                    CornerRadius="15">
                                                     <customItems:CustomExpander
                                                         x:Name="expEmbedFields"
-                                                        AnimationLength="250"
+                                                        AnimationLength="450"
+                                                        CollapseAnimationEasing="SpringOut"
+                                                        ExpandAnimationEasing="SpringIn"
                                                         HeaderText="Fields"
                                                         IsExpanded="False">
                                                         <customItems:CustomExpander.Content>
                                                             <StackLayout Margin="0,10">
-                                                                <Frame
-                                                                    Padding="5"
-                                                                    BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
-                                                                    BorderColor="{x:Static local:ThemeColors.BorderColor}"
-                                                                    CornerRadius="15">
-                                                                    <StackLayout HeightRequest="65" Orientation="Horizontal">
-                                                                        <Image
-                                                                            Margin="10,0,0,0"
-                                                                            xct:CornerRadiusEffect.CornerRadius="255"
-                                                                            HeightRequest="55"
-                                                                            IsAnimationPlaying="True"
-                                                                            Source="https://imgur.com/pYrJMQJ.png"
-                                                                            WidthRequest="55">
-                                                                            <Image.GestureRecognizers>
-                                                                                <TapGestureRecognizer />
-                                                                            </Image.GestureRecognizers>
-                                                                        </Image>
-                                                                        <Grid HorizontalOptions="FillAndExpand">
-                                                                            <customItems:CustomEntry
-                                                                                x:Name="EntryAuthorName"
-                                                                                Margin="10,0,0,0"
-                                                                                MaxLength="256"
-                                                                                Placeholder="Author"
-                                                                                PlaceholderColor="{x:Static local:ThemeColors.TransparentTextColor}"
-                                                                                TextColor="{x:Static local:ThemeColors.TextColor}" />
-                                                                            <Label
-                                                                                Padding="0,0,10,0"
-                                                                                FontSize="Small"
-                                                                                HorizontalOptions="EndAndExpand"
-                                                                                TextColor="{Binding Source={x:Reference EntryAuthorName}, Path=SizeLabelTextColor}"
-                                                                                VerticalOptions="Center">
-                                                                                <Label.FormattedText>
-                                                                                    <FormattedString>
-                                                                                        <Span Text="{Binding Source={x:Reference EntryAuthorName}, Path=TextLenght}" />
-                                                                                        <Span Text="/" />
-                                                                                        <Span Text="{Binding Source={x:Reference EntryAuthorName}, Path=MaxLength}" />
-                                                                                    </FormattedString>
-                                                                                </Label.FormattedText>
-                                                                            </Label>
-                                                                        </Grid>
-                                                                    </StackLayout>
-                                                                </Frame>
-                                                                <Frame
-                                                                    Padding="5"
-                                                                    BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
-                                                                    BorderColor="{x:Static local:ThemeColors.BorderColor}"
-                                                                    CornerRadius="15">
-                                                                    <StackLayout>
-                                                                        <customItems:BorderlessEntry
-                                                                            Margin="10,0,0,0"
-                                                                            HorizontalOptions="FillAndExpand"
-                                                                            Placeholder="URL"
-                                                                            PlaceholderColor="{x:Static local:ThemeColors.TransparentTextColor}"
-                                                                            TextColor="{x:Static local:ThemeColors.TextColor}" />
-                                                                    </StackLayout>
-                                                                </Frame>
+                                                                <Label Text="test" />
                                                             </StackLayout>
                                                         </customItems:CustomExpander.Content>
                                                     </customItems:CustomExpander>
@@ -556,74 +517,20 @@
 
                                                 <!--#region Images-->
                                                 <Frame
-                                                    Padding="10,10,10,10"
+                                                    Padding="5"
                                                     BackgroundColor="Transparent"
                                                     BorderColor="{x:Static local:ThemeColors.BorderColor}"
-                                                    CornerRadius="15"
-                                                    HasShadow="True">
+                                                    CornerRadius="15">
                                                     <customItems:CustomExpander
                                                         x:Name="expEmbedImages"
-                                                        AnimationLength="250"
+                                                        AnimationLength="450"
+                                                        CollapseAnimationEasing="SpringOut"
+                                                        ExpandAnimationEasing="SpringIn"
                                                         HeaderText="Images"
                                                         IsExpanded="False">
                                                         <customItems:CustomExpander.Content>
                                                             <StackLayout Margin="0,10">
-                                                                <Frame
-                                                                    Padding="5"
-                                                                    BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
-                                                                    BorderColor="{x:Static local:ThemeColors.BorderColor}"
-                                                                    CornerRadius="15">
-                                                                    <StackLayout HeightRequest="65" Orientation="Horizontal">
-                                                                        <Image
-                                                                            Margin="10,0,0,0"
-                                                                            xct:CornerRadiusEffect.CornerRadius="255"
-                                                                            HeightRequest="55"
-                                                                            IsAnimationPlaying="True"
-                                                                            Source="https://imgur.com/pYrJMQJ.png"
-                                                                            WidthRequest="55">
-                                                                            <Image.GestureRecognizers>
-                                                                                <TapGestureRecognizer />
-                                                                            </Image.GestureRecognizers>
-                                                                        </Image>
-                                                                        <Grid HorizontalOptions="FillAndExpand">
-                                                                            <customItems:CustomEntry
-                                                                                x:Name="EntryAuthorName"
-                                                                                Margin="10,0,0,0"
-                                                                                MaxLength="256"
-                                                                                Placeholder="Author"
-                                                                                PlaceholderColor="{x:Static local:ThemeColors.TransparentTextColor}"
-                                                                                TextColor="{x:Static local:ThemeColors.TextColor}" />
-                                                                            <Label
-                                                                                Padding="0,0,10,0"
-                                                                                FontSize="Small"
-                                                                                HorizontalOptions="EndAndExpand"
-                                                                                TextColor="{Binding Source={x:Reference EntryAuthorName}, Path=SizeLabelTextColor}"
-                                                                                VerticalOptions="Center">
-                                                                                <Label.FormattedText>
-                                                                                    <FormattedString>
-                                                                                        <Span Text="{Binding Source={x:Reference EntryAuthorName}, Path=TextLenght}" />
-                                                                                        <Span Text="/" />
-                                                                                        <Span Text="{Binding Source={x:Reference EntryAuthorName}, Path=MaxLength}" />
-                                                                                    </FormattedString>
-                                                                                </Label.FormattedText>
-                                                                            </Label>
-                                                                        </Grid>
-                                                                    </StackLayout>
-                                                                </Frame>
-                                                                <Frame
-                                                                    Padding="5"
-                                                                    BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
-                                                                    BorderColor="{x:Static local:ThemeColors.BorderColor}"
-                                                                    CornerRadius="15">
-                                                                    <StackLayout>
-                                                                        <customItems:BorderlessEntry
-                                                                            Margin="10,0,0,0"
-                                                                            HorizontalOptions="FillAndExpand"
-                                                                            Placeholder="URL"
-                                                                            PlaceholderColor="{x:Static local:ThemeColors.TransparentTextColor}"
-                                                                            TextColor="{x:Static local:ThemeColors.TextColor}" />
-                                                                    </StackLayout>
-                                                                </Frame>
+                                                                <Label Text="test" />
                                                             </StackLayout>
                                                         </customItems:CustomExpander.Content>
                                                     </customItems:CustomExpander>
@@ -632,14 +539,15 @@
 
                                                 <!--#region Footer-->
                                                 <Frame
-                                                    Padding="10,10,10,10"
+                                                    Padding="5"
                                                     BackgroundColor="Transparent"
                                                     BorderColor="{x:Static local:ThemeColors.BorderColor}"
-                                                    CornerRadius="15"
-                                                    HasShadow="True">
+                                                    CornerRadius="15">
                                                     <customItems:CustomExpander
                                                         x:Name="expEmbedFooter"
-                                                        AnimationLength="250"
+                                                        AnimationLength="450"
+                                                        CollapseAnimationEasing="SpringOut"
+                                                        ExpandAnimationEasing="SpringIn"
                                                         HeaderText="Footer"
                                                         IsExpanded="False">
                                                         <customItems:CustomExpander.Content>
@@ -648,23 +556,24 @@
                                                                     Padding="5"
                                                                     BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
                                                                     BorderColor="{x:Static local:ThemeColors.BorderColor}"
-                                                                    CornerRadius="15">
+                                                                    CornerRadius="15"
+                                                                    HeightRequest="50">
                                                                     <StackLayout HeightRequest="65" Orientation="Horizontal">
                                                                         <Image
                                                                             Margin="10,0,0,0"
                                                                             xct:CornerRadiusEffect.CornerRadius="255"
-                                                                            HeightRequest="55"
+                                                                            HeightRequest="50"
                                                                             IsAnimationPlaying="True"
                                                                             Source="https://imgur.com/pYrJMQJ.png"
-                                                                            WidthRequest="55">
+                                                                            WidthRequest="50">
                                                                             <Image.GestureRecognizers>
                                                                                 <TapGestureRecognizer />
                                                                             </Image.GestureRecognizers>
                                                                         </Image>
                                                                         <Grid HorizontalOptions="FillAndExpand">
                                                                             <customItems:CustomEntry
-                                                                                x:Name="EntryAuthorName"
-                                                                                Margin="10,0,0,0"
+                                                                                x:Name="EntryFooter"
+                                                                                Margin="10,0,10,0"
                                                                                 MaxLength="256"
                                                                                 Placeholder="Author"
                                                                                 PlaceholderColor="{x:Static local:ThemeColors.TransparentTextColor}"
@@ -673,13 +582,13 @@
                                                                                 Padding="0,0,10,0"
                                                                                 FontSize="Small"
                                                                                 HorizontalOptions="EndAndExpand"
-                                                                                TextColor="{Binding Source={x:Reference EntryAuthorName}, Path=SizeLabelTextColor}"
-                                                                                VerticalOptions="Center">
+                                                                                TextColor="{Binding Source={x:Reference EntryFooter}, Path=SizeLabelTextColor}"
+                                                                                VerticalOptions="End">
                                                                                 <Label.FormattedText>
                                                                                     <FormattedString>
-                                                                                        <Span Text="{Binding Source={x:Reference EntryAuthorName}, Path=TextLenght}" />
+                                                                                        <Span Text="{Binding Source={x:Reference EntryFooter}, Path=TextLenght}" />
                                                                                         <Span Text="/" />
-                                                                                        <Span Text="{Binding Source={x:Reference EntryAuthorName}, Path=MaxLength}" />
+                                                                                        <Span Text="{Binding Source={x:Reference EntryFooter}, Path=MaxLength}" />
                                                                                     </FormattedString>
                                                                                 </Label.FormattedText>
                                                                             </Label>
@@ -695,7 +604,7 @@
                                                                         <customItems:BorderlessEntry
                                                                             Margin="10,0,0,0"
                                                                             HorizontalOptions="FillAndExpand"
-                                                                            Placeholder="URL"
+                                                                            Placeholder="Date"
                                                                             PlaceholderColor="{x:Static local:ThemeColors.TransparentTextColor}"
                                                                             TextColor="{x:Static local:ThemeColors.TextColor}" />
                                                                     </StackLayout>
@@ -707,8 +616,8 @@
                                                 <!--#endregion-->
 
                                             </StackLayout>
-                                        </xctv:Expander.Content>
-                                    </xctv:Expander>
+                                        </customItems:CustomExpander.Content>
+                                    </customItems:CustomExpander>
                                 </Frame>
                             </StackLayout>
                         </Frame>
@@ -716,12 +625,11 @@
 
                         <!--#region Send File Area-->
                         <Frame
-                            Padding="10"
+                            Padding="5"
                             BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
                             BorderColor="{x:Static local:ThemeColors.BorderColor}"
                             CornerRadius="15"
-                            HasShadow="True"
-                            IsVisible="False">
+                            IsVisible="True">
                             <StackLayout>
                                 <Label
                                     Margin="10,0,0,0"
@@ -730,59 +638,18 @@
                                     Text="File"
                                     TextColor="{x:Static local:ThemeColors.TextColor}" />
                                 <Frame
-                                    Padding="10"
+                                    Padding="5"
                                     BackgroundColor="Transparent"
                                     BorderColor="{x:Static local:ThemeColors.BorderColor}"
-                                    CornerRadius="15"
-                                    HasShadow="True">
-                                    <xctv:Expander
+                                    CornerRadius="15">
+                                    <customItems:CustomExpander
                                         x:Name="expFileSend"
-                                        AnimationLength="250"
-                                        PropertyChanged="expFileSend_PropertyChanged">
-                                        <xctv:Expander.Header>
-                                            <StackLayout Orientation="Horizontal">
-                                                <CheckBox
-                                                    x:Name="cbFileSend"
-                                                    CheckedChanged="cbFileSend_CheckedChanged"
-                                                    VerticalOptions="Center"
-                                                    Color="{x:Static local:ThemeColors.TextColor}" />
-                                                <Label
-                                                    Margin="0,0,0,0"
-                                                    FontSize="Body"
-                                                    HorizontalOptions="Start"
-                                                    Text="Send File"
-                                                    TextColor="{x:Static local:ThemeColors.TextColor}"
-                                                    VerticalOptions="Center" />
-                                                <StackLayout
-                                                    HorizontalOptions="EndAndExpand"
-                                                    Rotation="90"
-                                                    VerticalOptions="Center">
-                                                    <Image
-                                                        x:Name="imgFExpand"
-                                                        Scale="0.8"
-                                                        Source="downarrow32px.png" />
-                                                </StackLayout>
-                                            </StackLayout>
-                                        </xctv:Expander.Header>
-                                        <xctv:Expander.Content>
+                                        AnimationLength="450"
+                                        CollapseAnimationEasing="SpringOut"
+                                        ExpandAnimationEasing="SpringIn"
+                                        HeaderText="Send File">
+                                        <customItems:CustomExpander.Content>
                                             <StackLayout Margin="0,10,0,0" Orientation="Horizontal">
-                                                <Button
-                                                    x:Name="btnFileSelect"
-                                                    Margin="10,0,0,0"
-                                                    xct:TouchEffect.NativeAnimation="true"
-                                                    xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
-                                                    xct:TouchEffect.PressedAnimationDuration="500"
-                                                    xct:TouchEffect.PressedOpacity="0.6"
-                                                    xct:TouchEffect.PressedScale="0.98"
-                                                    BackgroundColor="Transparent"
-                                                    BorderColor="{x:Static local:ThemeColors.BorderColor}"
-                                                    BorderWidth="1"
-                                                    Clicked="btnFileSelect_Clicked"
-                                                    CornerRadius="15"
-                                                    HorizontalOptions="Start"
-                                                    Text="Select File"
-                                                    TextColor="{x:Static local:ThemeColors.TextColor}"
-                                                    VerticalOptions="Center" />
                                                 <Label
                                                     Margin="20,0,0,0"
                                                     FontSize="Body"
@@ -796,9 +663,26 @@
                                                         </FormattedString>
                                                     </Label.FormattedText>
                                                 </Label>
+                                                <Button
+                                                    x:Name="btnFileSelect"
+                                                    Margin="5,0,10,0"
+                                                    xct:TouchEffect.NativeAnimation="true"
+                                                    xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                                                    xct:TouchEffect.PressedAnimationDuration="500"
+                                                    xct:TouchEffect.PressedOpacity="0.6"
+                                                    xct:TouchEffect.PressedScale="0.98"
+                                                    BackgroundColor="Transparent"
+                                                    BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                                                    BorderWidth="1"
+                                                    Clicked="btnFileSelect_Clicked"
+                                                    CornerRadius="15"
+                                                    HorizontalOptions="EndAndExpand"
+                                                    Text="Select File"
+                                                    TextColor="{x:Static local:ThemeColors.TextColor}"
+                                                    VerticalOptions="Center" />
                                             </StackLayout>
-                                        </xctv:Expander.Content>
-                                    </xctv:Expander>
+                                        </customItems:CustomExpander.Content>
+                                    </customItems:CustomExpander>
                                 </Frame>
                             </StackLayout>
                         </Frame>

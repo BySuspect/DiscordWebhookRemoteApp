@@ -10,7 +10,7 @@ namespace DiscordWebhookRemoteApp.CustomItems
 {
     public class CustomExpander : Expander
     {
-        CheckBox _checkbox;
+        IntelliAbb.Xamarin.Controls.Checkbox _checkbox;
         Label _label;
         StackLayout _imgStackLayout;
         Image _image;
@@ -36,11 +36,14 @@ namespace DiscordWebhookRemoteApp.CustomItems
         {
             BindingContext = this;
 
-            _checkbox = new CheckBox();
-            _checkbox.SetBinding(CheckBox.IsCheckedProperty, new Binding("IsExpanded"));
+            _checkbox = new IntelliAbb.Xamarin.Controls.Checkbox();
+            _checkbox.SetBinding(IntelliAbb.Xamarin.Controls.Checkbox.IsCheckedProperty, new Binding("IsExpanded"));
             _checkbox.VerticalOptions = LayoutOptions.Center;
-            _checkbox.Color = ThemeColors.TextColor;
-            _checkbox.CheckedChanged += (s, e) =>
+            _checkbox.OutlineColor = ThemeColors.TextColor;
+            _checkbox.FillColor = ThemeColors.TextColor;
+            _checkbox.CheckColor = ThemeColors.BackColor;
+            _checkbox.Shape = IntelliAbb.Xamarin.Controls.Shape.Circle;
+            _checkbox.IsCheckedChanged += (s, e) =>
             {
                 this.IsExpanded = _checkbox.IsChecked;
             };
@@ -72,12 +75,12 @@ namespace DiscordWebhookRemoteApp.CustomItems
                     _imgStackLayout.RotateTo(0, 100);
                 }
                 else _imgStackLayout.RotateTo(90, 100);
-
             };
 
             this.Header = new StackLayout
             {
                 Orientation = StackOrientation.Horizontal,
+                Margin = new Thickness(5, 0, 0, 0),
                 Children =
                 {
                     _checkbox,

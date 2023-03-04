@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using ColorPicker.iOS;
 using Foundation;
 using UIKit;
 
@@ -23,7 +23,7 @@ namespace DiscordWebhookRemoteApp.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-
+            ColorPickerEffects.Init();
             //MobileAds.Initialize.Start(CompletionHandler);
             LoadApplication(new App());
 
