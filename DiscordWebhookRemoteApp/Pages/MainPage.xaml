@@ -17,7 +17,7 @@
         <ToolbarItem Clicked="DiscordButton_Clicked" IconImageSource="https://cdn.discordapp.com/attachments/750464609303134339/1078184119453884427/discord-mascot.png" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout Margin="0,5,0,0">
+        <StackLayout Margin="5,5,5,0">
             <Grid HorizontalOptions="{OnIdiom Phone=Fill, Tablet=Center}" VerticalOptions="FillAndExpand">
                 <ScrollView HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
                     <StackLayout>
@@ -28,7 +28,7 @@
                             BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
                             BorderColor="{x:Static local:ThemeColors.BorderColor}"
                             CornerRadius="15"
-                            IsVisible="False">
+                            IsVisible="True">
                             <StackLayout>
                                 <Label
                                     Margin="10,0,0,0"
@@ -152,7 +152,7 @@
                             BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
                             BorderColor="{x:Static local:ThemeColors.BorderColor}"
                             CornerRadius="15"
-                            IsVisible="False">
+                            IsVisible="True">
                             <StackLayout>
                                 <Label
                                     Margin="10,0,0,0"
@@ -167,7 +167,7 @@
                                         xct:CornerRadiusEffect.CornerRadius="255"
                                         HeightRequest="55"
                                         IsAnimationPlaying="True"
-                                        Source="https://imgur.com/pYrJMQJ.png"
+                                        Source="demoimage.png"
                                         WidthRequest="55">
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="WebhookImage_Tapped" />
@@ -286,7 +286,7 @@
                                         CollapseAnimationEasing="SpringOut"
                                         ExpandAnimationEasing="SpringIn"
                                         HeaderText="Send Embed"
-                                        IsExpanded="True">
+                                        IsExpanded="False">
                                         <customItems:CustomExpander.Content>
                                             <StackLayout>
                                                 <!--#region Author-->
@@ -312,19 +312,20 @@
                                                                     HeightRequest="50">
                                                                     <StackLayout HeightRequest="65" Orientation="Horizontal">
                                                                         <Image
+                                                                            x:Name="ImgEmbedAuthor"
                                                                             Margin="10,0,0,0"
                                                                             xct:CornerRadiusEffect.CornerRadius="255"
                                                                             HeightRequest="50"
                                                                             IsAnimationPlaying="True"
-                                                                            Source="https://imgur.com/pYrJMQJ.png"
+                                                                            Source="demoimage.png"
                                                                             WidthRequest="50">
                                                                             <Image.GestureRecognizers>
-                                                                                <TapGestureRecognizer />
+                                                                                <TapGestureRecognizer Tapped="EmbedAuthorImage_Tapped" />
                                                                             </Image.GestureRecognizers>
                                                                         </Image>
                                                                         <Grid HorizontalOptions="FillAndExpand">
                                                                             <customItems:CustomEntry
-                                                                                x:Name="EntryAuthorName"
+                                                                                x:Name="EntryEmbedAuthorName"
                                                                                 Margin="10,0,10,0"
                                                                                 MaxLength="256"
                                                                                 Placeholder="Author"
@@ -334,13 +335,13 @@
                                                                                 Padding="0,0,10,0"
                                                                                 FontSize="Small"
                                                                                 HorizontalOptions="EndAndExpand"
-                                                                                TextColor="{Binding Source={x:Reference EntryAuthorName}, Path=SizeLabelTextColor}"
+                                                                                TextColor="{Binding Source={x:Reference EntryEmbedAuthorName}, Path=SizeLabelTextColor}"
                                                                                 VerticalOptions="End">
                                                                                 <Label.FormattedText>
                                                                                     <FormattedString>
-                                                                                        <Span Text="{Binding Source={x:Reference EntryAuthorName}, Path=TextLenght}" />
+                                                                                        <Span Text="{Binding Source={x:Reference EntryEmbedAuthorName}, Path=TextLenght}" />
                                                                                         <Span Text="/" />
-                                                                                        <Span Text="{Binding Source={x:Reference EntryAuthorName}, Path=MaxLength}" />
+                                                                                        <Span Text="{Binding Source={x:Reference EntryEmbedAuthorName}, Path=MaxLength}" />
                                                                                     </FormattedString>
                                                                                 </Label.FormattedText>
                                                                             </Label>
@@ -354,6 +355,7 @@
                                                                     CornerRadius="15">
                                                                     <StackLayout>
                                                                         <customItems:BorderlessEntry
+                                                                            x:Name="EntryEmbedAuthorUrl"
                                                                             Margin="10,0,0,0"
                                                                             HorizontalOptions="FillAndExpand"
                                                                             Placeholder="URL"
@@ -379,7 +381,7 @@
                                                         CollapseAnimationEasing="SpringOut"
                                                         ExpandAnimationEasing="SpringIn"
                                                         HeaderText="Body"
-                                                        IsExpanded="True">
+                                                        IsExpanded="False">
                                                         <customItems:CustomExpander.Content>
                                                             <StackLayout Margin="0,10">
                                                                 <Frame
@@ -455,7 +457,7 @@
                                                                     CornerRadius="15">
                                                                     <StackLayout>
                                                                         <customItems:BorderlessEntry
-                                                                            Margin="10,0,0,0"
+                                                                            Margin="10,0,0,0" x:Name="entryBodyUrl"
                                                                             HorizontalOptions="FillAndExpand"
                                                                             Placeholder="URL"
                                                                             PlaceholderColor="{x:Static local:ThemeColors.TransparentTextColor}"
@@ -471,7 +473,7 @@
                                                                         <customItems:CustomBoxView
                                                                             x:Name="embedBodyColorPicker"
                                                                             CornerRadius="255"
-                                                                            HeightRequest="30" 
+                                                                            HeightRequest="30"
                                                                             HorizontalOptions="FillAndExpand"
                                                                             VerticalOptions="Center"
                                                                             Color="#000000" />
@@ -564,7 +566,7 @@
                                                                             xct:CornerRadiusEffect.CornerRadius="255"
                                                                             HeightRequest="50"
                                                                             IsAnimationPlaying="True"
-                                                                            Source="https://imgur.com/pYrJMQJ.png"
+                                                                            Source="demoimage.png"
                                                                             WidthRequest="50">
                                                                             <Image.GestureRecognizers>
                                                                                 <TapGestureRecognizer />
