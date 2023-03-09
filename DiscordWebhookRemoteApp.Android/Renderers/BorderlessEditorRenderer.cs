@@ -14,7 +14,9 @@ using Xamarin.Forms;
 using DiscordWebhookRemoteApp.CustomItems;
 using DiscordWebhookRemoteApp.Droid.Renderers;
 
+#pragma warning disable CS0612 // Type or member is obsolete
 [assembly: ExportRenderer(typeof(BorderlessEditor), typeof(BorderlessEditorRenderer))]
+#pragma warning restore CS0612 // Type or member is obsolete
 namespace DiscordWebhookRemoteApp.Droid.Renderers
 {
     [Obsolete]
