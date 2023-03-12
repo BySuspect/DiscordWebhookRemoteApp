@@ -40,14 +40,14 @@
                                     <StackLayout Orientation="Horizontal">
                                         <StackLayout x:Name="blSavedWebhooks" Orientation="Horizontal">
                                             <!--<BindableLayout.ItemsSource>
-                                        <x:Array Type="{x:Type local:webhookItems}">
+                                            <x:Array Type="{x:Type local:webhookItems}">
                                             <local:webhookItems ID="0" name="awhgfjsasg" />
                                             <local:webhookItems ID="1" name="jhgfjsjawg" />
                                             <local:webhookItems ID="2" name="mjhgkfm" />
                                             <local:webhookItems ID="3" name="aöçmhgf" />
                                             <local:webhookItems ID="5" name="dhdkdrsh" />
-                                        </x:Array>
-                                    </BindableLayout.ItemsSource>-->
+                                            </x:Array>
+                                            </BindableLayout.ItemsSource>-->
                                             <BindableLayout.ItemTemplate>
                                                 <DataTemplate>
                                                     <Frame
@@ -145,6 +145,16 @@
                             </StackLayout>
                         </Frame>
                         <!--#endregion-->
+
+                        <adscontrol:MTAdView
+                            x:Name="adsTop"
+                            AdsFailedToLoad="adsTop_AdsFailedToLoad"
+                            AdsId="ca-app-pub-3881259676793306/6856903418"
+                            AdsLoaded="adsTop_AdsLoaded"
+                            HeightRequest="{OnIdiom Phone=50,
+                                                    Tablet=90}"
+                            IsVisible="true"
+                            VerticalOptions="Center" />
 
                         <!--#region Webhook Profile Area-->
                         <Frame
@@ -457,7 +467,8 @@
                                                                     CornerRadius="15">
                                                                     <StackLayout>
                                                                         <customItems:BorderlessEntry
-                                                                            Margin="10,0,0,0" x:Name="entryBodyUrl"
+                                                                            x:Name="entryBodyUrl"
+                                                                            Margin="10,0,0,0"
                                                                             HorizontalOptions="FillAndExpand"
                                                                             Placeholder="URL"
                                                                             PlaceholderColor="{x:Static local:ThemeColors.TransparentTextColor}"
@@ -510,7 +521,7 @@
                                                         IsExpanded="False">
                                                         <customItems:CustomExpander.Content>
                                                             <StackLayout Margin="0,10">
-                                                                <Label Text="test" />
+                                                                <Label Text="Coming Soon..." />
                                                             </StackLayout>
                                                         </customItems:CustomExpander.Content>
                                                     </customItems:CustomExpander>
@@ -532,7 +543,36 @@
                                                         IsExpanded="False">
                                                         <customItems:CustomExpander.Content>
                                                             <StackLayout Margin="0,10">
-                                                                <Label Text="test" />
+                                                                <Frame
+                                                                    Padding="5"
+                                                                    BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
+                                                                    BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                                                                    CornerRadius="15">
+                                                                    <StackLayout>
+                                                                        <customItems:BorderlessEntry
+                                                                            x:Name="EntryEmbedImagesImageUrl"
+                                                                            Margin="10,0,0,0"
+                                                                            HorizontalOptions="FillAndExpand"
+                                                                            Placeholder="Image URL"
+                                                                            PlaceholderColor="{x:Static local:ThemeColors.TransparentTextColor}"
+                                                                            TextColor="{x:Static local:ThemeColors.TextColor}" />
+                                                                    </StackLayout>
+                                                                </Frame>
+                                                                <Frame
+                                                                    Padding="5"
+                                                                    BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
+                                                                    BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                                                                    CornerRadius="15">
+                                                                    <StackLayout>
+                                                                        <customItems:BorderlessEntry
+                                                                            x:Name="EntryEmbedImagesThumbnailUrl"
+                                                                            Margin="10,0,0,0"
+                                                                            HorizontalOptions="FillAndExpand"
+                                                                            Placeholder="Thumbnail URL"
+                                                                            PlaceholderColor="{x:Static local:ThemeColors.TransparentTextColor}"
+                                                                            TextColor="{x:Static local:ThemeColors.TextColor}" />
+                                                                    </StackLayout>
+                                                                </Frame>
                                                             </StackLayout>
                                                         </customItems:CustomExpander.Content>
                                                     </customItems:CustomExpander>
@@ -562,6 +602,7 @@
                                                                     HeightRequest="50">
                                                                     <StackLayout HeightRequest="65" Orientation="Horizontal">
                                                                         <Image
+                                                                            x:Name="ImgEmbedFooterIconUrl"
                                                                             Margin="10,0,0,0"
                                                                             xct:CornerRadiusEffect.CornerRadius="255"
                                                                             HeightRequest="50"
@@ -569,28 +610,28 @@
                                                                             Source="demoimage.png"
                                                                             WidthRequest="50">
                                                                             <Image.GestureRecognizers>
-                                                                                <TapGestureRecognizer />
+                                                                                <TapGestureRecognizer Tapped="EmbedFooterAuthorImage_Tapped" />
                                                                             </Image.GestureRecognizers>
                                                                         </Image>
                                                                         <Grid HorizontalOptions="FillAndExpand">
                                                                             <customItems:CustomEntry
-                                                                                x:Name="EntryFooter"
+                                                                                x:Name="EntryFooterText"
                                                                                 Margin="10,0,10,0"
                                                                                 MaxLength="256"
-                                                                                Placeholder="Author"
+                                                                                Placeholder="Text"
                                                                                 PlaceholderColor="{x:Static local:ThemeColors.TransparentTextColor}"
                                                                                 TextColor="{x:Static local:ThemeColors.TextColor}" />
                                                                             <Label
                                                                                 Padding="0,0,10,0"
                                                                                 FontSize="Small"
                                                                                 HorizontalOptions="EndAndExpand"
-                                                                                TextColor="{Binding Source={x:Reference EntryFooter}, Path=SizeLabelTextColor}"
+                                                                                TextColor="{Binding Source={x:Reference EntryFooterText}, Path=SizeLabelTextColor}"
                                                                                 VerticalOptions="End">
                                                                                 <Label.FormattedText>
                                                                                     <FormattedString>
-                                                                                        <Span Text="{Binding Source={x:Reference EntryFooter}, Path=TextLenght}" />
+                                                                                        <Span Text="{Binding Source={x:Reference EntryFooterText}, Path=TextLenght}" />
                                                                                         <Span Text="/" />
-                                                                                        <Span Text="{Binding Source={x:Reference EntryFooter}, Path=MaxLength}" />
+                                                                                        <Span Text="{Binding Source={x:Reference EntryFooterText}, Path=MaxLength}" />
                                                                                     </FormattedString>
                                                                                 </Label.FormattedText>
                                                                             </Label>
@@ -604,9 +645,11 @@
                                                                     CornerRadius="15">
                                                                     <StackLayout>
                                                                         <customItems:BorderlessEntry
+                                                                            x:Name="entryEmbedFooterTimestamp"
                                                                             Margin="10,0,0,0"
+                                                                            Focused="entryEmbedFooterTimestamp_Focused"
                                                                             HorizontalOptions="FillAndExpand"
-                                                                            Placeholder="Date"
+                                                                            Placeholder="Timestamp"
                                                                             PlaceholderColor="{x:Static local:ThemeColors.TransparentTextColor}"
                                                                             TextColor="{x:Static local:ThemeColors.TextColor}" />
                                                                     </StackLayout>
@@ -728,6 +771,23 @@
                         </StackLayout>
                         <!--#endregion-->
 
+                        <StackLayout VerticalOptions="EndAndExpand">
+                            <!--<Label
+                            FontSize="Small"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="Made By Shiroko💜"
+                            TextColor="{x:Static local:ThemeColors.TextColor}"
+                            VerticalOptions="EndAndExpand" />-->
+                            <Label
+                                Margin="0,0,0,2"
+                                FontSize="Small"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="Designed By Zen💜"
+                                TextColor="{x:Static local:ThemeColors.TextColor}"
+                                VerticalOptions="End" />
+                        </StackLayout>
                     </StackLayout>
                 </ScrollView>
                 <Grid
@@ -757,35 +817,24 @@
                     </Frame>
                 </Grid>
             </Grid>
-            <StackLayout VerticalOptions="EndAndExpand">
-                <!--<Label
-                 FontSize="Small"
-                 HorizontalOptions="Center"
-                 HorizontalTextAlignment="Center"
-                 Text="Made By Shiroko💜"
-                 TextColor="{x:Static local:ThemeColors.TextColor}"
-                 VerticalOptions="EndAndExpand" />-->
-                <Label
-                    Margin="0,0,0,2"
-                    FontSize="Small"
-                    HorizontalOptions="Center"
-                    HorizontalTextAlignment="Center"
-                    Text="Designed By Zen💜"
-                    TextColor="{x:Static local:ThemeColors.TextColor}"
+            <StackLayout>
+                <BoxView
+                    Margin="0"
+                    HeightRequest="1"
+                    HorizontalOptions="Fill"
+                    IsVisible="{Binding Source={x:Reference adsBottom}, Path=IsVisible}"
+                    Color="{x:Static local:ThemeColors.BorderColor}" />
+                <adscontrol:MTAdView
+                    x:Name="adsBottom"
+                    AdsFailedToLoad="adsBottom_AdsFailedToLoad"
+                    AdsId="ca-app-pub-3881259676793306/6797209579"
+                    AdsLoaded="adsBottom_AdsLoaded"
+                    AutomationId="adsBottom"
+                    HeightRequest="{OnIdiom Phone=50,
+                                            Tablet=90}"
+                    IsVisible="true"
                     VerticalOptions="End" />
             </StackLayout>
-            <BoxView
-                HeightRequest="1"
-                HorizontalOptions="Fill"
-                IsVisible="{Binding Source={x:Reference adsBottom}, Path=IsVisible}"
-                Color="{x:Static local:ThemeColors.BorderColor}" />
-            <adscontrol:MTAdView
-                x:Name="adsBottom"
-                AdsId="ca-app-pub-3881259676793306/6797209579"
-                HeightRequest="{OnIdiom Phone=50,
-                                        Tablet=90}"
-                IsVisible="true"
-                VerticalOptions="End" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

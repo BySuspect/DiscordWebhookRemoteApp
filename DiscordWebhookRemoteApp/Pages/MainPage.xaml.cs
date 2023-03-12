@@ -21,28 +21,34 @@ using System.Diagnostics;
 using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.CommunityToolkit.UI.Views;
 using DiscordWebhookRemoteApp.Pages.Popups;
+using MarcTron.Plugin.Controls;
 
 namespace DiscordWebhookRemoteApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
     {
-        List<webhookItems> webhookList = new List<webhookItems>();
+        string[] imageExtensions = { ".jpg", ".jpeg", ".png", ".gif" };
 
         DiscordWebhook hook = new DiscordWebhook();
 
         bool
             webhookSelected = false,
             webhookProfileAvatar = false,
-            webhookProfileName = false;
+            webhookProfileName = false,
+            adsBottomLoaded = true,
+            adsTopLoaded = true;
 
         string selectedUrl = "",
             webhookImageUrl = "",
             webhookName = "",
             filepath = "",
+            embedFooterIconUrl = "",
             embedAuthorIconUrl = "";
 
         int selectedId = -1;
+
+        Database.DatabaseItems fRes;
         public MainPage()
         {
             InitializeComponent();
@@ -57,16 +63,7 @@ namespace DiscordWebhookRemoteApp.Pages
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
-            var fRes = await Database.FirebaseDatabase.GetData();
-            if (fRes != null)
-            {
-                if (fRes.Settings.TestingMode.IsOnTest && References.Version == fRes.Settings.TestingMode.Version)
-                {
-                    adsBottom.IsVisible = false;
-                }
-            }
-
+            await adsCheck();
         }
         private async void sendContent_Clicked(object sender, EventArgs e)
         {
@@ -92,7 +89,20 @@ namespace DiscordWebhookRemoteApp.Pages
                 if (expEmbedContent.IsExpanded)
                 {
                     message.Embeds = new List<DiscordEmbed>();
-                    message.Embeds.Add(await embedBuilder());
+                    var embed = embedBuilder();
+                    //if (embed.Description != "{Embed31Build31Hataya31Dustu31}")
+                    if (embed.Description != "{Empty31Embed31Builded31}")
+                        message.Embeds.Add(embed);
+                    else
+                    {
+                        //await DisplayAlert("Warning!", "Empty Embed!", "OK");
+                        bool answer = await DisplayAlert("Warning!", "Embed is empty, are you sure about to continue send?", "Yes", "No");
+                        if (!answer)
+                        {
+                            Loodinglayout.IsVisible = false;
+                            return;
+                        }
+                    }
                 }
 
                 try
@@ -158,8 +168,6 @@ namespace DiscordWebhookRemoteApp.Pages
                 Debug.WriteLine(result);
                 if (!string.IsNullOrEmpty(result.Trim()))
                 {
-                    string[] imageExtensions = { ".jpg", ".jpeg", ".png", ".gif" };
-
                     bool isImageUrl = imageExtensions.Any(result.EndsWith);
 
                     if (isImageUrl)
@@ -177,6 +185,36 @@ namespace DiscordWebhookRemoteApp.Pages
                 {
                     embedAuthorIconUrl = "";
                     imgWebhookImage.Source = "demoimage.png";
+                }
+            }
+            catch { }
+        }
+        private async void EmbedFooterAuthorImage_Tapped(object sender, EventArgs e)
+        {
+            try
+            {
+                string oldAvatarUrl = embedFooterIconUrl;
+                string result = await DisplayPromptAsync("Author Icon Image", "Only \".jpg\", \".jpeg\", \".png\", \".gif\" Supported!", accept: "Ok", cancel: "Cancel", placeholder: "Image url.", initialValue: oldAvatarUrl);
+                Debug.WriteLine(result);
+                if (!string.IsNullOrEmpty(result.Trim()))
+                {
+                    bool isImageUrl = imageExtensions.Any(result.EndsWith);
+
+                    if (isImageUrl)
+                    {
+                        embedFooterIconUrl = result.Trim();
+                        ImgEmbedFooterIconUrl.Source = result.Trim();
+
+                    }
+                    else
+                    {
+                        _ = DisplayAlert("Error!", "This is not an image URL.", "Ok");
+                    }
+                }
+                else
+                {
+                    embedFooterIconUrl = "";
+                    ImgEmbedFooterIconUrl.Source = "demoimage.png";
                 }
             }
             catch { }
@@ -277,45 +315,52 @@ namespace DiscordWebhookRemoteApp.Pages
             await Browser.OpenAsync("https://discord.gg/aX4unxzZek");
         }
 
-#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-        private async Task<bool> IsULCCheck(string url)
-#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
+        private bool IsULCCheck(string url)
         {
             Uri uriResult;
             bool isUrl = Uri.TryCreate(url, UriKind.Absolute, out uriResult)
                          && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
             return isUrl;
         }
-
-        private async Task<DiscordEmbed> embedBuilder()
+        private void entryEmbedFooterTimestamp_Focused(object sender, FocusEventArgs e)
+        {
+            DisplayAlert("Info", "If you enter anything here, it will send instant timestamp, if you leave it blank, that data will be blank. Will Be Added Soon.", "OK");
+        }
+        private DiscordEmbed embedBuilder()
         {
             /*
-             *thumbtail url embedin sağ üstündeki eklenicek
              *görüntü olarak video eklenicek
-             *görüntü olarak resim eklenicek
-             *footer eklenicek
+             *tüm resim urllerini kontrol edip hatalı olanları 
+                   -bir string veride ekleyip display alertte 
+                   -göstericek ve hatalı resimler olmadan gönderip 
+                   -gönderilemeyeceği sorulacak.
+             *
              */
             try
             {
                 //embeds
                 DiscordEmbed embed = new DiscordEmbed();
+                bool IsEmpty = true;
 
                 if (expEmbedAuthor.IsExpanded)
                 {
                     var author = new EmbedAuthor();
 
-                    //Setting Embed Author Title
+                    //Embed Author Title
                     if (!string.IsNullOrEmpty(EntryEmbedAuthorName.Text))
                         author.Name = EntryEmbedAuthorName.Text;
 
-                    //Setting Embed Author Url
-                    if (await IsULCCheck(EntryEmbedAuthorUrl.Text))
+                    //Embed Author Url
+                    if (IsULCCheck(EntryEmbedAuthorUrl.Text))
                         author.Url = EntryEmbedAuthorUrl.Text;
 
-                    //Setting Embed Author Icon Url
+                    //Embed Author Icon Url
                     if (ImgEmbedAuthor.Source.ToString() != "File: demoimage.png")
                         author.IconUrl = embedAuthorIconUrl;
 
+                    //Embed author empty check
+                    if (author.Name != null || author.Url != null || author.IconUrl != null)
+                        IsEmpty = false;
                     embed.Author = author;
                 }
 
@@ -330,18 +375,62 @@ namespace DiscordWebhookRemoteApp.Pages
                         embed.Description = entryBodyContent.Text;
 
                     //Body Url
-                    if (await IsULCCheck(entryBodyUrl.Text))
+                    if (IsULCCheck(entryBodyUrl.Text))
                         embed.Url = entryBodyUrl.Text;
 
+                    //Embed body empty check
                     embed.Color = embedBodyColorPicker.Color;
+                    if (embed.Title != null || embed.Description != null || embed.Url != null)
+                        IsEmpty = false;
                 }
 
-                return embed;
+                if (expEmbedImages.IsExpanded)
+                {
+                    //Image
+                    if (!string.IsNullOrEmpty(EntryEmbedImagesImageUrl.Text) && IsULCCheck(EntryEmbedImagesImageUrl.Text))
+                        embed.Image = new EmbedMedia { Url = EntryEmbedImagesImageUrl.Text };
+
+                    //Thumbnail
+                    if (!string.IsNullOrEmpty(EntryEmbedImagesThumbnailUrl.Text) && IsULCCheck(EntryEmbedImagesThumbnailUrl.Text))
+                        embed.Thumbnail = new EmbedMedia { Url = EntryEmbedImagesThumbnailUrl.Text };
+
+                    //Embed image empty check
+                    if (embed.Image != null || embed.Thumbnail != null)
+                        IsEmpty = false;
+                }
+
+                if (expEmbedFooter.IsExpanded)
+                {
+                    var footer = new EmbedFooter();
+
+                    //Embed Footer Url
+                    if (IsULCCheck(embedFooterIconUrl))
+                        footer.IconUrl = embedFooterIconUrl;
+
+                    //Embed Footer Text
+                    if (!string.IsNullOrEmpty(EntryFooterText.Text))
+                        footer.Text = EntryFooterText.Text;
+
+                    //Embed footer timestamp
+                    if (!string.IsNullOrEmpty(entryEmbedFooterTimestamp.Text))
+                        embed.Timestamp = DateTime.Now;
+
+                    //Embed footer empty check
+                    if (footer.Text != null || footer.IconUrl != null)
+                        IsEmpty = false;
+
+                    embed.Footer = footer;
+                }
+
+                if (IsEmpty)
+                    return new DiscordEmbed { Description = "{Empty31Embed31Builded31}" };
+                else
+                    return embed;
             }
             catch (Exception ex)
             {
                 _ = DisplayAlert("Embed Error!", $"Message: {ex.Message}", "Ok");
-                return new DiscordEmbed();
+                return new DiscordEmbed { Description = "{Embed31Build31Hataya31Dustu31}" };
             }
         }
 
@@ -416,6 +505,7 @@ namespace DiscordWebhookRemoteApp.Pages
             //Popup popup = new WebhookProfileSaveEditPopup(imgWebhookImage.Source.ToString(), entryWebhookName.Text);
             //var res = await App.Current.MainPage.Navigation.ShowPopupAsync(popup);
         }
+
         private async void WebhookImage_Tapped(object sender, EventArgs e)
         {
             try
@@ -466,6 +556,7 @@ namespace DiscordWebhookRemoteApp.Pages
             }
 
         }
+
         private void entryWebhookName_Unfocused(object sender, FocusEventArgs e) =>
             entryWebhookName_Completed(null, null);
         #endregion
@@ -513,6 +604,52 @@ namespace DiscordWebhookRemoteApp.Pages
 #pragma warning restore CS0252 // Possible unintended reference comparison; left hand side needs cast
             }
             BindableLayout.SetItemsSource(blSavedWebhooks, References.WebhookList);
+        }
+        #endregion
+
+        #region ADSControls
+        async Task adsCheck()
+        {
+            if (fRes != null)
+            {
+                if (fRes.Settings.TestingMode.IsOnTest && References.Version == fRes.Settings.TestingMode.Version)
+                {
+                    adsTop.IsVisible = false;
+                    adsBottom.IsVisible = false;
+                }
+                else
+                {
+                    adsTop.IsVisible = adsTopLoaded;
+                    adsBottom.IsVisible = adsBottomLoaded;
+                }
+            }
+            else
+            {
+                fRes = await Database.FirebaseDatabase.GetData();
+                await adsCheck();
+            }
+        }
+        private void adsBottom_AdsLoaded(object sender, EventArgs e)
+        {
+            adsBottom.IsVisible = true;
+            adsBottomLoaded = true;
+            _ = adsCheck();
+        }
+        private void adsBottom_AdsFailedToLoad(object sender, MarcTron.Plugin.Extra.MTEventArgs e)
+        {
+            adsBottom.IsVisible = false;
+            adsBottomLoaded = false;
+        }
+        private void adsTop_AdsLoaded(object sender, EventArgs e)
+        {
+            adsTop.IsVisible = true;
+            adsTopLoaded = true;
+            _ = adsCheck();
+        }
+        private void adsTop_AdsFailedToLoad(object sender, MarcTron.Plugin.Extra.MTEventArgs e)
+        {
+            adsTop.IsVisible = false;
+            adsTopLoaded = false;
         }
         #endregion
     }
