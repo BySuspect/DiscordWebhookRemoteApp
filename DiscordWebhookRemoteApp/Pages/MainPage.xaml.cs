@@ -108,10 +108,10 @@ namespace DiscordWebhookRemoteApp.Pages
                 try
                 {
                     if (expFileSend.IsExpanded && !string.IsNullOrEmpty(filepath))
-                        await hook.Send(message, new FileInfo(filepath));
+                        hook.Send(message, new FileInfo(filepath));
                     else
                     {
-                        await hook.Send(message);
+                        hook.Send(message);
                     }
                 }
                 catch (Exception ex)
@@ -263,7 +263,7 @@ namespace DiscordWebhookRemoteApp.Pages
             message.Embeds.Add(embed2);
 
             //message
-            _ = hook.Send(message);
+            hook.Send(message);
 
             //file
             //hook.Send(message, new FileInfo("C:/File/Path.file"));

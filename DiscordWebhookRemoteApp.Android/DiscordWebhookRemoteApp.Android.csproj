@@ -37,6 +37,11 @@
     <EnableLLVM>false</EnableLLVM>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <BundleAssemblies>false</BundleAssemblies>
+    <MandroidI18n />
+    <AndroidSupportedAbis />
+    <AndroidLinkSkip>
+    </AndroidLinkSkip>
+    <AndroidKeyStore>false</AndroidKeyStore>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -78,10 +83,16 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.2</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Annotation">
+      <Version>1.5.0.1</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Collection">
       <Version>1.2.0.5</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Lifecycle.Common">
+      <Version>2.5.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData">
       <Version>2.5.1.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData.Core">
@@ -89,6 +100,9 @@
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Lifecycle.Runtime">
       <Version>2.5.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Migration">
+      <Version>1.0.10</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Work.Runtime">
       <Version>2.7.1.5</Version>
@@ -103,6 +117,12 @@
     </PackageReference>
     <PackageReference Include="Xamarin.GooglePlayServices.Basement">
       <Version>118.1.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Kotlin.StdLib">
+      <Version>1.7.20.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Kotlin.StdLib.Common">
+      <Version>1.7.20.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -200,7 +220,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadUnhandledDeviceExceptionDiscordWebhookRemoteAppAndroidHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionDiscordWebhookRemoteAppAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadDebuggerTimeoutExceptionDiscordWebhookRemoteAppAndroidHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionDiscordWebhookRemoteAppAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

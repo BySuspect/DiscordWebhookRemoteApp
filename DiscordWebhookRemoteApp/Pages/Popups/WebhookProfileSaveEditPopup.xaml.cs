@@ -13,9 +13,9 @@ namespace DiscordWebhookRemoteApp.Pages.Popups
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WebhookProfileSaveEditPopup : Popup
     {
-        List<webhookItems> webhookList = new List<webhookItems>();
-        int selectedID = -1;
-        bool IsEditOrDelete = false;
+        //List<webhookItems> webhookList = new List<webhookItems>();
+        //int selectedID = -1;
+        //bool IsEditOrDelete = false;
         public WebhookProfileSaveEditPopup(string url, string name)
         {
             InitializeComponent();

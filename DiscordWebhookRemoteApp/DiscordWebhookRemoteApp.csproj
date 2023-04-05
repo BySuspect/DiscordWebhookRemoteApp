@@ -15,6 +15,7 @@
     <PackageReference Include="IntelliAbb.Xamarin.Controls" Version="1.0.148" />
     <PackageReference Include="MarcTron.Admob" Version="1.9.0.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="Xamarin.Build.Download" Version="0.11.4" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.5" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2545" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.4" />

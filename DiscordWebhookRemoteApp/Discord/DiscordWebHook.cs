@@ -45,7 +45,7 @@ namespace Discord.Webhook
         /// <summary>
         /// Send webhook message
         /// </summary>
-        public async Task Send(DiscordMessage message, params FileInfo[] files)
+        public void Send(DiscordMessage message, params FileInfo[] files)
         {
             if (string.IsNullOrEmpty(Url))
                 throw new ArgumentNullException("Invalid Webhook URL.");
