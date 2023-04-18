@@ -9,12 +9,136 @@
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     xmlns:xctp="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
     xct:CornerRadiusEffect.CornerRadius="15"
-    Size="{x:Static popups:PopupSize.Medium}"
+    Size="{x:Static popups:PopupSize.Tall}"
     Color="Transparent">
-    <StackLayout>
-        <Label
-            HorizontalOptions="CenterAndExpand"
-            Text="Welcome to Xamarin.Forms!"
-            VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+
+    <Frame
+        BackgroundColor="{x:Static helpers:ThemeColors.BackColor}"
+        CornerRadius="15"
+        VerticalOptions="Center">
+        <Grid>
+            <StackLayout>
+                <ScrollView>
+                    <StackLayout x:Name="ProfileList">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Frame
+                                    Padding="10,5"
+                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                    CornerRadius="15"
+                                    VerticalOptions="Center">
+                                    <xct:Expander>
+                                        <xct:Expander.Header>
+                                            <StackLayout HeightRequest="50">
+                                                <StackLayout HeightRequest="50" Orientation="Horizontal">
+                                                    <Image
+                                                        Margin="10,0,0,0"
+                                                        xct:CornerRadiusEffect.CornerRadius="360"
+                                                        HeightRequest="45"
+                                                        IsAnimationPlaying="False"
+                                                        Source="{Binding image}"
+                                                        VerticalOptions="Center" />
+                                                    <customItems:BorderlessEntry
+                                                        Margin="10,0,0,0"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        HorizontalTextAlignment="Start"
+                                                        Text="{Binding name}"
+                                                        TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                        VerticalOptions="Center" />
+                                                    <Image
+                                                        Margin="0,0,10,0"
+                                                        xct:IconTintColorEffect.TintColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                        AutomationId="{Binding ID}"
+                                                        HeightRequest="24"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        Source="delete32px.png"
+                                                        VerticalOptions="Center"
+                                                        WidthRequest="32">
+                                                        <Image.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="deleteItem_Tapped" />
+                                                        </Image.GestureRecognizers>
+                                                    </Image>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </xct:Expander.Header>
+                                        <xct:Expander.ContentTemplate>
+                                            <DataTemplate>
+                                                <StackLayout
+                                                    Margin="0,10,0,5"
+                                                    HorizontalOptions="Center"
+                                                    Orientation="Horizontal">
+                                                    <Button
+                                                        xct:TouchEffect.NativeAnimation="true"
+                                                        xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                                                        xct:TouchEffect.PressedAnimationDuration="500"
+                                                        xct:TouchEffect.PressedOpacity="0.6"
+                                                        xct:TouchEffect.PressedScale="0.98"
+                                                        AutomationId="{Binding ID}"
+                                                        BackgroundColor="Transparent"
+                                                        BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                        BorderWidth="1"
+                                                        Clicked="btnEdit_Clicked"
+                                                        CornerRadius="15"
+                                                        FontSize="Caption"
+                                                        HeightRequest="37"
+                                                        HorizontalOptions="Center"
+                                                        Text="Edit"
+                                                        TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                        VerticalOptions="Center" />
+                                                    <Button
+                                                        xct:TouchEffect.NativeAnimation="true"
+                                                        xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                                                        xct:TouchEffect.PressedAnimationDuration="500"
+                                                        xct:TouchEffect.PressedOpacity="0.6"
+                                                        xct:TouchEffect.PressedScale="0.98"
+                                                        AutomationId="{Binding ID}"
+                                                        BackgroundColor="Transparent"
+                                                        BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                        BorderWidth="1"
+                                                        Clicked="btnSelect_Clicked"
+                                                        CornerRadius="15"
+                                                        FontSize="Caption"
+                                                        HeightRequest="37"
+                                                        HorizontalOptions="Center"
+                                                        Text="Select"
+                                                        TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                        VerticalOptions="Center" />
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </xct:Expander.ContentTemplate>
+                                    </xct:Expander>
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+            <Frame
+                Padding="15"
+                xct:CornerRadiusEffect.CornerRadius="360"
+                xct:TouchEffect.NativeAnimation="true"
+                xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                xct:TouchEffect.PressedAnimationDuration="500"
+                xct:TouchEffect.PressedOpacity="0.6"
+                xct:TouchEffect.PressedScale="0.98"
+                BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                CornerRadius="360"
+                HorizontalOptions="EndAndExpand"
+                VerticalOptions="EndAndExpand">
+                <Image
+                    Margin="0"
+                    xct:IconTintColorEffect.TintColor="{x:Static helpers:ThemeColors.TextColor}"
+                    HeightRequest="24"
+                    HorizontalOptions="EndAndExpand"
+                    Source="plus64px.png"
+                    VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
+        </Grid>
+    </Frame>
 </xctp:Popup>

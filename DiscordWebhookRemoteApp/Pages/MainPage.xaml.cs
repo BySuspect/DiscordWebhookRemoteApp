@@ -22,6 +22,8 @@ using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.CommunityToolkit.UI.Views;
 using DiscordWebhookRemoteApp.Pages.Popups;
 using MarcTron.Plugin.Controls;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace DiscordWebhookRemoteApp.Pages
 {
@@ -37,7 +39,7 @@ namespace DiscordWebhookRemoteApp.Pages
             webhookProfileAvatar = false,
             webhookProfileName = false,
             adsBottomLoaded = true,
-            adsTopLoaded = true;
+            adsTopLoaded = false;
 
         string selectedUrl = "",
             webhookImageUrl = "",
@@ -53,12 +55,19 @@ namespace DiscordWebhookRemoteApp.Pages
         {
             InitializeComponent();
             BindingContext = this;
+            popupInfoBack.IsVisible = References.supportPopup;
             BindableLayout.SetItemsSource(blSavedWebhooks, References.WebhookList);
             //DisplayAlert("Hello!", "This is the first version of my app. Please post your feedback in google play comments.", "Ok");
             Theme.ThemeChanged += (s, e) =>
             {
                 Debug.WriteLine("theme changed: " + e.NewTheme);
             };
+#if DEBUG
+            string mytext = "";
+            //Clipboard.SetTextAsync(mytext);
+            popupInfoBack.IsVisible = false;
+            References.supportPopup = false;
+#endif
         }
         protected override async void OnAppearing()
         {
@@ -143,7 +152,7 @@ namespace DiscordWebhookRemoteApp.Pages
                 filepath = "";
                 lblSelectedFile.Text = "none";
                 entryWebhookName.Text = "";
-                imgWebhookImage.Source = "demoimage.png";
+                imgWebhookImage.Source = "dcdemoimage.png";
             }
         }
         private async void embedBodyColorPicker_Tapped(object sender, EventArgs e)
@@ -184,7 +193,7 @@ namespace DiscordWebhookRemoteApp.Pages
                 else
                 {
                     embedAuthorIconUrl = "";
-                    imgWebhookImage.Source = "demoimage.png";
+                    imgWebhookImage.Source = "dcdemoimage.png";
                 }
             }
             catch { }
@@ -214,7 +223,7 @@ namespace DiscordWebhookRemoteApp.Pages
                 else
                 {
                     embedFooterIconUrl = "";
-                    ImgEmbedFooterIconUrl.Source = "demoimage.png";
+                    ImgEmbedFooterIconUrl.Source = "dcdemoimage.png";
                 }
             }
             catch { }
@@ -355,7 +364,7 @@ namespace DiscordWebhookRemoteApp.Pages
                         author.Url = EntryEmbedAuthorUrl.Text;
 
                     //Embed Author Icon Url
-                    if (ImgEmbedAuthor.Source.ToString() != "File: demoimage.png")
+                    if (ImgEmbedAuthor.Source.ToString() != "File: dcdemoimage.png")
                         author.IconUrl = embedAuthorIconUrl;
 
                     //Embed author empty check
@@ -436,6 +445,86 @@ namespace DiscordWebhookRemoteApp.Pages
 
         //---------------------------------------------------------------------------------------------------
 
+        #region Webhook Url
+        private async void WebhookAdd_Tapped(object sender, EventArgs e)
+        {
+            Popup popup = new WebhookAddEditPopup();
+            await App.Current.MainPage.Navigation.ShowPopupAsync(popup);
+            BindableLayout.SetItemsSource(blSavedWebhooks, References.WebhookList);
+        }
+        private async void WebhookSelect_Tapped(object sender, EventArgs e)
+        {
+            Loodinglayout.IsVisible = true;
+            var selected = References.WebhookList.Where(x => x.ID == Convert.ToInt32((sender as Frame).AutomationId)).FirstOrDefault();
+            hook.Url = selected.url;
+            selectedUrl = selected.url;
+            selectedId = selected.ID;
+            lblSelectedUrl.Text = selected.name;
+            webhookSelected = true;
+
+            try
+            {
+                var httpClient = new HttpClient();
+                var response = await httpClient.GetAsync(hook.Url);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var json = JsonConvert.DeserializeObject<JObject>(content);
+
+                    var avatar = json["avatar"].ToString();
+                    if (!string.IsNullOrEmpty(avatar))
+                    {
+                        webhookImageUrl = $"https://cdn.discordapp.com/avatars/1072456857811165254/{avatar}.png";
+                        imgWebhookImage.Source = webhookImageUrl;
+                        webhookProfileAvatar = true;
+                    }
+
+                    var name = json["name"].ToString();
+                    if (!string.IsNullOrEmpty(name))
+                    {
+                        entryWebhookName.Text = name;
+                        webhookName = name;
+                        webhookProfileName = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            Loodinglayout.IsVisible = false;
+        }
+        private async void webhookEditDelete_Clicked(object sender, EventArgs e)
+        {
+            if (webhookSelected)
+            {
+                Popup popup = new WebhookAddEditPopup(selectedId);
+                var res = await App.Current.MainPage.Navigation.ShowPopupAsync(popup);
+                Debug.WriteLine(res);
+#pragma warning disable CS0252 // Possible unintended reference comparison; left hand side needs cast
+                if (res == "delete")
+                {
+                    selectedId = -1;
+                    selectedUrl = "";
+                    webhookSelected = false;
+                    lblSelectedUrl.Text = "none";
+                }
+                else
+                {
+                    var selected = References.WebhookList.Where(x => x.ID == selectedId).FirstOrDefault();
+                    hook.Url = selected.url;
+                    selectedUrl = selected.url;
+                    selectedId = selected.ID;
+                    lblSelectedUrl.Text = selected.name;
+                    webhookSelected = true;
+                }
+#pragma warning restore CS0252 // Possible unintended reference comparison; left hand side needs cast
+            }
+            BindableLayout.SetItemsSource(blSavedWebhooks, References.WebhookList);
+        }
+        #endregion
+
         #region Send File
         private async void btnFileSelect_Clicked(object sender, EventArgs e)
         {
@@ -468,7 +557,7 @@ namespace DiscordWebhookRemoteApp.Pages
         #endregion
 
         #region Webhook Profile
-        private void webhookSaveLoad_Clicked(object sender, EventArgs e)
+        private async void webhookSaveLoad_Clicked(object sender, EventArgs e)
         {
             #region easterEgg
             if (entryWebhookName.Text == "{zenandshriokossecret}")
@@ -500,12 +589,16 @@ namespace DiscordWebhookRemoteApp.Pages
                 return;
             }
             #endregion
+            try
+            {
+                Popup popup = new WebhookProfileSaveEditPopup(imgWebhookImage.Source.ToString(), entryWebhookName.Text);
+                var res = await App.Current.MainPage.Navigation.ShowPopupAsync(popup);
+            }
+            catch (Exception ex)
+            {
 
-            _ = DisplayAlert("Hello!", "This feature is coming soon...", "Ok");
-            //Popup popup = new WebhookProfileSaveEditPopup(imgWebhookImage.Source.ToString(), entryWebhookName.Text);
-            //var res = await App.Current.MainPage.Navigation.ShowPopupAsync(popup);
+            }
         }
-
         private async void WebhookImage_Tapped(object sender, EventArgs e)
         {
             try
@@ -534,7 +627,7 @@ namespace DiscordWebhookRemoteApp.Pages
                 else
                 {
                     webhookImageUrl = "";
-                    imgWebhookImage.Source = "demoimage.png";
+                    imgWebhookImage.Source = "dcdemoimage.png";
                     webhookProfileAvatar = false;
                 }
             }
@@ -556,55 +649,8 @@ namespace DiscordWebhookRemoteApp.Pages
             }
 
         }
-
         private void entryWebhookName_Unfocused(object sender, FocusEventArgs e) =>
             entryWebhookName_Completed(null, null);
-        #endregion
-
-        #region Webhook Url
-        private async void WebhookAdd_Tapped(object sender, EventArgs e)
-        {
-            Popup popup = new WebhookAddEditPopup();
-            await App.Current.MainPage.Navigation.ShowPopupAsync(popup);
-            BindableLayout.SetItemsSource(blSavedWebhooks, References.WebhookList);
-        }
-        private void WebhookSelect_Tapped(object sender, EventArgs e)
-        {
-            var selected = References.WebhookList.Where(x => x.ID == Convert.ToInt32((sender as Frame).AutomationId)).FirstOrDefault();
-            hook.Url = selected.url;
-            selectedUrl = selected.url;
-            selectedId = selected.ID;
-            lblSelectedUrl.Text = selected.name;
-            webhookSelected = true;
-        }
-        private async void webhookEditDelete_Clicked(object sender, EventArgs e)
-        {
-            if (webhookSelected)
-            {
-                Popup popup = new WebhookAddEditPopup(selectedId);
-                var res = await App.Current.MainPage.Navigation.ShowPopupAsync(popup);
-                Debug.WriteLine(res);
-#pragma warning disable CS0252 // Possible unintended reference comparison; left hand side needs cast
-                if (res == "delete")
-                {
-                    selectedId = -1;
-                    selectedUrl = "";
-                    webhookSelected = false;
-                    lblSelectedUrl.Text = "none";
-                }
-                else
-                {
-                    var selected = References.WebhookList.Where(x => x.ID == selectedId).FirstOrDefault();
-                    hook.Url = selected.url;
-                    selectedUrl = selected.url;
-                    selectedId = selected.ID;
-                    lblSelectedUrl.Text = selected.name;
-                    webhookSelected = true;
-                }
-#pragma warning restore CS0252 // Possible unintended reference comparison; left hand side needs cast
-            }
-            BindableLayout.SetItemsSource(blSavedWebhooks, References.WebhookList);
-        }
         #endregion
 
         #region ADSControls
@@ -619,7 +665,7 @@ namespace DiscordWebhookRemoteApp.Pages
                 }
                 else
                 {
-                    adsTop.IsVisible = adsTopLoaded;
+                    //adsTop.IsVisible = adsTopLoaded;
                     adsBottom.IsVisible = adsBottomLoaded;
                 }
             }
@@ -642,7 +688,7 @@ namespace DiscordWebhookRemoteApp.Pages
         }
         private void adsTop_AdsLoaded(object sender, EventArgs e)
         {
-            adsTop.IsVisible = true;
+            //adsTop.IsVisible = true;
             adsTopLoaded = true;
             _ = adsCheck();
         }
@@ -652,5 +698,19 @@ namespace DiscordWebhookRemoteApp.Pages
             adsTopLoaded = false;
         }
         #endregion
+
+
+
+        private void btnSupportCancel_Clicked(object sender, EventArgs e)
+        {
+            popupInfoBack.IsVisible = false;
+            References.supportPopup = false;
+        }
+        private void btnSupport_Clicked(object sender, EventArgs e)
+        {
+            Browser.OpenAsync(new Uri("https://www.patreon.com/BySuspect"), BrowserLaunchMode.External);
+            popupInfoBack.IsVisible = false;
+            References.supportPopup = false;
+        }
     }
 }

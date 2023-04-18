@@ -23,12 +23,14 @@ using System.Diagnostics;
 using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.CommunityToolkit.UI.Views;
 using DiscordWebhookRemoteApp.Pages.Popups;
+using System.Collections.ObjectModel;
 
 namespace DiscordWebhookRemoteApp.Helpers
 {
     public static class References
     {
-        public static string Version = "0.2beta";
+        public static bool supportPopup = true;
+        public static string Version = "1.0.0";
 
         static List<webhookItems> _webhookList;
         public static List<webhookItems> WebhookList
@@ -46,6 +48,29 @@ namespace DiscordWebhookRemoteApp.Helpers
                 Preferences.Set("savedwebhookItems", json);
             }
         }
+
+        static ObservableCollection<webhookProfileItems> _webhookProfileList;
+        public static ObservableCollection<webhookProfileItems> WebhookProfileList
+        {
+            get
+            {
+                string json = Preferences.Get("savedwebhookprofileItems", "[]");
+                _webhookProfileList = JsonConvert.DeserializeObject<ObservableCollection<webhookProfileItems>>(json);
+                //_webhookProfileList = _webhookProfileList.OrderBy(x => x.ID).ToList();
+                Debug.WriteLine("webhook profile Request: \n" + json);
+                return _webhookProfileList;
+            }
+            set
+            {
+                if (value != _webhookProfileList)
+                {
+                    _webhookProfileList = value;
+                    string json = JsonConvert.SerializeObject(value);
+                    Preferences.Set("savedwebhookprofileItems", json);
+                    Debug.WriteLine("webhook profile Update: \n" + json);
+                }
+            }
+        }
     }
     public class webhookItems
     {
@@ -53,16 +78,25 @@ namespace DiscordWebhookRemoteApp.Helpers
         public string url { get; set; }
         public string name { get; set; }
     }
+    public class webhookProfileItems
+    {
+        public int ID { get; set; }
+        public string image { get; set; }
+        public string name { get; set; }
+        public bool nameEditable { get; set; }
+        public bool imageEditable { get; set; }
+    }
     public static class ChangeAppTheme
     {
+
         public static void LightTheme()
         {
             ThemeColors.TextColor = Color.Black;
             ThemeColors.TransparentTextColor = Color.FromHex("#BA000000");
             ThemeColors.BorderColor = Color.Black;
             ThemeColors.BorderBackColor = Color.Transparent;
-            ThemeColors.BackColor = Color.White;
-            ThemeColors.StatusBarColor = Color.White;
+            ThemeColors.BackColor = Color.FromHex("#DBDBDB");
+            ThemeColors.StatusBarColor = Color.FromHex("#FFFFFF");
             ThemeColors.StatusBarStyle = StatusBarStyle.DarkContent;
             ThemeColors.backgroundImg = null;
         }
@@ -72,8 +106,8 @@ namespace DiscordWebhookRemoteApp.Helpers
             ThemeColors.TransparentTextColor = Color.FromHex("#BAFFFFFF");
             ThemeColors.BorderColor = Color.White;
             ThemeColors.BorderBackColor = Color.Transparent;
-            ThemeColors.BackColor = Color.Black;
-            ThemeColors.StatusBarColor = Color.Black;
+            ThemeColors.BackColor = Color.FromHex("101010");
+            ThemeColors.StatusBarColor = Color.FromHex("#000000");
             ThemeColors.StatusBarStyle = StatusBarStyle.LightContent;
             ThemeColors.backgroundImg = null;
         }

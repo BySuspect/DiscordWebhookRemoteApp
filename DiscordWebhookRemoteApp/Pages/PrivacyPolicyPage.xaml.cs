@@ -155,7 +155,7 @@ By visiting this page on our website: https://awgstudiosapps.web.app/contactus";
             btnaccept.IsEnabled = false;
             App.Current.MainPage = new NavigationPage(new MainPage())
             {
-                BarBackgroundColor = ThemeColors.BackColor,
+                BarBackgroundColor = ThemeColors.StatusBarColor,
                 BarTextColor = ThemeColors.TextColor,
             };
         }

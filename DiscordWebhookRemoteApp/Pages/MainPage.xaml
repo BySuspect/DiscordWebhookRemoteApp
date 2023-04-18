@@ -153,7 +153,8 @@
                             AdsLoaded="adsTop_AdsLoaded"
                             HeightRequest="{OnIdiom Phone=50,
                                                     Tablet=90}"
-                            IsVisible="true"
+                            IsEnabled="False"
+                            IsVisible="false"
                             VerticalOptions="Center" />
 
                         <!--#region Webhook Profile Area-->
@@ -170,15 +171,13 @@
                                     HorizontalOptions="Start"
                                     Text="Webhook Profile"
                                     TextColor="{x:Static local:ThemeColors.TextColor}" />
-                                <StackLayout HeightRequest="65" Orientation="Horizontal">
+                                <StackLayout HeightRequest="50" Orientation="Horizontal">
                                     <Image
                                         x:Name="imgWebhookImage"
                                         Margin="10,0,0,0"
-                                        xct:CornerRadiusEffect.CornerRadius="255"
-                                        HeightRequest="55"
-                                        IsAnimationPlaying="True"
-                                        Source="demoimage.png"
-                                        WidthRequest="55">
+                                        xct:CornerRadiusEffect.CornerRadius="360"
+                                        HeightRequest="50"
+                                        Source="dcdemoimage.png">
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="WebhookImage_Tapped" />
                                         </Image.GestureRecognizers>
@@ -188,6 +187,7 @@
                                         Margin="10,0,0,0"
                                         Completed="entryWebhookName_Completed"
                                         HorizontalOptions="FillAndExpand"
+                                        MaxLength="32"
                                         Placeholder="Webhook Name"
                                         PlaceholderColor="{x:Static local:ThemeColors.TransparentTextColor}"
                                         TextColor="{x:Static local:ThemeColors.TextColor}"
@@ -204,6 +204,8 @@
                                         BorderWidth="1"
                                         Clicked="webhookSaveLoad_Clicked"
                                         CornerRadius="15"
+                                        FontSize="Small"
+                                        HeightRequest="40"
                                         HorizontalOptions="EndAndExpand"
                                         Text="Save &amp; Load"
                                         TextColor="{x:Static local:ThemeColors.TextColor}"
@@ -320,14 +322,14 @@
                                                                     BorderColor="{x:Static local:ThemeColors.BorderColor}"
                                                                     CornerRadius="15"
                                                                     HeightRequest="50">
-                                                                    <StackLayout HeightRequest="65" Orientation="Horizontal">
+                                                                    <StackLayout HeightRequest="50" Orientation="Horizontal">
                                                                         <Image
                                                                             x:Name="ImgEmbedAuthor"
                                                                             Margin="10,0,0,0"
-                                                                            xct:CornerRadiusEffect.CornerRadius="255"
+                                                                            xct:CornerRadiusEffect.CornerRadius="360"
                                                                             HeightRequest="50"
                                                                             IsAnimationPlaying="True"
-                                                                            Source="demoimage.png"
+                                                                            Source="dcdemoimage.png"
                                                                             WidthRequest="50">
                                                                             <Image.GestureRecognizers>
                                                                                 <TapGestureRecognizer Tapped="EmbedAuthorImage_Tapped" />
@@ -600,14 +602,14 @@
                                                                     BorderColor="{x:Static local:ThemeColors.BorderColor}"
                                                                     CornerRadius="15"
                                                                     HeightRequest="50">
-                                                                    <StackLayout HeightRequest="65" Orientation="Horizontal">
+                                                                    <StackLayout HeightRequest="50" Orientation="Horizontal">
                                                                         <Image
                                                                             x:Name="ImgEmbedFooterIconUrl"
                                                                             Margin="10,0,0,0"
-                                                                            xct:CornerRadiusEffect.CornerRadius="255"
+                                                                            xct:CornerRadiusEffect.CornerRadius="360"
                                                                             HeightRequest="50"
                                                                             IsAnimationPlaying="True"
-                                                                            Source="demoimage.png"
+                                                                            Source="dcdemoimage.png"
                                                                             WidthRequest="50">
                                                                             <Image.GestureRecognizers>
                                                                                 <TapGestureRecognizer Tapped="EmbedFooterAuthorImage_Tapped" />
@@ -747,6 +749,8 @@
                                 BorderWidth="1"
                                 Clicked="clearContent_Clicked"
                                 CornerRadius="15"
+                                FontSize="Small"
+                                HeightRequest="40"
                                 HorizontalOptions="Center"
                                 Text="Clear"
                                 TextColor="{x:Static local:ThemeColors.TextColor}"
@@ -764,6 +768,8 @@
                                 BorderWidth="1"
                                 Clicked="sendContent_Clicked"
                                 CornerRadius="15"
+                                FontSize="Small"
+                                HeightRequest="40"
                                 HorizontalOptions="Center"
                                 Text="Send"
                                 TextColor="{x:Static local:ThemeColors.TextColor}"
@@ -790,6 +796,66 @@
                         </StackLayout>
                     </StackLayout>
                 </ScrollView>
+                <Grid x:Name="popupInfoBack" BackgroundColor="#BA121212">
+                    <Frame
+                        Margin="30,0"
+                        Padding="15,15,15,5"
+                        BackgroundColor="{x:Static local:ThemeColors.BackColor}"
+                        BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                        CornerRadius="15"
+                        VerticalOptions="Center">
+                        <StackLayout>
+                            <Label
+                                x:Name="lblPopupTitle"
+                                FontSize="Medium"
+                                HorizontalOptions="Start"
+                                Text="Thanks for downloading."
+                                TextColor="{x:Static local:ThemeColors.TextColor}"
+                                VerticalOptions="Start" />
+                            <Label
+                                x:Name="lblPopupContent"
+                                Margin="5"
+                                FontSize="Body"
+                                Text="If you find my apps useful, you can give me a little support on patreon."
+                                TextColor="{x:Static local:ThemeColors.TextColor}" />
+                            <StackLayout
+                                Margin="0,5,0,0"
+                                HorizontalOptions="Center"
+                                Orientation="Horizontal">
+                                <Button
+                                    x:Name="btnOnayla"
+                                    xct:TouchEffect.NativeAnimation="true"
+                                    xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                                    xct:TouchEffect.PressedAnimationDuration="500"
+                                    xct:TouchEffect.PressedOpacity="0.6"
+                                    xct:TouchEffect.PressedScale="0.98"
+                                    BackgroundColor="Transparent"
+                                    Clicked="btnSupport_Clicked"
+                                    CornerRadius="15"
+                                    FontSize="Caption"
+                                    HorizontalOptions="Center"
+                                    Text="Support"
+                                    TextColor="{x:Static local:ThemeColors.TextColor}"
+                                    VerticalOptions="Center" />
+                                <Button
+                                    x:Name="btnIptal"
+                                    xct:TouchEffect.NativeAnimation="true"
+                                    xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                                    xct:TouchEffect.PressedAnimationDuration="500"
+                                    xct:TouchEffect.PressedOpacity="0.6"
+                                    xct:TouchEffect.PressedScale="0.98"
+                                    BackgroundColor="Transparent"
+                                    Clicked="btnSupportCancel_Clicked"
+                                    CornerRadius="15"
+                                    FontSize="Caption"
+                                    HorizontalOptions="Center"
+                                    Text="Cancel"
+                                    TextColor="{x:Static local:ThemeColors.TextColor}"
+                                    VerticalOptions="Center" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
                 <Grid
                     x:Name="Loodinglayout"
                     BackgroundColor="Transparent"

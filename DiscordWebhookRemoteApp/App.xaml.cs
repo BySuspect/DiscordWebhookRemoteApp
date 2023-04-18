@@ -39,7 +39,7 @@ namespace DiscordWebhookRemoteApp
             if (Preferences.Get("privacy_policy_accepted", false))
                 MainPage = new NavigationPage(new MainPage())
                 {
-                    BarBackgroundColor = ThemeColors.BackColor,
+                    BarBackgroundColor = ThemeColors.StatusBarColor,
                     BarTextColor = ThemeColors.TextColor,
                 };
             else
