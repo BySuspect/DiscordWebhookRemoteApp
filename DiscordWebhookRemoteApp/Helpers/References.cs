@@ -83,12 +83,10 @@ namespace DiscordWebhookRemoteApp.Helpers
         public int ID { get; set; }
         public string image { get; set; }
         public string name { get; set; }
-        public bool nameEditable { get; set; }
-        public bool imageEditable { get; set; }
+        public bool editMode { get; set; }
     }
     public static class ChangeAppTheme
     {
-
         public static void LightTheme()
         {
             ThemeColors.TextColor = Color.Black;
@@ -102,11 +100,11 @@ namespace DiscordWebhookRemoteApp.Helpers
         }
         public static void DarkTheme()
         {
-            ThemeColors.TextColor = Color.White;
+            ThemeColors.TextColor = Color.FromHex("#FFFFFF");
             ThemeColors.TransparentTextColor = Color.FromHex("#BAFFFFFF");
-            ThemeColors.BorderColor = Color.White;
+            ThemeColors.BorderColor = Color.FromHex("#BAFFFFFF");
             ThemeColors.BorderBackColor = Color.Transparent;
-            ThemeColors.BackColor = Color.FromHex("101010");
+            ThemeColors.BackColor = Color.FromHex("#101010");
             ThemeColors.StatusBarColor = Color.FromHex("#000000");
             ThemeColors.StatusBarStyle = StatusBarStyle.LightContent;
             ThemeColors.backgroundImg = null;
