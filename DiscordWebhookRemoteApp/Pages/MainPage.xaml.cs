@@ -63,7 +63,7 @@ namespace DiscordWebhookRemoteApp.Pages
                 Debug.WriteLine("theme changed: " + e.NewTheme);
             };
 #if DEBUG
-            string mytext = "";
+            //string mytext = "";
             //Clipboard.SetTextAsync(mytext);
             popupInfoBack.IsVisible = false;
             References.supportPopup = false;
@@ -721,22 +721,20 @@ namespace DiscordWebhookRemoteApp.Pages
         }
         #endregion
 
-
-
         private void btnSupportCancel_Clicked(object sender, EventArgs e)
         {
             popupInfoBack.IsVisible = false;
             References.supportPopup = false;
         }
-        private void btnSupport_Clicked(object sender, EventArgs e)
+        private async void btnSupport_Clicked(object sender, EventArgs e)
         {
-            try
-            {
-                Browser.OpenAsync(new Uri("https://www.patreon.com/BySuspect"), BrowserLaunchMode.External);
-            }
-            catch { Debug.WriteLine("Support Browser Error"); }
             popupInfoBack.IsVisible = false;
             References.supportPopup = false;
+            try
+            {
+                await Browser.OpenAsync(new Uri("https://www.patreon.com/BySuspect"), BrowserLaunchMode.External);
+            }
+            catch { Debug.WriteLine("Support Browser Error"); }
         }
     }
 }

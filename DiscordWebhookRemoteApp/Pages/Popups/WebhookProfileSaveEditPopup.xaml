@@ -12,7 +12,6 @@
     Size="{x:Static popups:PopupSize.Tall}"
     Color="Transparent">
     <Grid>
-
         <Frame
             BackgroundColor="{x:Static helpers:ThemeColors.BackColor}"
             BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
