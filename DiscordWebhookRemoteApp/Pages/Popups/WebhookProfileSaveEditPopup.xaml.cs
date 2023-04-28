@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -24,22 +25,21 @@ namespace DiscordWebhookRemoteApp.Pages.Popups
          *edit butonuna basınca seçilen autamationid ile entry enabledi true yapılıp aynı yerin edit butonu saveye çevrilicek
          *avatara tıklayınca eğer edit modundaysa resim deiştirme olayı ayarlanıcak
          */
-        ObservableCollection<webhookProfileItems> _savedProfiles;
+        private ObservableCollection<webhookProfileItems> _savedProfiles;
+
         public ObservableCollection<webhookProfileItems> SavedProfiles
         {
             get
             {
-                return _savedProfiles ?? new ObservableCollection<webhookProfileItems>();
+                return _savedProfiles;
             }
             set
             {
-                //if (_savedProfiles != value)
-                //{
                 _savedProfiles = value;
                 OnPropertyChanged(nameof(SavedProfiles));
-                //}
             }
         }
+
         public WebhookProfileSaveEditPopup(string url, string name)
         {
             InitializeComponent();
@@ -50,99 +50,122 @@ namespace DiscordWebhookRemoteApp.Pages.Popups
                 new webhookProfileItems
                 {
                     ID=0,
-                    editMode=false,
                     name="Test1",
                     image="https://cdn.discordapp.com/avatars/510531111647051796/1996bd9b3b369c8405378e405d049a88.png?size=4096",
                 },
                 new webhookProfileItems
                 {
                     ID=1,
-                    editMode=false,
                     name="Test2",
                     image="https://cdn.discordapp.com/avatars/410054920600027147/a_50693c392bcc8694970249cecc61be01.png?size=4096",
                 },
                 new webhookProfileItems
                 {
                     ID=2,
-                    editMode=false,
                     name="Test3",
                     image="https://cdn.discordapp.com/avatars/272665050672660501/f6b1c6bd7376412852e6b54a3f223987.png?size=4096",
                 },
                 new webhookProfileItems
                 {
                     ID=3,
-                    editMode=false,
                     name="Test4",
                     image="https://cdn.discordapp.com/avatars/410054920600027147/a_50693c392bcc8694970249cecc61be01.png?size=4096",
                 },
                 new webhookProfileItems
                 {
                     ID=4,
-                    editMode=false,
                     name="Test5",
                     image="https://cdn.discordapp.com/avatars/272665050672660501/f6b1c6bd7376412852e6b54a3f223987.png?size=4096",
                 },
             };
             //References.WebhookProfileList = gecicilist;
 #endif
+
             SavedProfiles = References.WebhookProfileList;
-            //ProfileList.ItemsSource = savedProfiles;
-            SavedProfiles.CollectionChanged += SavedProfiles_CollectionChanged;
-        }
-
-        private void btnSelect_Clicked(object sender, EventArgs e)
-        {
-            var selecteditem = sender as Button;
-            int selectedIndex = SavedProfiles.IndexOf(SavedProfiles.Where(x => x.ID == int.Parse(selecteditem.AutomationId)).FirstOrDefault());
-            var selected = SavedProfiles[selectedIndex];
-
-
-
-            Debug.WriteLine($"selectbtn selected index: {selectedIndex}");
-        }
-        private void btnEdit_Clicked(object sender, EventArgs e)
-        {
-            var selecteditem = sender as Button;
-            int selectedIndex = SavedProfiles.IndexOf(SavedProfiles.Where(x => x.ID == int.Parse(selecteditem.AutomationId)).FirstOrDefault());
-
-            var itemToEdit = SavedProfiles.FirstOrDefault(x => x.ID == int.Parse(selecteditem.AutomationId));
-            if (itemToEdit != null)
+            if (!string.IsNullOrEmpty(url)
+                && !string.IsNullOrEmpty(name)
+                && SavedProfiles.Where(x => x.image == url && x.name == name).ToList().Count == 0
+                && !url.Contains("dcdemoimage"))
             {
-                itemToEdit.name = "New Test" + selecteditem.AutomationId; // öğenin adını değiştir
-                itemToEdit.image = "https://cdn.discordapp.com/avatars/354256550082248704/4588715e0cf7b5970ec362015f61210b.png?size=4096"; // öğenin resmini değiştir
+                entryWebhookName.Text = name;
+                entryWebhookImage.Text = url;
+                newWebhookProfileBack.IsVisible = true;
+                newBtnImg.RotateTo(135);
             }
-
-            ProfileList.ItemsSource = null;
-            ProfileList.ItemsSource = SavedProfiles;
-
-
-            Debug.WriteLine($"editbtn selected index: {selectedIndex} {SavedProfiles[selectedIndex].editMode}");
         }
-        private void imageEdit_Tapped(object sender, EventArgs e)
+
+        private void selectItem_Tapped(object sender, EventArgs e)
         {
-            var selecteditem = sender as Xamarin.Forms.Image;
-            int selectedIndex = SavedProfiles.IndexOf(SavedProfiles.Where(x => x.ID == int.Parse(selecteditem.AutomationId)).FirstOrDefault());
-            var selected = SavedProfiles[selectedIndex];
-
-
-
-
-            Debug.WriteLine($"avatar selected index: {selectedIndex}");
+            var selected = sender as Xamarin.Forms.Image;
+            Dismiss(SavedProfiles.Where(x => x.ID == int.Parse(selected.AutomationId)).First());
         }
         private void deleteItem_Tapped(object sender, EventArgs e)
         {
             var selected = sender as Xamarin.Forms.Image;
-            SavedProfiles.Remove(SavedProfiles.Where(x => x.ID == int.Parse(selected.AutomationId)).FirstOrDefault());
-            //References.WebhookProfileList = savedProfiles;
+            var gecicilist = SavedProfiles;
+            gecicilist.Remove(gecicilist.Where(x => x.ID == int.Parse(selected.AutomationId)).FirstOrDefault());
+            SavedProfiles = gecicilist;
+            References.WebhookProfileList = SavedProfiles;
         }
-
-        private void ProfileList_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void NewProfileSave_Clicked(object sender, EventArgs e)
         {
+            try
+            {
+                if (!string.IsNullOrEmpty(entryWebhookName.Text) && !string.IsNullOrEmpty(entryWebhookImage.Text))
+                {
+                    string[] imageExtensions = { ".jpg", ".jpeg", ".png", ".gif" };
 
+                    bool isImageUrl = imageExtensions.Any(entryWebhookImage.Text.Trim().Contains);
+
+                    if (isImageUrl)
+                    {
+                        var gecicilist = SavedProfiles;
+                        gecicilist.Add(new webhookProfileItems
+                        {
+                            ID = (SavedProfiles.OrderBy(x => x.ID).Max(x => x.ID) + 1),
+                            name = entryWebhookName.Text.Trim(),
+                            image = entryWebhookImage.Text.Trim(),
+                        });
+                        newRoomViewClose_Tapped(null, null);
+                        SavedProfiles = gecicilist;
+                        References.WebhookProfileList = SavedProfiles;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
-        private void SavedProfiles_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private async void newWebhookProfile_Tapped(object sender, EventArgs e)
         {
-
+            newBtnImg.CancelAnimations();
+            if (newWebhookProfileBack.IsVisible)
+            {
+                await newBtnImg.RotateTo(165, 250);
+                await newBtnImg.RotateTo(-30, 250);
+                newWebhookProfileBack.IsVisible = false;
+                await newBtnImg.RotateTo(0, 250);
+            }
+            else
+            {
+                await newBtnImg.RotateTo(-30, 250);
+                await newBtnImg.RotateTo(165, 250);
+                newWebhookProfileBack.IsVisible = true;
+                await newBtnImg.RotateTo(135, 250);
+                entryWebhookName.Text = "";
+                entryWebhookImage.Text = "";
+                //imgWebhookImage.Source = "dcdemoimage.png";
+            }
+        }
+        private async void newRoomViewClose_Tapped(object sender, EventArgs e)
+        {
+            newBtnImg.CancelAnimations();
+            await newBtnImg.RotateTo(165, 250);
+            await newBtnImg.RotateTo(-30, 250);
+            newWebhookProfileBack.IsVisible = false;
+            await newBtnImg.RotateTo(0, 250);
+            //imgWebhookImage.Source = "dcdemoimage.png";
         }
     }
 }

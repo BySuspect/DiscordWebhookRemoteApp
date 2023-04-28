@@ -62,13 +62,10 @@ namespace DiscordWebhookRemoteApp.Helpers
             }
             set
             {
-                if (value != _webhookProfileList)
-                {
-                    _webhookProfileList = value;
-                    string json = JsonConvert.SerializeObject(value);
-                    Preferences.Set("savedwebhookprofileItems", json);
-                    Debug.WriteLine("webhook profile Update: \n" + json);
-                }
+                _webhookProfileList = value;
+                string json = JsonConvert.SerializeObject(value);
+                Preferences.Set("savedwebhookprofileItems", json);
+                Debug.WriteLine("webhook profile Update: \n" + json);
             }
         }
     }
@@ -83,7 +80,6 @@ namespace DiscordWebhookRemoteApp.Helpers
         public int ID { get; set; }
         public string image { get; set; }
         public string name { get; set; }
-        public bool editMode { get; set; }
     }
     public static class ChangeAppTheme
     {

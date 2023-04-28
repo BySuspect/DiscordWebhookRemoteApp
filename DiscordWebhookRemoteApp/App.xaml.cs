@@ -32,10 +32,9 @@ namespace DiscordWebhookRemoteApp
             if (Preferences.Get("{zenandshriokossecret}", false))
                 ChangeAppTheme.ForDenizTheme();
 
-#if DEBUG
-            //Preferences.Set("privacy_policy_accepted", false);
-#endif
 
+
+#if !DEBUG
             if (Preferences.Get("privacy_policy_accepted", false))
                 MainPage = new NavigationPage(new MainPage())
                 {
@@ -44,6 +43,18 @@ namespace DiscordWebhookRemoteApp
                 };
             else
                 MainPage = new PrivacyPolicyPage();
+#endif
+
+#if DEBUG
+            // References.WebhookProfileList = new System.Collections.ObjectModel.ObservableCollection<webhookProfileItems>();
+            //Preferences.Set("privacy_policy_accepted", false);
+            MainPage = new NavigationPage(new MainPage())
+            {
+                BarBackgroundColor = ThemeColors.StatusBarColor,
+                BarTextColor = ThemeColors.TextColor,
+            };
+#endif
+
         }
 
         void AppActions_OnAppAction(object sender, AppActionEventArgs e)

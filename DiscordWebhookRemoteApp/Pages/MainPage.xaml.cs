@@ -478,6 +478,12 @@ namespace DiscordWebhookRemoteApp.Pages
                         imgWebhookImage.Source = webhookImageUrl;
                         webhookProfileAvatar = true;
                     }
+                    else
+                    {
+                        webhookImageUrl = "dcdemoimage.png";
+                        imgWebhookImage.Source = webhookImageUrl;
+                        webhookProfileAvatar = false;
+                    }
 
                     var name = json["name"].ToString();
                     if (!string.IsNullOrEmpty(name))
@@ -485,6 +491,11 @@ namespace DiscordWebhookRemoteApp.Pages
                         entryWebhookName.Text = name;
                         webhookName = name;
                         webhookProfileName = true;
+                    }
+                    else
+                    {
+                        entryWebhookName.Text = "";
+                        webhookProfileName = false;
                     }
                 }
             }
@@ -591,8 +602,19 @@ namespace DiscordWebhookRemoteApp.Pages
             #endregion
             try
             {
-                Popup popup = new WebhookProfileSaveEditPopup(imgWebhookImage.Source.ToString(), entryWebhookName.Text);
+                Popup popup = new WebhookProfileSaveEditPopup(webhookImageUrl, webhookName);
                 var res = await App.Current.MainPage.Navigation.ShowPopupAsync(popup);
+
+                if (((webhookProfileItems)res) != null)
+                {
+                    webhookImageUrl = ((webhookProfileItems)res).image;
+                    imgWebhookImage.Source = webhookImageUrl;
+                    webhookProfileAvatar = true;
+
+                    webhookName = ((webhookProfileItems)res).name;
+                    entryWebhookName.Text = webhookName;
+                    webhookProfileName = true;
+                }
             }
             catch (Exception ex)
             {
@@ -611,7 +633,7 @@ namespace DiscordWebhookRemoteApp.Pages
                 {
                     string[] imageExtensions = { ".jpg", ".jpeg", ".png", ".gif" };
 
-                    bool isImageUrl = imageExtensions.Any(result.EndsWith);
+                    bool isImageUrl = imageExtensions.Any(result.Contains);
 
                     if (isImageUrl)
                     {
@@ -708,7 +730,11 @@ namespace DiscordWebhookRemoteApp.Pages
         }
         private void btnSupport_Clicked(object sender, EventArgs e)
         {
-            Browser.OpenAsync(new Uri("https://www.patreon.com/BySuspect"), BrowserLaunchMode.External);
+            try
+            {
+                Browser.OpenAsync(new Uri("https://www.patreon.com/BySuspect"), BrowserLaunchMode.External);
+            }
+            catch { Debug.WriteLine("Support Browser Error"); }
             popupInfoBack.IsVisible = false;
             References.supportPopup = false;
         }
