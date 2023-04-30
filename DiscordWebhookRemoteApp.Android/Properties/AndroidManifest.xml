@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="4" android:versionName="1.0.0" package="com.awgstudios.discordwebhookremoteapp" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="5" android:versionName="1.0.0" package="com.awgstudios.discordwebhookremoteapp" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="33" />
 	<application android:label="Discord Webhook Remote" android:theme="@style/MainTheme" android:icon="@mipmap/icon" android:usesCleartextTraffic="true">
 		<meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-3881259676793306~6010725604" />
 		<activity android:name="crc6490bee2440872efc7.MainActivity" android:exported="true" />
 	</application>
+	<uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
 </manifest>
