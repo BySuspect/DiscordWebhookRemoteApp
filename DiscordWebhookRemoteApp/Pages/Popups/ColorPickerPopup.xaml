@@ -4,19 +4,19 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
-    xmlns:local="clr-namespace:DiscordWebhookRemoteApp.Helpers"
+    xmlns:helpers="clr-namespace:DiscordWebhookRemoteApp.Helpers"
     xmlns:popups="clr-namespace:DiscordWebhookRemoteApp.Pages.Popups"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     xmlns:xctv="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
-    xct:StatusBarEffect.Color="{x:Static local:ThemeColors.StatusBarColor}"
-    xct:StatusBarEffect.Style="{x:Static local:ThemeColors.StatusBarStyle}"
+    xct:StatusBarEffect.Color="{x:Static helpers:ThemeColors.StatusBarColor}"
+    xct:StatusBarEffect.Style="{x:Static helpers:ThemeColors.StatusBarStyle}"
     BackgroundColor="Transparent"
-    Size="{x:Static popups:PopupSize.Medium2}"
+    Size="{x:Static helpers:PopupSize.Medium2}"
     Color="Transparent">
     <Frame
         Padding="1"
-        BackgroundColor="{x:Static local:ThemeColors.BackColor}"
-        BorderColor="{x:Static local:ThemeColors.BorderColor}"
+        BackgroundColor="{x:Static helpers:ThemeColors.BackColor}"
+        BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
         CornerRadius="15">
         <StackLayout VerticalOptions="Fill">
             <Frame
@@ -29,7 +29,7 @@
                     SelectedColorChanged="ColorWheel_SelectedColorChanged"
                     ShowAlphaSlider="False"
                     ShowLuminositySlider="False"
-                    ShowLuminosityWheel="True"/>
+                    ShowLuminosityWheel="True" />
             </Frame>
             <StackLayout
                 Margin="0,5,15,5"
@@ -41,13 +41,13 @@
                     xct:TouchEffect.PressedAnimationDuration="500"
                     xct:TouchEffect.PressedOpacity="0.6"
                     xct:TouchEffect.PressedScale="0.98"
-                    BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
-                    BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                     BorderWidth="1"
                     Clicked="Cancel_Clicked"
                     CornerRadius="25"
                     Text="Cancel"
-                    TextColor="{x:Static local:ThemeColors.TextColor}"
+                    TextColor="{x:Static helpers:ThemeColors.TextColor}"
                     VerticalOptions="Center" />
                 <Button
                     xct:TouchEffect.NativeAnimation="true"
@@ -55,13 +55,13 @@
                     xct:TouchEffect.PressedAnimationDuration="500"
                     xct:TouchEffect.PressedOpacity="0.6"
                     xct:TouchEffect.PressedScale="0.98"
-                    BackgroundColor="{x:Static local:ThemeColors.BorderBackColor}"
-                    BorderColor="{x:Static local:ThemeColors.BorderColor}"
+                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                     BorderWidth="1"
                     Clicked="Save_Clicked"
                     CornerRadius="25"
                     Text="Save"
-                    TextColor="{x:Static local:ThemeColors.TextColor}"
+                    TextColor="{x:Static helpers:ThemeColors.TextColor}"
                     VerticalOptions="Center" />
             </StackLayout>
         </StackLayout>

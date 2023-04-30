@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xctp:Popup
+    x:Class="DiscordWebhookRemoteApp.Pages.Popups.FeedbackPopupPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customItems="clr-namespace:DiscordWebhookRemoteApp.CustomItems"
+    xmlns:helpers="clr-namespace:DiscordWebhookRemoteApp.Helpers"
+    xmlns:popups="clr-namespace:DiscordWebhookRemoteApp.Pages.Popups"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:xctp="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
+    xct:CornerRadiusEffect.CornerRadius="15"
+    Size="{x:Static helpers:PopupSize.Medium}"
+    Color="Transparent">
+    <Frame
+        BackgroundColor="{x:Static helpers:ThemeColors.BackColor}"
+        BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+        CornerRadius="15"
+        VerticalOptions="CenterAndExpand">
+        <StackLayout>
+            <Label
+                FontSize="Small"
+                Text="Feedback"
+                TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+            <Frame
+                Padding="15"
+                BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                CornerRadius="15"
+                VerticalOptions="FillAndExpand">
+                <Grid>
+                    <customItems:CustomEditor
+                        x:Name="edtContent"
+                        FontSize="Small"
+                        MaxLength="4096"
+                        TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                        VerticalOptions="FillAndExpand" />
+                    <Label
+                        Margin="5"
+                        Padding="0,0,10,0"
+                        FontSize="Caption"
+                        HorizontalOptions="EndAndExpand"
+                        TextColor="{Binding Source={x:Reference edtContent}, Path=SizeLabelTextColor}"
+                        VerticalOptions="EndAndExpand">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Source={x:Reference edtContent}, Path=TextLenght}" />
+                                <Span Text="/" />
+                                <Span Text="{Binding Source={x:Reference edtContent}, Path=MaxLength}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+            </Frame>
+            <StackLayout
+                HorizontalOptions="Center"
+                Orientation="Horizontal"
+                VerticalOptions="End">
+                <Button
+                    Margin="0,0,10,0"
+                    xct:TouchEffect.NativeAnimation="true"
+                    xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                    xct:TouchEffect.PressedAnimationDuration="500"
+                    xct:TouchEffect.PressedOpacity="0.6"
+                    xct:TouchEffect.PressedScale="0.98"
+                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                    BorderWidth="1"
+                    Clicked="btnDismiss_Clicked"
+                    CornerRadius="15"
+                    FontSize="Small"
+                    HeightRequest="45"
+                    HorizontalOptions="Center"
+                    Text="Cancel"
+                    TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                    VerticalOptions="Center" />
+                <Button
+                    x:Name="btnSend"
+                    Margin="0,0,10,0"
+                    xct:TouchEffect.NativeAnimation="true"
+                    xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                    xct:TouchEffect.PressedAnimationDuration="500"
+                    xct:TouchEffect.PressedOpacity="0.6"
+                    xct:TouchEffect.PressedScale="0.98"
+                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                    BorderWidth="1"
+                    Clicked="btnSend_Clicked"
+                    CornerRadius="15"
+                    FontSize="Small"
+                    HeightRequest="45"
+                    HorizontalOptions="Center"
+                    Text="Send"
+                    TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                    VerticalOptions="Center" />
+            </StackLayout>
+        </StackLayout>
+    </Frame>
+</xctp:Popup>

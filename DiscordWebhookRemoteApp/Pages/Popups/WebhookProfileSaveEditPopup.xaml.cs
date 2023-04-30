@@ -13,7 +13,6 @@ using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace DiscordWebhookRemoteApp.Pages.Popups
 {
@@ -111,6 +110,8 @@ namespace DiscordWebhookRemoteApp.Pages.Popups
         {
             try
             {
+                entryWebhookImage.Unfocus();
+                entryWebhookName.Unfocus();
                 if (!string.IsNullOrEmpty(entryWebhookName.Text) && !string.IsNullOrEmpty(entryWebhookImage.Text))
                 {
                     string[] imageExtensions = { ".jpg", ".jpeg", ".png", ".gif" };
@@ -122,13 +123,21 @@ namespace DiscordWebhookRemoteApp.Pages.Popups
                         var gecicilist = SavedProfiles;
                         gecicilist.Add(new webhookProfileItems
                         {
-                            ID = (SavedProfiles.OrderBy(x => x.ID).Max(x => x.ID) + 1),
+                            ID = (SavedProfiles.Count > 0) ? (SavedProfiles.OrderBy(x => x.ID).Max(x => x.ID) + 1) : 1,
                             name = entryWebhookName.Text.Trim(),
                             image = entryWebhookImage.Text.Trim(),
                         });
                         newRoomViewClose_Tapped(null, null);
                         SavedProfiles = gecicilist;
                         References.WebhookProfileList = SavedProfiles;
+                    }
+                    else
+                    {
+                        entryWebhookImage.TextColor = Color.Red;
+                        entryWebhookImage.TextChanged += (s, evnt) =>
+                        {
+                            entryWebhookImage.TextColor = ThemeColors.TextColor;
+                        };
                     }
                 }
             }
@@ -139,6 +148,8 @@ namespace DiscordWebhookRemoteApp.Pages.Popups
         }
         private async void newWebhookProfile_Tapped(object sender, EventArgs e)
         {
+            entryWebhookImage.Unfocus();
+            entryWebhookName.Unfocus();
             newBtnImg.CancelAnimations();
             if (newWebhookProfileBack.IsVisible)
             {
@@ -160,6 +171,8 @@ namespace DiscordWebhookRemoteApp.Pages.Popups
         }
         private async void newRoomViewClose_Tapped(object sender, EventArgs e)
         {
+            entryWebhookImage.Unfocus();
+            entryWebhookName.Unfocus();
             newBtnImg.CancelAnimations();
             await newBtnImg.RotateTo(165, 250);
             await newBtnImg.RotateTo(-30, 250);

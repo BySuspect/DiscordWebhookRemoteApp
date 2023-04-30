@@ -9,7 +9,7 @@
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     xmlns:xctp="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
     xct:CornerRadiusEffect.CornerRadius="15"
-    Size="{x:Static popups:PopupSize.Tall}"
+    Size="{x:Static helpers:PopupSize.Tall}"
     Color="Transparent">
     <Grid>
         <Frame
@@ -116,7 +116,25 @@
                                     Text="New Webhook Profile"
                                     TextColor="{x:Static helpers:ThemeColors.TextColor}" />
                                 <Frame
-                                    Margin="0,10,0,0"
+                                    Margin="0,0,0,0"
+                                    Padding="5,0,5,0"
+                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                    CornerRadius="15">
+                                    <StackLayout>
+                                        <customItems:BorderlessEntry
+                                            x:Name="entryWebhookName"
+                                            Margin="5,0,5,0"
+                                            FontSize="Small"
+                                            HorizontalOptions="FillAndExpand"
+                                            MaxLength="32"
+                                            Placeholder="Webhook Name"
+                                            PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                                            TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+                                    </StackLayout>
+                                </Frame>
+                                <Frame
+                                    Margin="0,0,0,0"
                                     Padding="5,0,5,0"
                                     BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
@@ -138,24 +156,6 @@
                                             FontSize="Small"
                                             HorizontalOptions="FillAndExpand"
                                             Placeholder="Image Url"
-                                            PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
-                                            TextColor="{x:Static helpers:ThemeColors.TextColor}" />
-                                    </StackLayout>
-                                </Frame>
-                                <Frame
-                                    Margin="0,0,0,10"
-                                    Padding="5,0,5,0"
-                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
-                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
-                                    CornerRadius="15">
-                                    <StackLayout>
-                                        <customItems:BorderlessEntry
-                                            x:Name="entryWebhookName"
-                                            Margin="5,0,5,0"
-                                            FontSize="Small"
-                                            HorizontalOptions="FillAndExpand"
-                                            MaxLength="32"
-                                            Placeholder="Webhook Name"
                                             PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
                                             TextColor="{x:Static helpers:ThemeColors.TextColor}" />
                                     </StackLayout>
