@@ -15,7 +15,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Clicked="FeedbackButton_Clicked" IconImageSource="feedback32px.png" />
-        <ToolbarItem Clicked="DiscordButton_Clicked" IconImageSource="https://cdn.discordapp.com/attachments/750464609303134339/1078184119453884427/discord-mascot.png" />
+        <ToolbarItem Clicked="DiscordButton_Clicked" IconImageSource="dcdemoimage.png" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Margin="5,5,5,0">
@@ -1313,7 +1313,7 @@
                         <StackLayout>
                             <Label
                                 x:Name="lblPopupTitle"
-                                FontSize="Medium"
+                                FontSize="Small"
                                 HorizontalOptions="Start"
                                 Text="Thanks for downloading."
                                 TextColor="{x:Static helpers:ThemeColors.TextColor}"
@@ -1321,7 +1321,7 @@
                             <Label
                                 x:Name="lblPopupContent"
                                 Margin="5"
-                                FontSize="Body"
+                                FontSize="Small"
                                 Text="If you find my apps useful, you can give me a little support on patreon."
                                 TextColor="{x:Static helpers:ThemeColors.TextColor}" />
                             <StackLayout

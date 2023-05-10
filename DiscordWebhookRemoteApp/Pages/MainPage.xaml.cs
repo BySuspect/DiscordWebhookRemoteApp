@@ -98,7 +98,7 @@ namespace DiscordWebhookRemoteApp.Pages
                     var avatar = json["avatar"].ToString();
                     if (!string.IsNullOrEmpty(avatar))
                     {
-                        webhookImageUrl = $"https://cdn.discordapp.com/avatars/1072456857811165254/{avatar}.png";
+                        webhookImageUrl = $"https://cdn.discordapp.com/avatars/{json["id"]}/{avatar}.png";
                         imgWebhookImage.Source = webhookImageUrl;
                         webhookProfileAvatar = true;
                     }
@@ -380,39 +380,39 @@ namespace DiscordWebhookRemoteApp.Pages
         #endregion
 
         #region ADSControls
-        async Task adsCheck()
-        {
-            try
-            {
-                if (fRes != null)
-                {
-                    if (fRes.Settings.TestingMode.IsOnTest && References.Version == fRes.Settings.TestingMode.Version)
-                    {
-                        adsTop.IsVisible = false;
-                        adsBottom.IsVisible = false;
-                    }
-                    else
-                    {
-                        //adsTop.IsVisible = adsTopLoaded;
-                        adsBottom.IsVisible = adsBottomLoaded;
-                    }
-                }
-                else
-                {
-                    fRes = await Database.FirebaseDatabase.GetData();
-                    await adsCheck();
-                }
-            }
-            catch (Exception ex)
-            {
-                _ = DisplayAlert("Ads Error!", ex.Message, "Ok");
-            }
-        }
+        //async Task adsCheck()
+        //{
+        //    try
+        //    {
+        //        if (fRes != null)
+        //        {
+        //            if (fRes.Settings.TestingMode.IsOnTest && References.Version == fRes.Settings.TestingMode.Version)
+        //            {
+        //                adsTop.IsVisible = false;
+        //                adsBottom.IsVisible = false;
+        //            }
+        //            else
+        //            {
+        //                //adsTop.IsVisible = adsTopLoaded;
+        //                adsBottom.IsVisible = adsBottomLoaded;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            fRes = await Database.FirebaseDatabase.GetData();
+        //            await adsCheck();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _ = DisplayAlert("Ads Error!", ex.Message, "Ok");
+        //    }
+        //}
         private void adsBottom_AdsLoaded(object sender, EventArgs e)
         {
             adsBottom.IsVisible = true;
             adsBottomLoaded = true;
-            _ = adsCheck();
+            //_ = adsCheck();
         }
         private void adsBottom_AdsFailedToLoad(object sender, MarcTron.Plugin.Extra.MTEventArgs e)
         {
@@ -422,8 +422,8 @@ namespace DiscordWebhookRemoteApp.Pages
         private void adsTop_AdsLoaded(object sender, EventArgs e)
         {
             //adsTop.IsVisible = true;
-            adsTopLoaded = true;
-            _ = adsCheck();
+            //adsTopLoaded = true;
+            //_ = adsCheck();
         }
         private void adsTop_AdsFailedToLoad(object sender, MarcTron.Plugin.Extra.MTEventArgs e)
         {
@@ -477,22 +477,25 @@ namespace DiscordWebhookRemoteApp.Pages
                 try
                 {
                     if (expFileSend.IsExpanded && !string.IsNullOrEmpty(filepath))
-                        hook.Send(message, new FileInfo(filepath));
+                        await hook.Send(message, new FileInfo(filepath));
                     else
                     {
-                        hook.Send(message);
+                        await hook.Send(message);
                     }
+
+                    ToastController.ShowShortToast("Submitted successfully.");
                 }
                 catch (Exception ex)
                 {
-                    _ = DisplayAlert("Send Error!!", $"Message:\n{ex.Message}", "Ok");
+                    //_ = DisplayAlert("Send Error!!", $"Message:\n{ex.Message}", "Ok");
                     Debug.WriteLine("Send Error!!");
+                    ToastController.ShowShortToast("Send Error!!");
                 }
-                await Task.Delay(600);
                 Loodinglayout.IsVisible = false;
             }
             else
-                _ = DisplayAlert("Warning!", "First select Webhook!", "Ok");
+                //_ = DisplayAlert("Warning!", "First select Webhook!", "Ok");
+                ToastController.ShowShortToast("First select Webhook!");
         }
         private async void clearContent_Clicked(object sender, EventArgs e)
         {

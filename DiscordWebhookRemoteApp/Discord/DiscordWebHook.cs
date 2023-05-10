@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DiscordWebhookRemoteApp.Helpers;
+using System;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -45,7 +46,7 @@ namespace Discord.Webhook
         /// <summary>
         /// Send webhook message
         /// </summary>
-        public void Send(DiscordMessage message, params FileInfo[] files)
+        public async Task Send(DiscordMessage message, params FileInfo[] files)
         {
             if (string.IsNullOrEmpty(Url))
                 throw new ArgumentNullException("Invalid Webhook URL.");
@@ -91,7 +92,7 @@ namespace Discord.Webhook
 
             try
             {
-                webhookRequest.UploadDataAsync(new Uri(this.Url), stream.ToArray());
+                await webhookRequest.UploadDataTaskAsync(new Uri(this.Url), stream.ToArray());
             }
             catch (WebException ex)
             {
