@@ -32,7 +32,7 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidLinkMode>Full</AndroidLinkMode>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
@@ -91,7 +91,7 @@
       <Version>2.88.3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Activity">
-      <Version>1.7.0</Version>
+      <Version>1.7.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Annotation">
       <Version>1.6.0</Version>

@@ -10,8 +10,13 @@
     BackgroundColor="{x:Static helpers:ThemeColors.BackColor}">
     <ContentPage.Content>
         <!--#region privacy policy-->
-        <StackLayout Margin="25" VerticalOptions="Center">
-            <ScrollView>
+        <Frame
+            Margin="30"
+            Padding="10"
+            BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+            CornerRadius="15"
+            VerticalOptions="Center">
+            <StackLayout>
                 <StackLayout VerticalOptions="FillAndExpand">
                     <Label
                         x:Name="lblPolicyTitle"
@@ -33,7 +38,7 @@
                                 <Span x:Name="lblUp" />
                                 <Span
                                     Text="Privacy Policy"
-                                    TextColor="LightBlue"
+                                    TextColor="#FF0000"
                                     TextDecorations="Underline">
                                     <Span.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="PrivacyPolicy_Tapped" />
@@ -44,28 +49,27 @@
                         </Label.FormattedText>
                     </Label>
                 </StackLayout>
-            </ScrollView>
-
-            <Button
-                x:Name="btnaccept"
-                Padding="0"
-                xct:TouchEffect.NativeAnimation="true"
-                xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
-                xct:TouchEffect.PressedAnimationDuration="500"
-                xct:TouchEffect.PressedOpacity="0.6"
-                xct:TouchEffect.PressedScale="0.98"
-                BackgroundColor="Transparent"
-                BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
-                BorderWidth="1"
-                Clicked="btnPrivacyPolicyAccept"
-                CornerRadius="15"
-                FontSize="Caption"
-                HeightRequest="40"
-                HorizontalOptions="Center"
-                Text="Accept"
-                TextColor="{x:Static helpers:ThemeColors.TextColor}"
-                VerticalOptions="EndAndExpand" />
-        </StackLayout>
+                <Button
+                    x:Name="btnaccept"
+                    Padding="0"
+                    xct:TouchEffect.NativeAnimation="true"
+                    xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                    xct:TouchEffect.PressedAnimationDuration="500"
+                    xct:TouchEffect.PressedOpacity="0.6"
+                    xct:TouchEffect.PressedScale="0.98"
+                    BackgroundColor="Transparent"
+                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                    BorderWidth="1"
+                    Clicked="btnPrivacyPolicyAccept"
+                    CornerRadius="15"
+                    FontSize="Caption"
+                    HeightRequest="40"
+                    HorizontalOptions="Center"
+                    Text="Accept"
+                    TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                    VerticalOptions="EndAndExpand" />
+            </StackLayout>
+        </Frame>
         <!--#endregion-->
     </ContentPage.Content>
 </ContentPage>

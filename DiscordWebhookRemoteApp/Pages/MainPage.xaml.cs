@@ -529,86 +529,86 @@ namespace DiscordWebhookRemoteApp.Pages
         #region testArea
         private void Button_Clicked(object sender, EventArgs e)
         {
-            DiscordMessage message = new DiscordMessage();
-            message.Content = "Example message, ping @everyone, <@272665050672660501> <1072939523148882000>";
-            //message.TTS = true; //read message to everyone on the channel
-            message.Username = "Webhook";
-            message.AvatarUrl = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif";
+            //DiscordMessage message = new DiscordMessage();
+            //message.Content = "Example message, ping @everyone, <@272665050672660501> <1072939523148882000>";
+            ////message.TTS = true; //read message to everyone on the channel
+            //message.Username = "Webhook";
+            //message.AvatarUrl = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif";
 
-            //embeds
-            DiscordEmbed embed = new DiscordEmbed();
-            embed.Title = "Embed title";
-            embed.Description = "Embed description";
-            //embed.Url = "Embed Url";
-            embed.Timestamp = DateTime.Now;
-            embed.Color = Color.Red; //alpha will be ignored, you can use any RGB color
-            embed.Footer = new EmbedFooter() { Text = "Footer Text", IconUrl = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif" };
-            embed.Image = new EmbedMedia() { Url = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif", Width = 150, Height = 150 }; //valid for thumb and video
-            embed.Thumbnail = new EmbedMedia() { Url = "https://cdn.discordapp.com/avatars/272665050672660501/a_25129c94f0e743d18fd9dc276ff05606.gif" };                                                                                                                                    //embed.Provider = new EmbedProvider() { Name = "Provider Name", Url = "Provider Url" };
-            embed.Author = new EmbedAuthor() { Name = "Author Name", Url = "https://google.com/", IconUrl = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif" };
+            ////embeds
+            //DiscordEmbed embed = new DiscordEmbed();
+            //embed.Title = "Embed title";
+            //embed.Description = "Embed description";
+            ////embed.Url = "Embed Url";
+            //embed.Timestamp = DateTime.Now;
+            //embed.Color = Color.Red; //alpha will be ignored, you can use any RGB color
+            //embed.Footer = new EmbedFooter() { Text = "Footer Text", IconUrl = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif" };
+            //embed.Image = new EmbedMedia() { Url = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif", Width = 150, Height = 150 }; //valid for thumb and video
+            //embed.Thumbnail = new EmbedMedia() { Url = "https://cdn.discordapp.com/avatars/272665050672660501/a_25129c94f0e743d18fd9dc276ff05606.gif" };                                                                                                                                    //embed.Provider = new EmbedProvider() { Name = "Provider Name", Url = "Provider Url" };
+            //embed.Author = new EmbedAuthor() { Name = "Author Name", Url = "https://google.com/", IconUrl = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif" };
 
-            //fields
-            embed.Fields = new List<EmbedField>();
-            embed.Fields.Add(new EmbedField() { Name = "Field Name", Value = "Field Value", InLine = true });
-            embed.Fields.Add(new EmbedField() { Name = "Field Name 2", Value = "Field Value 2", InLine = true });
-            //embed2s
-            DiscordEmbed embed2 = new DiscordEmbed();
-            embed2.Title = "Embed title";
-            embed2.Description = "Embed description";
-            //embed2.Url = "Embed Url";
-            embed2.Timestamp = DateTime.Now;
-            embed2.Color = Color.Red; //alpha will be ignored, you can use any RGB color
-            embed2.Footer = new EmbedFooter() { Text = "Footer Text", IconUrl = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif" };
-            embed2.Image = new EmbedMedia() { Url = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif", Width = 150, Height = 150 }; //valid for thumb and video
-                                                                                                                                                                                 //embed2.Provider = new EmbedProvider() { Name = "Provider Name", Url = "Provider Url" };
-            embed2.Author = new EmbedAuthor() { Name = "Author Name", Url = "https://google.com/", IconUrl = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif" };
+            ////fields
+            //embed.Fields = new List<EmbedField>();
+            //embed.Fields.Add(new EmbedField() { Name = "Field Name", Value = "Field Value", InLine = true });
+            //embed.Fields.Add(new EmbedField() { Name = "Field Name 2", Value = "Field Value 2", InLine = true });
+            ////embed2s
+            //DiscordEmbed embed2 = new DiscordEmbed();
+            //embed2.Title = "Embed title";
+            //embed2.Description = "Embed description";
+            ////embed2.Url = "Embed Url";
+            //embed2.Timestamp = DateTime.Now;
+            //embed2.Color = Color.Red; //alpha will be ignored, you can use any RGB color
+            //embed2.Footer = new EmbedFooter() { Text = "Footer Text", IconUrl = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif" };
+            //embed2.Image = new EmbedMedia() { Url = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif", Width = 150, Height = 150 }; //valid for thumb and video
+            //                                                                                                                                                                     //embed2.Provider = new EmbedProvider() { Name = "Provider Name", Url = "Provider Url" };
+            //embed2.Author = new EmbedAuthor() { Name = "Author Name", Url = "https://google.com/", IconUrl = "https://cdn.discordapp.com/avatars/901826325940154388/a_ccb07997406647294aa254aaabaa36fc.gif" };
 
-            //set embed
-            message.Embeds = new List<DiscordEmbed>();
-            message.Embeds.Add(embed);
-            message.Embeds.Add(embed2);
+            ////set embed
+            //message.Embeds = new List<DiscordEmbed>();
+            //message.Embeds.Add(embed);
+            //message.Embeds.Add(embed2);
 
-            //message
-            hook.Send(message);
+            ////message
+            //_ = hook.Send(message);
 
-            //file
-            //hook.Send(message, new FileInfo("C:/File/Path.file"));
+            ////file
+            ////hook.Send(message, new FileInfo("C:/File/Path.file"));
 
         }
         private async void Button_Clicked2(object sender, EventArgs e)
         {
-            try
-            {
-                DiscordMessage message = new DiscordMessage();
+            //try
+            //{
+            //    DiscordMessage message = new DiscordMessage();
 
-                var result = await FilePicker.PickAsync();
-                if (result != null)
-                {
-                    var Text = $"File Name: {result.FileName}";
-                    if (result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) ||
-                        result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
-                    {
-                        var stream = await result.OpenReadAsync();
-                        var Image = ImageSource.FromStream(() => stream);
+            //    var result = await FilePicker.PickAsync();
+            //    if (result != null)
+            //    {
+            //        var Text = $"File Name: {result.FileName}";
+            //        if (result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) ||
+            //            result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
+            //        {
+            //            var stream = await result.OpenReadAsync();
+            //            var Image = ImageSource.FromStream(() => stream);
 
-                        //testImg.Source = Image;
-                    }
-                    var filest = new FileInfo(result.FullPath);
-                    message.Content = filest.Length.ToString();
-                    //discord max file size
-                    if (filest.Length < 8388235)
-                    {
-                        //file
-                        filepath = result.FullPath;
-                    }
-                    else _ = DisplayAlert("Error", "File can only be 8mb maximum", "Ok");
-                }
+            //            //testImg.Source = Image;
+            //        }
+            //        var filest = new FileInfo(result.FullPath);
+            //        message.Content = filest.Length.ToString();
+            //        //discord max file size
+            //        if (filest.Length < 8388235)
+            //        {
+            //            //file
+            //            filepath = result.FullPath;
+            //        }
+            //        else _ = DisplayAlert("Error", "File can only be 8mb maximum", "Ok");
+            //    }
 
-            }
-            catch
-            {
-                // The user canceled or something went wrong
-            }
+            //}
+            //catch
+            //{
+            //    // The user canceled or something went wrong
+            //}
         }
         private void Button_Clicked_1(object sender, EventArgs e)
         {
