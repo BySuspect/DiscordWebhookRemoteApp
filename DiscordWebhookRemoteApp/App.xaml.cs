@@ -33,10 +33,11 @@ namespace DiscordWebhookRemoteApp
                 ChangeAppTheme.ForDenizTheme();
 
 #if DEBUG
-            Preferences.Set("privacy_policy_accepted", true);
+            //Preferences.Set("privacy_policy_accepted", false);
+            //Preferences.Set("privacy_policy_accepted17May2023", false);
 #endif
 
-            if (Preferences.Get("privacy_policy_accepted", false))
+            if (Preferences.Get("privacy_policy_accepted17May2023", false))
                 MainPage = new NavigationPage(new MainPage())
                 {
                     BarBackgroundColor = ThemeColors.StatusBarColor,
@@ -45,6 +46,7 @@ namespace DiscordWebhookRemoteApp
             else
                 MainPage = new PrivacyPolicyPage();
 
+            //MainPage = new PrivacyPolicyPage();
         }
 
         void AppActions_OnAppAction(object sender, AppActionEventArgs e)

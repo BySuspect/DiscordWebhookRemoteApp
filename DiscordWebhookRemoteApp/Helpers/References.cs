@@ -68,6 +68,19 @@ namespace DiscordWebhookRemoteApp.Helpers
                 Debug.WriteLine("webhook profile Update: \n" + json);
             }
         }
+        public static async Task<bool> CheckConnection()
+        {
+            var client = new HttpClient();
+            try
+            {
+                await client.GetAsync("https://www.google.com");
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
     public class webhookItems
     {

@@ -47,7 +47,9 @@ namespace DiscordWebhookRemoteApp.Pages
         {
             InitializeComponent();
             BindingContext = this;
-            popupInfoBack.IsVisible = References.supportPopup;
+            var savedDate = Preferences.Get("SupportPopupDate", DateTime.MinValue);
+            if (savedDate.Date != DateTime.Now.Date)
+                popupInfoBack.IsVisible = true;
             BindableLayout.SetItemsSource(blSavedWebhooks, References.WebhookList);
             //DisplayAlert("Hello!", "This is the first version of my app. Please post your feedback in google play comments.", "Ok");
             Theme.ThemeChanged += (s, e) =>
@@ -802,12 +804,12 @@ namespace DiscordWebhookRemoteApp.Pages
         private void btnSupportCancel_Clicked(object sender, EventArgs e)
         {
             popupInfoBack.IsVisible = false;
-            References.supportPopup = false;
+            Preferences.Set("SupportPopupDate", DateTime.Now);
         }
         private async void btnSupport_Clicked(object sender, EventArgs e)
         {
             popupInfoBack.IsVisible = false;
-            References.supportPopup = false;
+            Preferences.Set("SupportPopupDate", DateTime.Now);
             try
             {
                 await Browser.OpenAsync(new Uri("https://bit.ly/jwffJyXC"), BrowserLaunchMode.External);
