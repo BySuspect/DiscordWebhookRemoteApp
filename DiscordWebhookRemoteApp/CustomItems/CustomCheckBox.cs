@@ -1,8 +1,11 @@
 ﻿using DiscordWebhookRemoteApp.Helpers;
+using IntelliAbb.Xamarin.Controls;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using Xamarin.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DiscordWebhookRemoteApp.CustomItems
 {
@@ -41,8 +44,19 @@ namespace DiscordWebhookRemoteApp.CustomItems
                 {
                     _isChecked = value;
                     OnPropertyChanged(nameof(IsChecked));
+                    OnPropertyChanged(nameof(IsCheckedOpposite));
+
+                    IsCheckedChanged?.Invoke(this, _isChecked);
                 }
             }
+        }
+        public bool IsCheckedOpposite
+        {
+            get
+            {
+                return !IsChecked;
+            }
+            set { }
         }
 
         Color _checkColor;
@@ -125,7 +139,6 @@ namespace DiscordWebhookRemoteApp.CustomItems
             _checkbox.CheckColor = ThemeColors.BackColor;
             _checkbox.Shape = IntelliAbb.Xamarin.Controls.Shape.Circle;
 
-
             _label = new Label();
             _label.Margin = new Thickness(0, 0, 0, 0);
             _label.SetBinding(Label.TextProperty, new Binding("TitleText"));
@@ -149,5 +162,6 @@ namespace DiscordWebhookRemoteApp.CustomItems
             this.Children.Add(_checkbox);
             this.Children.Add(_label);
         }
+        public event EventHandler<bool> IsCheckedChanged;
     }
 }

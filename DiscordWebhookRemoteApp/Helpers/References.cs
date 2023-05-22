@@ -24,13 +24,14 @@ using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.CommunityToolkit.UI.Views;
 using DiscordWebhookRemoteApp.Pages.Popups;
 using System.Collections.ObjectModel;
+using DiscordWebhookRemoteApp.Pages;
 
 namespace DiscordWebhookRemoteApp.Helpers
 {
     public static class References
     {
         public static bool supportPopup = true;
-        public static string Version = "1.0.0";
+        public static string Version = "1.0.1";
 
         static List<webhookItems> _webhookList;
         public static List<webhookItems> WebhookList
@@ -79,6 +80,37 @@ namespace DiscordWebhookRemoteApp.Helpers
             catch
             {
                 return false;
+            }
+        }
+        public static string CurrentVersion { get; private set; }
+        public static string ServerVersion { get; private set; }
+        public static async Task CheckAppVersion()
+        {
+            // Mevcut sürüm numarasını al
+            CurrentVersion = Version; // Kendi mevcut sürüm numaranızı buraya yazın
+
+            // Sunucudan sürüm numarasını al
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var response = await client.GetAsync("https://awgstudiosapps.web.app/discordwebhookremoteapp/version.txt"); // Sürüm numarasını döndüren sunucu URL'sini buraya yazın
+                    response.EnsureSuccessStatusCode();
+                    ServerVersion = await response.Content.ReadAsStringAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Hata durumunda nasıl bir işlem yapmak istediğinizi burada belirtebilirsiniz
+                Console.WriteLine("Sürüm numarası alınamadı: " + ex.Message);
+                return;
+            }
+
+            // Sürüm numaralarını karşılaştır
+            if (ServerVersion != CurrentVersion)
+            {
+                // Popup göster
+                await App.Current.MainPage.DisplayAlert("Update Available", "A new version is available. Please update the app.", "Ok");
             }
         }
     }

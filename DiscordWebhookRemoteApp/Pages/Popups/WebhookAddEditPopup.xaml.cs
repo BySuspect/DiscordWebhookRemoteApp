@@ -20,6 +20,10 @@ namespace DiscordWebhookRemoteApp.Pages.Popups
         public WebhookAddEditPopup()
         {
             InitializeComponent();
+#if DEBUG
+            //string hookurl = "";
+            //entryUrl.Text = hookurl;
+#endif
         }
         public WebhookAddEditPopup(int id)
         {

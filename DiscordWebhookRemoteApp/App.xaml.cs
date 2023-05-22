@@ -3,6 +3,8 @@ using DiscordWebhookRemoteApp.Pages;
 using DiscordWebhookRemoteApp.Pages.Popups;
 using System;
 using System.Diagnostics;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -35,6 +37,7 @@ namespace DiscordWebhookRemoteApp
 #if DEBUG
             //Preferences.Set("privacy_policy_accepted", false);
             //Preferences.Set("privacy_policy_accepted17May2023", false);
+            //Preferences.Set("SupportPopupDate", null);
 #endif
 
             if (Preferences.Get("privacy_policy_accepted17May2023", false))
@@ -46,9 +49,11 @@ namespace DiscordWebhookRemoteApp
             else
                 MainPage = new PrivacyPolicyPage();
 
-            //MainPage = new PrivacyPolicyPage();
-        }
+            //MainPage = new TestPage();
 
+
+
+        }
         void AppActions_OnAppAction(object sender, AppActionEventArgs e)
         {
             // Don't handle events fired for old application instances

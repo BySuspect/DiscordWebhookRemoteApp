@@ -251,7 +251,7 @@
                                                     FontSize="Small"
                                                     HeightRequest="200"
                                                     HorizontalOptions="FillAndExpand"
-                                                    MaxLength="2048"
+                                                    MaxLength="2000"
                                                     Placeholder="Message"
                                                     PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
                                                     TextColor="{x:Static helpers:ThemeColors.TextColor}" />
@@ -1146,14 +1146,63 @@
                                                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                     CornerRadius="15">
                                                                     <StackLayout>
-                                                                        <customItems:BorderlessEntry
-                                                                            x:Name="entryEmbedFooterTimestamp"
-                                                                            Margin="10,0,0,0"
-                                                                            Focused="entryEmbedFooterTimestamp_Focused"
-                                                                            HorizontalOptions="FillAndExpand"
-                                                                            Placeholder="Timestamp"
-                                                                            PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
-                                                                            TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+                                                                        <StackLayout Margin="10,0" Orientation="Horizontal">
+                                                                            <customItems:CustomCheckBox
+                                                                                x:Name="cbFooterSendInstantTime"
+                                                                                HorizontalOptions="Start"
+                                                                                IsCheckedChanged="cbFooterSendInstantTime_IsCheckedChanged"
+                                                                                TitleText="Send instant time" />
+                                                                            <Button
+                                                                                x:Name="EmbedFooterSelectTimebtn"
+                                                                                Margin="0,0,10,0"
+                                                                                xct:TouchEffect.NativeAnimation="true"
+                                                                                xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                                                                                xct:TouchEffect.PressedAnimationDuration="500"
+                                                                                xct:TouchEffect.PressedOpacity="0.6"
+                                                                                xct:TouchEffect.PressedScale="0.98"
+                                                                                BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                                BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                                BorderWidth="1"
+                                                                                Clicked="EmbedFooterSelectTimebtn_Clicked"
+                                                                                CornerRadius="15"
+                                                                                FontSize="Small"
+                                                                                HeightRequest="45"
+                                                                                HorizontalOptions="EndAndExpand"
+                                                                                Text="Select Time"
+                                                                                TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                                                VerticalOptions="Center" />
+                                                                        </StackLayout>
+                                                                        <StackLayout
+                                                                            Margin="0,5"
+                                                                            HorizontalOptions="CenterAndExpand"
+                                                                            Orientation="Horizontal">
+                                                                            <customItems:CustomLabel
+                                                                                x:Name="EmbedFooterTimestampSelectedLbl"
+                                                                                FontSize="Caption"
+                                                                                HorizontalOptions="Center"
+                                                                                IsVisible="true"
+                                                                                Text="Selected Date and Time"
+                                                                                TextColor="{Binding Source={x:Reference EntryFooterText}, Path=SizeLabelTextColor}"
+                                                                                VerticalOptions="Center" />
+                                                                            <Label
+                                                                                x:Name="EmbedFooterTimestampClearbtn"
+                                                                                Margin="5,0,0,0"
+                                                                                xct:TouchEffect.NativeAnimation="true"
+                                                                                xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                                                                                xct:TouchEffect.PressedAnimationDuration="500"
+                                                                                xct:TouchEffect.PressedOpacity="0.6"
+                                                                                xct:TouchEffect.PressedScale="0.98"
+                                                                                BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                                FontSize="Small"
+                                                                                HorizontalOptions="End"
+                                                                                Text="Clear"
+                                                                                TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                                                VerticalOptions="Center">
+                                                                                <Label.GestureRecognizers>
+                                                                                    <TapGestureRecognizer Tapped="EmbedFooterTimestampClearbtn_Clicked" />
+                                                                                </Label.GestureRecognizers>
+                                                                            </Label>
+                                                                        </StackLayout>
                                                                     </StackLayout>
                                                                 </Frame>
                                                             </StackLayout>
@@ -1177,7 +1226,7 @@
                             BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                             CornerRadius="15"
                             IsVisible="True">
-                            <StackLayout>
+                            <StackLayout Margin="0,5">
                                 <Label
                                     Margin="10,0,0,0"
                                     FontSize="Caption"
@@ -1196,37 +1245,67 @@
                                         ExpandAnimationEasing="SpringIn"
                                         HeaderText="Send File">
                                         <customItems:CustomExpander.Content>
-                                            <StackLayout Margin="0,10,0,0" Orientation="Horizontal">
-                                                <Label
-                                                    Margin="20,0,0,0"
-                                                    FontSize="Small"
-                                                    HorizontalOptions="Start"
-                                                    TextColor="{x:Static helpers:ThemeColors.TextColor}"
-                                                    VerticalOptions="Center">
-                                                    <Label.FormattedText>
-                                                        <FormattedString>
-                                                            <Span Text="Selected: " />
-                                                            <Span x:Name="lblSelectedFile" Text="none" />
-                                                        </FormattedString>
-                                                    </Label.FormattedText>
-                                                </Label>
-                                                <Button
-                                                    x:Name="btnFileSelect"
-                                                    Margin="5,0,10,0"
-                                                    xct:TouchEffect.NativeAnimation="true"
-                                                    xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
-                                                    xct:TouchEffect.PressedAnimationDuration="500"
-                                                    xct:TouchEffect.PressedOpacity="0.6"
-                                                    xct:TouchEffect.PressedScale="0.98"
-                                                    BackgroundColor="Transparent"
-                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
-                                                    BorderWidth="1"
-                                                    Clicked="btnFileSelect_Clicked"
-                                                    CornerRadius="15"
-                                                    HorizontalOptions="EndAndExpand"
-                                                    Text="Select File"
-                                                    TextColor="{x:Static helpers:ThemeColors.TextColor}"
-                                                    VerticalOptions="Center" />
+                                            <StackLayout Margin="0,10,0,5">
+                                                <Grid HorizontalOptions="FillAndExpand">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="2*" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label
+                                                        Grid.Row="0"
+                                                        Grid.RowSpan="2"
+                                                        Grid.Column="0"
+                                                        Margin="20,0,0,0"
+                                                        FontSize="Small"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                        VerticalOptions="Center">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="Selected: " />
+                                                                <Span x:Name="lblSelectedFile" Text="none" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                    <Button
+                                                        x:Name="btnFileSelect"
+                                                        Grid.Row="0"
+                                                        Grid.Column="1"
+                                                        Margin="5,0,10,0"
+                                                        xct:TouchEffect.NativeAnimation="true"
+                                                        xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                                                        xct:TouchEffect.PressedAnimationDuration="500"
+                                                        xct:TouchEffect.PressedOpacity="0.6"
+                                                        xct:TouchEffect.PressedScale="0.98"
+                                                        BackgroundColor="Transparent"
+                                                        BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                        BorderWidth="1"
+                                                        Clicked="btnFileSelect_Clicked"
+                                                        CornerRadius="15"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        Text="Select"
+                                                        TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                        VerticalOptions="Center" />
+                                                    <Button
+                                                        x:Name="btnFileClear"
+                                                        Grid.Row="1"
+                                                        Grid.Column="1"
+                                                        Margin="5,0,10,0"
+                                                        xct:TouchEffect.NativeAnimation="true"
+                                                        xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                                                        xct:TouchEffect.PressedAnimationDuration="500"
+                                                        xct:TouchEffect.PressedOpacity="0.6"
+                                                        xct:TouchEffect.PressedScale="0.98"
+                                                        BackgroundColor="Transparent"
+                                                        BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                        BorderWidth="1"
+                                                        Clicked="btnFileClear_Clicked"
+                                                        CornerRadius="15"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        Text="Clear"
+                                                        TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                        VerticalOptions="Center" />
+                                                </Grid>
                                             </StackLayout>
                                         </customItems:CustomExpander.Content>
                                     </customItems:CustomExpander>

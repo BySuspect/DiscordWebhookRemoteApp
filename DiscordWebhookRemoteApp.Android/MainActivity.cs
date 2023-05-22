@@ -18,6 +18,7 @@ namespace DiscordWebhookRemoteApp.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
+            Xamarin.DateTimePopups.Platform.Init(this, savedInstanceState);
             MobileAds.Initialize(ApplicationContext);
             LoadApplication(new App());
         }

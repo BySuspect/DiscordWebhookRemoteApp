@@ -16,6 +16,7 @@ using Xamarin.CommunityToolkit.UI.Views;
 using DiscordWebhookRemoteApp.Pages.Popups;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Xamarin.DateTimePopups;
 
 namespace DiscordWebhookRemoteApp.Pages
 {
@@ -59,14 +60,13 @@ namespace DiscordWebhookRemoteApp.Pages
 #if DEBUG
             //string mytext = "";
             //Clipboard.SetTextAsync(mytext);
-            popupInfoBack.IsVisible = false;
-            References.supportPopup = false;
+            //popupInfoBack.IsVisible = false;
 #endif
         }
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
-            //await adsCheck();
+            await References.CheckAppVersion();
         }
 
         //---------------------------------------------------------------------------------------------------
@@ -344,9 +344,41 @@ namespace DiscordWebhookRemoteApp.Pages
             }
             catch { }
         }
-        private void entryEmbedFooterTimestamp_Focused(object sender, FocusEventArgs e)
+        private async void EmbedFooterSelectTimebtn_Clicked(object sender, EventArgs e)
         {
-            DisplayAlert("Info", "If you enter anything here, it will send instant timestamp, if you leave it blank, that data will be blank. Will Be Added Soon.", "OK");
+            try
+            {
+                DateTime? selectedFooterDate = await DateTimePopups.PickDateAsync(DateTime.Now);
+                if (selectedFooterDate != null)
+                {
+                    TimeSpan? selectedFooterTime = await DateTimePopups.PickTimeAsync(DateTime.Now.TimeOfDay);
+                    if (selectedFooterTime != null)
+                    {
+                        var selectedFooterDateTime = new DateTime(selectedFooterDate.Value.Year, selectedFooterDate.Value.Month, selectedFooterDate.Value.Day, selectedFooterTime.Value.Hours, selectedFooterTime.Value.Minutes, 0);
+                        EmbedFooterTimestampSelectedLbl.SavedDateTimeData = selectedFooterDateTime;
+                        ToastController.ShowLongToast($"{selectedFooterDate.Value.ToLongDateString()} selected");
+                    }
+                    else
+                        throw null;
+                }
+                else
+                    throw null;
+            }
+            catch
+            {
+                ToastController.ShowShortToast("Footer timestamp select error!");
+            }
+        }
+        private void cbFooterSendInstantTime_IsCheckedChanged(object sender, bool e)
+        {
+            EmbedFooterSelectTimebtn.IsEnabled = !e;
+            if (e)
+                EmbedFooterTimestampSelectedLbl.SavedDateTimeData = null;
+        }
+        private void EmbedFooterTimestampClearbtn_Clicked(object sender, EventArgs e)
+        {
+            EmbedFooterTimestampSelectedLbl.SavedDateTimeData = null;
+            cbFooterSendInstantTime.IsChecked = false;
         }
         #endregion
 
@@ -378,6 +410,11 @@ namespace DiscordWebhookRemoteApp.Pages
             {
                 // The user canceled or something went wrong
             }
+        }
+        private void btnFileClear_Clicked(object sender, EventArgs e)
+        {
+            lblSelectedFile.Text = "";
+            filepath = "";
         }
         #endregion
 
@@ -525,6 +562,8 @@ namespace DiscordWebhookRemoteApp.Pages
                 //imgWebhookImage.Source = "dcdemoimage.png";
             }
         }
+
+
 
         #region testArea
         private void Button_Clicked(object sender, EventArgs e)
@@ -770,8 +809,11 @@ namespace DiscordWebhookRemoteApp.Pages
                         footer.Text = EntryFooterText.Text;
 
                     //Embed footer timestamp
-                    if (!string.IsNullOrEmpty(entryEmbedFooterTimestamp.Text))
+                    if (cbFooterSendInstantTime.IsChecked)
                         embed.Timestamp = DateTime.Now;
+                    else
+                        if (EmbedFooterTimestampSelectedLbl.SavedDateTimeData != null)
+                        embed.Timestamp = EmbedFooterTimestampSelectedLbl.SavedDateTimeData.Value;
 
                     //Embed footer empty check
                     if (footer.Text != null || footer.IconUrl != null)
@@ -799,7 +841,6 @@ namespace DiscordWebhookRemoteApp.Pages
             return isUrl;
         }
 
-        //---------------------------------------------------------------------------------------------------
 
         private void btnSupportCancel_Clicked(object sender, EventArgs e)
         {
@@ -812,7 +853,7 @@ namespace DiscordWebhookRemoteApp.Pages
             Preferences.Set("SupportPopupDate", DateTime.Now);
             try
             {
-                await Browser.OpenAsync(new Uri("https://bit.ly/jwffJyXC"), BrowserLaunchMode.External);
+                await Browser.OpenAsync(new Uri("https://bit.ly/3pR7H0W"), BrowserLaunchMode.External);
             }
             catch { Debug.WriteLine("Support Browser Error"); }
         }
