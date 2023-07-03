@@ -32,7 +32,7 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <AndroidLinkMode>None</AndroidLinkMode>
     <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
@@ -251,7 +251,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadWrongLinkerErrorInfoBarDiscordWebhookRemoteAppAndroidHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionDiscordWebhookRemoteAppAndroidHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionDiscordWebhookRemoteAppAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadUnhandledDeviceExceptionDiscordWebhookRemoteAppAndroidHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionDiscordWebhookRemoteAppAndroidHideInfoBar="True" XamarinHotReloadWrongLinkerErrorInfoBarDiscordWebhookRemoteAppAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

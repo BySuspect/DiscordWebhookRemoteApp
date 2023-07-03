@@ -189,7 +189,7 @@
                                         Completed="entryWebhookName_Completed"
                                         FontSize="Small"
                                         HorizontalOptions="FillAndExpand"
-                                        MaxLength="32"
+                                        MaxLength="80"
                                         Placeholder="Webhook Name"
                                         PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
                                         TextColor="{x:Static helpers:ThemeColors.TextColor}"
@@ -344,7 +344,7 @@
                                                                                 x:Name="EntryEmbedAuthorName"
                                                                                 Margin="10,0,10,0"
                                                                                 FontSize="Small"
-                                                                                MaxLength="32"
+                                                                                MaxLength="256"
                                                                                 Placeholder="Author"
                                                                                 PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
                                                                                 TextColor="{x:Static helpers:ThemeColors.TextColor}"
@@ -417,7 +417,7 @@
                                                                             <customItems:CustomEntry
                                                                                 x:Name="EntryBodyTitle"
                                                                                 FontSize="Small"
-                                                                                MaxLength="32"
+                                                                                MaxLength="256"
                                                                                 Placeholder="Title"
                                                                                 PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
                                                                                 TextColor="{x:Static helpers:ThemeColors.TextColor}" />
@@ -450,7 +450,7 @@
                                                                             FontSize="Small"
                                                                             HeightRequest="200"
                                                                             HorizontalOptions="FillAndExpand"
-                                                                            MaxLength="4096"
+                                                                            MaxLength="2048"
                                                                             Placeholder="Description"
                                                                             PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
                                                                             TextColor="{x:Static helpers:ThemeColors.TextColor}" />
@@ -562,7 +562,7 @@
                                                                                             <customItems:CustomEntry
                                                                                                 x:Name="EntryFieldName1"
                                                                                                 FontSize="Small"
-                                                                                                MaxLength="32"
+                                                                                                MaxLength="256"
                                                                                                 Placeholder="Name"
                                                                                                 PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
                                                                                                 TextColor="{x:Static helpers:ThemeColors.TextColor}" />
@@ -595,7 +595,7 @@
                                                                                             FontSize="Small"
                                                                                             HeightRequest="200"
                                                                                             HorizontalOptions="FillAndExpand"
-                                                                                            MaxLength="4096"
+                                                                                            MaxLength="1024"
                                                                                             Placeholder="Value"
                                                                                             PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
                                                                                             TextColor="{x:Static helpers:ThemeColors.TextColor}" />
@@ -660,7 +660,7 @@
                                                                                             <customItems:CustomEntry
                                                                                                 x:Name="EntryFieldName2"
                                                                                                 FontSize="Small"
-                                                                                                MaxLength="31"
+                                                                                                MaxLength="256"
                                                                                                 Placeholder="Name"
                                                                                                 PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
                                                                                                 TextColor="{x:Static helpers:ThemeColors.TextColor}" />
@@ -693,7 +693,7 @@
                                                                                             FontSize="Small"
                                                                                             HeightRequest="200"
                                                                                             HorizontalOptions="FillAndExpand"
-                                                                                            MaxLength="4096"
+                                                                                            MaxLength="1024"
                                                                                             Placeholder="Value"
                                                                                             PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
                                                                                             TextColor="{x:Static helpers:ThemeColors.TextColor}" />
@@ -758,7 +758,7 @@
                                                                                             <customItems:CustomEntry
                                                                                                 x:Name="EntryFieldName3"
                                                                                                 FontSize="Small"
-                                                                                                MaxLength="32"
+                                                                                                MaxLength="256"
                                                                                                 Placeholder="Name"
                                                                                                 PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
                                                                                                 TextColor="{x:Static helpers:ThemeColors.TextColor}" />
@@ -791,7 +791,7 @@
                                                                                             FontSize="Small"
                                                                                             HeightRequest="200"
                                                                                             HorizontalOptions="FillAndExpand"
-                                                                                            MaxLength="4096"
+                                                                                            MaxLength="1024"
                                                                                             Placeholder="Value"
                                                                                             PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
                                                                                             TextColor="{x:Static helpers:ThemeColors.TextColor}" />
@@ -856,7 +856,7 @@
                                                                                             <customItems:CustomEntry
                                                                                                 x:Name="EntryFieldName4"
                                                                                                 FontSize="Small"
-                                                                                                MaxLength="32"
+                                                                                                MaxLength="256"
                                                                                                 Placeholder="Name"
                                                                                                 PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
                                                                                                 TextColor="{x:Static helpers:ThemeColors.TextColor}" />
@@ -889,7 +889,7 @@
                                                                                             FontSize="Small"
                                                                                             HeightRequest="200"
                                                                                             HorizontalOptions="FillAndExpand"
-                                                                                            MaxLength="4096"
+                                                                                            MaxLength="1024"
                                                                                             Placeholder="Value"
                                                                                             PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
                                                                                             TextColor="{x:Static helpers:ThemeColors.TextColor}" />
@@ -954,7 +954,7 @@
                                                                                             <customItems:CustomEntry
                                                                                                 x:Name="EntryFieldName5"
                                                                                                 FontSize="Small"
-                                                                                                MaxLength="32"
+                                                                                                MaxLength="256"
                                                                                                 Placeholder="Name"
                                                                                                 PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
                                                                                                 TextColor="{x:Static helpers:ThemeColors.TextColor}" />
@@ -987,7 +987,7 @@
                                                                                             FontSize="Small"
                                                                                             HeightRequest="200"
                                                                                             HorizontalOptions="FillAndExpand"
-                                                                                            MaxLength="4096"
+                                                                                            MaxLength="1024"
                                                                                             Placeholder="Value"
                                                                                             PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
                                                                                             TextColor="{x:Static helpers:ThemeColors.TextColor}" />
@@ -1119,7 +1119,7 @@
                                                                                 x:Name="EntryFooterText"
                                                                                 Margin="10,0,10,0"
                                                                                 FontSize="Small"
-                                                                                MaxLength="32"
+                                                                                MaxLength="2048"
                                                                                 Placeholder="Text"
                                                                                 PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
                                                                                 TextColor="{x:Static helpers:ThemeColors.TextColor}" />
@@ -1460,7 +1460,7 @@
                                 HorizontalOptions="Center"
                                 IsRunning="{Binding Source={x:Reference Loodinglayout}, Path=IsVisible}"
                                 VerticalOptions="Center"
-                                Color="White" />
+                                Color="{x:Static helpers:ThemeColors.TransparentTextColor}" />
                             <!--<Label
                             Margin="0,10,0,0"
                             FontSize="20"

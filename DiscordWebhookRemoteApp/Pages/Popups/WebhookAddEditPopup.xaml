@@ -26,6 +26,7 @@
                 HasShadow="True">
                 <customItems:BorderlessEntry
                     x:Name="entryName"
+                    MaxLength="24"
                     Placeholder="Name"
                     PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
                     TextColor="{x:Static helpers:ThemeColors.TextColor}" />

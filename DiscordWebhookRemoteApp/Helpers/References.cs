@@ -1,37 +1,20 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Xamarin.CommunityToolkit.Effects;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using System.ComponentModel;
 using System.Threading.Tasks;
-using Discord;
-using Discord.Webhook;
-using System.IO;
-using System.Net.Http.Headers;
 using System.Net.Http;
-using Xamarin.Forms.PlatformConfiguration;
-using static System.Net.Mime.MediaTypeNames;
-using static Xamarin.Essentials.AppleSignInAuthenticator;
-using Xamarin.Forms.Shapes;
-using Xamarin.Forms.Xaml;
-using DiscordWebhookRemoteApp.Helpers;
 using System.Diagnostics;
-using Xamarin.CommunityToolkit.Extensions;
-using Xamarin.CommunityToolkit.UI.Views;
-using DiscordWebhookRemoteApp.Pages.Popups;
 using System.Collections.ObjectModel;
-using DiscordWebhookRemoteApp.Pages;
 
 namespace DiscordWebhookRemoteApp.Helpers
 {
     public static class References
     {
         public static bool supportPopup = true;
-        public static string Version = "1.0.1";
+        public static string Version = "1.0.2";
 
         static List<webhookItems> _webhookList;
         public static List<webhookItems> WebhookList
@@ -110,9 +93,29 @@ namespace DiscordWebhookRemoteApp.Helpers
             if (ServerVersion != CurrentVersion)
             {
                 // Popup göster
+#if !DEBUG
                 await App.Current.MainPage.DisplayAlert("Update Available", "A new version is available. Please update the app.", "Ok");
+#endif
             }
         }
+
+        #region Discord Invite Section
+        public static string discorInviteShorten = "https://bit.ly/3NmBFDO";
+        public static string discorInvite = "https://discord.gg/aX4unxzZek";
+        public static async void discordClicked()
+        {
+            var res = await App.Current.MainPage.DisplayActionSheet("Discord Invite", "", "Cancel", "Open Link", "Copy Link");
+            if (res == "Open Link")
+            {
+                _ = Browser.OpenAsync(discorInviteShorten, BrowserLaunchMode.SystemPreferred);
+            }
+            else if (res == "Copy Link")
+            {
+                await Clipboard.SetTextAsync(discorInvite);
+                ToastController.ShowShortToast("Discord Link Copied!");
+            }
+        }
+        #endregion
     }
     public class webhookItems
     {
@@ -131,11 +134,11 @@ namespace DiscordWebhookRemoteApp.Helpers
         public static void LightTheme()
         {
             ThemeColors.TextColor = Color.Black;
-            ThemeColors.TransparentTextColor = Color.FromHex("#BA000000");
+            ThemeColors.TransparentTextColor = Color.FromHex("#BAAAAAAA");
             ThemeColors.BorderColor = Color.Black;
-            ThemeColors.BorderBackColor = Color.Transparent;
-            ThemeColors.BackColor = Color.FromHex("#DBDBDB");
-            ThemeColors.StatusBarColor = Color.FromHex("#FFFFFF");
+            ThemeColors.BorderBackColor = Color.FromHex("#40FFFFFF");
+            ThemeColors.BackColor = Color.FromHex("#FFFFFF");
+            ThemeColors.StatusBarColor = Color.FromHex("#E9E9E9");
             ThemeColors.StatusBarStyle = StatusBarStyle.DarkContent;
             ThemeColors.backgroundImg = null;
         }
@@ -144,7 +147,7 @@ namespace DiscordWebhookRemoteApp.Helpers
             ThemeColors.TextColor = Color.FromHex("#FFFFFF");
             ThemeColors.TransparentTextColor = Color.FromHex("#BAFFFFFF");
             ThemeColors.BorderColor = Color.FromHex("#BAFFFFFF");
-            ThemeColors.BorderBackColor = Color.Transparent;
+            ThemeColors.BorderBackColor = Color.FromHex("#40000000");
             ThemeColors.BackColor = Color.FromHex("#101010");
             ThemeColors.StatusBarColor = Color.FromHex("#000000");
             ThemeColors.StatusBarStyle = StatusBarStyle.LightContent;

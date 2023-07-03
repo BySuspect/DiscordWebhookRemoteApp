@@ -392,14 +392,14 @@ namespace DiscordWebhookRemoteApp.Pages
                 {
                     var filest = new FileInfo(result.FullPath);
                     //discord max file size
-                    if (filest.Length < 8388235)
+                    if (filest.Length <= 18874400)
                     {
                         lblSelectedFile.Text = result.FileName;
                         filepath = result.FullPath;
                     }
                     else
                     {
-                        _ = DisplayAlert("Error", "File can only be 8mb maximum", "Ok");
+                        _ = DisplayAlert("Error", "File can only be 18mb maximum", "Ok");
                         lblSelectedFile.Text = "";
                         filepath = "";
                     }
@@ -522,7 +522,7 @@ namespace DiscordWebhookRemoteApp.Pages
                         await hook.Send(message);
                     }
 
-                    ToastController.ShowShortToast("Submitted successfully.");
+                    ToastController.ShowShortToast("Submitted Successfully.");
                 }
                 catch (Exception ex)
                 {
@@ -857,9 +857,9 @@ namespace DiscordWebhookRemoteApp.Pages
             }
             catch { Debug.WriteLine("Support Browser Error"); }
         }
-        private async void DiscordButton_Clicked(object sender, EventArgs e)
+        private void DiscordButton_Clicked(object sender, EventArgs e)
         {
-            await Browser.OpenAsync("https://bit.ly/3NmBFDO");
+            References.discordClicked();
         }
         private async void FeedbackButton_Clicked(object sender, EventArgs e)
         {

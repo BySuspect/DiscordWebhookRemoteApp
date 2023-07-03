@@ -95,12 +95,12 @@ namespace DiscordWebhookRemoteApp.Pages.Popups
 
         private void selectItem_Tapped(object sender, EventArgs e)
         {
-            var selected = sender as Xamarin.Forms.Image;
+            var selected = sender as Xamarin.Forms.Frame;
             Dismiss(SavedProfiles.Where(x => x.ID == int.Parse(selected.AutomationId)).First());
         }
         private void deleteItem_Tapped(object sender, EventArgs e)
         {
-            var selected = sender as Xamarin.Forms.Image;
+            var selected = sender as Xamarin.Forms.Frame;
             var gecicilist = SavedProfiles;
             gecicilist.Remove(gecicilist.Where(x => x.ID == int.Parse(selected.AutomationId)).FirstOrDefault());
             SavedProfiles = gecicilist;
