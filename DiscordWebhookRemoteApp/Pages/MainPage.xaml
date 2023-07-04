@@ -1477,15 +1477,12 @@
                     HorizontalOptions="Fill"
                     IsVisible="{Binding Source={x:Reference adsBottom}, Path=IsVisible}"
                     Color="{x:Static helpers:ThemeColors.BorderColor}" />
-                <adscontrol:MTAdView
+                <customItems:CustomAdsView
                     x:Name="adsBottom"
-                    AdsFailedToLoad="adsBottom_AdsFailedToLoad"
                     AdsId="ca-app-pub-3881259676793306/6797209579"
-                    AdsLoaded="adsBottom_AdsLoaded"
                     AutomationId="adsBottom"
                     HeightRequest="{OnIdiom Phone=50,
                                             Tablet=90}"
-                    IsVisible="true"
                     VerticalOptions="End" />
             </StackLayout>
         </StackLayout>

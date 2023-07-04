@@ -21,7 +21,7 @@ namespace DiscordWebhookRemoteApp.Pages.Popups
         {
             InitializeComponent();
 #if DEBUG
-            //string hookurl = "";
+            //string hookurl = "https://discord.com/api/webhooks/1125733916851052544/4_tllxGS1NPxNp2-edvcyNUXv2oPZmt5jZJ1at1nX6zqTi5clQPG3WPm25-E1TPMTyFm";
             //entryUrl.Text = hookurl;
 #endif
         }

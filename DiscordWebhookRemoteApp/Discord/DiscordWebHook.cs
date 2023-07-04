@@ -92,11 +92,12 @@ namespace Discord.Webhook
 
             try
             {
-                await webhookRequest.UploadDataTaskAsync(new Uri(this.Url), stream.ToArray());
+                var res = await webhookRequest.UploadDataTaskAsync(new Uri(this.Url), stream.ToArray());
             }
             catch (WebException ex)
             {
-                throw new WebException(Utils.Decode(ex.Response.GetResponseStream()));
+                var error = new WebException(Utils.Decode(ex.Response.GetResponseStream()));
+                throw error;
             }
 
             stream.Dispose();

@@ -141,7 +141,7 @@ namespace DiscordWebhookRemoteApp.Pages.Popups
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
 
             }

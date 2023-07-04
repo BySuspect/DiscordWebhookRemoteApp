@@ -22,6 +22,7 @@
                 Text="Feedback"
                 TextColor="{x:Static helpers:ThemeColors.TextColor}" />
             <Frame
+                Margin="5"
                 Padding="15"
                 BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
                 BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
@@ -32,6 +33,8 @@
                         x:Name="edtContent"
                         FontSize="Small"
                         MaxLength="4096"
+                        Placeholder="Message"
+                        PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
                         TextColor="{x:Static helpers:ThemeColors.TextColor}"
                         VerticalOptions="FillAndExpand" />
                     <Label
@@ -51,12 +54,26 @@
                     </Label>
                 </Grid>
             </Frame>
-            <StackLayout
+            <Button
+                Margin="0,0,0,10"
+                xct:TouchEffect.NativeAnimation="true"
+                xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                xct:TouchEffect.PressedAnimationDuration="500"
+                xct:TouchEffect.PressedOpacity="0.6"
+                xct:TouchEffect.PressedScale="0.98"
+                BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                BorderWidth="1"
+                Clicked="btnSelectFiles_Clicked"
+                CornerRadius="15"
+                FontSize="Caption"
+                HeightRequest="35"
                 HorizontalOptions="Center"
-                Orientation="Horizontal"
-                VerticalOptions="End">
+                Text="Add Images"
+                TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                VerticalOptions="Center" />
+            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Button
-                    Margin="0,0,10,0"
                     xct:TouchEffect.NativeAnimation="true"
                     xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
                     xct:TouchEffect.PressedAnimationDuration="500"
@@ -67,31 +84,40 @@
                     BorderWidth="1"
                     Clicked="btnDismiss_Clicked"
                     CornerRadius="15"
-                    FontSize="Small"
-                    HeightRequest="45"
+                    FontSize="Caption"
+                    HeightRequest="35"
                     HorizontalOptions="Center"
                     Text="Cancel"
                     TextColor="{x:Static helpers:ThemeColors.TextColor}"
                     VerticalOptions="Center" />
-                <Button
-                    x:Name="btnSend"
-                    Margin="0,0,10,0"
-                    xct:TouchEffect.NativeAnimation="true"
-                    xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
-                    xct:TouchEffect.PressedAnimationDuration="500"
-                    xct:TouchEffect.PressedOpacity="0.6"
-                    xct:TouchEffect.PressedScale="0.98"
-                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
-                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
-                    BorderWidth="1"
-                    Clicked="btnSend_Clicked"
-                    CornerRadius="15"
-                    FontSize="Small"
-                    HeightRequest="45"
-                    HorizontalOptions="Center"
-                    Text="Send"
-                    TextColor="{x:Static helpers:ThemeColors.TextColor}"
-                    VerticalOptions="Center" />
+                <Grid>
+                    <Button
+                        x:Name="btnSend"
+                        xct:TouchEffect.NativeAnimation="true"
+                        xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                        xct:TouchEffect.PressedAnimationDuration="500"
+                        xct:TouchEffect.PressedOpacity="0.6"
+                        xct:TouchEffect.PressedScale="0.98"
+                        BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                        BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                        BorderWidth="1"
+                        Clicked="btnSend_Clicked"
+                        CornerRadius="15"
+                        FontSize="Caption"
+                        HeightRequest="35"
+                        HorizontalOptions="Center"
+                        Text="Send"
+                        TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                        VerticalOptions="Center" />
+                    <ActivityIndicator
+                        x:Name="sendIndcator"
+                        HeightRequest="30"
+                        HorizontalOptions="CenterAndExpand"
+                        IsRunning="{Binding Source={x:Reference sendIndcator}, Path=IsVisible}"
+                        IsVisible="False"
+                        VerticalOptions="CenterAndExpand"
+                        Color="{x:Static helpers:ThemeColors.TextColor}" />
+                </Grid>
             </StackLayout>
         </StackLayout>
     </Frame>

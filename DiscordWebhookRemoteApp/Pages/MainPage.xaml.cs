@@ -30,20 +30,18 @@ namespace DiscordWebhookRemoteApp.Pages
         bool
             webhookSelected = false,
             webhookProfileAvatar = false,
-            webhookProfileName = false,
-            adsBottomLoaded = true,
-            adsTopLoaded = false;
+            webhookProfileName = false;
 
         string selectedUrl = "",
             webhookImageUrl = "",
             webhookName = "",
-            filepath = "",
             embedFooterIconUrl = "",
             embedAuthorIconUrl = "";
 
-        int selectedId = -1;
 
-        Database.DatabaseItems fRes;
+        List<FileInfo> SelectedFiles = new List<FileInfo>();
+
+        int selectedId = -1;
         public MainPage()
         {
             InitializeComponent();
@@ -125,7 +123,7 @@ namespace DiscordWebhookRemoteApp.Pages
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
 
             }
@@ -211,7 +209,7 @@ namespace DiscordWebhookRemoteApp.Pages
                     webhookProfileName = true;
                 }
             }
-            catch (Exception ex)
+            catch
             {
 
             }
@@ -387,24 +385,52 @@ namespace DiscordWebhookRemoteApp.Pages
         {
             try
             {
-                var result = await FilePicker.PickAsync();
-                if (result != null)
+                var result = await FilePicker.PickMultipleAsync(new PickOptions
                 {
-                    var filest = new FileInfo(result.FullPath);
-                    //discord max file size
-                    if (filest.Length <= 18874400)
+                    PickerTitle = "Select Max 10 Images",
+                });
+
+                if (result.Count() > 0)
+                {
+                    double filesizeCounter = 0;
+                    if (result.Count() > 10)
                     {
-                        lblSelectedFile.Text = result.FileName;
-                        filepath = result.FullPath;
+                        ToastController.ShowShortToast("Please select max 10 files!");
+                        return;
                     }
                     else
                     {
-                        _ = DisplayAlert("Error", "File can only be 18mb maximum", "Ok");
                         lblSelectedFile.Text = "";
-                        filepath = "";
+                        SelectedFiles = new List<FileInfo>();
+                        foreach (var _file in result)
+                        {
+                            var fileinfo = new FileInfo(_file.FullPath);
+                            filesizeCounter += fileinfo.Length;
+                            if (fileinfo.Length <= 18874400)
+                                SelectedFiles.Add(new FileInfo(_file.FullPath));
+                            else
+                            {
+                                _ = DisplayAlert("Error", "File can only be 18mb maximum", "Ok");
+                                return;
+                            }
+                        }
+                        if (filesizeCounter > 18874400)
+                        {
+                            ToastController.ShowLongToast("Please select total max 18mb files!");
+                            lblSelectedFile.Text = "";
+                            SelectedFiles = new List<FileInfo>();
+                            return;
+                        }
+                        else if (filesizeCounter > 16000000)
+                            _ = DisplayAlert("Warning!", "Discord may not accept file sizes over 16mb!", "ok");
+                        lblSelectedFile.Text = (filesizeCounter / 1024 / 1024).ToString("##") + "mb\n" + string.Join(", ", SelectedFiles.ConvertAll(x => x.Name.ToString()));
                     }
                 }
-
+                else
+                {
+                    SelectedFiles = new List<FileInfo>();
+                    lblSelectedFile.Text = "";
+                }
             }
             catch
             {
@@ -414,7 +440,7 @@ namespace DiscordWebhookRemoteApp.Pages
         private void btnFileClear_Clicked(object sender, EventArgs e)
         {
             lblSelectedFile.Text = "";
-            filepath = "";
+            SelectedFiles = new List<FileInfo>();
         }
         #endregion
 
@@ -450,13 +476,11 @@ namespace DiscordWebhookRemoteApp.Pages
         private void adsBottom_AdsLoaded(object sender, EventArgs e)
         {
             adsBottom.IsVisible = true;
-            adsBottomLoaded = true;
             //_ = adsCheck();
         }
         private void adsBottom_AdsFailedToLoad(object sender, MarcTron.Plugin.Extra.MTEventArgs e)
         {
             adsBottom.IsVisible = false;
-            adsBottomLoaded = false;
         }
         private void adsTop_AdsLoaded(object sender, EventArgs e)
         {
@@ -467,7 +491,6 @@ namespace DiscordWebhookRemoteApp.Pages
         private void adsTop_AdsFailedToLoad(object sender, MarcTron.Plugin.Extra.MTEventArgs e)
         {
             adsTop.IsVisible = false;
-            adsTopLoaded = false;
         }
         #endregion
 
@@ -515,8 +538,8 @@ namespace DiscordWebhookRemoteApp.Pages
 
                 try
                 {
-                    if (expFileSend.IsExpanded && !string.IsNullOrEmpty(filepath))
-                        await hook.Send(message, new FileInfo(filepath));
+                    if (expFileSend.IsExpanded && SelectedFiles.Count() > 0)
+                        await hook.Send(message, SelectedFiles.ToArray());
                     else
                     {
                         await hook.Send(message);
@@ -526,7 +549,9 @@ namespace DiscordWebhookRemoteApp.Pages
                 }
                 catch (Exception ex)
                 {
-                    //_ = DisplayAlert("Send Error!!", $"Message:\n{ex.Message}", "Ok");
+#if DEBUG
+                    _ = DisplayAlert("Send Error!!", $"Message:\n{ex.Message}", "Ok");
+#endif
                     Debug.WriteLine("Send Error!!");
                     ToastController.ShowShortToast("Send Error!!");
                 }
@@ -614,7 +639,7 @@ namespace DiscordWebhookRemoteApp.Pages
             ////hook.Send(message, new FileInfo("C:/File/Path.file"));
 
         }
-        private async void Button_Clicked2(object sender, EventArgs e)
+        private void Button_Clicked2(object sender, EventArgs e)
         {
             //try
             //{
