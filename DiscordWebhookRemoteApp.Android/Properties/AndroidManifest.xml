@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="8" android:versionName="1.0.2" package="com.awgstudios.discordwebhookremoteapp" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="9" android:versionName="1.0.3" package="com.awgstudios.discordwebhookremoteapp" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="33" />
 	<application android:label="Discord Webhook Remote" android:theme="@style/MainTheme" android:icon="@mipmap/icon" android:usesCleartextTraffic="true">
 		<meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-3881259676793306~6010725604" />
