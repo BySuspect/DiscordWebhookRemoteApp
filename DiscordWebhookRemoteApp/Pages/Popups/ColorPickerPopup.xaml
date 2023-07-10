@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
+    xmlns:customItems="clr-namespace:DiscordWebhookRemoteApp.CustomItems"
     xmlns:helpers="clr-namespace:DiscordWebhookRemoteApp.Helpers"
     xmlns:popups="clr-namespace:DiscordWebhookRemoteApp.Pages.Popups"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
@@ -11,7 +12,7 @@
     xct:StatusBarEffect.Color="{x:Static helpers:ThemeColors.StatusBarColor}"
     xct:StatusBarEffect.Style="{x:Static helpers:ThemeColors.StatusBarStyle}"
     BackgroundColor="Transparent"
-    Size="{x:Static helpers:PopupSize.Medium2}"
+    Size="{x:Static helpers:PopupSize.Tall}"
     Color="Transparent">
     <Frame
         Padding="1"
@@ -31,10 +32,125 @@
                     ShowLuminositySlider="False"
                     ShowLuminosityWheel="True" />
             </Frame>
+            <BoxView
+                Margin="-25,-1,-25,0"
+                HeightRequest="1"
+                HorizontalOptions="FillAndExpand"
+                Color="{x:Static helpers:ThemeColors.BorderColor}" />
+            <StackLayout HorizontalOptions="FillAndExpand">
+                <Frame
+                    Padding="5,0"
+                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                    CornerRadius="15"
+                    HorizontalOptions="Center">
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            FontSize="Caption"
+                            Text="Hex: "
+                            TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                            VerticalOptions="Center" />
+                        <customItems:BorderlessEntry
+                            x:Name="entryHex"
+                            Completed="entryHex_Completed"
+                            FontSize="Caption"
+                            MaxLength="7"
+                            Placeholder="Color Hex"
+                            PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                            TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                </Frame>
+                <BoxView
+                    Margin="-25,0"
+                    HeightRequest="1"
+                    HorizontalOptions="FillAndExpand"
+                    Color="{x:Static helpers:ThemeColors.BorderColor}" />
+                <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+
+                    <Frame
+                        Padding="5,0"
+                        BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                        BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                        CornerRadius="15"
+                        HorizontalOptions="Center">
+                        <StackLayout Orientation="Horizontal">
+                            <Label
+                                FontSize="Caption"
+                                Text="R: "
+                                TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                                VerticalOptions="Center" />
+                            <customItems:BorderlessEntry
+                                x:Name="entryRed"
+                                Completed="entryRed_Completed"
+                                FontSize="Caption"
+                                Keyboard="Numeric"
+                                Placeholder="255"
+                                PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                                TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame
+                        Padding="5,0"
+                        BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                        BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                        CornerRadius="15"
+                        HorizontalOptions="Center">
+                        <StackLayout Orientation="Horizontal">
+                            <Label
+                                FontSize="Caption"
+                                Text="G: "
+                                TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                                VerticalOptions="Center" />
+                            <customItems:BorderlessEntry
+                                x:Name="entryGreen"
+                                Completed="entryGreen_Completed"
+                                FontSize="Caption"
+                                Keyboard="Numeric"
+                                Placeholder="255"
+                                PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                                TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame
+                        Padding="5,0"
+                        BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                        BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                        CornerRadius="15"
+                        HorizontalOptions="Center">
+                        <StackLayout Orientation="Horizontal">
+                            <Label
+                                FontSize="Caption"
+                                Text="B: "
+                                TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                                VerticalOptions="Center" />
+                            <customItems:BorderlessEntry
+                                x:Name="entryBlue"
+                                Completed="entryBlue_Completed"
+                                FontSize="Caption"
+                                Keyboard="Numeric"
+                                Placeholder="255"
+                                PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                                TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                                VerticalOptions="Center" />
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+                <BoxView
+                    Margin="-25,0"
+                    HeightRequest="1"
+                    HorizontalOptions="FillAndExpand"
+                    Color="{x:Static helpers:ThemeColors.BorderColor}" />
+            </StackLayout>
             <StackLayout
-                Margin="0,5,15,5"
-                HorizontalOptions="EndAndExpand"
-                Orientation="Horizontal">
+                Margin="0,5,0,15"
+                HorizontalOptions="CenterAndExpand"
+                Orientation="Horizontal"
+                VerticalOptions="EndAndExpand">
                 <Button
                     xct:TouchEffect.NativeAnimation="true"
                     xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
@@ -46,6 +162,8 @@
                     BorderWidth="1"
                     Clicked="Cancel_Clicked"
                     CornerRadius="25"
+                    FontSize="Caption"
+                    HeightRequest="35"
                     Text="Cancel"
                     TextColor="{x:Static helpers:ThemeColors.TextColor}"
                     VerticalOptions="Center" />
@@ -60,6 +178,8 @@
                     BorderWidth="1"
                     Clicked="Save_Clicked"
                     CornerRadius="25"
+                    FontSize="Caption"
+                    HeightRequest="35"
                     Text="Save"
                     TextColor="{x:Static helpers:ThemeColors.TextColor}"
                     VerticalOptions="Center" />

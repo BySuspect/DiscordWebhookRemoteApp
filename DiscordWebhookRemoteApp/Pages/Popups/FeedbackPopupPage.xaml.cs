@@ -199,9 +199,9 @@ namespace DiscordWebhookRemoteApp.Pages.Popups
                     else if (edtContent.Text == null)
                         edtContent.Text = string.Empty;
                     if (FeedbackImages.Count() > 1)
-                        imagesText = "{Images: " + (filesizeCounter / 1024 / 1024).ToString("##") + "mb :" + string.Join(", ", FeedbackImages.ConvertAll(x => x.Name.ToString())) + "}";
+                        imagesText = "{Do not change this!!!! Images: " + (filesizeCounter / 1024 / 1024).ToString("0.00") + "mb :" + string.Join(", ", FeedbackImages.ConvertAll(x => x.Name.ToString())) + "}";
                     else
-                        imagesText = "{Images: " + (filesizeCounter / 1024 / 1024).ToString("##") + "mb :" + FeedbackImages[0].Name + "}";
+                        imagesText = "{Do not change this!!!! Images: " + (filesizeCounter / 1024 / 1024).ToString("0.00") + "mb :" + FeedbackImages[0].Name + "}";
                     edtContent.Text = imagesText + edtContent.Text.ToString();
                 }
                 catch

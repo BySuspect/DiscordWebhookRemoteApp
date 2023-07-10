@@ -9,7 +9,7 @@
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     xmlns:xctp="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
     xct:CornerRadiusEffect.CornerRadius="15"
-    Size="{x:Static helpers:PopupSize.Medium}"
+    Size="{x:Static helpers:PopupSize.Tall}"
     Color="Transparent">
     <Frame
         BackgroundColor="{x:Static helpers:ThemeColors.BackColor}"
