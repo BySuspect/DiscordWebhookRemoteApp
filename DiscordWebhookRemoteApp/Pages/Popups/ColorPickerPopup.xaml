@@ -163,7 +163,7 @@
                     Clicked="Cancel_Clicked"
                     CornerRadius="25"
                     FontSize="Caption"
-                    HeightRequest="35"
+                    HeightRequest="40"
                     Text="Cancel"
                     TextColor="{x:Static helpers:ThemeColors.TextColor}"
                     VerticalOptions="Center" />
@@ -179,7 +179,7 @@
                     Clicked="Save_Clicked"
                     CornerRadius="25"
                     FontSize="Caption"
-                    HeightRequest="35"
+                    HeightRequest="40"
                     Text="Save"
                     TextColor="{x:Static helpers:ThemeColors.TextColor}"
                     VerticalOptions="Center" />
