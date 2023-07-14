@@ -9,7 +9,7 @@
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     xmlns:xctp="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
     xct:CornerRadiusEffect.CornerRadius="15"
-    Size="{x:Static helpers:PopupSize.Small}"
+    Size="{x:Static helpers:PopupSize.Small2}"
     Color="Transparent">
 
     <Frame
@@ -26,6 +26,7 @@
                 HasShadow="True">
                 <customItems:BorderlessEntry
                     x:Name="entryName"
+                    FontSize="Small"
                     MaxLength="24"
                     Placeholder="Name"
                     PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
@@ -39,6 +40,7 @@
                 HasShadow="True">
                 <customItems:BorderlessEntry
                     x:Name="entryUrl"
+                    FontSize="Small"
                     Placeholder="Url"
                     PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
                     TextChanged="entryUrl_TextChanged"
@@ -60,6 +62,8 @@
                     BorderWidth="1"
                     Clicked="DeleteWebhook_Clicked"
                     CornerRadius="15"
+                    FontSize="Caption"
+                    HeightRequest="40"
                     HorizontalOptions="Center"
                     Text="Delete"
                     TextColor="{x:Static helpers:ThemeColors.TextColor}"
@@ -77,6 +81,8 @@
                     BorderWidth="1"
                     Clicked="SaveWebhook_Clicked"
                     CornerRadius="15"
+                    FontSize="Caption"
+                    HeightRequest="40"
                     HorizontalOptions="Center"
                     Text="Save"
                     TextColor="{x:Static helpers:ThemeColors.TextColor}"

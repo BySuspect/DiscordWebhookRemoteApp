@@ -44,39 +44,16 @@ namespace DiscordWebhookRemoteApp.Pages.Popups
             InitializeComponent();
             BindingContext = this;
 #if DEBUG
-            var gecicilist = new ObservableCollection<webhookProfileItems>()
-            {
-                new webhookProfileItems
-                {
-                    ID=0,
-                    name="Test1",
-                    image="https://cdn.discordapp.com/avatars/510531111647051796/1996bd9b3b369c8405378e405d049a88.png?size=4096",
-                },
-                new webhookProfileItems
-                {
-                    ID=1,
-                    name="Test2",
-                    image="https://cdn.discordapp.com/avatars/410054920600027147/a_50693c392bcc8694970249cecc61be01.png?size=4096",
-                },
-                new webhookProfileItems
-                {
-                    ID=2,
-                    name="Test3",
-                    image="https://cdn.discordapp.com/avatars/272665050672660501/f6b1c6bd7376412852e6b54a3f223987.png?size=4096",
-                },
-                new webhookProfileItems
-                {
-                    ID=3,
-                    name="Test4",
-                    image="https://cdn.discordapp.com/avatars/410054920600027147/a_50693c392bcc8694970249cecc61be01.png?size=4096",
-                },
-                new webhookProfileItems
-                {
-                    ID=4,
-                    name="Test5",
-                    image="https://cdn.discordapp.com/avatars/272665050672660501/f6b1c6bd7376412852e6b54a3f223987.png?size=4096",
-                },
-            };
+            var gecicilist = new ObservableCollection<webhookProfileItems>();
+            //for (int i = 0; i < 15; i++)
+            //{
+            //    gecicilist.Add(new webhookProfileItems()
+            //    {
+            //        ID = i,
+            //        name = i + "asd",
+            //        image = "https://cdn.discordapp.com/avatars/272665050672660501/a_649159617639f4c3f0002f4e1aee0a07.png?size=256"
+            //    });
+            //}
             //References.WebhookProfileList = gecicilist;
 #endif
 

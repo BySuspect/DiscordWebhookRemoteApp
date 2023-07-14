@@ -16,10 +16,14 @@
             BackgroundColor="{x:Static helpers:ThemeColors.BackColor}"
             BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
             CornerRadius="15"
+            HasShadow="False"
             VerticalOptions="Center">
             <Grid>
                 <StackLayout>
-                    <CollectionView x:Name="ProfileList" ItemsSource="{Binding SavedProfiles}">
+                    <CollectionView
+                        x:Name="ProfileList"
+                        Margin="0,0,0,50"
+                        ItemsSource="{Binding SavedProfiles}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout>
@@ -65,7 +69,7 @@
                                                 </customItems:BorderlessEntry>
                                             </StackLayout>
                                             <StackLayout
-                                                Margin="0,0,-10,0"
+                                                Margin="0,0,-9,0"
                                                 xct:CornerRadiusEffect.CornerRadius="0,15,0,15"
                                                 BackgroundColor="{x:Static helpers:ThemeColors.BackColor}"
                                                 HorizontalOptions="EndAndExpand"
@@ -139,7 +143,7 @@
                         HorizontalOptions="Fill"
                         VerticalOptions="Center">
                         <StackLayout>
-                            <StackLayout Margin="0,5,0,0">
+                            <StackLayout>
                                 <Label
                                     Margin="2,0,0,0"
                                     FontSize="Small"
@@ -155,7 +159,6 @@
                                     <StackLayout>
                                         <customItems:BorderlessEntry
                                             x:Name="entryWebhookName"
-                                            Margin="5,0,5,0"
                                             FontSize="Caption"
                                             HorizontalOptions="FillAndExpand"
                                             MaxLength="80"
@@ -191,7 +194,7 @@
                                             TextColor="{x:Static helpers:ThemeColors.TextColor}" />
                                     </StackLayout>
                                 </Frame>
-                                <StackLayout Orientation="Horizontal">
+                                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                                     <Button
                                         Margin="0,0,0,5"
                                         Padding="0"

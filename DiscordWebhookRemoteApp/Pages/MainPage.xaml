@@ -33,7 +33,7 @@
                             <StackLayout>
                                 <Label
                                     Margin="10,0,0,0"
-                                    FontSize="Small"
+                                    FontSize="Caption"
                                     HorizontalOptions="Start"
                                     Text="Select Webhook"
                                     TextColor="{x:Static helpers:ThemeColors.TextColor}" />
@@ -61,8 +61,8 @@
                                                         BackgroundColor="Transparent"
                                                         BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                         CornerRadius="360"
-                                                        HeightRequest="50"
-                                                        WidthRequest="50">
+                                                        HeightRequest="40"
+                                                        WidthRequest="40">
                                                         <Label
                                                             Margin="-5"
                                                             FontSize="Caption"
@@ -92,10 +92,10 @@
                                                 BackgroundColor="Transparent"
                                                 BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                 CornerRadius="360"
-                                                HeightRequest="50"
+                                                HeightRequest="40"
                                                 HorizontalOptions="CenterAndExpand"
                                                 VerticalOptions="CenterAndExpand"
-                                                WidthRequest="50">
+                                                WidthRequest="40">
                                                 <Image
                                                     xct:IconTintColorEffect.TintColor="{x:Static helpers:ThemeColors.TextColor}"
                                                     Scale=".35"
@@ -111,7 +111,7 @@
                                     <Label
                                         Grid.Column="0"
                                         Margin="10,10,0,10"
-                                        FontSize="Small"
+                                        FontSize="Caption"
                                         HorizontalOptions="Start"
                                         TextColor="{x:Static helpers:ThemeColors.TextColor}"
                                         VerticalOptions="Center">
@@ -136,8 +136,8 @@
                                         BorderWidth="1"
                                         Clicked="webhookEditDelete_Clicked"
                                         CornerRadius="15"
-                                        FontSize="Small"
-                                        HeightRequest="45"
+                                        FontSize="Caption"
+                                        HeightRequest="40"
                                         HorizontalOptions="EndAndExpand"
                                         Text="Edit &amp; Delete"
                                         TextColor="{x:Static helpers:ThemeColors.TextColor}"
@@ -207,8 +207,8 @@
                                         BorderWidth="1"
                                         Clicked="webhookSaveLoad_Clicked"
                                         CornerRadius="15"
-                                        FontSize="Small"
-                                        HeightRequest="45"
+                                        FontSize="Caption"
+                                        HeightRequest="40"
                                         HorizontalOptions="EndAndExpand"
                                         Text="Save &amp; Load"
                                         TextColor="{x:Static helpers:ThemeColors.TextColor}"
@@ -228,7 +228,7 @@
                             <StackLayout>
                                 <Label
                                     Margin="10,0,0,0"
-                                    FontSize="Small"
+                                    FontSize="Caption"
                                     HorizontalOptions="Start"
                                     Text="Message Content"
                                     TextColor="{x:Static helpers:ThemeColors.TextColor}" />
@@ -480,6 +480,7 @@
                                                                         <customItems:BorderlessEntry
                                                                             x:Name="entryBodyUrl"
                                                                             Margin="10,0,0,0"
+                                                                            FontSize="Small"
                                                                             HorizontalOptions="FillAndExpand"
                                                                             Placeholder="URL"
                                                                             PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
@@ -1338,6 +1339,24 @@
                                 TextColor="{x:Static helpers:ThemeColors.TextColor}"
                                 VerticalOptions="Center" />
 
+                            <Button
+                                Margin="0,0,10,0"
+                                xct:TouchEffect.NativeAnimation="true"
+                                xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                                xct:TouchEffect.PressedAnimationDuration="500"
+                                xct:TouchEffect.PressedOpacity="0.6"
+                                xct:TouchEffect.PressedScale="0.98"
+                                BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                BorderWidth="1"
+                                Clicked="Preview_Clicked"
+                                CornerRadius="15"
+                                FontSize="Small"
+                                HeightRequest="45"
+                                HorizontalOptions="Center"
+                                Text="Preview"
+                                TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                                VerticalOptions="Center" />
                             <Button
                                 Margin="0,0,10,0"
                                 xct:TouchEffect.NativeAnimation="true"

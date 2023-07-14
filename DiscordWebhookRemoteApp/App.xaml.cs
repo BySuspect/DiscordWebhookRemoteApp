@@ -38,7 +38,13 @@ namespace DiscordWebhookRemoteApp
             //Preferences.Set("privacy_policy_accepted", false);
             //Preferences.Set("privacy_policy_accepted17May2023", false);
             //Preferences.Set("SupportPopupDate", null);
+            MainPage = new NavigationPage(new MessagePreviewPopup())
+            {
+                BarBackgroundColor = ThemeColors.StatusBarColor,
+                BarTextColor = ThemeColors.TextColor,
+            };
 #endif
+#if !DEBUG
 
             if (Preferences.Get("privacy_policy_accepted17May2023", false))
                 MainPage = new NavigationPage(new MainPage())
@@ -48,6 +54,7 @@ namespace DiscordWebhookRemoteApp
                 };
             else
                 MainPage = new PrivacyPolicyPage();
+#endif
 
             //MainPage = new TestPage();
 

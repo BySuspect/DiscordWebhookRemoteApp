@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="DiscordWebhookRemoteApp.CustomViews.DiscordMessageContent"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customItems="clr-namespace:DiscordWebhookRemoteApp.CustomItems"
+    xmlns:helpers="clr-namespace:DiscordWebhookRemoteApp.Helpers"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+    <ContentView.Content>
+        <StackLayout>
+            <ScrollView HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
+                <StackLayout Margin="15" Orientation="Horizontal">
+                    <Image
+                        HeightRequest="42"
+                        Source="{Binding ProfileImage}"
+                        VerticalOptions="Start"
+                        WidthRequest="42" />
+                    <StackLayout Margin="10,5,0,5">
+                        <StackLayout Orientation="Horizontal">
+                            <Label
+                                FontSize="Small"
+                                Text="{Binding ProfileName}"
+                                TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+                            <Image HeightRequest="15" Source="bot.png" />
+                            <Label FontSize="Small" TextColor="{x:Static helpers:ThemeColors.TextColor}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Today at" />
+                                        <Span Text="{Binding MessageTime}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                        <Label
+                            FontSize="Small"
+                            HorizontalTextAlignment="Start"
+                            Text="{Binding MessageContent}"
+                            TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+
+                        <StackLayout x:Name="ImagesLayout" BindableLayout.ItemsSource="{Binding ImagesList}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Image
+                                        Margin="0,5,0,5"
+                                        xct:CornerRadiusEffect.CornerRadius="20"
+                                        Aspect="AspectFill"
+                                        Source="{Binding url}"
+                                        WidthRequest="300" />
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

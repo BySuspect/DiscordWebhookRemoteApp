@@ -410,13 +410,13 @@ namespace DiscordWebhookRemoteApp.Pages
                                 SelectedFiles.Add(new FileInfo(_file.FullPath));
                             else
                             {
-                                _ = DisplayAlert("Error", "File can only be 18mb maximum", "Ok");
+                                _ = DisplayAlert("Error", "File can only be 25mb maximum", "Ok");
                                 return;
                             }
                         }
-                        if (filesizeCounter > 18874400)
+                        if (filesizeCounter > 26214400)
                         {
-                            ToastController.ShowLongToast("Please select total max 18mb files!");
+                            ToastController.ShowLongToast("Please select total max 25mb files!");
                             lblSelectedFile.Text = "";
                             SelectedFiles = new List<FileInfo>();
                             return;
@@ -496,6 +496,65 @@ namespace DiscordWebhookRemoteApp.Pages
 
         //---------------------------------------------------------------------------------------------------
 
+        private async void clearContent_Clicked(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Warning!", "Are you sure about to clear content?", "Yes", "No");
+            Debug.WriteLine("Answer: " + answer);
+            if (answer)
+            {
+                App.Current.MainPage = new NavigationPage(new MainPage())
+                {
+                    BarBackgroundColor = ThemeColors.StatusBarColor,
+                    BarTextColor = ThemeColors.TextColor,
+                };
+                //expEmbedAuthor.IsVisible = false;
+                //expEmbedBody.IsVisible = false;
+                //expEmbedContent.IsVisible = false;
+                //expEmbedFields.IsVisible = false;
+                //expEmbedFooter.IsVisible = false;
+                //expEmbedImages.IsVisible = false;
+                //expFileSend.IsVisible = false;
+                //expMessageContent.IsVisible = false;
+                //entryContentMessage.Text = "";
+                //filepath = "";
+                //lblSelectedFile.Text = "none";
+                //entryWebhookName.Text = "";
+                //imgWebhookImage.Source = "dcdemoimage.png";
+            }
+        }
+        private async void Preview_Clicked(object sender, EventArgs e)
+        {
+            DiscordMessage message = new DiscordMessage();
+
+            if (webhookProfileName)
+                message.Username = webhookName;
+
+            if (webhookProfileAvatar)
+                message.AvatarUrl = webhookImageUrl;
+
+            if (expMessageContent.IsExpanded)
+            {
+                if (!string.IsNullOrEmpty(entryContentMessage.Text))
+                {
+                    message.Content = entryContentMessage.Text;
+                }
+            }
+
+            if (expEmbedContent.IsExpanded)
+            {
+                message.Embeds = new List<DiscordEmbed>();
+                var embed = embedBuilder();
+                //if (embed.Description != "{Embed31Build31Hataya31Dustu31}")
+                if (embed.Description != "{Empty31Embed31Builded31}")
+                    message.Embeds.Add(embed);
+            }
+
+            if (expFileSend.IsExpanded && SelectedFiles.Count() > 0)
+            {
+
+            }
+            var messagejson = JsonConvert.SerializeObject(message);
+        }
         private async void sendContent_Clicked(object sender, EventArgs e)
         {
             if (webhookSelected)
@@ -560,32 +619,6 @@ namespace DiscordWebhookRemoteApp.Pages
             else
                 //_ = DisplayAlert("Warning!", "First select Webhook!", "Ok");
                 ToastController.ShowShortToast("First select Webhook!");
-        }
-        private async void clearContent_Clicked(object sender, EventArgs e)
-        {
-            bool answer = await DisplayAlert("Warning!", "Are you sure about to clear content?", "Yes", "No");
-            Debug.WriteLine("Answer: " + answer);
-            if (answer)
-            {
-                App.Current.MainPage = new NavigationPage(new MainPage())
-                {
-                    BarBackgroundColor = ThemeColors.StatusBarColor,
-                    BarTextColor = ThemeColors.TextColor,
-                };
-                //expEmbedAuthor.IsVisible = false;
-                //expEmbedBody.IsVisible = false;
-                //expEmbedContent.IsVisible = false;
-                //expEmbedFields.IsVisible = false;
-                //expEmbedFooter.IsVisible = false;
-                //expEmbedImages.IsVisible = false;
-                //expFileSend.IsVisible = false;
-                //expMessageContent.IsVisible = false;
-                //entryContentMessage.Text = "";
-                //filepath = "";
-                //lblSelectedFile.Text = "none";
-                //entryWebhookName.Text = "";
-                //imgWebhookImage.Source = "dcdemoimage.png";
-            }
         }
 
 

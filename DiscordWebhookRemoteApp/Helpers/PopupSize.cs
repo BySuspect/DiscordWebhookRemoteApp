@@ -9,6 +9,7 @@ namespace DiscordWebhookRemoteApp.Helpers
         public static Size Tiny => new Size(100, 100);
 
         public static Size Small => new Size(300, 250);
+        public static Size Small2 => new Size(300, 200);
 
         // examples for relative to screen sizes
         public static Size Medium => new Size(0.7 * (DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density), 0.6 * (DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density));
