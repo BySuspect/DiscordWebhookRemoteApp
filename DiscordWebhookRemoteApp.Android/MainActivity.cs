@@ -1,14 +1,16 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
+using Android.Content;
+using Xamarin.Essentials;
 using Android.Content.PM;
-using Android.Runtime;
 using Android.OS;
+using Android.Runtime;
 using Android.Gms.Ads;
+using Xamarin.Forms.Platform.Android.AppLinks;
 
 namespace DiscordWebhookRemoteApp.Droid
 {
     [Activity(Label = "Discord Webhook Remote", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
-    [IntentFilter(new[] { Xamarin.Essentials.Platform.Intent.ActionAppAction }, Categories = new[] { Android.Content.Intent.CategoryDefault })]
+    [IntentFilter(new[] { Platform.Intent.ActionAppAction }, Categories = new[] { Intent.CategoryDefault })]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -20,6 +22,8 @@ namespace DiscordWebhookRemoteApp.Droid
 
             Xamarin.DateTimePopups.Platform.Init(this, savedInstanceState);
             MobileAds.Initialize(ApplicationContext);
+            AndroidAppLinks.Init(this);
+
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

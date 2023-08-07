@@ -1,15 +1,16 @@
 ﻿using Android.App;
-using Android.OS;
+using Android.Content;
+using AndroidX.AppCompat.App;
 
 namespace DiscordWebhookRemoteApp.Droid
 {
-    [Activity(Label = "Discord Webhook Remote", Icon = "@mipmap/icon", Theme = "@style/SplashTheme", MainLauncher = true, NoHistory = true)]
-    public class SplashActivity : Activity
+    [Activity(Theme = "@style/SplashTheme", MainLauncher = true, NoHistory = true)]
+    public class SplashActivity : AppCompatActivity
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override void OnResume()
         {
-            base.OnCreate(savedInstanceState);
-            this.StartActivity(typeof(MainActivity));
+            base.OnResume();
+            StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
     }
 }

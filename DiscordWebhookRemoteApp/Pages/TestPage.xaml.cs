@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.CommunityToolkit.UI.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,10 +19,20 @@ namespace DiscordWebhookRemoteApp.Pages
         {
             InitializeComponent();
         }
-
-        private async void Button_Clicked(object sender, EventArgs e)
+        public TestPage(string content)
         {
-            await App.Current.MainPage.Navigation.ShowPopupAsync(new GooglePlayViewPopup());
+            InitializeComponent();
+            testlbl.Text = content;
+        }
+        [Obsolete]
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Device.OpenUri(new Uri("http://192.168.114.1:5000/DCToolsWebhook"));
+        }
+
+        private void Button_Clicked_1(object sender, EventArgs e)
+        {
+            testlbl.Text = "test31";
         }
     }
 }

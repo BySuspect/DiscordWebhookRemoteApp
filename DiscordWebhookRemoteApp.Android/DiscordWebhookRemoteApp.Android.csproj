@@ -89,42 +89,6 @@
     <PackageReference Include="SkiaSharp">
       <Version>2.88.3</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.Activity">
-      <Version>1.7.2</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.Annotation">
-      <Version>1.6.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.Arch.Core.Runtime">
-      <Version>2.2.0.2</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.Collection">
-      <Version>1.2.0.8</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.Core">
-      <Version>1.10.1.1</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Common">
-      <Version>2.6.1.2</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData">
-      <Version>2.6.1.2</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData.Core">
-      <Version>2.6.1.2</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Runtime">
-      <Version>2.6.1.2</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.Loader">
-      <Version>1.1.0.18</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.Migration">
-      <Version>1.0.10</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.Work.Runtime">
-      <Version>2.8.1.2</Version>
-    </PackageReference>
     <PackageReference Include="Xamarin.CommunityToolkit">
       <Version>2.0.6</Version>
     </PackageReference>
@@ -133,13 +97,17 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2578" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.7" />
+    <PackageReference Include="Xamarin.Forms.AppLinks">
+      <Version>5.0.0.2578</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.GooglePlayServices.Basement">
-      <Version>118.2.0.1</Version>
+      <Version>118.1.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\Toast_Android.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="MainApplication.cs" />
     <Compile Include="Renderers\BorderlessEditorRenderer.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -249,6 +217,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\bot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\herta.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

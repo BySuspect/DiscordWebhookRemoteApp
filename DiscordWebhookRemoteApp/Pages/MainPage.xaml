@@ -1422,7 +1422,7 @@
                                 x:Name="lblPopupContent"
                                 Margin="5"
                                 FontSize="Caption"
-                                Text="We have a website project but we need some support for hosting. If you find the application useful, you can give a little support for the web version. ❤️"
+                                Text="Hey! If you think our apps are useful, you can support us by donating. ❤️"
                                 TextColor="{x:Static helpers:ThemeColors.TextColor}" />
                             <StackLayout
                                 Margin="0,5,0,0"

@@ -1,13 +1,9 @@
 ﻿using DiscordWebhookRemoteApp.Helpers;
 using DiscordWebhookRemoteApp.Pages;
-using DiscordWebhookRemoteApp.Pages.Popups;
 using System;
 using System.Diagnostics;
-using System.Net.Http;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace DiscordWebhookRemoteApp
 {
@@ -38,7 +34,7 @@ namespace DiscordWebhookRemoteApp
             //Preferences.Set("privacy_policy_accepted", false);
             //Preferences.Set("privacy_policy_accepted17May2023", false);
             //Preferences.Set("SupportPopupDate", null);
-            MainPage = new NavigationPage(new MessagePreviewPopup())
+            MainPage = new NavigationPage(new TestPage())
             {
                 BarBackgroundColor = ThemeColors.StatusBarColor,
                 BarTextColor = ThemeColors.TextColor,
@@ -74,6 +70,15 @@ namespace DiscordWebhookRemoteApp
             {
                 await Shell.Current.GoToAsync($"//{e.AppAction.Id}");
             });
+        }
+
+        protected override void OnAppLinkRequestReceived(Uri uri)
+        {
+            base.OnAppLinkRequestReceived(uri);
+
+            Debug.WriteLine($"\n\n\n{uri.ToString()}\n\n\n");
+
+            Application.Current.MainPage = new TestPage(uri.ToString());
         }
         protected override void OnStart()
         {
