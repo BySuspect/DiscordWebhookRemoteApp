@@ -136,8 +136,9 @@ namespace DiscordWebhookRemoteApp.Helpers
             ThemeColors.TextColor = Color.Black;
             ThemeColors.TransparentTextColor = Color.FromHex("#BAAAAAAA");
             ThemeColors.BorderColor = Color.Black;
-            ThemeColors.BorderBackColor = Color.FromHex("#40FFFFFF");
+            ThemeColors.CardBackColor = Color.FromHex("#40FFFFFF");
             ThemeColors.BackColor = Color.FromHex("#FFFFFF");
+            ThemeColors.CardBackColor = Color.FromHex("#FFFFFF");
             ThemeColors.StatusBarColor = Color.FromHex("#E9E9E9");
             ThemeColors.StatusBarStyle = StatusBarStyle.DarkContent;
             ThemeColors.backgroundImg = null;
@@ -147,8 +148,9 @@ namespace DiscordWebhookRemoteApp.Helpers
             ThemeColors.TextColor = Color.FromHex("#FFFFFF");
             ThemeColors.TransparentTextColor = Color.FromHex("#BAFFFFFF");
             ThemeColors.BorderColor = Color.FromHex("#BAFFFFFF");
-            ThemeColors.BorderBackColor = Color.FromHex("#40000000");
+            ThemeColors.CardBackColor = Color.FromHex("#40000000");
             ThemeColors.BackColor = Color.FromHex("#101010");
+            ThemeColors.CardBackColor = Color.FromHex("#000000");
             ThemeColors.StatusBarColor = Color.FromHex("#000000");
             ThemeColors.StatusBarStyle = StatusBarStyle.LightContent;
             ThemeColors.backgroundImg = null;
@@ -158,8 +160,9 @@ namespace DiscordWebhookRemoteApp.Helpers
             ThemeColors.TextColor = Color.FromHex("#000000");
             ThemeColors.TransparentTextColor = Color.FromHex("#BA470041");
             ThemeColors.BorderColor = Color.FromHex("#000000");
-            ThemeColors.BorderBackColor = Color.FromHex("#55fc03d7");
+            ThemeColors.CardBackColor = Color.FromHex("#55fc03d7");
             ThemeColors.BackColor = Color.FromHex("#fc03d7");
+            ThemeColors.CardBackColor = Color.FromHex("#fc03d7");
             ThemeColors.StatusBarColor = Color.FromHex("#fc03d7");
             ThemeColors.StatusBarStyle = StatusBarStyle.DarkContent;
             ThemeColors.backgroundImg = "wallpaperfordeniz.jpg";
@@ -172,6 +175,7 @@ namespace DiscordWebhookRemoteApp.Helpers
         public static Color BorderColor { get; set; }
         public static Color BorderBackColor { get; set; }
         public static Color BackColor { get; set; }
+        public static Color CardBackColor { get; set; }
         public static Color StatusBarColor { get; set; }
         public static StatusBarStyle StatusBarStyle { get; set; }
         public static ImageSource backgroundImg { get; set; }

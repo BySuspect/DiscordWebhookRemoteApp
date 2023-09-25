@@ -27,7 +27,7 @@ namespace DiscordWebhookRemoteApp.Pages
         [Obsolete]
         private void Button_Clicked(object sender, EventArgs e)
         {
-            Device.OpenUri(new Uri("http://192.168.114.1:5000/DCToolsWebhook"));
+            Device.OpenUri(new Uri("http://shiroko.dev/DCToolsWebhook"));
         }
 
         private void Button_Clicked_1(object sender, EventArgs e)

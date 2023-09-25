@@ -94,6 +94,23 @@ namespace DiscordWebhookRemoteApp.CustomViews
         #endregion
 
         #region Images Section
+        private string singleImage;
+        public string SingleImage
+        {
+            get
+            {
+                return singleImage;
+            }
+            set
+            {
+                if (value != singleImage)
+                {
+                    singleImage = value;
+                    OnPropertyChanged(nameof(SingleImage));
+                }
+            }
+        }
+
         private List<ImagesItems> imagesList;
         public List<ImagesItems> ImagesList
         {

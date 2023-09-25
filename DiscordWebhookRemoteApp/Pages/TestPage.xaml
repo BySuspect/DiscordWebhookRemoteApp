@@ -21,7 +21,7 @@
                 xct:TouchEffect.PressedAnimationDuration="500"
                 xct:TouchEffect.PressedOpacity="0.6"
                 xct:TouchEffect.PressedScale="0.98"
-                BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                 BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                 BorderWidth="1"
                 Clicked="Button_Clicked"

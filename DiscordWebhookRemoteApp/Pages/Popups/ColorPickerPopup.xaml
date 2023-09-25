@@ -40,7 +40,7 @@
             <StackLayout HorizontalOptions="FillAndExpand">
                 <Frame
                     Padding="5,0"
-                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                     CornerRadius="15"
                     HorizontalOptions="Center">
@@ -70,7 +70,7 @@
 
                     <Frame
                         Padding="5,0"
-                        BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                        BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                         BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                         CornerRadius="15"
                         HorizontalOptions="Center">
@@ -94,7 +94,7 @@
 
                     <Frame
                         Padding="5,0"
-                        BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                        BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                         BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                         CornerRadius="15"
                         HorizontalOptions="Center">
@@ -118,7 +118,7 @@
 
                     <Frame
                         Padding="5,0"
-                        BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                        BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                         BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                         CornerRadius="15"
                         HorizontalOptions="Center">
@@ -157,7 +157,7 @@
                     xct:TouchEffect.PressedAnimationDuration="500"
                     xct:TouchEffect.PressedOpacity="0.6"
                     xct:TouchEffect.PressedScale="0.98"
-                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                     BorderWidth="1"
                     Clicked="Cancel_Clicked"
@@ -173,7 +173,7 @@
                     xct:TouchEffect.PressedAnimationDuration="500"
                     xct:TouchEffect.PressedOpacity="0.6"
                     xct:TouchEffect.PressedScale="0.98"
-                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                     BorderWidth="1"
                     Clicked="Save_Clicked"

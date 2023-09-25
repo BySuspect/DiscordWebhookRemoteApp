@@ -21,12 +21,12 @@
         <StackLayout Margin="5,5,5,0">
             <Grid HorizontalOptions="{OnIdiom Phone=Fill, Tablet=Center}" VerticalOptions="FillAndExpand">
                 <ScrollView HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
-                    <StackLayout>
+                    <StackLayout Padding="0,0,0,50">
 
                         <!--#region Webhooks Select Area-->
                         <Frame
                             Padding="5,10"
-                            BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                            BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                             BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                             CornerRadius="15"
                             IsVisible="True">
@@ -146,22 +146,18 @@
                             </StackLayout>
                         </Frame>
                         <!--#endregion-->
-
-                        <adscontrol:MTAdView
+                        <!--<customItems:CustomAdsView
                             x:Name="adsTop"
-                            AdsFailedToLoad="adsTop_AdsFailedToLoad"
                             AdsId="ca-app-pub-3881259676793306/6856903418"
-                            AdsLoaded="adsTop_AdsLoaded"
+                            AutomationId="adsTop"
                             HeightRequest="{OnIdiom Phone=50,
                                                     Tablet=90}"
-                            IsEnabled="False"
-                            IsVisible="false"
-                            VerticalOptions="Center" />
+                            VerticalOptions="Center" />-->
 
                         <!--#region Webhook Profile Area-->
                         <Frame
                             Padding="5"
-                            BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                            BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                             BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                             CornerRadius="15"
                             IsVisible="True">
@@ -221,7 +217,7 @@
                         <!--#region Send Message Area-->
                         <Frame
                             Padding="5"
-                            BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                            BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                             BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                             CornerRadius="15"
                             IsVisible="True">
@@ -281,7 +277,7 @@
                         <!--#region Send Embed Area-->
                         <Frame
                             Padding="5"
-                            BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                            BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                             BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                             CornerRadius="15">
                             <StackLayout>
@@ -322,7 +318,7 @@
                                                             <StackLayout Margin="0,10">
                                                                 <Frame
                                                                     Padding="5"
-                                                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                     CornerRadius="15"
                                                                     HeightRequest="45">
@@ -368,7 +364,7 @@
                                                                 </Frame>
                                                                 <Frame
                                                                     Padding="5"
-                                                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                     CornerRadius="15">
                                                                     <StackLayout>
@@ -405,7 +401,7 @@
                                                             <StackLayout Margin="0,10">
                                                                 <Frame
                                                                     Padding="5"
-                                                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                     CornerRadius="15">
                                                                     <Grid>
@@ -440,7 +436,7 @@
                                                                 </Frame>
                                                                 <Frame
                                                                     Padding="5"
-                                                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                     CornerRadius="15">
                                                                     <Grid>
@@ -473,7 +469,7 @@
                                                                 </Frame>
                                                                 <Frame
                                                                     Padding="5"
-                                                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                     CornerRadius="15">
                                                                     <StackLayout>
@@ -489,7 +485,7 @@
                                                                 </Frame>
                                                                 <Frame
                                                                     Padding="5"
-                                                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                     CornerRadius="15">
                                                                     <Grid>
@@ -551,7 +547,7 @@
                                                                             <StackLayout Margin="0,10">
                                                                                 <Frame
                                                                                     Padding="5"
-                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                                     CornerRadius="15">
                                                                                     <Grid>
@@ -586,7 +582,7 @@
                                                                                 </Frame>
                                                                                 <Frame
                                                                                     Padding="5"
-                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                                     CornerRadius="15">
                                                                                     <Grid>
@@ -649,7 +645,7 @@
                                                                             <StackLayout Margin="0,10">
                                                                                 <Frame
                                                                                     Padding="5"
-                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                                     CornerRadius="15">
                                                                                     <Grid>
@@ -684,7 +680,7 @@
                                                                                 </Frame>
                                                                                 <Frame
                                                                                     Padding="5"
-                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                                     CornerRadius="15">
                                                                                     <Grid>
@@ -747,7 +743,7 @@
                                                                             <StackLayout Margin="0,10">
                                                                                 <Frame
                                                                                     Padding="5"
-                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                                     CornerRadius="15">
                                                                                     <Grid>
@@ -782,7 +778,7 @@
                                                                                 </Frame>
                                                                                 <Frame
                                                                                     Padding="5"
-                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                                     CornerRadius="15">
                                                                                     <Grid>
@@ -845,7 +841,7 @@
                                                                             <StackLayout Margin="0,10">
                                                                                 <Frame
                                                                                     Padding="5"
-                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                                     CornerRadius="15">
                                                                                     <Grid>
@@ -880,7 +876,7 @@
                                                                                 </Frame>
                                                                                 <Frame
                                                                                     Padding="5"
-                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                                     CornerRadius="15">
                                                                                     <Grid>
@@ -943,7 +939,7 @@
                                                                             <StackLayout Margin="0,10">
                                                                                 <Frame
                                                                                     Padding="5"
-                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                                     CornerRadius="15">
                                                                                     <Grid>
@@ -978,7 +974,7 @@
                                                                                 </Frame>
                                                                                 <Frame
                                                                                     Padding="5"
-                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                                     CornerRadius="15">
                                                                                     <Grid>
@@ -1047,7 +1043,7 @@
                                                             <StackLayout Margin="0,10">
                                                                 <Frame
                                                                     Padding="5"
-                                                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                     CornerRadius="15">
                                                                     <StackLayout>
@@ -1062,7 +1058,7 @@
                                                                 </Frame>
                                                                 <Frame
                                                                     Padding="5"
-                                                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                     CornerRadius="15">
                                                                     <StackLayout>
@@ -1098,7 +1094,7 @@
                                                             <StackLayout Margin="0,10">
                                                                 <Frame
                                                                     Padding="5"
-                                                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                     CornerRadius="15"
                                                                     HeightRequest="45">
@@ -1143,7 +1139,7 @@
                                                                 </Frame>
                                                                 <Frame
                                                                     Padding="5"
-                                                                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                     CornerRadius="15">
                                                                     <StackLayout>
@@ -1161,7 +1157,7 @@
                                                                                 xct:TouchEffect.PressedAnimationDuration="500"
                                                                                 xct:TouchEffect.PressedOpacity="0.6"
                                                                                 xct:TouchEffect.PressedScale="0.98"
-                                                                                BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                                BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                                 BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                                                                 BorderWidth="1"
                                                                                 Clicked="EmbedFooterSelectTimebtn_Clicked"
@@ -1193,7 +1189,7 @@
                                                                                 xct:TouchEffect.PressedAnimationDuration="500"
                                                                                 xct:TouchEffect.PressedOpacity="0.6"
                                                                                 xct:TouchEffect.PressedScale="0.98"
-                                                                                BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                                                                BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                                                                 FontSize="Small"
                                                                                 HorizontalOptions="End"
                                                                                 Text="Clear"
@@ -1223,7 +1219,7 @@
                         <!--#region Send File Area-->
                         <Frame
                             Padding="5"
-                            BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                            BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                             BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                             CornerRadius="15"
                             IsVisible="True">
@@ -1327,12 +1323,12 @@
                                 xct:TouchEffect.PressedAnimationDuration="500"
                                 xct:TouchEffect.PressedOpacity="0.6"
                                 xct:TouchEffect.PressedScale="0.98"
-                                BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                 BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                 BorderWidth="1"
                                 Clicked="clearContent_Clicked"
                                 CornerRadius="15"
-                                FontSize="Small"
+                                FontSize="Caption"
                                 HeightRequest="45"
                                 HorizontalOptions="Center"
                                 Text="Clear"
@@ -1340,20 +1336,22 @@
                                 VerticalOptions="Center" />
 
                             <Button
+                                x:Name="btnPreview"
                                 Margin="0,0,10,0"
                                 xct:TouchEffect.NativeAnimation="true"
                                 xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
                                 xct:TouchEffect.PressedAnimationDuration="500"
                                 xct:TouchEffect.PressedOpacity="0.6"
                                 xct:TouchEffect.PressedScale="0.98"
-                                BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                 BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                 BorderWidth="1"
                                 Clicked="Preview_Clicked"
                                 CornerRadius="15"
-                                FontSize="Small"
+                                FontSize="Caption"
                                 HeightRequest="45"
                                 HorizontalOptions="Center"
+                                IsVisible="false"
                                 Text="Preview"
                                 TextColor="{x:Static helpers:ThemeColors.TextColor}"
                                 VerticalOptions="Center" />
@@ -1364,12 +1362,12 @@
                                 xct:TouchEffect.PressedAnimationDuration="500"
                                 xct:TouchEffect.PressedOpacity="0.6"
                                 xct:TouchEffect.PressedScale="0.98"
-                                BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                                BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                                 BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                                 BorderWidth="1"
                                 Clicked="sendContent_Clicked"
                                 CornerRadius="15"
-                                FontSize="Small"
+                                FontSize="Caption"
                                 HeightRequest="45"
                                 HorizontalOptions="Center"
                                 Text="Send"
@@ -1415,7 +1413,7 @@
                                 Margin="5,0,0,0"
                                 FontSize="Small"
                                 HorizontalOptions="Start"
-                                Text="Thanks for downloading."
+                                Text="Thanks for using our app."
                                 TextColor="{x:Static helpers:ThemeColors.TextColor}"
                                 VerticalOptions="Start" />
                             <Label

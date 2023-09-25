@@ -13,9 +13,10 @@
     <ContentPage.Content>
         <StackLayout>
             <customviews:DiscordMessageContent
-                MessageContent="Lorem ipsum dolor sit amet consectetur adipiscing elit dis eu eleifend venenatis, duis magna aliquam natoque penatibus euismod inceptos aliquet quis sem, rhoncus auctor quisque mauris senectus cras sodales orci interdum viverra. Rutrum donec facilisis turpis quam rhoncus porta ultrices maecenas auctor consequat, hendrerit arcu aptent morbi porttitor in tortor urna sed. Facilisi in phasellus ut semper aliquet penatibus aptent justo sagittis lobortis platea, auctor dui cras ultricies nec cursus viverra class per conubia risus, nisi aenean molestie posuere ligula nostra cum quam vestibulum et. Proin facilisis dictumst habitasse eget sociis laoreet sapien accumsan himenaeos, mi luctus bibendum rhoncus tempor nisl taciti dui enim iaculis, commodo malesuada lacinia mollis dictum elementum per suspendisse."
+                MessageContent="Lorem ipsum dolor sit amet consectetur adipiscing elit dis eu eleifend venenatis."
                 ProfileImage="dcdemoimage.png"
-                ProfileName="Name" />
+                ProfileName="Name"
+                SingleImage="https://media.discordapp.net/attachments/981585744361578596/1124749282323468358/levelup.png" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

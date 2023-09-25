@@ -16,6 +16,8 @@
                         VerticalOptions="Start"
                         WidthRequest="42" />
                     <StackLayout Margin="10,5,0,5">
+
+                        <!--#region Name Section-->
                         <StackLayout Orientation="Horizontal">
                             <Label
                                 FontSize="Small"
@@ -31,24 +33,47 @@
                                 </Label.FormattedText>
                             </Label>
                         </StackLayout>
+                        <!--#endregion-->
+
+                        <!--#region Content Section-->
                         <Label
                             FontSize="Small"
                             HorizontalTextAlignment="Start"
                             Text="{Binding MessageContent}"
                             TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+                        <!--#endregion-->
 
-                        <StackLayout x:Name="ImagesLayout" BindableLayout.ItemsSource="{Binding ImagesList}">
+                        <!--#region Images Section-->
+                        <StackLayout
+                            x:Name="ImagesLayout"
+                            BindableLayout.ItemsSource="{Binding ImagesList}"
+                            IsVisible="false">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
-                                    <Image
+                                    <customItems:CustomImage
                                         Margin="0,5,0,5"
-                                        xct:CornerRadiusEffect.CornerRadius="20"
+                                        xct:CornerRadiusEffect.CornerRadius="10"
                                         Aspect="AspectFill"
-                                        Source="{Binding url}"
-                                        WidthRequest="300" />
+                                        IsAnimationPlaying="True"
+                                        Source="{Binding url}" />
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </StackLayout>
+
+                        <customItems:CustomImage
+                            x:Name="ImageLayout"
+                            Margin="0,5,0,5"
+                            xct:CornerRadiusEffect.CornerRadius="10"
+                            Aspect="AspectFit"
+                            HorizontalOptions="Start"
+                            IsAnimationPlaying="True"
+                            Source="{Binding SingleImage}" />
+                        <!--#endregion-->
+
+                        <!--#region Embed Section-->
+                        <StackLayout x:Name="embedSection" />
+                        <!--#endregion-->
+
                     </StackLayout>
                 </StackLayout>
             </ScrollView>

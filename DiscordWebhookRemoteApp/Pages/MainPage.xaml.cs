@@ -56,6 +56,7 @@ namespace DiscordWebhookRemoteApp.Pages
                 Debug.WriteLine("theme changed: " + e.NewTheme);
             };
 #if DEBUG
+            btnPreview.IsVisible = true;
             //string mytext = "";
             //Clipboard.SetTextAsync(mytext);
             //popupInfoBack.IsVisible = false;
@@ -473,25 +474,6 @@ namespace DiscordWebhookRemoteApp.Pages
         //        _ = DisplayAlert("Ads Error!", ex.Message, "Ok");
         //    }
         //}
-        private void adsBottom_AdsLoaded(object sender, EventArgs e)
-        {
-            adsBottom.IsVisible = true;
-            //_ = adsCheck();
-        }
-        private void adsBottom_AdsFailedToLoad(object sender, MarcTron.Plugin.Extra.MTEventArgs e)
-        {
-            adsBottom.IsVisible = false;
-        }
-        private void adsTop_AdsLoaded(object sender, EventArgs e)
-        {
-            //adsTop.IsVisible = true;
-            //adsTopLoaded = true;
-            //_ = adsCheck();
-        }
-        private void adsTop_AdsFailedToLoad(object sender, MarcTron.Plugin.Extra.MTEventArgs e)
-        {
-            adsTop.IsVisible = false;
-        }
         #endregion
 
         //---------------------------------------------------------------------------------------------------
@@ -522,7 +504,7 @@ namespace DiscordWebhookRemoteApp.Pages
                 //imgWebhookImage.Source = "dcdemoimage.png";
             }
         }
-        private async void Preview_Clicked(object sender, EventArgs e)
+        private void Preview_Clicked(object sender, EventArgs e)
         {
             DiscordMessage message = new DiscordMessage();
 
@@ -602,9 +584,11 @@ namespace DiscordWebhookRemoteApp.Pages
                     else
                     {
                         await hook.Send(message);
+                        var json=JsonConvert.SerializeObject(message);
                     }
 
                     ToastController.ShowShortToast("Submitted Successfully.");
+                    popupInfoBack.IsVisible = true;
                 }
                 catch (Exception ex)
                 {

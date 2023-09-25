@@ -1,5 +1,6 @@
 ﻿using DiscordWebhookRemoteApp.Helpers;
 using DiscordWebhookRemoteApp.Pages;
+using DiscordWebhookRemoteApp.Pages.Popups;
 using System;
 using System.Diagnostics;
 using Xamarin.Essentials;
@@ -34,7 +35,7 @@ namespace DiscordWebhookRemoteApp
             //Preferences.Set("privacy_policy_accepted", false);
             //Preferences.Set("privacy_policy_accepted17May2023", false);
             //Preferences.Set("SupportPopupDate", null);
-            MainPage = new NavigationPage(new TestPage())
+            MainPage = new NavigationPage(new MainPage())
             {
                 BarBackgroundColor = ThemeColors.StatusBarColor,
                 BarTextColor = ThemeColors.TextColor,

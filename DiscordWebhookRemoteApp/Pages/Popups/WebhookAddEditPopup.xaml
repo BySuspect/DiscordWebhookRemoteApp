@@ -14,7 +14,7 @@
 
     <Frame
         Margin="5"
-        BackgroundColor="{x:Static helpers:ThemeColors.BackColor}"
+        BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
         BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
         CornerRadius="15">
         <StackLayout Margin="0,10,0,0">
@@ -57,7 +57,7 @@
                     xct:TouchEffect.PressedAnimationDuration="500"
                     xct:TouchEffect.PressedOpacity="0.6"
                     xct:TouchEffect.PressedScale="0.98"
-                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                     BorderWidth="1"
                     Clicked="DeleteWebhook_Clicked"
@@ -76,7 +76,7 @@
                     xct:TouchEffect.PressedAnimationDuration="500"
                     xct:TouchEffect.PressedOpacity="0.6"
                     xct:TouchEffect.PressedScale="0.98"
-                    BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                     BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                     BorderWidth="1"
                     Clicked="SaveWebhook_Clicked"

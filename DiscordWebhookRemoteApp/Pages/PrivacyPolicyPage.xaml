@@ -13,7 +13,7 @@
         <Frame
             Margin="30"
             Padding="10"
-            BackgroundColor="{x:Static helpers:ThemeColors.BorderBackColor}"
+            BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
             CornerRadius="15"
             VerticalOptions="Center">
             <StackLayout>
