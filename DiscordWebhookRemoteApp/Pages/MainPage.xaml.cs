@@ -17,6 +17,8 @@ using DiscordWebhookRemoteApp.Pages.Popups;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xamarin.DateTimePopups;
+using MarcTron.Plugin;
+using MarcTron.Plugin.Extra;
 
 namespace DiscordWebhookRemoteApp.Pages
 {
@@ -45,6 +47,11 @@ namespace DiscordWebhookRemoteApp.Pages
         public MainPage()
         {
             InitializeComponent();
+
+            CrossMTAdmob.Current.TagForChildDirectedTreatment = MTTagForChildDirectedTreatment.TagForChildDirectedTreatmentUnspecified;
+            CrossMTAdmob.Current.TagForUnderAgeOfConsent = MTTagForUnderAgeOfConsent.TagForUnderAgeOfConsentUnspecified;
+            CrossMTAdmob.Current.MaxAdContentRating = MTMaxAdContentRating.MaxAdContentRatingG;
+
             BindingContext = this;
             var savedDate = Preferences.Get("SupportPopupDate", DateTime.MinValue);
             if (savedDate.Date != DateTime.Now.Date)
@@ -56,7 +63,7 @@ namespace DiscordWebhookRemoteApp.Pages
                 Debug.WriteLine("theme changed: " + e.NewTheme);
             };
 #if DEBUG
-            btnPreview.IsVisible = true;
+            //btnPreview.IsVisible = true;
             //string mytext = "";
             //Clipboard.SetTextAsync(mytext);
             //popupInfoBack.IsVisible = false;
@@ -506,36 +513,38 @@ namespace DiscordWebhookRemoteApp.Pages
         }
         private void Preview_Clicked(object sender, EventArgs e)
         {
-            DiscordMessage message = new DiscordMessage();
+            CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3881259676793306/5327145658");
 
-            if (webhookProfileName)
-                message.Username = webhookName;
+            //DiscordMessage message = new DiscordMessage();
 
-            if (webhookProfileAvatar)
-                message.AvatarUrl = webhookImageUrl;
+            //if (webhookProfileName)
+            //    message.Username = webhookName;
 
-            if (expMessageContent.IsExpanded)
-            {
-                if (!string.IsNullOrEmpty(entryContentMessage.Text))
-                {
-                    message.Content = entryContentMessage.Text;
-                }
-            }
+            //if (webhookProfileAvatar)
+            //    message.AvatarUrl = webhookImageUrl;
 
-            if (expEmbedContent.IsExpanded)
-            {
-                message.Embeds = new List<DiscordEmbed>();
-                var embed = embedBuilder();
-                //if (embed.Description != "{Embed31Build31Hataya31Dustu31}")
-                if (embed.Description != "{Empty31Embed31Builded31}")
-                    message.Embeds.Add(embed);
-            }
+            //if (expMessageContent.IsExpanded)
+            //{
+            //    if (!string.IsNullOrEmpty(entryContentMessage.Text))
+            //    {
+            //        message.Content = entryContentMessage.Text;
+            //    }
+            //}
 
-            if (expFileSend.IsExpanded && SelectedFiles.Count() > 0)
-            {
+            //if (expEmbedContent.IsExpanded)
+            //{
+            //    message.Embeds = new List<DiscordEmbed>();
+            //    var embed = embedBuilder();
+            //    //if (embed.Description != "{Embed31Build31Hataya31Dustu31}")
+            //    if (embed.Description != "{Empty31Embed31Builded31}")
+            //        message.Embeds.Add(embed);
+            //}
 
-            }
-            var messagejson = JsonConvert.SerializeObject(message);
+            //if (expFileSend.IsExpanded && SelectedFiles.Count() > 0)
+            //{
+
+            //}
+            //var messagejson = JsonConvert.SerializeObject(message);
         }
         private async void sendContent_Clicked(object sender, EventArgs e)
         {
@@ -584,11 +593,11 @@ namespace DiscordWebhookRemoteApp.Pages
                     else
                     {
                         await hook.Send(message);
-                        var json=JsonConvert.SerializeObject(message);
+                        var json = JsonConvert.SerializeObject(message);
                     }
 
                     ToastController.ShowShortToast("Submitted Successfully.");
-                    popupInfoBack.IsVisible = true;
+                    if (new Random().Next(1, 100) % 2 == 0) popupInfoBack.IsVisible = true;
                 }
                 catch (Exception ex)
                 {
@@ -806,6 +815,76 @@ namespace DiscordWebhookRemoteApp.Pages
                             InLine = cboxInlineField5.IsChecked,
                             Name = EntryFieldName5.Text,
                             Value = entryFieldValue5.Text,
+                        });
+                    }
+
+                    if (expEmbedField6.IsExpanded)
+                    {
+                        fields.Add(new EmbedField
+                        {
+                            InLine = cboxInlineField6.IsChecked,
+                            Name = EntryFieldName6.Text,
+                            Value = entryFieldValue6.Text,
+                        });
+                    }
+
+                    if (expEmbedField7.IsExpanded)
+                    {
+                        fields.Add(new EmbedField
+                        {
+                            InLine = cboxInlineField7.IsChecked,
+                            Name = EntryFieldName7.Text,
+                            Value = entryFieldValue7.Text,
+                        });
+                    }
+
+                    if (expEmbedField8.IsExpanded)
+                    {
+                        fields.Add(new EmbedField
+                        {
+                            InLine = cboxInlineField8.IsChecked,
+                            Name = EntryFieldName8.Text,
+                            Value = entryFieldValue8.Text,
+                        });
+                    }
+
+                    if (expEmbedField9.IsExpanded)
+                    {
+                        fields.Add(new EmbedField
+                        {
+                            InLine = cboxInlineField9.IsChecked,
+                            Name = EntryFieldName9.Text,
+                            Value = entryFieldValue9.Text,
+                        });
+                    }
+
+                    if (expEmbedField10.IsExpanded)
+                    {
+                        fields.Add(new EmbedField
+                        {
+                            InLine = cboxInlineField10.IsChecked,
+                            Name = EntryFieldName10.Text,
+                            Value = entryFieldValue10.Text,
+                        });
+                    }
+
+                    if (expEmbedField11.IsExpanded)
+                    {
+                        fields.Add(new EmbedField
+                        {
+                            InLine = cboxInlineField11.IsChecked,
+                            Name = EntryFieldName11.Text,
+                            Value = entryFieldValue11.Text,
+                        });
+                    }
+
+                    if (expEmbedField12.IsExpanded)
+                    {
+                        fields.Add(new EmbedField
+                        {
+                            InLine = cboxInlineField12.IsChecked,
+                            Name = EntryFieldName12.Text,
+                            Value = entryFieldValue12.Text,
                         });
                     }
 

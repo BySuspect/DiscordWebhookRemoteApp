@@ -147,7 +147,7 @@ namespace DiscordWebhookRemoteApp.Helpers
         {
             ThemeColors.TextColor = Color.FromHex("#FFFFFF");
             ThemeColors.TransparentTextColor = Color.FromHex("#BAFFFFFF");
-            ThemeColors.BorderColor = Color.FromHex("#BAFFFFFF");
+            ThemeColors.BorderColor = Color.FromHex("#E6B8B8B8");
             ThemeColors.CardBackColor = Color.FromHex("#40000000");
             ThemeColors.BackColor = Color.FromHex("#101010");
             ThemeColors.CardBackColor = Color.FromHex("#000000");

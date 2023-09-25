@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:adscontrol="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
     xmlns:chbx="clr-namespace:IntelliAbb.Xamarin.Controls;assembly=IntelliAbb.Xamarin.Controls"
+    xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
     xmlns:customItems="clr-namespace:DiscordWebhookRemoteApp.CustomItems"
     xmlns:helpers="clr-namespace:DiscordWebhookRemoteApp.Helpers"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
@@ -21,7 +22,7 @@
         <StackLayout Margin="5,5,5,0">
             <Grid HorizontalOptions="{OnIdiom Phone=Fill, Tablet=Center}" VerticalOptions="FillAndExpand">
                 <ScrollView HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
-                    <StackLayout Padding="0,0,0,50">
+                    <StackLayout Padding="0,0,0,50" VerticalOptions="FillAndExpand">
 
                         <!--#region Webhooks Select Area-->
                         <Frame
@@ -146,6 +147,7 @@
                             </StackLayout>
                         </Frame>
                         <!--#endregion-->
+
                         <!--<customItems:CustomAdsView
                             x:Name="adsTop"
                             AdsId="ca-app-pub-3881259676793306/6856903418"
@@ -1020,6 +1022,692 @@
                                                                 </Frame>
                                                                 <!--#endregion-->
 
+                                                                <!--#region Field 6-->
+                                                                <Frame
+                                                                    Padding="5"
+                                                                    BackgroundColor="Transparent"
+                                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                    CornerRadius="15">
+                                                                    <customItems:CustomExpander
+                                                                        x:Name="expEmbedField6"
+                                                                        AnimationLength="450"
+                                                                        CollapseAnimationEasing="SpringOut"
+                                                                        ExpandAnimationEasing="SpringIn"
+                                                                        HeaderText="Field 6"
+                                                                        IsExpanded="False">
+                                                                        <customItems:CustomExpander.Content>
+                                                                            <StackLayout Margin="0,10">
+                                                                                <Frame
+                                                                                    Padding="5"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
+                                                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                                    CornerRadius="15">
+                                                                                    <Grid>
+                                                                                        <StackLayout
+                                                                                            Margin="10,0,10,0"
+                                                                                            HeightRequest="45"
+                                                                                            HorizontalOptions="FillAndExpand"
+                                                                                            VerticalOptions="Center">
+                                                                                            <customItems:CustomEntry
+                                                                                                x:Name="EntryFieldName6"
+                                                                                                FontSize="Small"
+                                                                                                MaxLength="256"
+                                                                                                Placeholder="Name"
+                                                                                                PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                                                                                                TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+                                                                                        </StackLayout>
+                                                                                        <Label
+                                                                                            Padding="0,0,10,0"
+                                                                                            FontSize="Caption"
+                                                                                            HorizontalOptions="EndAndExpand"
+                                                                                            TextColor="{Binding Source={x:Reference EntryFieldName6}, Path=SizeLabelTextColor}"
+                                                                                            VerticalOptions="End">
+                                                                                            <Label.FormattedText>
+                                                                                                <FormattedString>
+                                                                                                    <Span Text="{Binding Source={x:Reference EntryFieldName6}, Path=TextLenght}" />
+                                                                                                    <Span Text="/" />
+                                                                                                    <Span Text="{Binding Source={x:Reference EntryFieldName6}, Path=MaxLength}" />
+                                                                                                </FormattedString>
+                                                                                            </Label.FormattedText>
+                                                                                        </Label>
+                                                                                    </Grid>
+                                                                                </Frame>
+                                                                                <Frame
+                                                                                    Padding="5"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
+                                                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                                    CornerRadius="15">
+                                                                                    <Grid>
+                                                                                        <customItems:CustomEditor
+                                                                                            x:Name="entryFieldValue6"
+                                                                                            Margin="10,5,5,25"
+                                                                                            FontSize="Small"
+                                                                                            HeightRequest="200"
+                                                                                            HorizontalOptions="FillAndExpand"
+                                                                                            MaxLength="1024"
+                                                                                            Placeholder="Value"
+                                                                                            PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                                                                                            TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+                                                                                        <Label
+                                                                                            Margin="5"
+                                                                                            Padding="0,0,10,0"
+                                                                                            FontSize="Caption"
+                                                                                            HorizontalOptions="EndAndExpand"
+                                                                                            TextColor="{Binding Source={x:Reference entryFieldValue6}, Path=SizeLabelTextColor}"
+                                                                                            VerticalOptions="EndAndExpand">
+                                                                                            <Label.FormattedText>
+                                                                                                <FormattedString>
+                                                                                                    <Span Text="{Binding Source={x:Reference entryFieldValue6}, Path=TextLenght}" />
+                                                                                                    <Span Text="/" />
+                                                                                                    <Span Text="{Binding Source={x:Reference entryFieldValue6}, Path=MaxLength}" />
+                                                                                                </FormattedString>
+                                                                                            </Label.FormattedText>
+                                                                                        </Label>
+                                                                                    </Grid>
+                                                                                </Frame>
+                                                                                <customItems:CustomCheckBox
+                                                                                    x:Name="cboxInlineField6"
+                                                                                    Margin="10,0,0,0"
+                                                                                    CheckColor="{x:Static helpers:ThemeColors.BackColor}"
+                                                                                    FillColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                                                    HorizontalOptions="Start"
+                                                                                    OutlineColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                                                    Shape="Circle"
+                                                                                    TitleText="Inline" />
+                                                                            </StackLayout>
+                                                                        </customItems:CustomExpander.Content>
+                                                                    </customItems:CustomExpander>
+                                                                </Frame>
+                                                                <!--#endregion-->
+
+                                                                <!--#region Field 7-->
+                                                                <Frame
+                                                                    Padding="5"
+                                                                    BackgroundColor="Transparent"
+                                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                    CornerRadius="15">
+                                                                    <customItems:CustomExpander
+                                                                        x:Name="expEmbedField7"
+                                                                        AnimationLength="450"
+                                                                        CollapseAnimationEasing="SpringOut"
+                                                                        ExpandAnimationEasing="SpringIn"
+                                                                        HeaderText="Field 7"
+                                                                        IsExpanded="False">
+                                                                        <customItems:CustomExpander.Content>
+                                                                            <StackLayout Margin="0,10">
+                                                                                <Frame
+                                                                                    Padding="5"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
+                                                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                                    CornerRadius="15">
+                                                                                    <Grid>
+                                                                                        <StackLayout
+                                                                                            Margin="10,0,10,0"
+                                                                                            HeightRequest="45"
+                                                                                            HorizontalOptions="FillAndExpand"
+                                                                                            VerticalOptions="Center">
+                                                                                            <customItems:CustomEntry
+                                                                                                x:Name="EntryFieldName7"
+                                                                                                FontSize="Small"
+                                                                                                MaxLength="256"
+                                                                                                Placeholder="Name"
+                                                                                                PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                                                                                                TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+                                                                                        </StackLayout>
+                                                                                        <Label
+                                                                                            Padding="0,0,10,0"
+                                                                                            FontSize="Caption"
+                                                                                            HorizontalOptions="EndAndExpand"
+                                                                                            TextColor="{Binding Source={x:Reference EntryFieldName7}, Path=SizeLabelTextColor}"
+                                                                                            VerticalOptions="End">
+                                                                                            <Label.FormattedText>
+                                                                                                <FormattedString>
+                                                                                                    <Span Text="{Binding Source={x:Reference EntryFieldName7}, Path=TextLenght}" />
+                                                                                                    <Span Text="/" />
+                                                                                                    <Span Text="{Binding Source={x:Reference EntryFieldName7}, Path=MaxLength}" />
+                                                                                                </FormattedString>
+                                                                                            </Label.FormattedText>
+                                                                                        </Label>
+                                                                                    </Grid>
+                                                                                </Frame>
+                                                                                <Frame
+                                                                                    Padding="5"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
+                                                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                                    CornerRadius="15">
+                                                                                    <Grid>
+                                                                                        <customItems:CustomEditor
+                                                                                            x:Name="entryFieldValue7"
+                                                                                            Margin="10,5,5,25"
+                                                                                            FontSize="Small"
+                                                                                            HeightRequest="200"
+                                                                                            HorizontalOptions="FillAndExpand"
+                                                                                            MaxLength="1024"
+                                                                                            Placeholder="Value"
+                                                                                            PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                                                                                            TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+                                                                                        <Label
+                                                                                            Margin="5"
+                                                                                            Padding="0,0,10,0"
+                                                                                            FontSize="Caption"
+                                                                                            HorizontalOptions="EndAndExpand"
+                                                                                            TextColor="{Binding Source={x:Reference entryFieldValue7}, Path=SizeLabelTextColor}"
+                                                                                            VerticalOptions="EndAndExpand">
+                                                                                            <Label.FormattedText>
+                                                                                                <FormattedString>
+                                                                                                    <Span Text="{Binding Source={x:Reference entryFieldValue7}, Path=TextLenght}" />
+                                                                                                    <Span Text="/" />
+                                                                                                    <Span Text="{Binding Source={x:Reference entryFieldValue7}, Path=MaxLength}" />
+                                                                                                </FormattedString>
+                                                                                            </Label.FormattedText>
+                                                                                        </Label>
+                                                                                    </Grid>
+                                                                                </Frame>
+                                                                                <customItems:CustomCheckBox
+                                                                                    x:Name="cboxInlineField7"
+                                                                                    Margin="10,0,0,0"
+                                                                                    CheckColor="{x:Static helpers:ThemeColors.BackColor}"
+                                                                                    FillColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                                                    HorizontalOptions="Start"
+                                                                                    OutlineColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                                                    Shape="Circle"
+                                                                                    TitleText="Inline" />
+                                                                            </StackLayout>
+                                                                        </customItems:CustomExpander.Content>
+                                                                    </customItems:CustomExpander>
+                                                                </Frame>
+                                                                <!--#endregion-->
+
+                                                                <!--#region Field 8-->
+                                                                <Frame
+                                                                    Padding="5"
+                                                                    BackgroundColor="Transparent"
+                                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                    CornerRadius="15">
+                                                                    <customItems:CustomExpander
+                                                                        x:Name="expEmbedField8"
+                                                                        AnimationLength="450"
+                                                                        CollapseAnimationEasing="SpringOut"
+                                                                        ExpandAnimationEasing="SpringIn"
+                                                                        HeaderText="Field 8"
+                                                                        IsExpanded="False">
+                                                                        <customItems:CustomExpander.Content>
+                                                                            <StackLayout Margin="0,10">
+                                                                                <Frame
+                                                                                    Padding="5"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
+                                                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                                    CornerRadius="15">
+                                                                                    <Grid>
+                                                                                        <StackLayout
+                                                                                            Margin="10,0,10,0"
+                                                                                            HeightRequest="45"
+                                                                                            HorizontalOptions="FillAndExpand"
+                                                                                            VerticalOptions="Center">
+                                                                                            <customItems:CustomEntry
+                                                                                                x:Name="EntryFieldName8"
+                                                                                                FontSize="Small"
+                                                                                                MaxLength="256"
+                                                                                                Placeholder="Name"
+                                                                                                PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                                                                                                TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+                                                                                        </StackLayout>
+                                                                                        <Label
+                                                                                            Padding="0,0,10,0"
+                                                                                            FontSize="Caption"
+                                                                                            HorizontalOptions="EndAndExpand"
+                                                                                            TextColor="{Binding Source={x:Reference EntryFieldName8}, Path=SizeLabelTextColor}"
+                                                                                            VerticalOptions="End">
+                                                                                            <Label.FormattedText>
+                                                                                                <FormattedString>
+                                                                                                    <Span Text="{Binding Source={x:Reference EntryFieldName8}, Path=TextLenght}" />
+                                                                                                    <Span Text="/" />
+                                                                                                    <Span Text="{Binding Source={x:Reference EntryFieldName8}, Path=MaxLength}" />
+                                                                                                </FormattedString>
+                                                                                            </Label.FormattedText>
+                                                                                        </Label>
+                                                                                    </Grid>
+                                                                                </Frame>
+                                                                                <Frame
+                                                                                    Padding="5"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
+                                                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                                    CornerRadius="15">
+                                                                                    <Grid>
+                                                                                        <customItems:CustomEditor
+                                                                                            x:Name="entryFieldValue8"
+                                                                                            Margin="10,5,5,25"
+                                                                                            FontSize="Small"
+                                                                                            HeightRequest="200"
+                                                                                            HorizontalOptions="FillAndExpand"
+                                                                                            MaxLength="1024"
+                                                                                            Placeholder="Value"
+                                                                                            PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                                                                                            TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+                                                                                        <Label
+                                                                                            Margin="5"
+                                                                                            Padding="0,0,10,0"
+                                                                                            FontSize="Caption"
+                                                                                            HorizontalOptions="EndAndExpand"
+                                                                                            TextColor="{Binding Source={x:Reference entryFieldValue8}, Path=SizeLabelTextColor}"
+                                                                                            VerticalOptions="EndAndExpand">
+                                                                                            <Label.FormattedText>
+                                                                                                <FormattedString>
+                                                                                                    <Span Text="{Binding Source={x:Reference entryFieldValue8}, Path=TextLenght}" />
+                                                                                                    <Span Text="/" />
+                                                                                                    <Span Text="{Binding Source={x:Reference entryFieldValue8}, Path=MaxLength}" />
+                                                                                                </FormattedString>
+                                                                                            </Label.FormattedText>
+                                                                                        </Label>
+                                                                                    </Grid>
+                                                                                </Frame>
+                                                                                <customItems:CustomCheckBox
+                                                                                    x:Name="cboxInlineField8"
+                                                                                    Margin="10,0,0,0"
+                                                                                    CheckColor="{x:Static helpers:ThemeColors.BackColor}"
+                                                                                    FillColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                                                    HorizontalOptions="Start"
+                                                                                    OutlineColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                                                    Shape="Circle"
+                                                                                    TitleText="Inline" />
+                                                                            </StackLayout>
+                                                                        </customItems:CustomExpander.Content>
+                                                                    </customItems:CustomExpander>
+                                                                </Frame>
+                                                                <!--#endregion-->
+
+                                                                <!--#region Field 9-->
+                                                                <Frame
+                                                                    Padding="5"
+                                                                    BackgroundColor="Transparent"
+                                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                    CornerRadius="15">
+                                                                    <customItems:CustomExpander
+                                                                        x:Name="expEmbedField9"
+                                                                        AnimationLength="450"
+                                                                        CollapseAnimationEasing="SpringOut"
+                                                                        ExpandAnimationEasing="SpringIn"
+                                                                        HeaderText="Field 9"
+                                                                        IsExpanded="False">
+                                                                        <customItems:CustomExpander.Content>
+                                                                            <StackLayout Margin="0,10">
+                                                                                <Frame
+                                                                                    Padding="5"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
+                                                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                                    CornerRadius="15">
+                                                                                    <Grid>
+                                                                                        <StackLayout
+                                                                                            Margin="10,0,10,0"
+                                                                                            HeightRequest="45"
+                                                                                            HorizontalOptions="FillAndExpand"
+                                                                                            VerticalOptions="Center">
+                                                                                            <customItems:CustomEntry
+                                                                                                x:Name="EntryFieldName9"
+                                                                                                FontSize="Small"
+                                                                                                MaxLength="256"
+                                                                                                Placeholder="Name"
+                                                                                                PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                                                                                                TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+                                                                                        </StackLayout>
+                                                                                        <Label
+                                                                                            Padding="0,0,10,0"
+                                                                                            FontSize="Caption"
+                                                                                            HorizontalOptions="EndAndExpand"
+                                                                                            TextColor="{Binding Source={x:Reference EntryFieldName9}, Path=SizeLabelTextColor}"
+                                                                                            VerticalOptions="End">
+                                                                                            <Label.FormattedText>
+                                                                                                <FormattedString>
+                                                                                                    <Span Text="{Binding Source={x:Reference EntryFieldName9}, Path=TextLenght}" />
+                                                                                                    <Span Text="/" />
+                                                                                                    <Span Text="{Binding Source={x:Reference EntryFieldName9}, Path=MaxLength}" />
+                                                                                                </FormattedString>
+                                                                                            </Label.FormattedText>
+                                                                                        </Label>
+                                                                                    </Grid>
+                                                                                </Frame>
+                                                                                <Frame
+                                                                                    Padding="5"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
+                                                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                                    CornerRadius="15">
+                                                                                    <Grid>
+                                                                                        <customItems:CustomEditor
+                                                                                            x:Name="entryFieldValue9"
+                                                                                            Margin="10,5,5,25"
+                                                                                            FontSize="Small"
+                                                                                            HeightRequest="200"
+                                                                                            HorizontalOptions="FillAndExpand"
+                                                                                            MaxLength="1024"
+                                                                                            Placeholder="Value"
+                                                                                            PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                                                                                            TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+                                                                                        <Label
+                                                                                            Margin="5"
+                                                                                            Padding="0,0,10,0"
+                                                                                            FontSize="Caption"
+                                                                                            HorizontalOptions="EndAndExpand"
+                                                                                            TextColor="{Binding Source={x:Reference entryFieldValue9}, Path=SizeLabelTextColor}"
+                                                                                            VerticalOptions="EndAndExpand">
+                                                                                            <Label.FormattedText>
+                                                                                                <FormattedString>
+                                                                                                    <Span Text="{Binding Source={x:Reference entryFieldValue9}, Path=TextLenght}" />
+                                                                                                    <Span Text="/" />
+                                                                                                    <Span Text="{Binding Source={x:Reference entryFieldValue9}, Path=MaxLength}" />
+                                                                                                </FormattedString>
+                                                                                            </Label.FormattedText>
+                                                                                        </Label>
+                                                                                    </Grid>
+                                                                                </Frame>
+                                                                                <customItems:CustomCheckBox
+                                                                                    x:Name="cboxInlineField9"
+                                                                                    Margin="10,0,0,0"
+                                                                                    CheckColor="{x:Static helpers:ThemeColors.BackColor}"
+                                                                                    FillColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                                                    HorizontalOptions="Start"
+                                                                                    OutlineColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                                                    Shape="Circle"
+                                                                                    TitleText="Inline" />
+                                                                            </StackLayout>
+                                                                        </customItems:CustomExpander.Content>
+                                                                    </customItems:CustomExpander>
+                                                                </Frame>
+                                                                <!--#endregion-->
+
+                                                                <!--#region Field 10-->
+                                                                <Frame
+                                                                    Padding="5"
+                                                                    BackgroundColor="Transparent"
+                                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                    CornerRadius="15">
+                                                                    <customItems:CustomExpander
+                                                                        x:Name="expEmbedField10"
+                                                                        AnimationLength="450"
+                                                                        CollapseAnimationEasing="SpringOut"
+                                                                        ExpandAnimationEasing="SpringIn"
+                                                                        HeaderText="Field 10"
+                                                                        IsExpanded="False">
+                                                                        <customItems:CustomExpander.Content>
+                                                                            <StackLayout Margin="0,10">
+                                                                                <Frame
+                                                                                    Padding="5"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
+                                                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                                    CornerRadius="15">
+                                                                                    <Grid>
+                                                                                        <StackLayout
+                                                                                            Margin="10,0,10,0"
+                                                                                            HeightRequest="45"
+                                                                                            HorizontalOptions="FillAndExpand"
+                                                                                            VerticalOptions="Center">
+                                                                                            <customItems:CustomEntry
+                                                                                                x:Name="EntryFieldName10"
+                                                                                                FontSize="Small"
+                                                                                                MaxLength="256"
+                                                                                                Placeholder="Name"
+                                                                                                PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                                                                                                TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+                                                                                        </StackLayout>
+                                                                                        <Label
+                                                                                            Padding="0,0,10,0"
+                                                                                            FontSize="Caption"
+                                                                                            HorizontalOptions="EndAndExpand"
+                                                                                            TextColor="{Binding Source={x:Reference EntryFieldName10}, Path=SizeLabelTextColor}"
+                                                                                            VerticalOptions="End">
+                                                                                            <Label.FormattedText>
+                                                                                                <FormattedString>
+                                                                                                    <Span Text="{Binding Source={x:Reference EntryFieldName10}, Path=TextLenght}" />
+                                                                                                    <Span Text="/" />
+                                                                                                    <Span Text="{Binding Source={x:Reference EntryFieldName10}, Path=MaxLength}" />
+                                                                                                </FormattedString>
+                                                                                            </Label.FormattedText>
+                                                                                        </Label>
+                                                                                    </Grid>
+                                                                                </Frame>
+                                                                                <Frame
+                                                                                    Padding="5"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
+                                                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                                    CornerRadius="15">
+                                                                                    <Grid>
+                                                                                        <customItems:CustomEditor
+                                                                                            x:Name="entryFieldValue10"
+                                                                                            Margin="10,5,5,25"
+                                                                                            FontSize="Small"
+                                                                                            HeightRequest="200"
+                                                                                            HorizontalOptions="FillAndExpand"
+                                                                                            MaxLength="1024"
+                                                                                            Placeholder="Value"
+                                                                                            PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                                                                                            TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+                                                                                        <Label
+                                                                                            Margin="5"
+                                                                                            Padding="0,0,10,0"
+                                                                                            FontSize="Caption"
+                                                                                            HorizontalOptions="EndAndExpand"
+                                                                                            TextColor="{Binding Source={x:Reference entryFieldValue10}, Path=SizeLabelTextColor}"
+                                                                                            VerticalOptions="EndAndExpand">
+                                                                                            <Label.FormattedText>
+                                                                                                <FormattedString>
+                                                                                                    <Span Text="{Binding Source={x:Reference entryFieldValue10}, Path=TextLenght}" />
+                                                                                                    <Span Text="/" />
+                                                                                                    <Span Text="{Binding Source={x:Reference entryFieldValue10}, Path=MaxLength}" />
+                                                                                                </FormattedString>
+                                                                                            </Label.FormattedText>
+                                                                                        </Label>
+                                                                                    </Grid>
+                                                                                </Frame>
+                                                                                <customItems:CustomCheckBox
+                                                                                    x:Name="cboxInlineField10"
+                                                                                    Margin="10,0,0,0"
+                                                                                    CheckColor="{x:Static helpers:ThemeColors.BackColor}"
+                                                                                    FillColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                                                    HorizontalOptions="Start"
+                                                                                    OutlineColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                                                    Shape="Circle"
+                                                                                    TitleText="Inline" />
+                                                                            </StackLayout>
+                                                                        </customItems:CustomExpander.Content>
+                                                                    </customItems:CustomExpander>
+                                                                </Frame>
+                                                                <!--#endregion-->
+
+                                                                <!--#region Field 11-->
+                                                                <Frame
+                                                                    Padding="5"
+                                                                    BackgroundColor="Transparent"
+                                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                    CornerRadius="15">
+                                                                    <customItems:CustomExpander
+                                                                        x:Name="expEmbedField11"
+                                                                        AnimationLength="450"
+                                                                        CollapseAnimationEasing="SpringOut"
+                                                                        ExpandAnimationEasing="SpringIn"
+                                                                        HeaderText="Field 11"
+                                                                        IsExpanded="False">
+                                                                        <customItems:CustomExpander.Content>
+                                                                            <StackLayout Margin="0,10">
+                                                                                <Frame
+                                                                                    Padding="5"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
+                                                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                                    CornerRadius="15">
+                                                                                    <Grid>
+                                                                                        <StackLayout
+                                                                                            Margin="10,0,10,0"
+                                                                                            HeightRequest="45"
+                                                                                            HorizontalOptions="FillAndExpand"
+                                                                                            VerticalOptions="Center">
+                                                                                            <customItems:CustomEntry
+                                                                                                x:Name="EntryFieldName11"
+                                                                                                FontSize="Small"
+                                                                                                MaxLength="256"
+                                                                                                Placeholder="Name"
+                                                                                                PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                                                                                                TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+                                                                                        </StackLayout>
+                                                                                        <Label
+                                                                                            Padding="0,0,10,0"
+                                                                                            FontSize="Caption"
+                                                                                            HorizontalOptions="EndAndExpand"
+                                                                                            TextColor="{Binding Source={x:Reference EntryFieldName11}, Path=SizeLabelTextColor}"
+                                                                                            VerticalOptions="End">
+                                                                                            <Label.FormattedText>
+                                                                                                <FormattedString>
+                                                                                                    <Span Text="{Binding Source={x:Reference EntryFieldName11}, Path=TextLenght}" />
+                                                                                                    <Span Text="/" />
+                                                                                                    <Span Text="{Binding Source={x:Reference EntryFieldName11}, Path=MaxLength}" />
+                                                                                                </FormattedString>
+                                                                                            </Label.FormattedText>
+                                                                                        </Label>
+                                                                                    </Grid>
+                                                                                </Frame>
+                                                                                <Frame
+                                                                                    Padding="5"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
+                                                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                                    CornerRadius="15">
+                                                                                    <Grid>
+                                                                                        <customItems:CustomEditor
+                                                                                            x:Name="entryFieldValue11"
+                                                                                            Margin="10,5,5,25"
+                                                                                            FontSize="Small"
+                                                                                            HeightRequest="200"
+                                                                                            HorizontalOptions="FillAndExpand"
+                                                                                            MaxLength="1024"
+                                                                                            Placeholder="Value"
+                                                                                            PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                                                                                            TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+                                                                                        <Label
+                                                                                            Margin="5"
+                                                                                            Padding="0,0,10,0"
+                                                                                            FontSize="Caption"
+                                                                                            HorizontalOptions="EndAndExpand"
+                                                                                            TextColor="{Binding Source={x:Reference entryFieldValue11}, Path=SizeLabelTextColor}"
+                                                                                            VerticalOptions="EndAndExpand">
+                                                                                            <Label.FormattedText>
+                                                                                                <FormattedString>
+                                                                                                    <Span Text="{Binding Source={x:Reference entryFieldValue11}, Path=TextLenght}" />
+                                                                                                    <Span Text="/" />
+                                                                                                    <Span Text="{Binding Source={x:Reference entryFieldValue11}, Path=MaxLength}" />
+                                                                                                </FormattedString>
+                                                                                            </Label.FormattedText>
+                                                                                        </Label>
+                                                                                    </Grid>
+                                                                                </Frame>
+                                                                                <customItems:CustomCheckBox
+                                                                                    x:Name="cboxInlineField11"
+                                                                                    Margin="10,0,0,0"
+                                                                                    CheckColor="{x:Static helpers:ThemeColors.BackColor}"
+                                                                                    FillColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                                                    HorizontalOptions="Start"
+                                                                                    OutlineColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                                                    Shape="Circle"
+                                                                                    TitleText="Inline" />
+                                                                            </StackLayout>
+                                                                        </customItems:CustomExpander.Content>
+                                                                    </customItems:CustomExpander>
+                                                                </Frame>
+                                                                <!--#endregion-->
+
+                                                                <!--#region Field 12-->
+                                                                <Frame
+                                                                    Padding="5"
+                                                                    BackgroundColor="Transparent"
+                                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                    CornerRadius="15">
+                                                                    <customItems:CustomExpander
+                                                                        x:Name="expEmbedField12"
+                                                                        AnimationLength="450"
+                                                                        CollapseAnimationEasing="SpringOut"
+                                                                        ExpandAnimationEasing="SpringIn"
+                                                                        HeaderText="Field 12"
+                                                                        IsExpanded="False">
+                                                                        <customItems:CustomExpander.Content>
+                                                                            <StackLayout Margin="0,10">
+                                                                                <Frame
+                                                                                    Padding="5"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
+                                                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                                    CornerRadius="15">
+                                                                                    <Grid>
+                                                                                        <StackLayout
+                                                                                            Margin="10,0,10,0"
+                                                                                            HeightRequest="45"
+                                                                                            HorizontalOptions="FillAndExpand"
+                                                                                            VerticalOptions="Center">
+                                                                                            <customItems:CustomEntry
+                                                                                                x:Name="EntryFieldName12"
+                                                                                                FontSize="Small"
+                                                                                                MaxLength="256"
+                                                                                                Placeholder="Name"
+                                                                                                PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                                                                                                TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+                                                                                        </StackLayout>
+                                                                                        <Label
+                                                                                            Padding="0,0,10,0"
+                                                                                            FontSize="Caption"
+                                                                                            HorizontalOptions="EndAndExpand"
+                                                                                            TextColor="{Binding Source={x:Reference EntryFieldName12}, Path=SizeLabelTextColor}"
+                                                                                            VerticalOptions="End">
+                                                                                            <Label.FormattedText>
+                                                                                                <FormattedString>
+                                                                                                    <Span Text="{Binding Source={x:Reference EntryFieldName12}, Path=TextLenght}" />
+                                                                                                    <Span Text="/" />
+                                                                                                    <Span Text="{Binding Source={x:Reference EntryFieldName12}, Path=MaxLength}" />
+                                                                                                </FormattedString>
+                                                                                            </Label.FormattedText>
+                                                                                        </Label>
+                                                                                    </Grid>
+                                                                                </Frame>
+                                                                                <Frame
+                                                                                    Padding="5"
+                                                                                    BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
+                                                                                    BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                                                                    CornerRadius="15">
+                                                                                    <Grid>
+                                                                                        <customItems:CustomEditor
+                                                                                            x:Name="entryFieldValue12"
+                                                                                            Margin="10,5,5,25"
+                                                                                            FontSize="Small"
+                                                                                            HeightRequest="200"
+                                                                                            HorizontalOptions="FillAndExpand"
+                                                                                            MaxLength="1024"
+                                                                                            Placeholder="Value"
+                                                                                            PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                                                                                            TextColor="{x:Static helpers:ThemeColors.TextColor}" />
+                                                                                        <Label
+                                                                                            Margin="5"
+                                                                                            Padding="0,0,10,0"
+                                                                                            FontSize="Caption"
+                                                                                            HorizontalOptions="EndAndExpand"
+                                                                                            TextColor="{Binding Source={x:Reference entryFieldValue12}, Path=SizeLabelTextColor}"
+                                                                                            VerticalOptions="EndAndExpand">
+                                                                                            <Label.FormattedText>
+                                                                                                <FormattedString>
+                                                                                                    <Span Text="{Binding Source={x:Reference entryFieldValue12}, Path=TextLenght}" />
+                                                                                                    <Span Text="/" />
+                                                                                                    <Span Text="{Binding Source={x:Reference entryFieldValue12}, Path=MaxLength}" />
+                                                                                                </FormattedString>
+                                                                                            </Label.FormattedText>
+                                                                                        </Label>
+                                                                                    </Grid>
+                                                                                </Frame>
+                                                                                <customItems:CustomCheckBox
+                                                                                    x:Name="cboxInlineField12"
+                                                                                    Margin="10,0,0,0"
+                                                                                    CheckColor="{x:Static helpers:ThemeColors.BackColor}"
+                                                                                    FillColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                                                    HorizontalOptions="Start"
+                                                                                    OutlineColor="{x:Static helpers:ThemeColors.TextColor}"
+                                                                                    Shape="Circle"
+                                                                                    TitleText="Inline" />
+                                                                            </StackLayout>
+                                                                        </customItems:CustomExpander.Content>
+                                                                    </customItems:CustomExpander>
+                                                                </Frame>
+                                                                <!--#endregion-->
+
                                                             </StackLayout>
                                                         </customItems:CustomExpander.Content>
                                                     </customItems:CustomExpander>
@@ -1386,12 +2074,12 @@
                             VerticalOptions="EndAndExpand" />-->
                             <Label
                                 Margin="0,0,0,2"
-                                FontSize="Small"
+                                FontSize="Caption"
                                 HorizontalOptions="Center"
                                 HorizontalTextAlignment="Center"
                                 Text="Designed By Zen💜"
                                 TextColor="{x:Static helpers:ThemeColors.TextColor}"
-                                VerticalOptions="End" />
+                                VerticalOptions="EndAndExpand" />
                         </StackLayout>
                     </StackLayout>
                 </ScrollView>
@@ -1496,10 +2184,9 @@
                     Color="{x:Static helpers:ThemeColors.BorderColor}" />
                 <customItems:CustomAdsView
                     x:Name="adsBottom"
+                    AdSize="Banner"
                     AdsId="ca-app-pub-3881259676793306/6797209579"
                     AutomationId="adsBottom"
-                    HeightRequest="{OnIdiom Phone=50,
-                                            Tablet=90}"
                     VerticalOptions="End" />
             </StackLayout>
         </StackLayout>
