@@ -87,7 +87,7 @@
       <Version>13.0.3</Version>
     </PackageReference>
     <PackageReference Include="SkiaSharp">
-      <Version>2.88.5</Version>
+      <Version>2.88.6</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.CommunityToolkit">
       <Version>2.0.6</Version>
@@ -224,7 +224,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadWrongLinkerErrorInfoBarDiscordWebhookRemoteAppAndroidHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionDiscordWebhookRemoteAppAndroidHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionDiscordWebhookRemoteAppAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadUnhandledDeviceExceptionDiscordWebhookRemoteAppAndroidHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionDiscordWebhookRemoteAppAndroidHideInfoBar="True" XamarinHotReloadWrongLinkerErrorInfoBarDiscordWebhookRemoteAppAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
