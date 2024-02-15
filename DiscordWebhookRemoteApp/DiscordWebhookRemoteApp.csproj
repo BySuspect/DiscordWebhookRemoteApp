@@ -11,21 +11,24 @@
 
   <ItemGroup>
     <PackageReference Include="ColorPicker.Xamarin.Forms" Version="1.3.4.21" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.52" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.59" />
     <PackageReference Include="IntelliAbb.Xamarin.Controls" Version="1.0.148" />
-    <PackageReference Include="MarcTron.Admob" Version="1.9.0.6" />
+    <PackageReference Include="MarcTron.Admob" Version="2.2.0" />
     <PackageReference Include="MathNet.Numerics" Version="5.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="SkiaSharp" Version="2.88.6" />
+    <PackageReference Include="SkiaSharp" Version="2.88.7" />
     <PackageReference Include="Xamarin.Build.Download" Version="0.11.4" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.6" />
     <PackageReference Include="Xamarin.DateTimePopups" Version="1.0.0.3" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2612" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.8.0" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2622" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.8.1" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="CustomViews\DiscordMessageContent.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CustomViews\MessageSaveLoadView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="CustomViews\SupportPopupView.xaml">
@@ -56,6 +59,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\TestPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\TextEditorPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

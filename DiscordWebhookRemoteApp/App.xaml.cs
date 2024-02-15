@@ -34,7 +34,12 @@ namespace DiscordWebhookRemoteApp
 #if DEBUG
             //Preferences.Set("privacy_policy_accepted", false);
             //Preferences.Set("privacy_policy_accepted17May2023", false);
-            //Preferences.Set("SupportPopupDate", null);
+            ////Preferences.Set("SupportPopupDate", null);
+            //MainPage = new NavigationPage(new MainPage())
+            //{
+            //    BarBackgroundColor = ThemeColors.StatusBarColor,
+            //    BarTextColor = ThemeColors.TextColor,
+            //};
             MainPage = new NavigationPage(new MainPage())
             {
                 BarBackgroundColor = ThemeColors.StatusBarColor,

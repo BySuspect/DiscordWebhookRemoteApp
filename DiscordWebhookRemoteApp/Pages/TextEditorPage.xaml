@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DiscordWebhookRemoteApp.Pages.TextEditorPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customItems="clr-namespace:DiscordWebhookRemoteApp.CustomItems"
+    xmlns:customViews="clr-namespace:DiscordWebhookRemoteApp.CustomViews"
+    xmlns:helpers="clr-namespace:DiscordWebhookRemoteApp.Helpers"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    NavigationPage.HasBackButton="True">
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="OnBackButtonClicked" IconImageSource="arrow32px" />
+    </ContentPage.ToolbarItems>-->
+    <ContentPage.Content>
+        <Grid>
+            <ScrollView>
+                <StackLayout VerticalOptions="Fill">
+                    <customItems:CustomEditor
+                        x:Name="Content"
+                        Margin="10,20"
+                        AutoSize="TextChanges"
+                        Focused="Content_Focused"
+                        FontSize="Small"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="TEXT AREA"
+                        PlaceholderColor="{x:Static helpers:ThemeColors.TransparentTextColor}"
+                        SizeChanged="Content_SizeChanged"
+                        TextChanged="Content_TextChanged"
+                        TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                        Unfocused="Content_Unfocused"
+                        VerticalOptions="FillAndExpand" />
+                </StackLayout>
+            </ScrollView>
+            <Frame
+                x:Name="settingsBtn"
+                Margin="0,0,15,15"
+                Padding="15"
+                xct:TouchEffect.NativeAnimation="true"
+                xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                xct:TouchEffect.PressedAnimationDuration="500"
+                xct:TouchEffect.PressedOpacity="0.6"
+                xct:TouchEffect.PressedScale="0.98"
+                BackgroundColor="#4D414141"
+                CornerRadius="255"
+                HeightRequest="32"
+                HorizontalOptions="End"
+                VerticalOptions="EndAndExpand"
+                WidthRequest="32">
+                <Image xct:IconTintColorEffect.TintColor="{x:Static helpers:ThemeColors.TextColor}" Source="settings32px" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnSettingsButtonClicked" />
+                </Frame.GestureRecognizers>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

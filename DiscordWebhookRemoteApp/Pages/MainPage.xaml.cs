@@ -19,6 +19,7 @@ using Newtonsoft.Json.Linq;
 using Xamarin.DateTimePopups;
 using MarcTron.Plugin;
 using MarcTron.Plugin.Extra;
+using System.Timers;
 
 namespace DiscordWebhookRemoteApp.Pages
 {
@@ -74,6 +75,39 @@ namespace DiscordWebhookRemoteApp.Pages
             base.OnAppearing();
             await References.CheckAppVersion();
         }
+
+        #region Back Exit
+        Timer timer = new Timer { Interval = 2000 };
+        int _backButtonCounter = 0;
+        void setupTimer()
+        {
+            if (!timer.Enabled)
+            {
+                timer.Elapsed += (s, e) =>
+                {
+                    _backButtonCounter = 0;
+                    timer.Stop();
+                };
+                timer.Start();
+            }
+        }
+        protected override bool OnBackButtonPressed()
+        {
+            if (MessageSaveLoadCV.IsVisible)
+            {
+                MessageSaveLoadCV.IsVisible = false;
+                return true;
+            }
+            if (_backButtonCounter >= 2) return false;
+            if (_backButtonCounter == 0)
+            {
+                ToastController.ShowShortToast("Press 3 times to exit.");
+                setupTimer();
+            }
+            _backButtonCounter++;
+            return true;
+        }
+        #endregion
 
         //---------------------------------------------------------------------------------------------------
 
@@ -511,6 +545,7 @@ namespace DiscordWebhookRemoteApp.Pages
                 //imgWebhookImage.Source = "dcdemoimage.png";
             }
         }
+
         private void Preview_Clicked(object sender, EventArgs e)
         {
             CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3881259676793306/5327145658");
@@ -546,48 +581,33 @@ namespace DiscordWebhookRemoteApp.Pages
             //}
             //var messagejson = JsonConvert.SerializeObject(message);
         }
+
+        private void btnSaveLoadMessage_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var message = GetMessage();
+                var jsonMessage = JsonConvert.SerializeObject(message.Result, Formatting.Indented);
+
+                //await Navigation.PushAsync(new TextEditorPage(jsonMessage), false);
+                MessageSaveLoadCV.IsVisible = true;
+            }
+            catch
+            { }
+            Loodinglayout.IsVisible = false;
+        }
+
+        private void MessageSaveLoadViewClose(object sender, EventArgs e)
+        {
+            MessageSaveLoadCV.IsVisible = false;
+        }
         private async void sendContent_Clicked(object sender, EventArgs e)
         {
             if (webhookSelected)
             {
-                Loodinglayout.IsVisible = true;
-                DiscordMessage message = new DiscordMessage();
-
-                if (webhookProfileName)
-                    message.Username = webhookName;
-
-                if (webhookProfileAvatar)
-                    message.AvatarUrl = webhookImageUrl;
-
-                if (expMessageContent.IsExpanded)
-                {
-                    if (!string.IsNullOrEmpty(entryContentMessage.Text))
-                    {
-                        message.Content = entryContentMessage.Text;
-                    }
-                }
-
-                if (expEmbedContent.IsExpanded)
-                {
-                    message.Embeds = new List<DiscordEmbed>();
-                    var embed = embedBuilder();
-                    //if (embed.Description != "{Embed31Build31Hataya31Dustu31}")
-                    if (embed.Description != "{Empty31Embed31Builded31}")
-                        message.Embeds.Add(embed);
-                    else
-                    {
-                        //await DisplayAlert("Warning!", "Empty Embed!", "OK");
-                        bool answer = await DisplayAlert("Warning!", "Embed is empty, are you sure about to continue send?", "Yes", "No");
-                        if (!answer)
-                        {
-                            Loodinglayout.IsVisible = false;
-                            return;
-                        }
-                    }
-                }
-
                 try
                 {
+                    var message = await GetMessage();
                     if (expFileSend.IsExpanded && SelectedFiles.Count() > 0)
                         await hook.Send(message, SelectedFiles.ToArray());
                     else
@@ -597,7 +617,7 @@ namespace DiscordWebhookRemoteApp.Pages
                     }
 
                     ToastController.ShowShortToast("Submitted Successfully.");
-                    if (new Random().Next(1, 100) % 2 == 0) popupInfoBack.IsVisible = true;
+                    if (new Random().Next(1, 100) % 10 == 0) popupInfoBack.IsVisible = true;
                 }
                 catch (Exception ex)
                 {
@@ -614,7 +634,36 @@ namespace DiscordWebhookRemoteApp.Pages
                 ToastController.ShowShortToast("First select Webhook!");
         }
 
+        private async Task<DiscordMessage> GetMessage()
+        {
+            Loodinglayout.IsVisible = true;
+            DiscordMessage message = new DiscordMessage();
 
+            if (webhookProfileName)
+                message.Username = webhookName;
+
+            if (webhookProfileAvatar)
+                message.AvatarUrl = webhookImageUrl;
+
+            if (expMessageContent.IsExpanded)
+            {
+                if (!string.IsNullOrEmpty(entryContentMessage.Text))
+                {
+                    message.Content = entryContentMessage.Text;
+                }
+            }
+
+            if (expEmbedContent.IsExpanded)
+            {
+                message.Embeds = new List<DiscordEmbed>();
+                var embed = embedBuilder();
+                //if (embed.Description != "{Embed31Build31Hataya31Dustu31}")
+                if (embed.Description != "{Empty31Embed31Builded31}")
+                    message.Embeds.Add(embed);
+            }
+
+            return message;
+        }
 
         #region testArea
         private void Button_Clicked(object sender, EventArgs e)
@@ -705,6 +754,7 @@ namespace DiscordWebhookRemoteApp.Pages
 
         }
         #endregion
+
 
         private DiscordEmbed embedBuilder()
         {

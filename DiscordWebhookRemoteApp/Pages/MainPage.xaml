@@ -7,6 +7,7 @@
     xmlns:chbx="clr-namespace:IntelliAbb.Xamarin.Controls;assembly=IntelliAbb.Xamarin.Controls"
     xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
     xmlns:customItems="clr-namespace:DiscordWebhookRemoteApp.CustomItems"
+    xmlns:customViews="clr-namespace:DiscordWebhookRemoteApp.CustomViews"
     xmlns:helpers="clr-namespace:DiscordWebhookRemoteApp.Helpers"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     xct:StatusBarEffect.Color="{x:Static helpers:ThemeColors.StatusBarColor}"
@@ -2004,6 +2005,8 @@
                             HorizontalOptions="Center"
                             IsVisible="True"
                             Orientation="Horizontal">
+
+                            <!--  Clear  -->
                             <Button
                                 Margin="0,0,10,0"
                                 xct:TouchEffect.NativeAnimation="true"
@@ -2023,6 +2026,7 @@
                                 TextColor="{x:Static helpers:ThemeColors.TextColor}"
                                 VerticalOptions="Center" />
 
+                            <!--  Preview  -->
                             <Button
                                 x:Name="btnPreview"
                                 Margin="0,0,10,0"
@@ -2043,6 +2047,30 @@
                                 Text="Preview"
                                 TextColor="{x:Static helpers:ThemeColors.TextColor}"
                                 VerticalOptions="Center" />
+
+                            <!--  SaveLoad  -->
+                            <Button
+                                x:Name="btnSaveLoadMessage"
+                                Margin="0,0,10,0"
+                                xct:TouchEffect.NativeAnimation="true"
+                                xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                                xct:TouchEffect.PressedAnimationDuration="500"
+                                xct:TouchEffect.PressedOpacity="0.6"
+                                xct:TouchEffect.PressedScale="0.98"
+                                BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
+                                BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                BorderWidth="1"
+                                Clicked="btnSaveLoadMessage_Clicked"
+                                CornerRadius="15"
+                                FontSize="Caption"
+                                HeightRequest="45"
+                                HorizontalOptions="Center"
+                                IsVisible="True"
+                                Text="Save &amp; Load"
+                                TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                                VerticalOptions="Center" />
+
+                            <!--  Send  -->
                             <Button
                                 Margin="0,0,10,0"
                                 xct:TouchEffect.NativeAnimation="true"
@@ -2172,6 +2200,23 @@
                             Text="Yükleniyor..."
                             TextColor="White" />-->
                         </StackLayout>
+                    </Frame>
+                </Grid>
+                <Grid IsVisible="{Binding Source={x:Reference MessageSaveLoadCV}, Path=IsVisible}" VerticalOptions="FillAndExpand">
+                    <Grid
+                        BackgroundColor="#BA121212"
+                        IsVisible="{Binding Source={x:Reference MessageSaveLoadCV}, Path=IsVisible}"
+                        VerticalOptions="FillAndExpand">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="MessageSaveLoadViewClose" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    <Frame
+                        Margin="30,10"
+                        BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
+                        BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                        CornerRadius="15">
+                        <customViews:MessageSaveLoadView x:Name="MessageSaveLoadCV" IsVisible="true" />
                     </Frame>
                 </Grid>
             </Grid>
