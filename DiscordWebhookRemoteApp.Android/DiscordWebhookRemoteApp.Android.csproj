@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CADD13CA-FAE5-494A-B7F3-0D9FBBF6B7D1}</ProjectGuid>
+    <ProjectGuid>{FC8406E3-092B-4ACC-830C-57C6572E06DE}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{c9e5eea5-ca05-42a1-839b-61506e0a37df}</TemplateGuid>
     <OutputType>Library</OutputType>
@@ -33,36 +33,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
     <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <BundleAssemblies>false</BundleAssemblies>
     <MandroidI18n />
-    <AndroidSupportedAbis />
-    <AndroidLinkSkip>
-    </AndroidLinkSkip>
-    <AndroidKeyStore>false</AndroidKeyStore>
+    <AndroidStoreUncompressedFileExtensions>
+    </AndroidStoreUncompressedFileExtensions>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
+    <DebugType>portable</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <AotAssemblies>false</AotAssemblies>
-    <EnableLLVM>false</EnableLLVM>
-    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
-    <BundleAssemblies>false</BundleAssemblies>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
-    <AndroidPackageFormat>aab</AndroidPackageFormat>
-    <AndroidUseAapt2>true</AndroidUseAapt2>
-    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
-    <AndroidSupportedAbis>armeabi-v7a;x86;x86_64;arm64-v8a</AndroidSupportedAbis>
-    <AndroidLinkTool>r8</AndroidLinkTool>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -77,14 +65,8 @@
     <PackageReference Include="ColorPicker.Xamarin.Forms">
       <Version>1.3.4.21</Version>
     </PackageReference>
-    <PackageReference Include="IntelliAbb.Xamarin.Controls">
-      <Version>1.0.148</Version>
-    </PackageReference>
     <PackageReference Include="MarcTron.Admob">
       <Version>2.2.3</Version>
-    </PackageReference>
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.3</Version>
     </PackageReference>
     <PackageReference Include="SkiaSharp">
       <Version>2.88.7</Version>
@@ -97,22 +79,11 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2622" />
     <PackageReference Include="Xamarin.Essentials" Version="1.8.1" />
-    <PackageReference Include="Xamarin.Forms.AppLinks">
-      <Version>5.0.0.2622</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.GooglePlayServices.Basement">
-      <Version>118.2.0.5</Version>
-    </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\Toast_Android.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="MainApplication.cs" />
-    <Compile Include="Renderers\BorderlessEditorRenderer.cs" />
-    <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SplashActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -123,123 +94,31 @@
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\mipmap-anydpi-v26\icon.xml" />
+    <AndroidResource Include="Resources\mipmap-anydpi-v26\icon_round.xml" />
     <AndroidResource Include="Resources\mipmap-hdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\icon_adaptive_back.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\icon_adaptive_fore.png" />
     <AndroidResource Include="Resources\mipmap-mdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\icon_adaptive_back.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\icon_adaptive_fore.png" />
     <AndroidResource Include="Resources\mipmap-xhdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\icon_adaptive_back.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\icon_adaptive_fore.png" />
     <AndroidResource Include="Resources\mipmap-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\icon_adaptive_back.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\icon_adaptive_fore.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\downarrow32px.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\icon_adaptive_back.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\icon_adaptive_fore.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DiscordWebhookRemoteApp\DiscordWebhookRemoteApp.csproj">
-      <Project>{EA3988D6-882F-4BA6-A6C7-9099057AEF03}</Project>
+      <Project>{CBD61BF5-EEDC-470E-A629-C8343EF71B05}</Project>
       <Name>DiscordWebhookRemoteApp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\plus64px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\wallpaperfordeniz.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-hdpi\icon_adaptive_back.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-hdpi\icon_adaptive_fore.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-mdpi\icon_adaptive_back.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-mdpi\icon_adaptive_fore.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xhdpi\icon_adaptive_back.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xhdpi\icon_adaptive_fore.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\icon_adaptive_back.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\icon_adaptive_fore.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\icon_adaptive_back.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\icon_adaptive_fore.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\Layout\" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\splash_background.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\splash_screen.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\splash_logo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\demoimage.png" />
   </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\delete32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\dcdemoimage.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\logo128px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\select32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\logo512px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\logo256px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\feedback32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-anydpi-v26\icon_round.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\bot.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\herta.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\settings32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\trash32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\save32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\arrow32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\edit32px.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
-  <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties XamarinHotReloadUnhandledDeviceExceptionDiscordWebhookRemoteAppAndroidHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionDiscordWebhookRemoteAppAndroidHideInfoBar="True" XamarinHotReloadWrongLinkerErrorInfoBarDiscordWebhookRemoteAppAndroidHideInfoBar="True" />
-    </VisualStudio>
-  </ProjectExtensions>
 </Project>
