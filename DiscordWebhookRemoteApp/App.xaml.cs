@@ -40,22 +40,10 @@ namespace DiscordWebhookRemoteApp
             //    BarBackgroundColor = ThemeColors.StatusBarColor,
             //    BarTextColor = ThemeColors.TextColor,
             //};
-            MainPage = new NavigationPage(new MainPage())
-            {
-                BarBackgroundColor = ThemeColors.StatusBarColor,
-                BarTextColor = ThemeColors.TextColor,
-            };
+            MainPage = new UpdateNoticePage();
 #endif
 #if !DEBUG
-
-            if (Preferences.Get("privacy_policy_accepted17May2023", false))
-                MainPage = new NavigationPage(new MainPage())
-                {
-                    BarBackgroundColor = ThemeColors.StatusBarColor,
-                    BarTextColor = ThemeColors.TextColor,
-                };
-            else
-                MainPage = new PrivacyPolicyPage();
+            MainPage = new UpdateNoticePage();
 #endif
 
             //MainPage = new TestPage();

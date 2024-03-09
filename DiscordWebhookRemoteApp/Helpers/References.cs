@@ -14,7 +14,7 @@ namespace DiscordWebhookRemoteApp.Helpers
     public static class References
     {
         public static bool supportPopup = true;
-        public static string Version = "1.0.4";
+        public static string Version = "1.0.5";
 
         static List<webhookItems> _webhookList;
         public static List<webhookItems> WebhookList
@@ -94,7 +94,7 @@ namespace DiscordWebhookRemoteApp.Helpers
             {
                 // Popup göster
 #if !DEBUG
-                await App.Current.MainPage.DisplayAlert("Update Available", "A new version is available. Please update the app.", "Ok");
+                //await App.Current.MainPage.DisplayAlert("Update Available", "A new version is available. Please update the app.", "Ok");
 #endif
             }
         }

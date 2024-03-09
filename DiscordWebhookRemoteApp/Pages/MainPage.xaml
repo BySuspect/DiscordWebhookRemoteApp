@@ -2065,7 +2065,7 @@
                                 FontSize="Caption"
                                 HeightRequest="45"
                                 HorizontalOptions="Center"
-                                IsVisible="True"
+                                IsVisible="false"
                                 Text="Save &amp; Load"
                                 TextColor="{x:Static helpers:ThemeColors.TextColor}"
                                 VerticalOptions="Center" />
@@ -2216,7 +2216,7 @@
                         BackgroundColor="{x:Static helpers:ThemeColors.CardBackColor}"
                         BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
                         CornerRadius="15">
-                        <customViews:MessageSaveLoadView x:Name="MessageSaveLoadCV" IsVisible="true" />
+                        <customViews:MessageSaveLoadView x:Name="MessageSaveLoadCV" IsVisible="false" />
                     </Frame>
                 </Grid>
             </Grid>
