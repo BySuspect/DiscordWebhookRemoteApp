@@ -6,6 +6,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Gms.Ads;
 using Xamarin.Forms.Platform.Android.AppLinks;
+using MarcTron.Plugin;
 
 namespace DiscordWebhookRemoteApp.Droid
 {
@@ -21,7 +22,7 @@ namespace DiscordWebhookRemoteApp.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             Xamarin.DateTimePopups.Platform.Init(this, savedInstanceState);
-            MobileAds.Initialize(ApplicationContext);
+            CrossMTAdmob.Current.Init(this, "ca-app-pub-3881259676793306~6010725604");
             AndroidAppLinks.Init(this);
 
             LoadApplication(new App());
