@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DiscordWebhookRemoteApp.Components.Pages.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
+    xmlns:views="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xct:StatusBarEffect.Color="Black"
+    xct:StatusBarEffect.Style="LightContent"
+    BackgroundColor="black">
+    <StackLayout>
+        <Grid VerticalOptions="FillAndExpand">
+            <StackLayout Margin="0,30,0,0">
+                <Frame
+                    Margin="10"
+                    Padding="10"
+                    BackgroundColor="Transparent"
+                    BorderColor="White"
+                    CornerRadius="15"
+                    HorizontalOptions="FillAndExpand">
+                    <CustomItems:BorderlessEntry x:Name="entryWebhookUri" Placeholder="WEBHOOK URl" />
+                </Frame>
+                <Frame
+                    Margin="10"
+                    Padding="10"
+                    BackgroundColor="Transparent"
+                    BorderColor="White"
+                    CornerRadius="15"
+                    HorizontalOptions="FillAndExpand">
+                    <views:WebhookProfileView x:Name="WebhookProfileView" />
+                </Frame>
+
+                <Frame
+                    Margin="10"
+                    Padding="10"
+                    BackgroundColor="Transparent"
+                    BorderColor="White"
+                    CornerRadius="15"
+                    HorizontalOptions="FillAndExpand">
+                    <views:WebhookMessageContentView x:Name="WebhookMessageContentView" />
+                </Frame>
+                <Button
+                    Clicked="SendButton_Clicked"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Send" />
+            </StackLayout>
+        </Grid>
+        <!--<CustomItems:CustomAdsView AdsId="ca-app-pub-3940256099942544/6300978111" VerticalOptions="EndAndExpand" />-->
+    </StackLayout>
+</ContentPage>

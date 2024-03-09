@@ -1,6 +1,5 @@
-﻿using System;
+﻿using DiscordWebhookRemoteApp.Components.Pages;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace DiscordWebhookRemoteApp
 {
@@ -11,18 +10,14 @@ namespace DiscordWebhookRemoteApp
             InitializeComponent();
 
             MainPage = new MainPage();
+
+            //Preferences.Set("TestWebhookUrl", "url");
         }
 
-        protected override void OnStart()
-        {
-        }
+        protected override void OnStart() { }
 
-        protected override void OnSleep()
-        {
-        }
+        protected override void OnSleep() { }
 
-        protected override void OnResume()
-        {
-        }
+        protected override void OnResume() { }
     }
 }
