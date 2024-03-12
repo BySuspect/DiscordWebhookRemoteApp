@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews.CustomEntryView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems">
+    <ContentView.Content>
+        <Grid>
+            <Frame
+                Padding="10,5"
+                BackgroundColor="Transparent"
+                BorderColor="White"
+                CornerRadius="15"
+                HorizontalOptions="FillAndExpand">
+                <Grid>
+                    <CustomItems:BorderlessEntry
+                        x:Name="Input"
+                        FontSize="Body"
+                        HorizontalOptions="Fill"
+                        MaxLength="{Binding MaxLength}"
+                        Text="{Binding Text}"
+                        TextChanged="Input_TextChanged"
+                        VerticalOptions="Fill" />
+                    <Label
+                        x:Name="lblInputLenght"
+                        Margin="0,0,5,5"
+                        FontSize="Caption"
+                        HorizontalOptions="End"
+                        Text="0/0"
+                        TextColor="White"
+                        VerticalOptions="End">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span x:Name="spCharacterCount" Text="0" />
+                                <Span Text="/" TextColor="White" />
+                                <Span Text="{Binding Source={x:Reference Input}, Path=MaxLength}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+            </Frame>
+            <Frame
+                x:Name="titleView"
+                Padding="10,2"
+                BackgroundColor="Transparent"
+                BorderColor="Transparent"
+                CornerRadius="15"
+                HorizontalOptions="Start"
+                IsVisible="true"
+                TranslationX="10"
+                TranslationY="13"
+                VerticalOptions="Start">
+                <Label
+                    x:Name="lblTitle"
+                    FontSize="Header"
+                    HorizontalOptions="Center"
+                    Text="{Binding Placeholder}"
+                    TextColor="LightGray"
+                    VerticalOptions="Center" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="titleTapped" />
+                </Frame.GestureRecognizers>
+            </Frame>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

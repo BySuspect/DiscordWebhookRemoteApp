@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace DiscordWebhookRemoteApp.Components.Partials.Views
+namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class WebhookMessageContentView : ContentView
+    public partial class MessageContentView : ContentView
     {
         public static readonly BindableProperty MessageContentProperty = BindableProperty.Create(
             nameof(MessageContent),
             typeof(string),
-            typeof(WebhookProfileView)
+            typeof(MessageContentView)
         );
         public string MessageContent
         {
@@ -22,10 +22,20 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views
             set { SetValue(MessageContentProperty, value); }
         }
 
-        public WebhookMessageContentView()
+        public MessageContentView()
         {
             InitializeComponent();
             BindingContext = this;
+        }
+
+        private void Input_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (e.NewTextValue.Length >= Input.MaxLength)
+                lblInputLenght.TextColor = Color.Red;
+            else
+                lblInputLenght.TextColor = Color.White;
+
+            spCharacterCount.Text = e.NewTextValue.Length.ToString();
         }
     }
 }

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.AuthorView.AuthorView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:CustomViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
+    xmlns:local="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.AuthorView">
+    <ContentView.Content>
+        <Frame
+            Margin="0,5"
+            Padding="20,10,10,10"
+            BackgroundColor="Transparent"
+            BorderColor="White"
+            CornerRadius="0"
+            HorizontalOptions="FillAndExpand">
+            <StackLayout>
+                <Label
+                    Margin="5,0,0,10"
+                    FontSize="Header"
+                    Text="Author: "
+                    TextColor="White" />
+                <CustomViews:CustomEntryView
+                    Margin="0,5"
+                    MaxLength="2048"
+                    Placeholder="Author Icon Url"
+                    Text="{Binding AuthorIconUrl}" />
+                <CustomViews:CustomEntryView
+                    Margin="0,5"
+                    MaxLength="256"
+                    Placeholder="Author Name"
+                    Text="{Binding AuthorName}" />
+                <CustomViews:CustomEntryView
+                    Margin="0,5"
+                    MaxLength="2048"
+                    Placeholder="Author Url" />
+            </StackLayout>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

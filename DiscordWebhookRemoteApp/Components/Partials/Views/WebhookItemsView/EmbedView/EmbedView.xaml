@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.EmbedView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:AuthorView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.AuthorView"
+    xmlns:BodyView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.BodyView"
+    xmlns:FieldsView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FieldsView"
+    xmlns:FooterView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FooterView"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+    <ContentView.Content>
+        <StackLayout>
+            <Frame
+                Margin="10"
+                Padding="0,10"
+                BackgroundColor="Transparent"
+                BorderColor="White"
+                CornerRadius="15"
+                HorizontalOptions="FillAndExpand">
+                <StackLayout>
+                    <Label
+                        Margin="10,0,0,0"
+                        FontSize="Header"
+                        Text="Embed: "
+                        TextColor="White" />
+                    <AuthorView:AuthorView x:Name="AuthorView" />
+                    <BodyView:BodyView x:Name="BodyView" />
+                    <FooterView:FooterView x:Name="FooterView" />
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

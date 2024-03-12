@@ -25,14 +25,60 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Components\Partials\Views\WebhookItemsView\EmbedView\EmbedsView.xaml.cs">
+      <DependentUpon>EmbedsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Components\Partials\Views\WebhookItemsView\EmbedView\EmbedView.xaml.cs">
+      <DependentUpon>EmbedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Components\Partials\Views\WebhookItemsView\MessageContentView.xaml.cs">
+      <DependentUpon>MessageContentView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Components\Pages\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Components\Partials\Views\WebhookMessageContentView.xaml">
+    <EmbeddedResource Update="Components\Partials\Views\CustomItemViews\CustomEditorView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Components\Partials\Views\WebhookProfileView.xaml">
+    <EmbeddedResource Update="Components\Partials\Views\CustomItemViews\CustomEntryView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Components\Partials\Views\WebhookItemsView\EmbedView\AuthorView\AuthorView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Components\Partials\Views\WebhookItemsView\EmbedView\BodyView\BodyView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Components\Partials\Views\WebhookItemsView\EmbedView\FieldsView\FieldsView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Components\Partials\Views\WebhookItemsView\EmbedView\FooterView\FooterView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Components\Partials\Views\WebhookItemsView\FileSendView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Components\Partials\Views\WebhookItemsView\MessageContentView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Components\Partials\Views\WebhookItemsView\EmbedView\EmbedsView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Components\Partials\Views\WebhookItemsView\EmbedView\EmbedView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Components\Partials\Views\WebhookItemsView\WebhookProfileView\WebhookProfileView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Tests\TestPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\Partials\Views\WebhookItemsView\SavedWebhooksView\" />
   </ItemGroup>
 </Project>

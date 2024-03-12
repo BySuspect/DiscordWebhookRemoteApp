@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentView
-    x:Class="DiscordWebhookRemoteApp.Components.Partials.Views.WebhookProfileView"
+    x:Class="DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.WebhookProfileView.WebhookProfileView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
@@ -24,7 +24,7 @@
                         HorizontalOptions="Start"
                         MinimumHeightRequest="64"
                         MinimumWidthRequest="64"
-                        Source="{Binding ImageSource}"
+                        Source="{Binding AvatarImageSource}"
                         WidthRequest="64" />
 
                     <Grid.GestureRecognizers>
@@ -37,12 +37,32 @@
                     HorizontalOptions="FillAndExpand"
                     Orientation="Horizontal">
                     <BoxView WidthRequest="1" Color="White" />
-                    <CustomItems:BorderlessEntry
-                        FontSize="Body"
-                        HorizontalOptions="FillAndExpand"
-                        MaxLength="80"
-                        Placeholder="Username"
-                        Text="{Binding Username}" />
+                    <Grid HorizontalOptions="FillAndExpand">
+                        <CustomItems:BorderlessEntry
+                            x:Name="Input"
+                            FontSize="Body"
+                            HorizontalOptions="Fill"
+                            MaxLength="80"
+                            Placeholder="Username"
+                            Text="{Binding Username}"
+                            TextChanged="Input_TextChanged" />
+                        <Label
+                            x:Name="lblInputLenght"
+                            Margin="0,0,5,5"
+                            FontSize="Caption"
+                            HorizontalOptions="End"
+                            Text="0/0"
+                            TextColor="White"
+                            VerticalOptions="End">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span x:Name="spCharacterCount" Text="0" />
+                                    <Span Text="/" TextColor="White" />
+                                    <Span Text="{Binding Source={x:Reference Input}, Path=MaxLength}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Grid>
                 </StackLayout>
             </StackLayout>
         </StackLayout>
