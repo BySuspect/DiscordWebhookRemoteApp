@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text.Json;
 using System.Threading;
@@ -26,6 +27,7 @@ namespace DiscordWebhookRemoteApp.Components.Pages
 
         private async void SendButton_Clicked(object sender, EventArgs e)
         {
+            btnSend.IsEnabled = false;
             try
             {
                 string uri =
@@ -37,23 +39,60 @@ namespace DiscordWebhookRemoteApp.Components.Pages
                     WebhookProfileView.Username,
                     WebhookProfileView.AvatarImageSource
                 );
-                var embed = new EmbedBuilder
-                {
-                    Author = new EmbedAuthorBuilder()
-                    {
-                        Name = EmbedView.AuthorName,
-                        IconUrl = EmbedView.AuthorIconUrl,
-                        Url = EmbedView.AuthorUrl
-                    },
-                }.Build();
+                //var embed = new EmbedBuilder
+                //{
+                //    Author = new EmbedAuthorBuilder()
+                //    {
+                //        Name = EmbedView.AuthorName,
+                //        IconUrl = EmbedView.AuthorIconUrl,
+                //        Url = EmbedView.AuthorUrl
+                //    },
+                //}.Build();
 
-                await SendHelper.SendMessageAsync(MessageContentView.MessageContent);
+                await SendHelper.SendMessageAsync(MessageContentView.Text);
 
                 ToastController.ShowShortToast("Message sent successfully!");
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                _ = DisplayAlert("Error", ex.Message, "OK");
+            }
+            btnSend.IsEnabled = true;
+        }
+
+        private void btnTest_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var embedAuthor = new EmbedAuthorBuilder()
+                {
+                    IconUrl = EmbedView.AuthorIconUrl,
+                    Name = EmbedView.AuthorName,
+                    Url = EmbedView.AuthorUrl
+                }.Build();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                var embedBody = new EmbedBuilder
+                {
+                    Title = EmbedView.BodyTitle,
+                    Description = EmbedView.BodyContent,
+                    Url = EmbedView.BodyUrl,
+                    Color = new Discord.Color(
+                        (byte)EmbedView.BodyColor.R,
+                        (byte)EmbedView.BodyColor.G,
+                        (byte)EmbedView.BodyColor.B
+                    )
+                }.Build();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }

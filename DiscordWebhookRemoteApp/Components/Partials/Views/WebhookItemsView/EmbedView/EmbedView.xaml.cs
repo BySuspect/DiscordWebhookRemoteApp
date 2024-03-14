@@ -14,24 +14,48 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.Emb
         #region AuthorView
         public string AuthorIconUrl
         {
-            get { return AuthorView.AuthorIconUrl; }
-            set { AuthorView.AuthorIconUrl = value; }
+            get { return _authorView.AuthorIconUrl; }
+            set { _authorView.AuthorIconUrl = value; }
         }
         public string AuthorName
         {
-            get { return AuthorView.AuthorName; }
-            set { AuthorView.AuthorName = value; }
+            get { return _authorView.AuthorName; }
+            set { _authorView.AuthorName = value; }
         }
         public string AuthorUrl
         {
-            get { return AuthorView.AuthorUrl; }
-            set { AuthorView.AuthorUrl = value; }
+            get { return _authorView.AuthorUrl; }
+            set { _authorView.AuthorUrl = value; }
+        }
+        #endregion
+
+        #region BodyView
+        public string BodyTitle
+        {
+            get { return _bodyView.BodyTitle; }
+            set { _bodyView.BodyTitle = value; }
+        }
+        public string BodyContent
+        {
+            get { return _bodyView.BodyContent; }
+            set { _bodyView.BodyContent = value; }
+        }
+        public string BodyUrl
+        {
+            get { return _bodyView.BodyUrl; }
+            set { _bodyView.BodyUrl = value; }
+        }
+        public Color BodyColor
+        {
+            get { return _bodyView.BodyColor; }
+            set { _bodyView.BodyColor = value; }
         }
         #endregion
 
         public EmbedView()
         {
             InitializeComponent();
+            BindingContext = this;
         }
     }
 }

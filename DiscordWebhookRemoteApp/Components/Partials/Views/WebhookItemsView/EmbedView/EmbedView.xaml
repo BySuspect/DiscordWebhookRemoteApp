@@ -11,7 +11,7 @@
     <ContentView.Content>
         <StackLayout>
             <Frame
-                Margin="10"
+                Margin="0,10,0,10"
                 Padding="0,10"
                 BackgroundColor="Transparent"
                 BorderColor="White"
@@ -23,9 +23,9 @@
                         FontSize="Header"
                         Text="Embed: "
                         TextColor="White" />
-                    <AuthorView:AuthorView x:Name="AuthorView" />
-                    <BodyView:BodyView x:Name="BodyView" />
-                    <FooterView:FooterView x:Name="FooterView" />
+                    <AuthorView:AuthorView x:Name="_authorView" Padding="0,0,0,-7" />
+                    <BodyView:BodyView x:Name="_bodyView" Padding="0,0,0,-7" />
+                    <FooterView:FooterView x:Name="_footerView" Padding="0,0,0,-7" />
                 </StackLayout>
             </Frame>
         </StackLayout>

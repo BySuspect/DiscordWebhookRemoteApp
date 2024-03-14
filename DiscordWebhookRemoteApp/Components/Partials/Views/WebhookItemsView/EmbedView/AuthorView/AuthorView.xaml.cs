@@ -16,63 +16,54 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.Emb
     public partial class AuthorView : ContentView
     {
         #region AuthorIconUrl Binding
-        public static readonly BindableProperty AuthorIconUrlProperty = BindableProperty.Create(
-            nameof(AuthorIconUrl),
-            typeof(string),
-            typeof(AuthorView),
-            defaultBindingMode: BindingMode.TwoWay
-        );
         public string AuthorIconUrl
         {
-            get { return (string)GetValue(AuthorIconUrlProperty); }
+            get { return entryAuthorIconUrl.Text; }
             set
             {
-                SetValue(AuthorIconUrlProperty, value);
-                OnPropertyChanged(nameof(AuthorIconUrl));
+                if (entryAuthorIconUrl.Text != value)
+                {
+                    entryAuthorIconUrl.Text = value;
+                }
             }
         }
+
         #endregion
 
         #region AuthorName Binding
-        public static readonly BindableProperty AuthorNameProperty = BindableProperty.Create(
-            nameof(AuthorName),
-            typeof(string),
-            typeof(AuthorView),
-            defaultBindingMode: BindingMode.TwoWay
-        );
+
         public string AuthorName
         {
-            get { return (string)GetValue(AuthorNameProperty); }
+            get { return entryAuthorName.Text; }
             set
             {
-                SetValue(AuthorNameProperty, value);
-                OnPropertyChanged(nameof(AuthorName));
+                if (entryAuthorName.Text != value)
+                {
+                    entryAuthorName.Text = value;
+                }
             }
         }
+
         #endregion
 
         #region AuthorUrl Binding
-        public static readonly BindableProperty AuthorUrlProperty = BindableProperty.Create(
-            nameof(AuthorUrl),
-            typeof(string),
-            typeof(AuthorView),
-            defaultBindingMode: BindingMode.TwoWay
-        );
         public string AuthorUrl
         {
-            get { return (string)GetValue(AuthorUrlProperty); }
+            get { return entryAuthorUrl.Text; }
             set
             {
-                SetValue(AuthorUrlProperty, value);
-                OnPropertyChanged(nameof(AuthorUrl));
+                if (entryAuthorUrl.Text != value)
+                {
+                    entryAuthorUrl.Text = value;
+                }
             }
         }
+
         #endregion
 
         public AuthorView()
         {
             InitializeComponent();
-            BindingContext = this;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews
             nameof(Text),
             typeof(string),
             typeof(CustomEntryView),
-            defaultBindingMode: BindingMode.TwoWay
+            defaultValue: ""
         );
         public string Text
         {
@@ -35,7 +35,7 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews
             nameof(Placeholder),
             typeof(string),
             typeof(CustomEntryView),
-            defaultBindingMode: BindingMode.TwoWay
+            defaultValue: ""
         );
         public string Placeholder
         {
@@ -53,7 +53,7 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews
             nameof(MaxLength),
             typeof(string),
             typeof(CustomEntryView),
-            defaultBindingMode: BindingMode.TwoWay
+            defaultValue: ""
         );
         public string MaxLength
         {
@@ -66,10 +66,67 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews
         }
         #endregion
 
+        #region ValidationType Binding
+        private ValidationType _validationType;
+        public ValidationType ValidationType
+        {
+            get { return _validationType; }
+            set
+            {
+                if (_validationType != value)
+                {
+                    _validationType = value;
+
+                    if (value == ValidationType.ColorHex)
+                    {
+                        Input.Behaviors.Clear();
+                        Input.Behaviors.Add(new InputBehaviors.ColorHexValidatorBehaviour());
+                    }
+                }
+            }
+        }
+        #endregion
+
+        #region HasCharCounterText Binding
+        public static readonly BindableProperty HasCharCounterTextProperty =
+            BindableProperty.Create(
+                nameof(HasCharCounterText),
+                typeof(bool),
+                typeof(CustomEntryView),
+                defaultValue: true
+            );
+        public bool HasCharCounterText
+        {
+            get { return (bool)GetValue(HasCharCounterTextProperty); }
+            set
+            {
+                SetValue(HasCharCounterTextProperty, value);
+                OnPropertyChanged(nameof(HasCharCounterText));
+            }
+        }
+        #endregion
+
         public CustomEntryView()
         {
             InitializeComponent();
             BindingContext = this;
+
+            if (this.Text.Length > 0)
+            {
+                lblTitle.TextColor = Color.White;
+                titleView.BorderColor = Color.White;
+                titleView.BackgroundColor = Color.Black;
+                titleView.TranslationX = 15;
+                titleView.TranslationY = -9;
+            }
+            else
+            {
+                lblTitle.TextColor = Color.LightGray;
+                titleView.BorderColor = Color.Transparent;
+                titleView.BackgroundColor = Color.Transparent;
+                titleView.TranslationX = 0;
+                titleView.TranslationY = 13;
+            }
         }
 
         private void Input_TextChanged(object sender, TextChangedEventArgs e)
@@ -95,7 +152,7 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews
                 lblTitle.TextColor = Color.LightGray;
                 titleView.BorderColor = Color.Transparent;
                 titleView.BackgroundColor = Color.Transparent;
-                titleView.TranslateTo(10, 13, 150);
+                titleView.TranslateTo(5, 13, 150);
             }
         }
 
@@ -103,5 +160,11 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews
         {
             Input.Focus();
         }
+    }
+
+    public enum ValidationType
+    {
+        None,
+        ColorHex
     }
 }

@@ -26,7 +26,7 @@
                         Margin="0,0,5,5"
                         FontSize="Caption"
                         HorizontalOptions="End"
-                        Text="0/0"
+                        IsVisible="{Binding HasCharCounterText}"
                         TextColor="White"
                         VerticalOptions="End">
                         <Label.FormattedText>
@@ -47,7 +47,7 @@
                 CornerRadius="15"
                 HorizontalOptions="Start"
                 IsVisible="true"
-                TranslationX="10"
+                TranslationX="5"
                 TranslationY="13"
                 VerticalOptions="Start">
                 <Label

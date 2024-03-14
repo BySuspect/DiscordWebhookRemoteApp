@@ -19,7 +19,8 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.Web
             nameof(AvatarImageSource),
             typeof(string),
             typeof(WebhookProfileView),
-            defaultBindingMode: BindingMode.TwoWay
+            defaultBindingMode: BindingMode.TwoWay,
+            defaultValue: ""
         );
         public string AvatarImageSource
         {
@@ -35,7 +36,8 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.Web
             nameof(Username),
             typeof(string),
             typeof(WebhookProfileView),
-            defaultBindingMode: BindingMode.TwoWay
+            defaultBindingMode: BindingMode.TwoWay,
+            defaultValue: ""
         );
         public string Username
         {

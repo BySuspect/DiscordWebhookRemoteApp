@@ -4,67 +4,77 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
-    xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+    xmlns:webhookprofileview="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.WebhookProfileView"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:DataType="webhookprofileview:WebhookProfileView">
     <ContentView.Content>
-        <StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Grid>
-                    <Image
-                        xct:CornerRadiusEffect.CornerRadius="365"
-                        HeightRequest="64"
-                        HorizontalOptions="Start"
-                        MinimumHeightRequest="64"
-                        MinimumWidthRequest="64"
-                        Source="discordlogo.png"
-                        WidthRequest="64" />
-                    <Image
-                        x:Name="avatarImg"
-                        xct:CornerRadiusEffect.CornerRadius="365"
-                        HeightRequest="64"
-                        HorizontalOptions="Start"
-                        MinimumHeightRequest="64"
-                        MinimumWidthRequest="64"
-                        Source="{Binding AvatarImageSource}"
-                        WidthRequest="64" />
+        <Frame
+            Margin="0"
+            Padding="10"
+            BackgroundColor="Transparent"
+            BorderColor="White"
+            CornerRadius="15"
+            HorizontalOptions="FillAndExpand">
+            <StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Grid>
+                        <Image
+                            xct:CornerRadiusEffect.CornerRadius="365"
+                            HeightRequest="64"
+                            HorizontalOptions="Start"
+                            MinimumHeightRequest="64"
+                            MinimumWidthRequest="64"
+                            Source="discordlogo.png"
+                            WidthRequest="64" />
+                        <Image
+                            x:Name="avatarImg"
+                            xct:CornerRadiusEffect.CornerRadius="365"
+                            HeightRequest="64"
+                            HorizontalOptions="Start"
+                            MinimumHeightRequest="64"
+                            MinimumWidthRequest="64"
+                            Source="{Binding AvatarImageSource}"
+                            WidthRequest="64" />
 
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Avatar_Tapped" />
-                    </Grid.GestureRecognizers>
-                </Grid>
-
-                <StackLayout
-                    Margin="10,0,0,0"
-                    HorizontalOptions="FillAndExpand"
-                    Orientation="Horizontal">
-                    <BoxView WidthRequest="1" Color="White" />
-                    <Grid HorizontalOptions="FillAndExpand">
-                        <CustomItems:BorderlessEntry
-                            x:Name="Input"
-                            FontSize="Body"
-                            HorizontalOptions="Fill"
-                            MaxLength="80"
-                            Placeholder="Username"
-                            Text="{Binding Username}"
-                            TextChanged="Input_TextChanged" />
-                        <Label
-                            x:Name="lblInputLenght"
-                            Margin="0,0,5,5"
-                            FontSize="Caption"
-                            HorizontalOptions="End"
-                            Text="0/0"
-                            TextColor="White"
-                            VerticalOptions="End">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span x:Name="spCharacterCount" Text="0" />
-                                    <Span Text="/" TextColor="White" />
-                                    <Span Text="{Binding Source={x:Reference Input}, Path=MaxLength}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Avatar_Tapped" />
+                        </Grid.GestureRecognizers>
                     </Grid>
+
+                    <StackLayout
+                        Margin="10,0,0,0"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal">
+                        <BoxView WidthRequest="1" Color="White" />
+                        <Grid HorizontalOptions="FillAndExpand">
+                            <CustomItems:BorderlessEntry
+                                x:Name="Input"
+                                FontSize="Body"
+                                HorizontalOptions="Fill"
+                                MaxLength="80"
+                                Placeholder="Username"
+                                Text="{Binding Username}"
+                                TextChanged="Input_TextChanged" />
+                            <Label
+                                x:Name="lblInputLenght"
+                                Margin="0,0,5,5"
+                                FontSize="Caption"
+                                HorizontalOptions="End"
+                                Text="0/0"
+                                TextColor="White"
+                                VerticalOptions="End">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span x:Name="spCharacterCount" Text="0" />
+                                        <Span Text="/" TextColor="White" />
+                                        <Span Text="{Binding Source={x:Reference Input}, Path=MaxLength}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </Grid>
+                    </StackLayout>
                 </StackLayout>
             </StackLayout>
-        </StackLayout>
+        </Frame>
     </ContentView.Content>
 </ContentView>
