@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ColorPicker.BaseClasses.ColorPickerEventArgs;
 using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.WebhookProfileView;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -82,6 +83,16 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews
                         Input.Behaviors.Clear();
                         Input.Behaviors.Add(new InputBehaviors.ColorHexValidatorBehaviour());
                     }
+                    else if (value == ValidationType.Url)
+                    {
+                        Input.Behaviors.Clear();
+                        Input.Behaviors.Add(new InputBehaviors.UrlValidatorBehaviour());
+                    }
+                    else if (value == ValidationType.ImageUrl)
+                    {
+                        Input.Behaviors.Clear();
+                        Input.Behaviors.Add(new InputBehaviors.ImageUrlValidatorBehaviour());
+                    }
                 }
             }
         }
@@ -105,7 +116,6 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews
             }
         }
         #endregion
-
         public CustomEntryView()
         {
             InitializeComponent();
@@ -127,6 +137,13 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews
                 titleView.TranslationX = 0;
                 titleView.TranslationY = 13;
             }
+
+            Input.Completed += (s, e) => OnTextComplated(s, e);
+        }
+
+        private void titleTapped(object sender, EventArgs e)
+        {
+            Input.Focus();
         }
 
         private void Input_TextChanged(object sender, TextChangedEventArgs e)
@@ -154,17 +171,31 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews
                 titleView.BackgroundColor = Color.Transparent;
                 titleView.TranslateTo(5, 13, 150);
             }
+            OnTextChanged(sender, e);
         }
 
-        private void titleTapped(object sender, EventArgs e)
+        public event EventHandler<TextChangedEventArgs> TextChanged;
+
+        protected virtual void OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            Input.Focus();
+            EventHandler<TextChangedEventArgs> handler = TextChanged;
+            handler?.Invoke(sender, e);
+        }
+
+        public event EventHandler<EventArgs> TextComplated;
+
+        private void OnTextComplated(object sender, EventArgs e)
+        {
+            EventHandler<EventArgs> handler = TextComplated;
+            handler?.Invoke(sender, e);
         }
     }
+}
 
-    public enum ValidationType
-    {
-        None,
-        ColorHex
-    }
+public enum ValidationType
+{
+    None,
+    ColorHex,
+    Url,
+    ImageUrl
 }

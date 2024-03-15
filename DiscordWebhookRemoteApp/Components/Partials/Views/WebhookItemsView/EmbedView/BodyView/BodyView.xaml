@@ -34,7 +34,8 @@
                     x:Name="entryBodyUrl"
                     Margin="0,5"
                     MaxLength="2048"
-                    Placeholder="Url" />
+                    Placeholder="Url"
+                    ValidationType="Url" />
                 <CustomViews:CustomEntryView
                     x:Name="entryBodyColor"
                     Margin="0,5"

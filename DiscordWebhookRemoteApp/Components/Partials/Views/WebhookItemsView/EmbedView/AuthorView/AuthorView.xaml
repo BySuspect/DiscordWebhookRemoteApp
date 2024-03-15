@@ -23,7 +23,8 @@
                     x:Name="entryAuthorIconUrl"
                     Margin="0,5"
                     MaxLength="2048"
-                    Placeholder="Author Icon Url" />
+                    Placeholder="Author Icon Url"
+                    ValidationType="ImageUrl" />
                 <CustomViews:CustomEntryView
                     x:Name="entryAuthorName"
                     Margin="0,5"
@@ -33,7 +34,8 @@
                     x:Name="entryAuthorUrl"
                     Margin="0,5"
                     MaxLength="2048"
-                    Placeholder="Author Url" />
+                    Placeholder="Author Url"
+                    ValidationType="Url" />
             </StackLayout>
         </Frame>
     </ContentView.Content>

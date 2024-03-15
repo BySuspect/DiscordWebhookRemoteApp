@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace DiscordWebhookRemoteApp.Components.Partials.InputBehaviors
 {
-    public class ColorHexValidatorBehaviour : Behavior<Entry>
+    public class UrlValidatorBehaviour : Behavior<Entry>
     {
         protected override void OnAttachedTo(Entry bindable)
         {
@@ -47,7 +47,7 @@ namespace DiscordWebhookRemoteApp.Components.Partials.InputBehaviors
 
         private bool regexMatchs(string text)
         {
-            string pattern = @"^#([A-Fa-f0-9]{6})$";
+            string pattern = @"^(http?|https?)://[^\s/$.?#].[^\s]*$";
             return Regex.IsMatch(text, pattern, RegexOptions.IgnoreCase);
         }
 

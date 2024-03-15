@@ -25,7 +25,9 @@
                         x:Name="entryWebhookUri"
                         Margin="0,15,0,5"
                         HasCharCounterText="False"
-                        Placeholder="Webhook Url" />
+                        Placeholder="Webhook Url" ValidationType="Url"
+                        TextChanged="entryWebhookUri_TextChanged"
+                        TextComplated="entryWebhookUri_TextComplated" />
                     <WebhookProfileView:WebhookProfileView x:Name="WebhookProfileView" Margin="0,5,0,5" />
                     <CustomViews:CustomEditorView
                         x:Name="MessageContentView"

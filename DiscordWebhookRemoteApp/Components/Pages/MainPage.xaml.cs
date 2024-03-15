@@ -23,6 +23,7 @@ namespace DiscordWebhookRemoteApp.Components.Pages
         {
             InitializeComponent();
             BindingContext = this;
+            entryWebhookUri.Text = Preferences.Get("WebhookUrl", string.Empty);
         }
 
         private async void SendButton_Clicked(object sender, EventArgs e)
@@ -62,6 +63,7 @@ namespace DiscordWebhookRemoteApp.Components.Pages
 
         private void btnTest_Clicked(object sender, EventArgs e)
         {
+            var test = Preferences.Get("WebhookUrl", string.Empty);
             try
             {
                 var embedAuthor = new EmbedAuthorBuilder()
@@ -92,8 +94,19 @@ namespace DiscordWebhookRemoteApp.Components.Pages
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                _ = DisplayAlert("Error", ex.Message, "Ok");
             }
+        }
+
+        private void entryWebhookUri_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Console.WriteLine(e.NewTextValue);
+        }
+
+        private void entryWebhookUri_TextComplated(object sender, EventArgs e)
+        {
+            var entry = (Entry)sender;
+            Preferences.Set("WebhookUrl", entry.Text);
         }
     }
 }
