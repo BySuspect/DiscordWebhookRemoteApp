@@ -64,6 +64,7 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.Emb
         public AuthorView()
         {
             InitializeComponent();
+            BindingContext = this;
         }
     }
 }

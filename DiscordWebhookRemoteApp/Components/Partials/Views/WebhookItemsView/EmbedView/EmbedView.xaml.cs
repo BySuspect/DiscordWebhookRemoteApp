@@ -52,6 +52,26 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.Emb
         }
         #endregion
 
+        #region FooterView
+        public string FooterText
+        {
+            get { return _footerView.FooterText; }
+            set { _footerView.FooterText = value; }
+        }
+
+        public string FooterIconUrl
+        {
+            get { return _footerView.FooterIconUrl; }
+            set { _footerView.FooterIconUrl = value; }
+        }
+
+        public bool FooterTimestamp
+        {
+            get { return _footerView.FooterTimestamp; }
+            set { _footerView.FooterTimestamp = value; }
+        }
+        #endregion
+
         public EmbedView()
         {
             InitializeComponent();

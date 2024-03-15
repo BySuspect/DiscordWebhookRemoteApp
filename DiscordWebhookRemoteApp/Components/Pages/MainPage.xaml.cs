@@ -24,6 +24,9 @@ namespace DiscordWebhookRemoteApp.Components.Pages
             InitializeComponent();
             BindingContext = this;
             entryWebhookUri.Text = Preferences.Get("WebhookUrl", string.Empty);
+#if !DEBUG
+            btnTest.IsVisible = false;
+#endif
         }
 
         private async void SendButton_Clicked(object sender, EventArgs e)
@@ -66,7 +69,7 @@ namespace DiscordWebhookRemoteApp.Components.Pages
             var test = Preferences.Get("WebhookUrl", string.Empty);
             try
             {
-                var embedAuthor = new EmbedAuthorBuilder()
+                var embedAuthor = new EmbedAuthorBuilder
                 {
                     IconUrl = EmbedView.AuthorIconUrl,
                     Name = EmbedView.AuthorName,
@@ -75,7 +78,7 @@ namespace DiscordWebhookRemoteApp.Components.Pages
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                _ = DisplayAlert("Embed Author Error", ex.Message, "Ok");
             }
 
             try
@@ -94,7 +97,21 @@ namespace DiscordWebhookRemoteApp.Components.Pages
             }
             catch (Exception ex)
             {
-                _ = DisplayAlert("Error", ex.Message, "Ok");
+                _ = DisplayAlert("Embed Body Error", ex.Message, "Ok");
+            }
+
+            try
+            {
+                var embedFooter = new EmbedFooterBuilder
+                {
+                    IconUrl = EmbedView.FooterIconUrl,
+                    Text = EmbedView.FooterText
+                }.Build();
+                var timestamp = EmbedView.FooterTimestamp;
+            }
+            catch (Exception ex)
+            {
+                _ = DisplayAlert("Embed Footer Error", ex.Message, "Ok");
             }
         }
 
