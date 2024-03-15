@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text.Json;
 using System.Threading;
+using System.Threading.Tasks;
 using Discord;
 using Discord.Webhook;
 using DiscordWebhookRemoteApp.Helpers;
@@ -17,7 +18,7 @@ namespace DiscordWebhookRemoteApp.Components.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
     {
-        WebhookMessageSendHelper SendHelper;
+        WebhookSendHelper SendHelper;
 
         public MainPage()
         {
@@ -34,85 +35,130 @@ namespace DiscordWebhookRemoteApp.Components.Pages
             btnSend.IsEnabled = false;
             try
             {
+                ulong? result = null;
+
+                var embedBuild = await BuildEmbed();
+                var embed = embedBuild.Item1;
+                var hasEmbed = embedBuild.Item2;
+
                 string uri =
                     (entryWebhookUri.Text == null)
                         ? Preferences.Get("TestWebhookUrl", "null")
-                        : entryWebhookUri.Text;
-                SendHelper = new WebhookMessageSendHelper(
+                        : entryWebhookUri.Text ?? Preferences.Get("WebhookUrl", string.Empty);
+                SendHelper = new WebhookSendHelper(
                     uri,
                     WebhookProfileView.Username,
                     WebhookProfileView.AvatarImageSource
                 );
-                //var embed = new EmbedBuilder
-                //{
-                //    Author = new EmbedAuthorBuilder()
-                //    {
-                //        Name = EmbedView.AuthorName,
-                //        IconUrl = EmbedView.AuthorIconUrl,
-                //        Url = EmbedView.AuthorUrl
-                //    },
-                //}.Build();
-
-                await SendHelper.SendMessageAsync(MessageContentView.Text);
-
-                ToastController.ShowShortToast("Message sent successfully!");
+                if (hasEmbed)
+                    result = await SendHelper.SendMessageAsync(
+                        !string.IsNullOrEmpty(MessageContentView.Text)
+                            ? MessageContentView.Text
+                            : "",
+                        new List<Embed>() { embed }
+                    );
+                else if (!string.IsNullOrEmpty(MessageContentView.Text))
+                    result = await SendHelper.SendMessageAsync(
+                        !string.IsNullOrEmpty(MessageContentView.Text)
+                            ? MessageContentView.Text
+                            : ""
+                    );
+                if (result != null)
+                    ToastController.ShowShortToast("Message Sent");
+                else
+                    ToastController.ShowShortToast("Message Not Sent");
             }
             catch (Exception ex)
             {
-                _ = DisplayAlert("Error", ex.Message, "OK");
+                _ = DisplayAlert("Send Error", ex.Message, "Ok");
             }
             btnSend.IsEnabled = true;
         }
 
-        private void btnTest_Clicked(object sender, EventArgs e)
+        private async void btnTest_Clicked(object sender, EventArgs e)
         {
-            var test = Preferences.Get("WebhookUrl", string.Empty);
             try
             {
-                var embedAuthor = new EmbedAuthorBuilder
-                {
-                    IconUrl = EmbedView.AuthorIconUrl,
-                    Name = EmbedView.AuthorName,
-                    Url = EmbedView.AuthorUrl
-                }.Build();
-            }
-            catch (Exception ex)
-            {
-                _ = DisplayAlert("Embed Author Error", ex.Message, "Ok");
-            }
+                var embedBuild = await BuildEmbed();
+                var embed = embedBuild.Item1;
+                var hasEmbed = embedBuild.Item2;
 
-            try
-            {
-                var embedBody = new EmbedBuilder
-                {
-                    Title = EmbedView.BodyTitle,
-                    Description = EmbedView.BodyContent,
-                    Url = EmbedView.BodyUrl,
-                    Color = new Discord.Color(
-                        (byte)EmbedView.BodyColor.R,
-                        (byte)EmbedView.BodyColor.G,
-                        (byte)EmbedView.BodyColor.B
-                    )
-                }.Build();
+                string uri =
+                    (entryWebhookUri.Text == null)
+                        ? Preferences.Get("TestWebhookUrl", "null")
+                        : entryWebhookUri.Text;
+                SendHelper = new WebhookSendHelper(
+                    uri,
+                    WebhookProfileView.Username,
+                    WebhookProfileView.AvatarImageSource
+                );
+                if (hasEmbed)
+                    await SendHelper.SendMessageAsync(
+                        !string.IsNullOrEmpty(MessageContentView.Text)
+                            ? MessageContentView.Text
+                            : "",
+                        new List<Embed>() { embed }
+                    );
+                else if (!string.IsNullOrEmpty(MessageContentView.Text))
+                    await SendHelper.SendMessageAsync(
+                        !string.IsNullOrEmpty(MessageContentView.Text)
+                            ? MessageContentView.Text
+                            : ""
+                    );
+                else
+                    return;
             }
             catch (Exception ex)
             {
-                _ = DisplayAlert("Embed Body Error", ex.Message, "Ok");
+                _ = DisplayAlert("Send Error", ex.Message, "Ok");
             }
+        }
 
-            try
+        private Task<(Discord.Embed, bool)> BuildEmbed()
+        {
+            Discord.Embed embed = null;
+            bool hasEmbed = false;
+
+            embed = new Discord.EmbedBuilder()
             {
-                var embedFooter = new EmbedFooterBuilder
+                Title = (!string.IsNullOrEmpty(EmbedView.BodyTitle)) ? EmbedView.BodyTitle : null,
+                Description =
+                    (!string.IsNullOrEmpty(EmbedView.BodyContent)) ? EmbedView.BodyContent : null,
+                Url = (!string.IsNullOrEmpty(EmbedView.BodyUrl)) ? EmbedView.BodyUrl : null,
+                Color = new Discord.Color(
+                    (byte)EmbedView.BodyColor.R,
+                    (byte)EmbedView.BodyColor.G,
+                    (byte)EmbedView.BodyColor.B
+                ),
+                Timestamp = EmbedView.FooterTimestamp ? DateTime.Now : null,
+                Author = new Discord.EmbedAuthorBuilder()
                 {
-                    IconUrl = EmbedView.FooterIconUrl,
-                    Text = EmbedView.FooterText
-                }.Build();
-                var timestamp = EmbedView.FooterTimestamp;
-            }
-            catch (Exception ex)
-            {
-                _ = DisplayAlert("Embed Footer Error", ex.Message, "Ok");
-            }
+                    Name =
+                        (!string.IsNullOrEmpty(EmbedView.AuthorName)) ? EmbedView.AuthorName : null,
+                    Url = (!string.IsNullOrEmpty(EmbedView.AuthorUrl)) ? EmbedView.AuthorUrl : null,
+                    IconUrl =
+                        (!string.IsNullOrEmpty(EmbedView.AuthorIconUrl))
+                            ? EmbedView.AuthorIconUrl
+                            : null
+                },
+                Footer = new Discord.EmbedFooterBuilder()
+                {
+                    Text =
+                        (!string.IsNullOrEmpty(EmbedView.FooterText)) ? EmbedView.FooterText : null,
+                    IconUrl =
+                        (!string.IsNullOrEmpty(EmbedView.FooterIconUrl))
+                            ? EmbedView.FooterIconUrl
+                            : null
+                },
+            }.Build();
+            if (
+                embed.Title != null
+                || embed.Description != null
+                || embed.Author.Value.Name != null
+                || embed.Footer.Value.Text != null
+            )
+                hasEmbed = true;
+            return Task.FromResult((embed, hasEmbed));
         }
 
         private void entryWebhookUri_TextChanged(object sender, TextChangedEventArgs e)

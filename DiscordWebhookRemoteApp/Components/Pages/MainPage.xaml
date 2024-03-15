@@ -25,9 +25,10 @@
                         x:Name="entryWebhookUri"
                         Margin="0,15,0,5"
                         HasCharCounterText="False"
-                        Placeholder="Webhook Url" ValidationType="Url"
+                        Placeholder="Webhook Url"
                         TextChanged="entryWebhookUri_TextChanged"
-                        TextComplated="entryWebhookUri_TextComplated" />
+                        TextComplated="entryWebhookUri_TextComplated"
+                        ValidationType="Url" />
                     <WebhookProfileView:WebhookProfileView x:Name="WebhookProfileView" Margin="0,5,0,5" />
                     <CustomViews:CustomEditorView
                         x:Name="MessageContentView"
@@ -57,6 +58,7 @@
                             Clicked="btnTest_Clicked"
                             CornerRadius="15"
                             HorizontalOptions="Center"
+                            IsVisible="false"
                             Text="Test" />
                     </StackLayout>
                 </StackLayout>

@@ -57,7 +57,17 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.Emb
         #region BodyColor Binding
         public Color BodyColor
         {
-            get { return Color.FromHex(entryBodyColor.Text); }
+            get
+            {
+                if (!string.IsNullOrEmpty(entryBodyColor.Text))
+                    return Color.FromHex(entryBodyColor.Text);
+                else
+                    return new Color(
+                        Discord.Color.Default.R,
+                        Discord.Color.Default.G,
+                        Discord.Color.Default.B
+                    );
+            }
             set
             {
                 if (Color.FromHex(entryBodyColor.Text) != value)

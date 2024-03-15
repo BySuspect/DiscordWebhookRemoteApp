@@ -41,6 +41,7 @@
                     Margin="0,5"
                     MaxLength="7"
                     Placeholder="Color (HEX ONLY FOR NOW)"
+                    Text="#000000"
                     ValidationType="ColorHex" />
             </StackLayout>
         </Frame>

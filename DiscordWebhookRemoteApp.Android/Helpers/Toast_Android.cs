@@ -9,16 +9,12 @@ namespace DiscordWebhookRemoteApp.Droid.Helpers
     {
         public void ShowLong(string message)
         {
-            Android
-                .Widget.Toast.MakeText(Android.App.Application.Context, message, ToastLength.Long)
-                .Show();
+            Toast.MakeText(Android.App.Application.Context, message, ToastLength.Long).Show();
         }
 
         public void ShowShort(string message)
         {
-            Android
-                .Widget.Toast.MakeText(Android.App.Application.Context, message, ToastLength.Short)
-                .Show();
+            Toast.MakeText(Android.App.Application.Context, message, ToastLength.Short).Show();
         }
     }
 }
