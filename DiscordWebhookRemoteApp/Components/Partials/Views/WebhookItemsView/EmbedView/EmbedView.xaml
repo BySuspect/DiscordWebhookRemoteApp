@@ -7,6 +7,7 @@
     xmlns:BodyView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.BodyView"
     xmlns:FieldsView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FieldsView"
     xmlns:FooterView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FooterView"
+    xmlns:ImagesView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.ImagesView"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
     <ContentView.Content>
         <StackLayout>
@@ -25,6 +26,7 @@
                         TextColor="White" />
                     <AuthorView:AuthorView x:Name="_authorView" Padding="0,0,0,-7" />
                     <BodyView:BodyView x:Name="_bodyView" Padding="0,0,0,-7" />
+                    <ImagesView:ImagesView x:Name="_imagesView" Padding="0,0,0,-7" />
                     <FooterView:FooterView x:Name="_footerView" Padding="0,0,0,-7" />
                 </StackLayout>
             </Frame>

@@ -27,6 +27,7 @@
                 <CustomViews:CustomEntryView
                     x:Name="entryFooterIconUrl"
                     Margin="0,5"
+                    HasCharCounterText="False"
                     MaxLength="2048"
                     Placeholder="Icon Url"
                     ValidationType="ImageUrl" />

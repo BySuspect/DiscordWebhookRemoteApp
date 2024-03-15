@@ -125,6 +125,14 @@ namespace DiscordWebhookRemoteApp.Components.Pages
                 Description =
                     (!string.IsNullOrEmpty(EmbedView.BodyContent)) ? EmbedView.BodyContent : null,
                 Url = (!string.IsNullOrEmpty(EmbedView.BodyUrl)) ? EmbedView.BodyUrl : null,
+                ImageUrl =
+                    (!string.IsNullOrEmpty(EmbedView.ImagesImageUrl))
+                        ? EmbedView.ImagesImageUrl
+                        : null,
+                ThumbnailUrl =
+                    (!string.IsNullOrEmpty(EmbedView.ImagesThumbnailUrl))
+                        ? EmbedView.ImagesThumbnailUrl
+                        : null,
                 Color = new Discord.Color(
                     (byte)EmbedView.BodyColor.R,
                     (byte)EmbedView.BodyColor.G,
@@ -153,6 +161,8 @@ namespace DiscordWebhookRemoteApp.Components.Pages
             }.Build();
             if (
                 embed.Title != null
+                || embed.Image.Value.Url != null
+                || embed.Thumbnail.Value.Url != null
                 || embed.Description != null
                 || embed.Author.Value.Name != null
                 || embed.Footer.Value.Text != null

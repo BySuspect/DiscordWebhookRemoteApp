@@ -52,6 +52,20 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.Emb
         }
         #endregion
 
+        #region ImagesView
+        public string ImagesImageUrl
+        {
+            get { return _imagesView.ImagesImageUrl; }
+            set { _imagesView.ImagesImageUrl = value; }
+        }
+
+        public string ImagesThumbnailUrl
+        {
+            get { return _imagesView.ImagesThumbnailUrl; }
+            set { _imagesView.ImagesThumbnailUrl = value; }
+        }
+        #endregion
+
         #region FooterView
         public string FooterText
         {

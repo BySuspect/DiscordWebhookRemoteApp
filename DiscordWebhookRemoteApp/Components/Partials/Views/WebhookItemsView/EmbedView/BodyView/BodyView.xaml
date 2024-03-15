@@ -33,12 +33,14 @@
                 <CustomViews:CustomEntryView
                     x:Name="entryBodyUrl"
                     Margin="0,5"
+                    HasCharCounterText="False"
                     MaxLength="2048"
                     Placeholder="Url"
                     ValidationType="Url" />
                 <CustomViews:CustomEntryView
                     x:Name="entryBodyColor"
                     Margin="0,5"
+                    HasCharCounterText="False"
                     MaxLength="7"
                     Placeholder="Color (HEX ONLY FOR NOW)"
                     Text="#000000"
