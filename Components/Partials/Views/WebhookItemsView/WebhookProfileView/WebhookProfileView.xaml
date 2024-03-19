@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.WebhookProfileView.WebhookProfileView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:CustomViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
+    xmlns:xct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    <ContentView.Content>
+        <Frame
+            Margin="0"
+            Padding="0"
+            BackgroundColor="Transparent"
+            BorderColor="White"
+            CornerRadius="15"
+            HorizontalOptions="FillAndExpand">
+            <StackLayout>
+                <StackLayout Margin="10,10,10,0" Orientation="Horizontal">
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        CornerRadius="90">
+                        <Grid>
+                            <Image
+                                HeightRequest="64"
+                                HorizontalOptions="Start"
+                                MinimumHeightRequest="64"
+                                MinimumWidthRequest="64"
+                                Source="discordlogo.png"
+                                WidthRequest="64" />
+                            <Image
+                                x:Name="avatarImg"
+                                HeightRequest="64"
+                                HorizontalOptions="Start"
+                                MinimumHeightRequest="64"
+                                MinimumWidthRequest="64"
+                                Source="{Binding AvatarImageSource}"
+                                WidthRequest="64" />
+                        </Grid>
+
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Avatar_Tapped" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <StackLayout
+                        Margin="10,0,0,0"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal">
+                        <BoxView WidthRequest="1" Color="White" />
+                        <Grid HorizontalOptions="FillAndExpand">
+                            <Entry
+                                x:Name="Input"
+                                FontSize="Body"
+                                HorizontalOptions="Fill"
+                                MaxLength="80"
+                                Placeholder="Username"
+                                Text="{Binding Username}"
+                                TextChanged="Input_TextChanged"
+                                VerticalOptions="Center" />
+                            <Label
+                                x:Name="lblInputLenght"
+                                Margin="0,0,5,5"
+                                FontSize="Caption"
+                                HorizontalOptions="End"
+                                Text="0/0"
+                                TextColor="White"
+                                VerticalOptions="End">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span x:Name="spCharacterCount" Text="0" />
+                                        <Span Text="/" TextColor="White" />
+                                        <Span Text="{Binding Source={x:Reference Input}, Path=MaxLength}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

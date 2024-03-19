@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.EmbedView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:AuthorView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.AuthorView"
+    xmlns:BodyView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.BodyView"
+    xmlns:FieldsView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FieldsView"
+    xmlns:FooterView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FooterView"
+    xmlns:ImagesView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.ImagesView">
+    <ContentView.Content>
+        <StackLayout>
+            <Frame
+                Margin="0,10,0,10"
+                Padding="0,10"
+                BackgroundColor="Transparent"
+                BorderColor="White"
+                CornerRadius="15"
+                HorizontalOptions="FillAndExpand">
+                <StackLayout>
+                    <Label
+                        Margin="10,0,0,0"
+                        FontSize="Header"
+                        Text="Embed: "
+                        TextColor="White" />
+                    <AuthorView:AuthorView x:Name="_authorView" Padding="0,0,0,-7" />
+                    <BodyView:BodyView x:Name="_bodyView" Padding="0,0,0,-7" />
+                    <ImagesView:ImagesView x:Name="_imagesView" Padding="0,0,0,-7" />
+                    <FooterView:FooterView x:Name="_footerView" Padding="0,0,0,-7" />
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

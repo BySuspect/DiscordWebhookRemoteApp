@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.MessageContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentView.Content>
+        <Grid HeightRequest="200">
+            <Editor
+                x:Name="Input"
+                HeightRequest="200"
+                MaxLength="2000"
+                Placeholder="Content"
+                Text="{Binding MessageContent}"
+                TextChanged="Input_TextChanged"
+                TextColor="White" />
+            <Label
+                x:Name="lblInputLenght"
+                Margin="0,0,5,5"
+                FontSize="Caption"
+                HorizontalOptions="End"
+                Text="0/0"
+                TextColor="White"
+                VerticalOptions="End">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span x:Name="spCharacterCount" Text="0" />
+                        <Span Text="/" TextColor="White" />
+                        <Span Text="{Binding Source={x:Reference Input}, Path=MaxLength}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

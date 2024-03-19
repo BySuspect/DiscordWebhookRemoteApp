@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.EmbedsView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    <ContentView.Content>
+        <!--<StackLayout>
+            <ListView
+                x:Name="lvEmbeds"
+                HasUnevenRows="True"
+                HeightRequest="400"
+                HorizontalScrollBarVisibility="Never"
+                ItemsSource="{Binding Embeds, Mode=TwoWay}"
+                PropertyChanged="ListView_PropertyChanged"
+                SelectionMode="None"
+                VerticalScrollBarVisibility="Never">
+                <ListView.Header>
+                    <StackLayout>
+                        <StackLayout
+                            Margin="10,10,10,5"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal">
+                            <Label
+                                FontSize="Header"
+                                HorizontalOptions="Start"
+                                Text="Embeds"
+                                TextColor="White"
+                                VerticalOptions="Center" />
+                            <StackLayout
+                                HorizontalOptions="EndAndExpand"
+                                Orientation="Horizontal"
+                                VerticalOptions="Center">
+                                <Label
+                                    x:Name="lblEmbedCount"
+                                    Margin="0,0,5,5"
+                                    FontSize="Caption"
+                                    HorizontalOptions="End"
+                                    Text="0/0"
+                                    TextColor="White"
+                                    VerticalOptions="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span x:Name="spEmbedCount" Text="0" />
+                                            <Span Text="/" />
+                                            <Span Text="10" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Button
+                                    x:Name="btnNewEmbed"
+                                    Clicked="btnNewEmbed_Clicked"
+                                    CornerRadius="365"
+                                    HeightRequest="48"
+                                    HorizontalOptions="End"
+                                    Text="N"
+                                    VerticalOptions="Center"
+                                    WidthRequest="48" />
+                            </StackLayout>
+                        </StackLayout>
+                        <BoxView HeightRequest="1" Color="Green" />
+                    </StackLayout>
+                </ListView.Header>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame
+                                Margin="5"
+                                Padding="5"
+                                BackgroundColor="Transparent"
+                                BorderColor="White"
+                                CornerRadius="15"
+                                HorizontalOptions="FillAndExpand">
+                                <xct:Expander>
+                                    <xct:Expander.Header>
+                                        <StackLayout Margin="10,0" HeightRequest="48">
+                                            <Label
+                                                HorizontalOptions="Start"
+                                                TextColor="White"
+                                                VerticalOptions="CenterAndExpand">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Embed " />
+                                                        <Span Text="#" />
+                                                        <Span Text="1" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </StackLayout>
+                                    </xct:Expander.Header>
+                                    <xct:Expander.ControlTemplate>
+                                        <DataTemplate>
+                                            <Frame
+                                                BackgroundColor="Transparent"
+                                                BorderColor="White"
+                                                CornerRadius="15"
+                                                HorizontalOptions="Fill"
+                                                VerticalOptions="Fill">
+                                                <StackLayout>
+                                                    <Frame
+                                                        Padding="10"
+                                                        BackgroundColor="Transparent"
+                                                        BorderColor="White"
+                                                        CornerRadius="15"
+                                                        HorizontalOptions="FillAndExpand">
+                                                        <Entry
+                                                            HorizontalOptions="Fill"
+                                                            Text="{Binding Author.Name}"
+                                                            TextColor="White" />
+                                                    </Frame>
+                                                    <Frame
+                                                        Padding="10"
+                                                        BackgroundColor="Transparent"
+                                                        BorderColor="White"
+                                                        CornerRadius="15"
+                                                        HeightRequest="200"
+                                                        HorizontalOptions="FillAndExpand">
+                                                        <Editor
+                                                            HorizontalOptions="Fill"
+                                                            Text="{Binding Description}"
+                                                            TextColor="White"
+                                                            VerticalOptions="Fill" />
+                                                    </Frame>
+                                                </StackLayout>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </xct:Expander.ControlTemplate>
+                                </xct:Expander>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>-->
+    </ContentView.Content>
+</ContentView>
