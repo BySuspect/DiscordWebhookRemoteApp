@@ -45,6 +45,7 @@ public partial class BodyView : ContentView
     #endregion
 
     #region BodyColor Binding
+    [Obsolete]
     public Color BodyColor
     {
         get

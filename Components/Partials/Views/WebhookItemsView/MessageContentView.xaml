@@ -7,6 +7,7 @@
         <Grid HeightRequest="200">
             <Editor
                 x:Name="Input"
+                Margin="0,5"
                 HeightRequest="200"
                 MaxLength="2000"
                 Placeholder="Content"

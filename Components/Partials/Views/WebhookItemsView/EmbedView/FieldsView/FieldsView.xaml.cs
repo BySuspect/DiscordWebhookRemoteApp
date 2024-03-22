@@ -2,8 +2,8 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.Emb
 
 public partial class FieldsView : ContentView
 {
-	public FieldsView()
-	{
-		InitializeComponent();
-	}
+    public FieldsView()
+    {
+        InitializeComponent();
+    }
 }

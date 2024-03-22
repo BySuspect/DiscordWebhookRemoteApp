@@ -33,6 +33,11 @@ public partial class MainPage : ContentPage
                 (entryWebhookUri.Text == null)
                     ? Preferences.Get("TestWebhookUrl", "null")
                     : entryWebhookUri.Text ?? Preferences.Get("WebhookUrl", string.Empty);
+            if (string.IsNullOrEmpty(uri))
+            {
+                btnSend.IsEnabled = true;
+                return;
+            }
             SendHelper = new WebhookSendHelper(
                 uri,
                 WebhookProfileView.Username,

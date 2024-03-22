@@ -3,62 +3,69 @@
     x:Class="DiscordWebhookRemoteApp.Components.Pages.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
     xmlns:CustomViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
     xmlns:EmbedViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView"
+    xmlns:SavedWebhooksView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWebhooksView"
     xmlns:WebhookProfileView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.WebhookProfileView"
-    xmlns:xct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
-    <StackLayout>
-        <Grid VerticalOptions="FillAndExpand">
-            <ScrollView Margin="0,30,0,0">
-                <StackLayout Margin="10,0,10,100">
-                    <CustomViews:CustomEntryView
-                        x:Name="entryWebhookUri"
-                        Margin="0,15,0,5"
-                        HasCharCounterText="False"
-                        Placeholder="Webhook Url"
-                        TextChanged="entryWebhookUri_TextChanged"
-                        TextComplated="entryWebhookUri_TextComplated"
-                        ValidationType="Url" />
-                    <WebhookProfileView:WebhookProfileView
-                        x:Name="WebhookProfileView"
-                        Margin="0,5,0,5"
-                        AvatarImageSource="https://i.imgur.com/niLjyNS.jpg" />
-                    <CustomViews:CustomEditorView
-                        x:Name="MessageContentView"
-                        Margin="5,5"
-                        HeightRequest="250"
-                        MaxLength="2000"
-                        Placeholder="Message Content" />
-                    <EmbedViews:EmbedView x:Name="EmbedView" />
-                    <StackLayout
-                        Margin="0,5,0,5"
-                        HorizontalOptions="Center"
-                        Orientation="Horizontal">
-                        <Button
-                            x:Name="btnSend"
-                            BackgroundColor="Black"
-                            BorderColor="White"
-                            BorderWidth="1"
-                            Clicked="SendButton_Clicked"
-                            CornerRadius="15"
+    xmlns:controls="clr-namespace:Plugin.MauiMTAdmob.Controls;assembly=Plugin.MauiMtAdmob"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid VerticalOptions="FillAndExpand">
+                <ScrollView Margin="0,30,0,0">
+                    <StackLayout Margin="10,0,10,100">
+                        <SavedWebhooksView:SavedWebhooksView x:Name="SavedWebhooksView" />
+                        <CustomViews:CustomEntryView
+                            x:Name="entryWebhookUri"
+                            Margin="0,15,0,5"
+                            HasCharCounterText="False"
+                            Placeholder="Webhook Url"
+                            TextChanged="entryWebhookUri_TextChanged"
+                            TextComplated="entryWebhookUri_TextComplated"
+                            ValidationType="Url" />
+                        <WebhookProfileView:WebhookProfileView x:Name="WebhookProfileView" Margin="0,5,0,5" />
+                        <CustomViews:CustomEditorView
+                            x:Name="MessageContentView"
+                            Margin="5,5"
+                            HeightRequest="250"
+                            MaxLength="2000"
+                            Placeholder="Message Content" />
+                        <EmbedViews:EmbedView x:Name="EmbedView" />
+                        <StackLayout
+                            Margin="0,5,0,5"
                             HorizontalOptions="Center"
-                            Text="Send"
-                            TextColor="White" />
-                        <Button
-                            x:Name="btnTest"
-                            BackgroundColor="Black"
-                            BorderColor="White"
-                            BorderWidth="1"
-                            Clicked="btnTest_Clicked"
-                            CornerRadius="15"
-                            HorizontalOptions="Center"
-                            IsVisible="false"
-                            Text="Test"
-                            TextColor="White" />
+                            Orientation="Horizontal">
+                            <CustomItems:CustomButton
+                                x:Name="btnSend"
+                                BackgroundColor="Black"
+                                BorderColor="White"
+                                BorderWidth="1"
+                                Clicked="SendButton_Clicked"
+                                CornerRadius="15"
+                                HorizontalOptions="Center"
+                                Text="Send"
+                                TextColor="White" />
+                            <CustomItems:CustomButton
+                                x:Name="btnTest"
+                                BackgroundColor="Black"
+                                BorderColor="White"
+                                BorderWidth="1"
+                                Clicked="btnTest_Clicked"
+                                CornerRadius="15"
+                                HorizontalOptions="Center"
+                                IsVisible="false"
+                                Text="Test"
+                                TextColor="White" />
+                        </StackLayout>
                     </StackLayout>
-                </StackLayout>
-            </ScrollView>
-        </Grid>
-        <!--<CustomItems:CustomAdsView AdsId="ca-app-pub-3940256099942544/6300978111" VerticalOptions="EndAndExpand" />-->
-    </StackLayout>
+                </ScrollView>
+            </Grid>
+            <!--<controls:MTAdView
+                AdsId="ca-app-pub-3940256099942544/6300978111"
+                HeightRequest="{OnIdiom Phone=50,
+                                        Tablet=90}"
+                VerticalOptions="EndAndExpand" />-->
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

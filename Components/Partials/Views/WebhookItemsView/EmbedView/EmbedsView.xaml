@@ -3,7 +3,7 @@
     x:Class="DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.EmbedsView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:xct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     <ContentView.Content>
         <!--<StackLayout>
             <ListView
@@ -47,7 +47,7 @@
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                                <Button
+                                <CustomItems:CustomButton
                                     x:Name="btnNewEmbed"
                                     Clicked="btnNewEmbed_Clicked"
                                     CornerRadius="365"
@@ -72,8 +72,8 @@
                                 BorderColor="White"
                                 CornerRadius="15"
                                 HorizontalOptions="FillAndExpand">
-                                <xct:Expander>
-                                    <xct:Expander.Header>
+                                <toolkit:Expander>
+                                    <toolkit:Expander.Header>
                                         <StackLayout Margin="10,0" HeightRequest="48">
                                             <Label
                                                 HorizontalOptions="Start"
@@ -88,8 +88,8 @@
                                                 </Label.FormattedText>
                                             </Label>
                                         </StackLayout>
-                                    </xct:Expander.Header>
-                                    <xct:Expander.ControlTemplate>
+                                    </toolkit:Expander.Header>
+                                    <toolkit:Expander.ControlTemplate>
                                         <DataTemplate>
                                             <Frame
                                                 BackgroundColor="Transparent"
@@ -125,8 +125,8 @@
                                                 </StackLayout>
                                             </Frame>
                                         </DataTemplate>
-                                    </xct:Expander.ControlTemplate>
-                                </xct:Expander>
+                                    </toolkit:Expander.ControlTemplate>
+                                </toolkit:Expander>
                             </Frame>
                         </ViewCell>
                     </DataTemplate>

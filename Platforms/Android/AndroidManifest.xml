@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.discordwebhookremote.android" >
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="beta0.1" package="com.discordwebhookremote.android" >
 	<application android:label="Discord Webhook Remote" android:allowBackup="true" android:icon="@mipmap/icon" android:roundIcon="@mipmap/icon_round" android:supportsRtl="true">
 		<meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-3881259676793306~9834360439" />
 	</application>

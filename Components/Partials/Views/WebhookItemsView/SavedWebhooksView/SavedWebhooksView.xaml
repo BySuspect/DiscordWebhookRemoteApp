@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWebhooksView.SavedWebhooksView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
+    xmlns:local="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWebhooksView"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    <ContentView.Content>
+        <StackLayout>
+            <Frame
+                Margin="0"
+                Padding="0"
+                BorderColor="White"
+                CornerRadius="15"
+                HorizontalOptions="FillAndExpand">
+                <StackLayout Margin="5,10">
+                    <CollectionView
+                        x:Name="SavedWebhooksVieListView"
+                        ItemsSource="{Binding SavedWebhooks}"
+                        SelectionMode="None">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <local:SavedWebhookView
+                                    Name="{Binding Name}"
+                                    WebhookId="{Binding WebhookId}"
+                                    WebhookSelectTapped="OnSavedWebhookViewTapped" />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.Footer>
+                            <StackLayout>
+                                <Frame
+                                    Padding="0"
+                                    BorderColor="White"
+                                    CornerRadius="15"
+                                    HeightRequest="120"
+                                    WidthRequest="85">
+                                    <Frame
+                                        Padding="0"
+                                        BorderColor="Transparent"
+                                        CornerRadius="120"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center">
+                                        <Image
+                                            HorizontalOptions="Fill"
+                                            Source="plusiconwhite.png"
+                                            VerticalOptions="Fill" />
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="AddNewWebhookTapped" />
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+                                </Frame>
+
+                            </StackLayout>
+                        </CollectionView.Footer>
+                    </CollectionView>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

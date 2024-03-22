@@ -104,6 +104,7 @@ public partial class CustomEntryView : ContentView
         }
     }
     #endregion
+
     public CustomEntryView()
     {
         InitializeComponent();
