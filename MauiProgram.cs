@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using DiscordWebhookRemoteApp.Handlers;
 using Maui.TouchEffect.Hosting;
-using Microsoft.Extensions.Logging;
 using Plugin.MauiMTAdmob;
 
 namespace DiscordWebhookRemoteApp

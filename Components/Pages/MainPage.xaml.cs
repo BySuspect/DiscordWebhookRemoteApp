@@ -17,6 +17,18 @@ public partial class MainPage : ContentPage
 #endif
     }
 
+    protected override void OnAppearing()
+    {
+#if !DEBUG
+        Application.Current.MainPage.DisplayAlert(
+            "Important Notice",
+            "you're using the beta version of app, your saved data might get deleted or significant changes could be made in future updates!",
+            "OK"
+        );
+#endif
+        base.OnAppearing();
+    }
+
     private async void SendButton_Clicked(object sender, EventArgs e)
     {
         if (SavedWebhooksView.selectedWebhook == null)
