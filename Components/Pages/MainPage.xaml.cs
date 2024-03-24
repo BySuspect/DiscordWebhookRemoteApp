@@ -6,13 +6,12 @@ namespace DiscordWebhookRemoteApp.Components.Pages;
 
 public partial class MainPage : ContentPage
 {
-    WebhookSendHelper SendHelper;
+    WebhookSendHelper sendHelper;
 
     public MainPage()
     {
         InitializeComponent();
         BindingContext = this;
-        entryWebhookUri.Text = Preferences.Get("WebhookUrl", string.Empty);
 #if !DEBUG
         btnTest.IsVisible = false;
 #endif
@@ -20,6 +19,9 @@ public partial class MainPage : ContentPage
 
     private async void SendButton_Clicked(object sender, EventArgs e)
     {
+        if (SavedWebhooksView.selectedWebhook == null)
+            return;
+
         btnSend.IsEnabled = false;
         try
         {
@@ -30,27 +32,32 @@ public partial class MainPage : ContentPage
             var hasEmbed = embedBuild.Item2;
 
             string uri =
-                (entryWebhookUri.Text == null)
+                (SavedWebhooksView.selectedWebhook.WebhookUrl == null)
                     ? Preferences.Get("TestWebhookUrl", "null")
-                    : entryWebhookUri.Text ?? Preferences.Get("WebhookUrl", string.Empty);
+                    : SavedWebhooksView.selectedWebhook.WebhookUrl
+                        ?? Preferences.Get("WebhookUrl", string.Empty);
             if (string.IsNullOrEmpty(uri))
             {
                 btnSend.IsEnabled = true;
                 return;
             }
-            SendHelper = new WebhookSendHelper(
+            sendHelper = new WebhookSendHelper(
                 uri,
                 WebhookProfileView.Username,
                 WebhookProfileView.AvatarImageSource
             );
             if (hasEmbed)
-                result = await SendHelper.SendMessageAsync(
-                    !string.IsNullOrEmpty(MessageContentView.Text) ? MessageContentView.Text : "",
+                result = await sendHelper.SendMessageAsync(
+                    !string.IsNullOrEmpty(MessageContentView.MessageContent)
+                        ? MessageContentView.MessageContent
+                        : "",
                     new List<Embed>() { embed }
                 );
-            else if (!string.IsNullOrEmpty(MessageContentView.Text))
-                result = await SendHelper.SendMessageAsync(
-                    !string.IsNullOrEmpty(MessageContentView.Text) ? MessageContentView.Text : ""
+            else if (!string.IsNullOrEmpty(MessageContentView.MessageContent))
+                result = await sendHelper.SendMessageAsync(
+                    !string.IsNullOrEmpty(MessageContentView.MessageContent)
+                        ? MessageContentView.MessageContent
+                        : ""
                 );
             if (result != null)
                 Toast.Make("Message Sent");
@@ -68,30 +75,7 @@ public partial class MainPage : ContentPage
     {
         try
         {
-            var embedBuild = await BuildEmbed();
-            var embed = embedBuild.Item1;
-            var hasEmbed = embedBuild.Item2;
-
-            string uri =
-                (entryWebhookUri.Text == null)
-                    ? Preferences.Get("TestWebhookUrl", "null")
-                    : entryWebhookUri.Text;
-            SendHelper = new WebhookSendHelper(
-                uri,
-                WebhookProfileView.Username,
-                WebhookProfileView.AvatarImageSource
-            );
-            if (hasEmbed)
-                await SendHelper.SendMessageAsync(
-                    !string.IsNullOrEmpty(MessageContentView.Text) ? MessageContentView.Text : "",
-                    new List<Embed>() { embed }
-                );
-            else if (!string.IsNullOrEmpty(MessageContentView.Text))
-                await SendHelper.SendMessageAsync(
-                    !string.IsNullOrEmpty(MessageContentView.Text) ? MessageContentView.Text : ""
-                );
-            else
-                return;
+            Toast.Make("test");
         }
         catch (Exception ex)
         {
@@ -161,5 +145,32 @@ public partial class MainPage : ContentPage
     {
         var entry = (Entry)sender;
         Preferences.Set("WebhookUrl", entry.Text);
+    }
+
+    private async void Discord_Clicked(object sender, EventArgs e)
+    {
+        #region Discord Invite Section
+        string discorInviteShorten = "https://bit.ly/3NmBFDO";
+        string discorInvite = "https://discord.gg/aX4unxzZek";
+
+        _ = Browser.OpenAsync(discorInvite, BrowserLaunchMode.SystemPreferred);
+        return;
+
+        var res = await App.Current.MainPage.DisplayActionSheet(
+            "Discord Invite",
+            "",
+            "Cancel",
+            "Open Link",
+            "Copy Link"
+        );
+        if (res == "Open Link")
+        {
+            _ = Browser.OpenAsync(discorInviteShorten, BrowserLaunchMode.SystemPreferred);
+        }
+        else if (res == "Copy Link")
+        {
+            await Clipboard.SetTextAsync(discorInvite);
+        }
+        #endregion
     }
 }

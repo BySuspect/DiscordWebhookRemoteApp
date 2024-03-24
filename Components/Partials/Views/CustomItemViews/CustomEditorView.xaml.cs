@@ -70,7 +70,7 @@ public partial class CustomEditorView : ContentView
             titleView.BorderColor = Colors.White;
             titleView.BackgroundColor = Colors.Black;
             titleView.TranslationX = 15;
-            titleView.TranslationY = -9;
+            titleView.TranslationY = -8;
         }
         else
         {

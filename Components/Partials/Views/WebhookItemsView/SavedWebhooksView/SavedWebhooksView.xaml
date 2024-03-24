@@ -26,37 +26,42 @@
                             <DataTemplate>
                                 <local:SavedWebhookView
                                     Name="{Binding Name}"
+                                    IsSelected="{Binding IsSelected}"
                                     WebhookId="{Binding WebhookId}"
-                                    WebhookSelectTapped="OnSavedWebhookViewTapped" />
+                                    WebhookSelectTapped="OnSavedWebhookViewTapped"
+                                    WebhookUrl="{Binding WebhookUrl}" />
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                         <CollectionView.Footer>
-                            <StackLayout>
-                                <Frame
-                                    Padding="0"
-                                    BorderColor="White"
-                                    CornerRadius="15"
-                                    HeightRequest="120"
-                                    WidthRequest="85">
-                                    <Frame
-                                        Padding="0"
-                                        BorderColor="Transparent"
-                                        CornerRadius="120"
-                                        HorizontalOptions="Center"
-                                        VerticalOptions="Center">
-                                        <Image
-                                            HorizontalOptions="Fill"
-                                            Source="plusiconwhite.png"
-                                            VerticalOptions="Fill" />
-                                        <Frame.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="AddNewWebhookTapped" />
-                                        </Frame.GestureRecognizers>
-                                    </Frame>
-                                </Frame>
-
-                            </StackLayout>
+                            <ImageButton
+                                Margin="5,0"
+                                Padding="10"
+                                BorderColor="White"
+                                BorderWidth="2"
+                                CornerRadius="15"
+                                HeightRequest="120"
+                                Source="plusiconwhite.png"
+                                TouchEffect.PressedOpacity="0.8"
+                                TouchEffect.PressedScale="0.9"
+                                WidthRequest="80">
+                                <ImageButton.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="AddNewWebhookTapped" />
+                                </ImageButton.GestureRecognizers>
+                            </ImageButton>
                         </CollectionView.Footer>
                     </CollectionView>
+
+                    <CustomItems:CustomButton
+                        Margin="0,5,5,0"
+                        BackgroundColor="Black"
+                        BorderColor="White"
+                        BorderWidth="1"
+                        Clicked="DeleteWebhook_Clicked"
+                        CornerRadius="15"
+                        HorizontalOptions="End"
+                        IsVisible="True"
+                        Text="Delete"
+                        TextColor="White" />
                 </StackLayout>
             </Frame>
         </StackLayout>

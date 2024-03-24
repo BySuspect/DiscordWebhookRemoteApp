@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using DiscordWebhookRemoteApp.Handlers;
+using Maui.TouchEffect.Hosting;
 using Microsoft.Extensions.Logging;
 using Plugin.MauiMTAdmob;
 
@@ -10,7 +11,11 @@ namespace DiscordWebhookRemoteApp
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
-            builder.UseMauiApp<App>().UseMauiCommunityToolkit().UseMauiMTAdmob();
+            builder
+                .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
+                .UseMauiTouchEffect()
+                .UseMauiMTAdmob();
 
             FormHandler.RemoveBorders();
 

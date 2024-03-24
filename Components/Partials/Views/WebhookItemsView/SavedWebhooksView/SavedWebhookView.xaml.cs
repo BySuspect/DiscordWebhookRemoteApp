@@ -1,3 +1,5 @@
+using System.Windows.Input;
+
 namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWebhooksView;
 
 public partial class SavedWebhookView : ContentView
@@ -91,7 +93,7 @@ public partial class SavedWebhookView : ContentView
 
     private void UpdateIsSelected()
     {
-        Console.WriteLine("------------------\n" + IsSelected + " " + WebhookId);
+        //Console.WriteLine("------------------\n" + IsSelected + " " + WebhookId);
         if (IsSelected)
         {
             WebhookViewFrame.Scale = 0.9;
@@ -105,9 +107,33 @@ public partial class SavedWebhookView : ContentView
     }
     #endregion
 
+    #region WebhookUrl Binding
+    public static readonly BindableProperty WebhookUrlProperty = BindableProperty.Create(
+        nameof(WebhookUrl),
+        typeof(string),
+        typeof(SavedWebhookView),
+        defaultValue: ""
+    );
+    public string WebhookUrl
+    {
+        get { return (string)GetValue(WebhookUrlProperty); }
+        set
+        {
+            SetValue(WebhookUrlProperty, value);
+            OnPropertyChanged(nameof(WebhookUrl));
+        }
+    }
+    #endregion
+
+    public ICommand LongPressCommand { get; set; }
+
     public SavedWebhookView()
     {
         InitializeComponent();
+        LongPressCommand = new Command(() =>
+        {
+            OnLongPressed(null, null);
+        });
     }
 
     private void WebhookSelect_Tapped(object sender, TappedEventArgs e)
@@ -122,4 +148,20 @@ public partial class SavedWebhookView : ContentView
         EventHandler<TappedEventArgs> handler = WebhookSelectTapped;
         handler?.Invoke(sender, e);
     }
+
+    public event EventHandler<EventArgs> LongPressed;
+
+    protected virtual void OnLongPressed(object sender, EventArgs e)
+    {
+        EventHandler<EventArgs> handler = LongPressed;
+        handler?.Invoke(this, EventArgs.Empty);
+    }
+}
+
+public class SavedWebhookViewItems
+{
+    public required int WebhookId { get; set; }
+    public required string Name { get; set; }
+    public required string ImageSource { get; set; }
+    public required string WebhookUrl { get; set; }
 }

@@ -11,7 +11,8 @@
     <ShellContent
         ContentTemplate="{DataTemplate pages:MainPage}"
         NavigationPage.HasNavigationBar="True"
-        Route="MainPage" />
+        Route="MainPage"
+        Shell.BackgroundColor="Black" />
 
     <!--<Shell.FlyoutContent>
         <StackLayout>

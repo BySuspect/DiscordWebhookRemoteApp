@@ -58,18 +58,20 @@ namespace DiscordWebhookRemoteApp.Helpers
 {
     public class WebhookSendHelper
     {
-        private string WebhookUrl = "";
-        private string? UserName = null;
-        private string? AvatarImage = null;
+        private string webhookUrl = "";
+        private string? userName = null;
+        private string? avatarImage = null;
 
-        private DiscordWebhookClient Client;
+        private DiscordWebhookClient client;
 
         public WebhookSendHelper(string url, string? userName = null, string? avatarImage = null)
         {
-            WebhookUrl = url.Trim();
-            UserName = !string.IsNullOrEmpty(userName.Trim()) ? userName.Trim() : null;
-            AvatarImage = !string.IsNullOrEmpty(avatarImage.Trim()) ? avatarImage.Trim() : null;
-            Client = new DiscordWebhookClient(WebhookUrl);
+            webhookUrl = url.Trim();
+            this.userName = !string.IsNullOrEmpty(userName.Trim()) ? userName.Trim() : null;
+            this.avatarImage = !string.IsNullOrEmpty(avatarImage.Trim())
+                ? avatarImage.Trim()
+                : null;
+            client = new DiscordWebhookClient(webhookUrl);
         }
 
         public async Task<ulong?> SendMessageAsync(string Message, List<Embed> embeds = null)
@@ -78,19 +80,19 @@ namespace DiscordWebhookRemoteApp.Helpers
             {
                 if (embeds != null && embeds.Count >= 1)
                 {
-                    return await Client.SendMessageAsync(
+                    return await client.SendMessageAsync(
                         text: Message,
-                        username: UserName,
-                        avatarUrl: AvatarImage,
+                        username: userName,
+                        avatarUrl: avatarImage,
                         embeds: embeds
                     );
                 }
                 else
                 {
-                    return await Client.SendMessageAsync(
+                    return await client.SendMessageAsync(
                         text: Message,
-                        username: UserName,
-                        avatarUrl: AvatarImage
+                        username: userName,
+                        avatarUrl: avatarImage
                     );
                 }
 

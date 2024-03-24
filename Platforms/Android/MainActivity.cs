@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Content.PM;
+using Android.OS;
 
 namespace DiscordWebhookRemoteApp
 {
@@ -13,5 +14,11 @@ namespace DiscordWebhookRemoteApp
             | ConfigChanges.SmallestScreenSize
             | ConfigChanges.Density
     )]
-    public class MainActivity : MauiAppCompatActivity { }
+    public class MainActivity : MauiAppCompatActivity
+    {
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+        }
+    }
 }

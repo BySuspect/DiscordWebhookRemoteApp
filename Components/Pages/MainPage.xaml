@@ -7,30 +7,22 @@
     xmlns:CustomViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
     xmlns:EmbedViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView"
     xmlns:SavedWebhooksView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWebhooksView"
+    xmlns:WebhookItemsView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView"
     xmlns:WebhookProfileView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.WebhookProfileView"
     xmlns:controls="clr-namespace:Plugin.MauiMTAdmob.Controls;assembly=Plugin.MauiMtAdmob"
-    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    NavigationPage.HasNavigationBar="True">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="Discord_Clicked" IconImageSource="discordlogo.png" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
             <Grid VerticalOptions="FillAndExpand">
-                <ScrollView Margin="0,30,0,0">
+                <ScrollView Margin="0,5,0,0">
                     <StackLayout Margin="10,0,10,100">
                         <SavedWebhooksView:SavedWebhooksView x:Name="SavedWebhooksView" />
-                        <CustomViews:CustomEntryView
-                            x:Name="entryWebhookUri"
-                            Margin="0,15,0,5"
-                            HasCharCounterText="False"
-                            Placeholder="Webhook Url"
-                            TextChanged="entryWebhookUri_TextChanged"
-                            TextComplated="entryWebhookUri_TextComplated"
-                            ValidationType="Url" />
                         <WebhookProfileView:WebhookProfileView x:Name="WebhookProfileView" Margin="0,5,0,5" />
-                        <CustomViews:CustomEditorView
-                            x:Name="MessageContentView"
-                            Margin="5,5"
-                            HeightRequest="250"
-                            MaxLength="2000"
-                            Placeholder="Message Content" />
+                        <WebhookItemsView:MessageContentView x:Name="MessageContentView" />
                         <EmbedViews:EmbedView x:Name="EmbedView" />
                         <StackLayout
                             Margin="0,5,0,5"
@@ -54,7 +46,7 @@
                                 Clicked="btnTest_Clicked"
                                 CornerRadius="15"
                                 HorizontalOptions="Center"
-                                IsVisible="false"
+                                IsVisible="True"
                                 Text="Test"
                                 TextColor="White" />
                         </StackLayout>

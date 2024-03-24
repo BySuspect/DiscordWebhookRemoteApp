@@ -42,6 +42,8 @@
 		<ApplicationId>com.discordwebhookremote</ApplicationId>
 		<ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
 		<ApplicationDisplayVersion>0.1.0</ApplicationDisplayVersion>
+		<AndroidEnableMultiDex>True</AndroidEnableMultiDex>
+		<EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
@@ -67,6 +69,8 @@
 		<ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
 		<ApplicationDisplayVersion>0.1.0</ApplicationDisplayVersion>
 		<AndroidPackageFormat>apk</AndroidPackageFormat>
+		<AndroidEnableMultiDex>True</AndroidEnableMultiDex>
+		<AndroidLinkTool>r8</AndroidLinkTool>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
@@ -121,6 +125,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="Plugin.MauiMTAdmob" Version="1.4.1" />
+		<PackageReference Include="TouchEffect.Maui" Version="7.0.0" />
 		<PackageReference Include="Xamarin.Google.iOS.MobileAds" Version="8.13.0.3" />
 	</ItemGroup>
 
@@ -215,6 +220,10 @@
 		<None Update="Components\Partials\Views\WebhookItemsView\WebhookProfileView\WebhookProfileView.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Tests\" />
 	</ItemGroup>
 
 </Project>
