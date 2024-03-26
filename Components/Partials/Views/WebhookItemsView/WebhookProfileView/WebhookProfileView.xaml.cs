@@ -59,14 +59,4 @@ public partial class WebhookProfileView : ContentView, INotifyPropertyChanged
             AvatarImageSource = res;
         }
     }
-
-    private void Input_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        if (e.NewTextValue.Length >= Input.MaxLength)
-            lblInputLenght.TextColor = Colors.Red;
-        else
-            lblInputLenght.TextColor = Colors.White;
-
-        spCharacterCount.Text = e.NewTextValue.Length.ToString();
-    }
 }

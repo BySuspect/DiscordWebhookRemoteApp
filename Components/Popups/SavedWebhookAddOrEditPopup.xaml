@@ -7,43 +7,56 @@
     xmlns:CustomViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
     xmlns:local="clr-namespace:DiscordWebhookRemoteApp.Components.Popups"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    Size="{x:Static local:PopupSize.Small2}"
+    Size="{x:Static local:PopupSize.WebhookAddOrEditPopup}"
     Color="Transparent">
-    <toolkit:Popup.Content>
+
+    <StackLayout VerticalOptions="Center">
         <Frame
-            Padding="0"
+            Padding="10,5"
             BackgroundColor="Black"
             BorderColor="White"
-            CornerRadius="15">
-            <!--  TODO: popup çalışmıyor gibi harici view açıp ana sayfa içinde kendi popuplarımı oluşturucam  -->
-            <StackLayout>
+            CornerRadius="15"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="Center">
                 <CustomViews:CustomEntryView
+                    x:Name="entryWebhookUrl"
+                    Margin="5,10,5,5"
                     HasCharCounterText="False"
                     HorizontalOptions="Fill"
                     Placeholder="WebhookUrl"
-                    Text="aaaaaaaaaaaaaa"
-                    ValidationType="Url" />
+                    TextComplated="WebhookUrl_TextComplated"
+                    ValidationType="WebhookUrl" />
                 <CustomViews:CustomEntryView
+                    x:Name="entryImageUrl"
+                    Margin="5"
                     HasCharCounterText="False"
                     HorizontalOptions="Fill"
+                    MaxLength="2048"
                     Placeholder="Custom Image"
                     ValidationType="ImageUrl" />
                 <CustomViews:CustomEntryView
-                    HasCharCounterText="True"
+                    x:Name="entryName"
+                    Margin="5"
+                    HasCharCounterText="False"
                     HorizontalOptions="Fill"
                     MaxLength="12"
                     Placeholder="Name" />
 
                 <CustomItems:CustomButton
-                    Padding="10,20"
+                    Margin="5"
+                    Padding="20,10"
                     BackgroundColor="Black"
                     BorderColor="White"
                     BorderWidth="1"
+                    Clicked="Save_Clicked"
                     CornerRadius="15"
-                    HorizontalOptions="Center"
+                    HorizontalOptions="CenterAndExpand"
                     Text="Save"
-                    TextColor="White" />
+                    TextColor="White"
+                    VerticalOptions="End" />
             </StackLayout>
         </Frame>
-    </toolkit:Popup.Content>
+    </StackLayout>
+
 </toolkit:Popup>

@@ -17,10 +17,12 @@
                     <Editor
                         x:Name="Input"
                         Margin="0,20,0,10"
-                        FontSize="Body"
+                        FontSize="Small"
                         HeightRequest="{Binding HeightRequest}"
                         HorizontalOptions="Fill"
                         MaxLength="{Binding MaxLength}"
+                        Placeholder="{Binding Placeholder}"
+                        PlaceholderColor="Transparent"
                         Text="{Binding Text}"
                         TextChanged="Input_TextChanged"
                         VerticalOptions="Fill" />

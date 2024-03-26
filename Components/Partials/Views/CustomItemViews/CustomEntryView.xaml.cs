@@ -56,16 +56,52 @@ public partial class CustomEntryView : ContentView
     }
     #endregion
 
-    #region ValidationType Binding
-    private ValidationType _validationType;
-    public ValidationType ValidationType
+    #region CornerRadius Binding
+    public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(
+        nameof(CornerRadius),
+        typeof(int),
+        typeof(CustomEntryView),
+        defaultValue: 15
+    );
+    public int CornerRadius
     {
-        get { return _validationType; }
+        get { return (int)GetValue(CornerRadiusProperty); }
         set
         {
-            if (_validationType != value)
+            SetValue(CornerRadiusProperty, value);
+            OnPropertyChanged(nameof(CornerRadius));
+        }
+    }
+    #endregion
+
+    #region CornerRadius Binding
+    public static readonly BindableProperty BorderColorProperty = BindableProperty.Create(
+        nameof(BorderColor),
+        typeof(Color),
+        typeof(CustomEntryView),
+        defaultValue: Colors.White
+    );
+    public Color BorderColor
+    {
+        get { return (Color)GetValue(BorderColorProperty); }
+        set
+        {
+            SetValue(BorderColorProperty, value);
+            OnPropertyChanged(nameof(BorderColor));
+        }
+    }
+    #endregion
+
+    #region ValidationType Binding
+    private ValidationType validationType;
+    public ValidationType ValidationType
+    {
+        get { return validationType; }
+        set
+        {
+            if (validationType != value)
             {
-                _validationType = value;
+                validationType = value;
 
                 if (value == ValidationType.ColorHex)
                 {
@@ -81,6 +117,15 @@ public partial class CustomEntryView : ContentView
                 {
                     Input.Behaviors.Clear();
                     Input.Behaviors.Add(new InputBehaviors.ImageUrlValidatorBehaviour());
+                }
+                else if (value == ValidationType.WebhookUrl)
+                {
+                    Input.Behaviors.Clear();
+                    Input.Behaviors.Add(new InputBehaviors.WebhookUrlValidatorBehaviour());
+                }
+                else
+                {
+                    Input.Behaviors.Clear();
                 }
             }
         }
@@ -113,7 +158,7 @@ public partial class CustomEntryView : ContentView
         if (this.Text.Length > 0)
         {
             lblTitle.TextColor = Colors.White;
-            titleView.BorderColor = Colors.White;
+            titleView.BorderColor = BorderColor;
             titleView.BackgroundColor = Colors.Black;
             titleView.TranslationX = 15;
             titleView.TranslationY = -8;
@@ -185,5 +230,6 @@ public enum ValidationType
     None,
     ColorHex,
     Url,
-    ImageUrl
+    ImageUrl,
+    WebhookUrl,
 }

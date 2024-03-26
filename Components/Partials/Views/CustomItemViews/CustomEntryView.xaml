@@ -10,15 +10,17 @@
             <Frame
                 Padding="10,5"
                 BackgroundColor="Transparent"
-                BorderColor="White"
-                CornerRadius="15"
+                BorderColor="{Binding BorderColor}"
+                CornerRadius="{Binding CornerRadius}"
                 HorizontalOptions="FillAndExpand">
                 <Grid>
                     <Entry
                         x:Name="Input"
-                        FontSize="Body"
+                        FontSize="Small"
                         HorizontalOptions="Fill"
                         MaxLength="{Binding MaxLength}"
+                        Placeholder="{Binding Placeholder}"
+                        PlaceholderColor="Transparent"
                         Text="{Binding Text}"
                         TextChanged="Input_TextChanged"
                         VerticalOptions="Fill" />

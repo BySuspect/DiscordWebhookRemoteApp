@@ -1,21 +1,4 @@
-﻿/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-windows10.0.19041.0)'
-Before:
-using System.Drawing;
-using Microsoft.Maui;
-After:
-using Microsoft.Maui;
-using System.Drawing;
-*/
-
-/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-maccatalyst)'
-Before:
-using System.Drawing;
-using Microsoft.Maui;
-After:
-using Microsoft.Maui;
-using System.Drawing;
-*/
-#if IOS
+﻿#if IOS
 using Foundation;
 using UIKit;
 #endif

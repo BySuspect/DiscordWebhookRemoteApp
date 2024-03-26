@@ -132,8 +132,13 @@ public partial class SavedWebhookView : ContentView
         InitializeComponent();
         LongPressCommand = new Command(() =>
         {
-            OnLongPressed(null, null);
+            OnLongPressed();
         });
+    }
+
+    protected virtual void OnLongPressed()
+    {
+        Console.WriteLine("Long prssed");
     }
 
     private void WebhookSelect_Tapped(object sender, TappedEventArgs e)
@@ -147,14 +152,6 @@ public partial class SavedWebhookView : ContentView
     {
         EventHandler<TappedEventArgs> handler = WebhookSelectTapped;
         handler?.Invoke(sender, e);
-    }
-
-    public event EventHandler<EventArgs> LongPressed;
-
-    protected virtual void OnLongPressed(object sender, EventArgs e)
-    {
-        EventHandler<EventArgs> handler = LongPressed;
-        handler?.Invoke(this, EventArgs.Empty);
     }
 }
 

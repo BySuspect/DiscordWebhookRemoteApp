@@ -18,62 +18,42 @@
                     <Frame
                         Padding="0"
                         BackgroundColor="Transparent"
-                        CornerRadius="90">
+                        CornerRadius="60">
                         <Grid>
                             <Image
-                                HeightRequest="64"
+                                HeightRequest="48"
                                 HorizontalOptions="Start"
-                                MinimumHeightRequest="64"
-                                MinimumWidthRequest="64"
+                                MinimumHeightRequest="48"
+                                MinimumWidthRequest="48"
                                 Source="discordlogo.png"
-                                WidthRequest="64" />
+                                WidthRequest="48" />
                             <Image
                                 x:Name="avatarImg"
-                                HeightRequest="64"
+                                HeightRequest="48"
                                 HorizontalOptions="Start"
-                                MinimumHeightRequest="64"
-                                MinimumWidthRequest="64"
+                                MinimumHeightRequest="48"
+                                MinimumWidthRequest="48"
                                 Source="{Binding AvatarImageSource}"
-                                WidthRequest="64" />
+                                WidthRequest="48" />
                         </Grid>
 
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Avatar_Tapped" />
                         </Frame.GestureRecognizers>
                     </Frame>
-                    <StackLayout
-                        Margin="10,0,0,0"
+                    <BoxView
+                        Margin="5,0"
+                        WidthRequest="1"
+                        Color="White" />
+                    <CustomViews:CustomEntryView
+                        x:Name="Input"
+                        BorderColor="Transparent"
+                        CornerRadius="0"
                         HorizontalOptions="FillAndExpand"
-                        Orientation="Horizontal">
-                        <BoxView WidthRequest="1" Color="White" />
-                        <Grid HorizontalOptions="FillAndExpand">
-                            <Entry
-                                x:Name="Input"
-                                FontSize="Body"
-                                HorizontalOptions="Fill"
-                                MaxLength="80"
-                                Placeholder="Username"
-                                Text="{Binding Username}"
-                                TextChanged="Input_TextChanged"
-                                VerticalOptions="Center" />
-                            <Label
-                                x:Name="lblInputLenght"
-                                Margin="0,0,5,5"
-                                FontSize="Caption"
-                                HorizontalOptions="End"
-                                Text="0/0"
-                                TextColor="White"
-                                VerticalOptions="End">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span x:Name="spCharacterCount" Text="0" />
-                                        <Span Text="/" TextColor="White" />
-                                        <Span Text="{Binding Source={x:Reference Input}, Path=MaxLength}" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </Grid>
-                    </StackLayout>
+                        MaxLength="80"
+                        Placeholder="Username"
+                        Text="{Binding Username}"
+                        VerticalOptions="Center" />
                 </StackLayout>
             </StackLayout>
         </Frame>

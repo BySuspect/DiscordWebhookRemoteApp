@@ -12,17 +12,17 @@
             Padding="0"
             BorderColor="White"
             CornerRadius="15"
-            HeightRequest="120"
+            HeightRequest="95"
             TouchEffect.LongPressCommand="{Binding LongPressCommand}"
-            WidthRequest="85">
+            WidthRequest="75">
             <StackLayout Margin="10,5" TouchEffect.LongPressCommand="{Binding LongPressCommand}">
                 <Frame
                     Padding="0"
                     BackgroundColor="Transparent"
                     CornerRadius="60"
-                    HeightRequest="64"
+                    HeightRequest="48"
                     TouchEffect.LongPressCommand="{Binding LongPressCommand}"
-                    WidthRequest="64">
+                    WidthRequest="48">
                     <Image
                         x:Name="img"
                         HorizontalOptions="Fill"

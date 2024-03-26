@@ -1,5 +1,7 @@
 using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Views;
 using Discord;
+using DiscordWebhookRemoteApp.Components.Popups;
 using DiscordWebhookRemoteApp.Helpers;
 
 namespace DiscordWebhookRemoteApp.Components.Pages;
@@ -32,7 +34,10 @@ public partial class MainPage : ContentPage
     private async void SendButton_Clicked(object sender, EventArgs e)
     {
         if (SavedWebhooksView.selectedWebhook == null)
+        {
+            _ = Toast.Make("Please select a webhook").Show();
             return;
+        }
 
         btnSend.IsEnabled = false;
         try
@@ -72,9 +77,9 @@ public partial class MainPage : ContentPage
                         : ""
                 );
             if (result != null)
-                Toast.Make("Message Sent");
+                _ = Toast.Make("Message Sent").Show();
             else
-                Toast.Make("Message Not Sent");
+                _ = Toast.Make("Message Not Sent").Show();
         }
         catch (Exception ex)
         {
@@ -85,10 +90,7 @@ public partial class MainPage : ContentPage
 
     private async void btnTest_Clicked(object sender, EventArgs e)
     {
-        try
-        {
-            Toast.Make("test");
-        }
+        try { }
         catch (Exception ex)
         {
             _ = DisplayAlert("Send Error", ex.Message, "Ok");
@@ -146,17 +148,6 @@ public partial class MainPage : ContentPage
         )
             hasEmbed = true;
         return Task.FromResult((embed, hasEmbed));
-    }
-
-    private void entryWebhookUri_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        Console.WriteLine(e.NewTextValue);
-    }
-
-    private void entryWebhookUri_TextComplated(object sender, EventArgs e)
-    {
-        var entry = (Entry)sender;
-        Preferences.Set("WebhookUrl", entry.Text);
     }
 
     private async void Discord_Clicked(object sender, EventArgs e)

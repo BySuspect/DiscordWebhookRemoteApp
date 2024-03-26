@@ -1,5 +1,7 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Core.Extensions;
+using CommunityToolkit.Maui.Views;
+using DiscordWebhookRemoteApp.Components.Popups;
 using DiscordWebhookRemoteApp.Services;
 
 namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWebhooksView;
@@ -59,19 +61,6 @@ public partial class SavedWebhooksView : ContentView
             );
         }
         SavedWebhooks = _list.ToObservableCollection();
-
-        //var list = new List<SavedWebhookView>()
-        //{
-        //    new SavedWebhookView()
-        //    {
-        //        WebhookId = 1,
-        //        Name = "test1",
-        //        IsSelected = false,
-        //        ImageSource = "https://i.imgur.com/niLjyNS.jpg",
-        //        WebhookUrl = "test",
-        //    },
-        //};
-        //SavedWebhooks = list.ToObservableCollection();
     }
 
     private void DeleteWebhook_Clicked(object sender, EventArgs e)
@@ -88,18 +77,10 @@ public partial class SavedWebhooksView : ContentView
     {
         try
         {
-            //var popup = new SavedWebhookAddOrEditPopup();
-            //var result = await Application.Current.MainPage.ShowPopupAsync(
-            //    popup,
-            //    CancellationToken.None
-            //);
-
-            var res = await Application.Current.MainPage.DisplayPromptAsync(
-                "Add New Webhook",
-                "Enter the url of the webhook",
-                "Add",
-                "Cancel"
-            );
+            var popup = new SavedWebhookAddOrEditPopup();
+            var res =
+                await PopupExtensions.ShowPopupAsync(Application.Current.MainPage, popup)
+                as SavedWebhookViewItems;
 
             if (res != null)
             {
@@ -108,9 +89,9 @@ public partial class SavedWebhooksView : ContentView
                     new SavedWebhookView
                     {
                         WebhookId = (_list.Count > 0) ? _list.Last().WebhookId + 1 : 1,
-                        ImageSource = "discordlogo.png",
-                        Name = $"Webhook{((_list.Count > 0) ? _list.Last().WebhookId + 1 : 1)}",
-                        WebhookUrl = res,
+                        ImageSource = res.ImageSource ?? "discordlogo.png",
+                        Name = res.Name,
+                        WebhookUrl = res.WebhookUrl,
                     }
                 );
                 SavedWebhooks = _list.ToObservableCollection();

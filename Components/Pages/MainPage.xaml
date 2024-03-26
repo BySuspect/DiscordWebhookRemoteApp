@@ -20,12 +20,12 @@
             <Grid VerticalOptions="FillAndExpand">
                 <ScrollView Margin="0,5,0,0">
                     <StackLayout Margin="10,0,10,100">
-                        <SavedWebhooksView:SavedWebhooksView x:Name="SavedWebhooksView" />
-                        <WebhookProfileView:WebhookProfileView x:Name="WebhookProfileView" Margin="0,5,0,5" />
-                        <WebhookItemsView:MessageContentView x:Name="MessageContentView" />
-                        <EmbedViews:EmbedView x:Name="EmbedView" />
+                        <SavedWebhooksView:SavedWebhooksView x:Name="SavedWebhooksView" Margin="0,5,0,5" />
+                        <WebhookProfileView:WebhookProfileView x:Name="WebhookProfileView" Margin="0,0,0,5" />
+                        <WebhookItemsView:MessageContentView x:Name="MessageContentView" Margin="0,0,0,5" />
+                        <EmbedViews:EmbedView x:Name="EmbedView" Margin="0,0,0,5" />
                         <StackLayout
-                            Margin="0,5,0,5"
+                            Margin="0,0,0,5"
                             HorizontalOptions="Center"
                             Orientation="Horizontal">
                             <CustomItems:CustomButton

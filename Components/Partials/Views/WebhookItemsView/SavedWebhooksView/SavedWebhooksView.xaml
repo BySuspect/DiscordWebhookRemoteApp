@@ -35,33 +35,21 @@
                         <CollectionView.Footer>
                             <ImageButton
                                 Margin="5,0"
-                                Padding="10"
+                                Padding="12"
                                 BorderColor="White"
                                 BorderWidth="2"
                                 CornerRadius="15"
-                                HeightRequest="120"
+                                HeightRequest="95"
                                 Source="plusiconwhite.png"
                                 TouchEffect.PressedOpacity="0.8"
                                 TouchEffect.PressedScale="0.9"
-                                WidthRequest="80">
+                                WidthRequest="75">
                                 <ImageButton.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="AddNewWebhookTapped" />
                                 </ImageButton.GestureRecognizers>
                             </ImageButton>
                         </CollectionView.Footer>
                     </CollectionView>
-
-                    <CustomItems:CustomButton
-                        Margin="0,5,5,0"
-                        BackgroundColor="Black"
-                        BorderColor="White"
-                        BorderWidth="1"
-                        Clicked="DeleteWebhook_Clicked"
-                        CornerRadius="15"
-                        HorizontalOptions="End"
-                        IsVisible="True"
-                        Text="Delete"
-                        TextColor="White" />
                 </StackLayout>
             </Frame>
         </StackLayout>
