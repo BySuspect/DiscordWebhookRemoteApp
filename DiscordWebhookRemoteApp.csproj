@@ -124,7 +124,11 @@
         <None Remove="Resources\AppIcon\icon.png" />
         <None Remove="Resources\Images\app_logo.png" />
         <None Remove="Resources\Images\app_logo_fore.png" />
+        <None Remove="Resources\Images\deletedark.png" />
+        <None Remove="Resources\Images\deletewhite.png" />
         <None Remove="Resources\Images\discordlogo.png" />
+        <None Remove="Resources\Images\editdark.png" />
+        <None Remove="Resources\Images\editwhite.png" />
         <None Remove="Resources\Images\plusiconblack.png" />
         <None Remove="Resources\Images\plusiconwhite.png" />
         <None Remove="Resources\Splash\splash_logo.png" />
@@ -151,6 +155,9 @@
         </MauiXaml>
         <MauiXaml Update="Components\Partials\Views\CustomItemViews\CustomEntryView.xaml">
             <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Components\Partials\Views\CustomItemViews\CustomLoadingView.xaml">
+          <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Partials\Views\WebhookItemsView\EmbedView\AuthorView\AuthorView.xaml">
             <Generator>MSBuild:Compile</Generator>

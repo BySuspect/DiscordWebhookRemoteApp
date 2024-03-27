@@ -38,9 +38,9 @@
                 <CustomViews:CustomEntryView
                     x:Name="entryName"
                     Margin="5"
-                    HasCharCounterText="False"
+                    HasCharCounterText="True"
                     HorizontalOptions="Fill"
-                    MaxLength="12"
+                    MaxLength="20"
                     Placeholder="Name" />
 
                 <CustomItems:CustomButton

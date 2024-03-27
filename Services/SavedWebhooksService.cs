@@ -19,5 +19,14 @@ namespace DiscordWebhookRemoteApp.Services
                 Preferences.Set("SavedWebhooksBeta", json);
             }
         }
+
+        public static void WebhookLongPressed(int id)
+        {
+            Application.Current?.MainPage?.DisplayAlert(
+                "Webhook Long Pressed",
+                $"Webhook ID: {id}",
+                "OK"
+            );
+        }
     }
 }

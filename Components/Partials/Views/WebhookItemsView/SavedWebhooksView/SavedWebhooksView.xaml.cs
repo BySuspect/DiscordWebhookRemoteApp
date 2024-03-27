@@ -37,6 +37,8 @@ public partial class SavedWebhooksView : ContentView
 
     public SavedWebhookView selectedWebhook;
 
+    SavedWebhookAddOrEditPopup savedWebhookAddOrEditPopup = new SavedWebhookAddOrEditPopup();
+
     public SavedWebhooksView()
     {
         InitializeComponent();
@@ -63,24 +65,17 @@ public partial class SavedWebhooksView : ContentView
         SavedWebhooks = _list.ToObservableCollection();
     }
 
-    private void DeleteWebhook_Clicked(object sender, EventArgs e)
-    {
-        if (selectedWebhook == null)
-            return;
-
-        var _list = SavedWebhooks.ToList();
-        _list.Remove(_list.Where(x => x.WebhookId == selectedWebhook.WebhookId).First());
-        SavedWebhooks = _list.ToObservableCollection();
-    }
-
     private async void AddNewWebhookTapped(object sender, TappedEventArgs e)
     {
         try
         {
-            var popup = new SavedWebhookAddOrEditPopup();
+            savedWebhookAddOrEditPopup = new SavedWebhookAddOrEditPopup();
+            savedWebhookAddOrEditPopup.NewMode();
             var res =
-                await PopupExtensions.ShowPopupAsync(Application.Current.MainPage, popup)
-                as SavedWebhookViewItems;
+                await PopupExtensions.ShowPopupAsync(
+                    Application.Current.MainPage,
+                    savedWebhookAddOrEditPopup
+                ) as SavedWebhookViewItems;
 
             if (res != null)
             {
@@ -89,7 +84,7 @@ public partial class SavedWebhooksView : ContentView
                     new SavedWebhookView
                     {
                         WebhookId = (_list.Count > 0) ? _list.Last().WebhookId + 1 : 1,
-                        ImageSource = res.ImageSource ?? "discordlogo.png",
+                        ImageSource = res.ImageSource,
                         Name = res.Name,
                         WebhookUrl = res.WebhookUrl,
                     }
@@ -114,5 +109,50 @@ public partial class SavedWebhooksView : ContentView
 
         selectedWebhook = ((SavedWebhookView)sender);
         Console.WriteLine(selectedWebhook.WebhookUrl);
+    }
+
+    private async void SavedWebhookPropertyChanged(
+        object sender,
+        SavedWebhookPropertyChangedEventArgs e
+    )
+    {
+        if (e.NewItem == null)
+        {
+            //deleting
+            var _list = SavedWebhooks.ToList();
+            _list.Remove(_list.Where(x => x.WebhookId == e.OldItem.WebhookId).First());
+            SavedWebhooks = _list.ToObservableCollection();
+        }
+        else
+        {
+            //editing
+            savedWebhookAddOrEditPopup = new SavedWebhookAddOrEditPopup();
+            savedWebhookAddOrEditPopup.EditMode(
+                new SavedWebhookViewItems
+                {
+                    WebhookUrl = e.OldItem.WebhookUrl,
+                    ImageSource = e.OldItem.ImageSource,
+                    Name = e.OldItem.Name
+                }
+            );
+            var res =
+                await PopupExtensions.ShowPopupAsync(
+                    Application.Current.MainPage,
+                    savedWebhookAddOrEditPopup
+                ) as SavedWebhookViewItems;
+
+            if (res != null)
+            {
+                var _list = SavedWebhooks.ToList();
+                var item = _list.Where(x => x.WebhookId == e.OldItem.WebhookId).First();
+                item.ImageSource = res.ImageSource;
+                item.Name = res.Name;
+                item.WebhookUrl = res.WebhookUrl;
+                _list.Remove(_list.Where(x => x.WebhookId == e.OldItem.WebhookId).First());
+                _list.Add(item);
+                _list = _list.OrderBy(x => x.WebhookId).ToList();
+                SavedWebhooks = _list.ToObservableCollection();
+            }
+        }
     }
 }

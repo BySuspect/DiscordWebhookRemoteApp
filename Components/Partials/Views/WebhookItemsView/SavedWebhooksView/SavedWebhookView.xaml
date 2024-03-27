@@ -4,59 +4,124 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
-    xmlns:local="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWebhooksView">
+    xmlns:local="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWebhooksView"
+    xmlns:toolkit="toolkit">
     <ContentView.Content>
         <Frame
-            x:Name="WebhookViewFrame"
             Margin="5,0"
             Padding="0"
             BorderColor="White"
             CornerRadius="15"
-            HeightRequest="95"
-            TouchEffect.LongPressCommand="{Binding LongPressCommand}"
-            WidthRequest="75">
-            <StackLayout Margin="10,5" TouchEffect.LongPressCommand="{Binding LongPressCommand}">
+            HasShadow="False"
+            Scale="{Binding Source={x:Reference WebhookViewFrame}, Path=Scale}"
+            WidthRequest="{Binding Source={x:Reference WebhookViewMainGrid}, Path=WidthRequest}">
+            <Grid x:Name="WebhookViewMainGrid" WidthRequest="75">
+                <VerticalStackLayout
+                    x:Name="buttonsLayout"
+                    Margin="0,0,5,0"
+                    HorizontalOptions="Center"
+                    TranslationX="0"
+                    VerticalOptions="Center">
+                    <Frame
+                        x:Name="EditBtnFrame"
+                        Margin="0,0,0,5"
+                        Padding="0"
+                        CornerRadius="90"
+                        VerticalOptions="Center">
+                        <ImageButton
+                            Margin="-1"
+                            HeightRequest="32"
+                            HorizontalOptions="Center"
+                            Source="editwhite.png"
+                            TouchEffect.PressedOpacity="0.8"
+                            TouchEffect.PressedScale="0.9"
+                            WidthRequest="32">
+                            <ImageButton.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Edit_Tapped" />
+                            </ImageButton.GestureRecognizers>
+                        </ImageButton>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Edit_Tapped" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <Frame
+                        x:Name="DeleteBtnFrame"
+                        Margin="0,5,0,0"
+                        Padding="0"
+                        CornerRadius="90"
+                        VerticalOptions="Center">
+                        <ImageButton
+                            Margin="-1"
+                            HeightRequest="32"
+                            HorizontalOptions="Center"
+                            Source="deletewhite.png"
+                            TouchEffect.PressedOpacity="0.8"
+                            TouchEffect.PressedScale="0.9"
+                            WidthRequest="32">
+                            <ImageButton.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Delete_Tapped" />
+                            </ImageButton.GestureRecognizers>
+                        </ImageButton>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Delete_Tapped" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </VerticalStackLayout>
                 <Frame
+                    x:Name="WebhookViewFrame"
                     Padding="0"
-                    BackgroundColor="Transparent"
-                    CornerRadius="60"
-                    HeightRequest="48"
+                    BackgroundColor="Black"
+                    BorderColor="White"
+                    CornerRadius="15"
+                    HasShadow="False"
+                    HeightRequest="115"
+                    HorizontalOptions="Start"
                     TouchEffect.LongPressCommand="{Binding LongPressCommand}"
-                    WidthRequest="48">
-                    <Image
-                        x:Name="img"
-                        HorizontalOptions="Fill"
-                        Source="{Binding ImageSource}"
-                        TouchEffect.LongPressCommand="{Binding LongPressCommand}"
-                        VerticalOptions="Fill">
-                        <Image.GestureRecognizers>
+                    WidthRequest="75">
+                    <StackLayout Margin="10,5" TouchEffect.LongPressCommand="{Binding LongPressCommand}">
+                        <Frame
+                            Padding="0"
+                            BackgroundColor="Transparent"
+                            CornerRadius="60"
+                            HeightRequest="48"
+                            TouchEffect.LongPressCommand="{Binding LongPressCommand}"
+                            WidthRequest="48">
+                            <Image
+                                x:Name="img"
+                                HorizontalOptions="Fill"
+                                Source="{Binding ImageSource}"
+                                TouchEffect.LongPressCommand="{Binding LongPressCommand}"
+                                VerticalOptions="Fill">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="WebhookSelect_Tapped" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="WebhookSelect_Tapped" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Label
+                            x:Name="lblName"
+                            Margin="0,5,0,0"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            MaximumWidthRequest="64"
+                            TouchEffect.LongPressCommand="{Binding LongPressCommand}"
+                            VerticalOptions="CenterAndExpand"
+                            VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="WebhookSelect_Tapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="WebhookSelect_Tapped" />
-                        </Image.GestureRecognizers>
-                    </Image>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="WebhookSelect_Tapped" />
                     </Frame.GestureRecognizers>
                 </Frame>
-                <Label
-                    x:Name="lblName"
-                    Margin="0,5,0,0"
-                    HorizontalOptions="Center"
-                    HorizontalTextAlignment="Center"
-                    MaximumWidthRequest="64"
-                    TouchEffect.LongPressCommand="{Binding LongPressCommand}"
-                    VerticalOptions="Center"
-                    VerticalTextAlignment="Center">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="WebhookSelect_Tapped" />
-                    </Label.GestureRecognizers>
-                </Label>
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="WebhookSelect_Tapped" />
-                </StackLayout.GestureRecognizers>
-            </StackLayout>
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Tapped="WebhookSelect_Tapped" />
-            </Frame.GestureRecognizers>
+            </Grid>
         </Frame>
     </ContentView.Content>
 </ContentView>

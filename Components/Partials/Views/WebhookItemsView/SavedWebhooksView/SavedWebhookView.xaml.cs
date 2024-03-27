@@ -1,4 +1,9 @@
 using System.Windows.Input;
+using CommunityToolkit.Maui.Views;
+using DiscordWebhookRemoteApp.Components.Partials.CustomGestureRecognizers;
+using DiscordWebhookRemoteApp.Components.Popups;
+using DiscordWebhookRemoteApp.Services;
+using Microsoft.Maui.Controls;
 
 namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWebhooksView;
 
@@ -98,11 +103,17 @@ public partial class SavedWebhookView : ContentView
         {
             WebhookViewFrame.Scale = 0.9;
             WebhookViewFrame.Opacity = 0.8;
+
+            WebhookViewMainGrid.WidthRequest = 120;
+            buttonsLayout.TranslateTo(40, 0, 100, Easing.CubicIn);
         }
         else
         {
             WebhookViewFrame.Scale = 1;
             WebhookViewFrame.Opacity = 1;
+
+            buttonsLayout.TranslateTo(0, 0, 100, Easing.CubicOut);
+            WebhookViewMainGrid.WidthRequest = 75;
         }
     }
     #endregion
@@ -125,40 +136,76 @@ public partial class SavedWebhookView : ContentView
     }
     #endregion
 
-    public ICommand LongPressCommand { get; set; }
-
     public SavedWebhookView()
     {
         InitializeComponent();
-        LongPressCommand = new Command(() =>
-        {
-            OnLongPressed();
-        });
-    }
-
-    protected virtual void OnLongPressed()
-    {
-        Console.WriteLine("Long prssed");
     }
 
     private void WebhookSelect_Tapped(object sender, TappedEventArgs e)
     {
-        OnWebhookSelectTapped(this, e);
+        OnWebhookSelected(this, e);
     }
 
-    public event EventHandler<TappedEventArgs> WebhookSelectTapped;
-
-    protected virtual void OnWebhookSelectTapped(object sender, TappedEventArgs e)
+    private void Edit_Tapped(object sender, TappedEventArgs e)
     {
-        EventHandler<TappedEventArgs> handler = WebhookSelectTapped;
+        OnSavedWebhookPropertyChanged(new SavedWebhookPropertyChangedEventArgs(this, this));
+    }
+
+    private async void Delete_Tapped(object sender, TappedEventArgs e)
+    {
+        var res = await Application.Current.MainPage.DisplayAlert(
+            "Warning!",
+            $"Are you sure about to delete {Name}?",
+            "Yes",
+            "No"
+        );
+        if (!res)
+            return;
+
+        OnSavedWebhookPropertyChanged(new SavedWebhookPropertyChangedEventArgs(this, null));
+    }
+
+    #region Events
+
+    #region OnWebhookSelected
+    public event EventHandler<TappedEventArgs> WebhookSelected;
+
+    protected virtual void OnWebhookSelected(object sender, TappedEventArgs e)
+    {
+        EventHandler<TappedEventArgs> handler = WebhookSelected;
         handler?.Invoke(sender, e);
     }
+    #endregion
+
+    #region SavedWebhookPropertyChanged
+    public event EventHandler<SavedWebhookPropertyChangedEventArgs> SavedWebhookPropertyChanged;
+
+    protected virtual void OnSavedWebhookPropertyChanged(SavedWebhookPropertyChangedEventArgs e)
+    {
+        EventHandler<SavedWebhookPropertyChangedEventArgs> handler = SavedWebhookPropertyChanged;
+        handler?.Invoke(this, e);
+    }
+    #endregion
+
+    #endregion
 }
 
 public class SavedWebhookViewItems
 {
-    public required int WebhookId { get; set; }
+    public int WebhookId { get; set; }
     public required string Name { get; set; }
     public required string ImageSource { get; set; }
     public required string WebhookUrl { get; set; }
+}
+
+public class SavedWebhookPropertyChangedEventArgs : EventArgs
+{
+    public SavedWebhookPropertyChangedEventArgs(SavedWebhookView oldItem, SavedWebhookView? neItem)
+    {
+        OldItem = oldItem;
+        NewItem = neItem;
+    }
+
+    public SavedWebhookView OldItem { get; private set; }
+    public SavedWebhookView? NewItem { get; private set; }
 }

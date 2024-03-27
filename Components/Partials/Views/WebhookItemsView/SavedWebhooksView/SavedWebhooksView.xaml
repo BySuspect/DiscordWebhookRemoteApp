@@ -26,20 +26,22 @@
                             <DataTemplate>
                                 <local:SavedWebhookView
                                     Name="{Binding Name}"
+                                    ImageSource="{Binding ImageSource}"
                                     IsSelected="{Binding IsSelected}"
+                                    SavedWebhookPropertyChanged="SavedWebhookPropertyChanged"
                                     WebhookId="{Binding WebhookId}"
-                                    WebhookSelectTapped="OnSavedWebhookViewTapped"
+                                    WebhookSelected="OnSavedWebhookViewTapped"
                                     WebhookUrl="{Binding WebhookUrl}" />
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                         <CollectionView.Footer>
                             <ImageButton
                                 Margin="5,0"
-                                Padding="12"
+                                Padding="13"
                                 BorderColor="White"
                                 BorderWidth="2"
                                 CornerRadius="15"
-                                HeightRequest="95"
+                                HeightRequest="115"
                                 Source="plusiconwhite.png"
                                 TouchEffect.PressedOpacity="0.8"
                                 TouchEffect.PressedScale="0.9"
