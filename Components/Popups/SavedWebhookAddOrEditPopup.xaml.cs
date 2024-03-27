@@ -9,6 +9,7 @@ public partial class SavedWebhookAddOrEditPopup : Popup
 {
     private bool isEditMode = false;
     private SavedWebhookView editWebhook;
+    private string webhookUrl;
 
     public SavedWebhookAddOrEditPopup()
     {
@@ -26,6 +27,8 @@ public partial class SavedWebhookAddOrEditPopup : Popup
     public void EditMode(SavedWebhookViewItems item)
     {
         isEditMode = true;
+        webhookUrl = item.WebhookUrl;
+
         entryWebhookUrl.Text = item.WebhookUrl;
         entryImageUrl.Text =
             item.ImageSource == "discordlogo.png" ? string.Empty : item.ImageSource;
@@ -53,10 +56,17 @@ public partial class SavedWebhookAddOrEditPopup : Popup
         try
         {
             if (
-                string.IsNullOrEmpty(entryWebhookUrl.Text.Trim())
-                || !entryWebhookUrl.Text.Trim().Contains("discord.com/api/webhooks/")
+                (
+                    string.IsNullOrEmpty(entryWebhookUrl.Text.Trim())
+                    || !entryWebhookUrl.Text.Trim().Contains("discord.com/api/webhooks/")
+                )
+                && entryWebhookUrl.Text != webhookUrl
             )
                 return;
+
+            entryWebhookUrl.IsEnabled = false;
+            entryImageUrl.IsEnabled = false;
+            entryName.IsEnabled = false;
 
             var httpClient = new HttpClient();
             var response = await httpClient.GetAsync(entryWebhookUrl.Text.Trim());
@@ -87,5 +97,9 @@ public partial class SavedWebhookAddOrEditPopup : Popup
                 );
         }
         catch { }
+
+        entryWebhookUrl.IsEnabled = true;
+        entryImageUrl.IsEnabled = true;
+        entryName.IsEnabled = true;
     }
 }

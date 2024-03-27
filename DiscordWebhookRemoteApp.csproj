@@ -41,44 +41,44 @@
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
         <ApplicationId>com.discordwebhookremote</ApplicationId>
         <ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
-        <ApplicationDisplayVersion>0.1.1</ApplicationDisplayVersion>
-        <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
+        <ApplicationDisplayVersion>0.1.2</ApplicationDisplayVersion>
+        <AndroidEnableMultiDex>True</AndroidEnableMultiDex>
         <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
-        <ApplicationVersion>2</ApplicationVersion>
+        <ApplicationVersion>3</ApplicationVersion>
         <AndroidUseAapt2>True</AndroidUseAapt2>
         <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
-        <AndroidPackageFormat>apk</AndroidPackageFormat>
+        <AndroidPackageFormat>aab</AndroidPackageFormat>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
         <ApplicationId>com.discordwebhookremote</ApplicationId>
         <ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
-        <ApplicationDisplayVersion>0.1.1</ApplicationDisplayVersion>
-        <ApplicationVersion>2</ApplicationVersion>
+        <ApplicationDisplayVersion>0.1.2</ApplicationDisplayVersion>
+        <ApplicationVersion>3</ApplicationVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|AnyCPU'">
         <ApplicationId>com.discordwebhookremote</ApplicationId>
         <ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
-        <ApplicationDisplayVersion>0.1.1</ApplicationDisplayVersion>
-        <ApplicationVersion>2</ApplicationVersion>
+        <ApplicationDisplayVersion>0.1.2</ApplicationDisplayVersion>
+        <ApplicationVersion>3</ApplicationVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|AnyCPU'">
         <ApplicationId>com.discordwebhookremote</ApplicationId>
         <ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
-        <ApplicationDisplayVersion>0.1.1</ApplicationDisplayVersion>
-        <ApplicationVersion>2</ApplicationVersion>
+        <ApplicationDisplayVersion>0.1.2</ApplicationDisplayVersion>
+        <ApplicationVersion>3</ApplicationVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
         <ApplicationId>com.discordwebhookremote</ApplicationId>
         <ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
-        <ApplicationDisplayVersion>0.1.1</ApplicationDisplayVersion>
-        <AndroidPackageFormat>apk</AndroidPackageFormat>
-        <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
+        <ApplicationDisplayVersion>0.1.2</ApplicationDisplayVersion>
+        <AndroidPackageFormat>aab</AndroidPackageFormat>
+        <AndroidEnableMultiDex>True</AndroidEnableMultiDex>
         <AndroidLinkTool>r8</AndroidLinkTool>
-        <ApplicationVersion>2</ApplicationVersion>
+        <ApplicationVersion>3</ApplicationVersion>
         <AndroidUseAapt2>True</AndroidUseAapt2>
         <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
     </PropertyGroup>
@@ -86,22 +86,22 @@
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
         <ApplicationId>com.discordwebhookremote</ApplicationId>
         <ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
-        <ApplicationDisplayVersion>0.1.1</ApplicationDisplayVersion>
-        <ApplicationVersion>2</ApplicationVersion>
+        <ApplicationDisplayVersion>0.1.2</ApplicationDisplayVersion>
+        <ApplicationVersion>3</ApplicationVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|AnyCPU'">
         <ApplicationId>com.discordwebhookremote</ApplicationId>
         <ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
-        <ApplicationDisplayVersion>0.1.1</ApplicationDisplayVersion>
-        <ApplicationVersion>2</ApplicationVersion>
+        <ApplicationDisplayVersion>0.1.2</ApplicationDisplayVersion>
+        <ApplicationVersion>3</ApplicationVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|AnyCPU'">
         <ApplicationId>com.discordwebhookremote</ApplicationId>
         <ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
-        <ApplicationDisplayVersion>0.1.1</ApplicationDisplayVersion>
-        <ApplicationVersion>2</ApplicationVersion>
+        <ApplicationDisplayVersion>0.1.2</ApplicationDisplayVersion>
+        <ApplicationVersion>3</ApplicationVersion>
     </PropertyGroup>
 
     <ItemGroup>
