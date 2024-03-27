@@ -1,8 +1,10 @@
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Views;
 using Discord;
+using DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews;
 using DiscordWebhookRemoteApp.Components.Popups;
 using DiscordWebhookRemoteApp.Helpers;
+using DiscordWebhookRemoteApp.Services;
 
 namespace DiscordWebhookRemoteApp.Components.Pages;
 
@@ -28,6 +30,7 @@ public partial class MainPage : ContentPage
             "OK"
         );
 #endif
+
         base.OnAppearing();
     }
 
@@ -40,6 +43,7 @@ public partial class MainPage : ContentPage
         }
 
         btnSend.IsEnabled = false;
+        ApplicationService.ShowLoadingView();
         try
         {
             ulong? result = null;
@@ -86,11 +90,18 @@ public partial class MainPage : ContentPage
             _ = DisplayAlert("Send Error", ex.Message, "Ok");
         }
         btnSend.IsEnabled = true;
+        ApplicationService.HideLoadingView();
     }
 
     private async void btnTest_Clicked(object sender, EventArgs e)
     {
-        try { }
+        try
+        {
+            Console.WriteLine("Test Clicked");
+            ApplicationService.ShowLoadingView();
+            await Task.Delay(5000);
+            ApplicationService.HideLoadingView();
+        }
         catch (Exception ex)
         {
             _ = DisplayAlert("Send Error", ex.Message, "Ok");

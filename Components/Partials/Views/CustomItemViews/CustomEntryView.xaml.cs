@@ -173,6 +173,7 @@ public partial class CustomEntryView : ContentView
         }
 
         Input.Completed += (s, e) => OnTextComplated(s, e);
+        Input.Unfocused += (s, e) => OnTextComplated(s, null);
     }
 
     private void titleTapped(object sender, EventArgs e)

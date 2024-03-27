@@ -195,6 +195,9 @@
         <MauiXaml Update="Components\Partials\Views\WebhookItemsView\WebhookProfileView\WebhookProfileView.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
+        <MauiXaml Update="Components\Popups\LoadingViewPopup.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
         <MauiXaml Update="Components\Popups\SavedWebhookAddOrEditPopup.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>

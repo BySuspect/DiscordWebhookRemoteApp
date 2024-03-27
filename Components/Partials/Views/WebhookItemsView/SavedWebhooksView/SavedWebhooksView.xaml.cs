@@ -69,6 +69,7 @@ public partial class SavedWebhooksView : ContentView
     {
         try
         {
+            ApplicationService.ShowLoadingView();
             savedWebhookAddOrEditPopup = new SavedWebhookAddOrEditPopup();
             savedWebhookAddOrEditPopup.NewMode();
             var res =
@@ -96,6 +97,8 @@ public partial class SavedWebhooksView : ContentView
         {
             _ = Application.Current.MainPage.DisplayAlert("Error!", ex.Message, "ok");
         }
+
+        ApplicationService.HideLoadingView();
     }
 
     private void OnSavedWebhookViewTapped(object sender, TappedEventArgs e)
@@ -116,6 +119,7 @@ public partial class SavedWebhooksView : ContentView
         SavedWebhookPropertyChangedEventArgs e
     )
     {
+        ApplicationService.ShowLoadingView();
         if (e.NewItem == null)
         {
             //deleting
@@ -154,5 +158,7 @@ public partial class SavedWebhooksView : ContentView
                 SavedWebhooks = _list.ToObservableCollection();
             }
         }
+
+        ApplicationService.HideLoadingView();
     }
 }

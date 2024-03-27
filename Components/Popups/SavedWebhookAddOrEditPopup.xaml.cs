@@ -52,27 +52,39 @@ public partial class SavedWebhookAddOrEditPopup : Popup
     {
         try
         {
+            if (
+                string.IsNullOrEmpty(entryWebhookUrl.Text.Trim())
+                || !entryWebhookUrl.Text.Trim().Contains("discord.com/api/webhooks/")
+            )
+                return;
+
             var httpClient = new HttpClient();
-            var response = await httpClient.GetAsync(entryWebhookUrl.Text);
+            var response = await httpClient.GetAsync(entryWebhookUrl.Text.Trim());
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
                 var json = JsonConvert.DeserializeObject<JObject>(content);
 
-                var avatarData = json["avatar"].ToString();
+                var avatarData = json?["avatar"]?.ToString();
                 if (!string.IsNullOrEmpty(avatarData))
                 {
                     var avatar =
-                        $"https://cdn.discordapp.com/avatars/{json["id"]}/{avatarData}.png";
+                        $"https://cdn.discordapp.com/avatars/{json?["id"]}/{avatarData}.png";
                     entryImageUrl.Text = avatar;
                 }
 
-                var nameData = json["name"].ToString();
+                var nameData = json?["name"]?.ToString();
                 if (!string.IsNullOrEmpty(nameData))
                 {
                     entryName.Text = nameData;
                 }
             }
+            else
+                _ = Application.Current?.MainPage?.DisplayAlert(
+                    "Error!",
+                    "Webhook URL is not valid!",
+                    "OK"
+                );
         }
         catch { }
     }

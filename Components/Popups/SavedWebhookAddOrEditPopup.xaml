@@ -11,52 +11,54 @@
     Color="Transparent">
 
     <StackLayout VerticalOptions="Center">
-        <Frame
-            Padding="10,5"
-            BackgroundColor="Black"
-            BorderColor="White"
-            CornerRadius="15"
-            HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand">
-            <StackLayout VerticalOptions="Center">
-                <CustomViews:CustomEntryView
-                    x:Name="entryWebhookUrl"
-                    Margin="5,10,5,5"
-                    HasCharCounterText="False"
-                    HorizontalOptions="Fill"
-                    Placeholder="WebhookUrl"
-                    TextComplated="WebhookUrl_TextComplated"
-                    ValidationType="WebhookUrl" />
-                <CustomViews:CustomEntryView
-                    x:Name="entryImageUrl"
-                    Margin="5"
-                    HasCharCounterText="False"
-                    HorizontalOptions="Fill"
-                    MaxLength="2048"
-                    Placeholder="Custom Image"
-                    ValidationType="ImageUrl" />
-                <CustomViews:CustomEntryView
-                    x:Name="entryName"
-                    Margin="5"
-                    HasCharCounterText="True"
-                    HorizontalOptions="Fill"
-                    MaxLength="20"
-                    Placeholder="Name" />
+        <Grid>
+            <Frame
+                Padding="10,5"
+                BackgroundColor="Black"
+                BorderColor="White"
+                CornerRadius="15"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <StackLayout VerticalOptions="Center">
+                    <CustomViews:CustomEntryView
+                        x:Name="entryWebhookUrl"
+                        Margin="5,10,5,5"
+                        HasCharCounterText="False"
+                        HorizontalOptions="Fill"
+                        Placeholder="WebhookUrl"
+                        TextComplated="WebhookUrl_TextComplated"
+                        ValidationType="WebhookUrl" />
+                    <CustomViews:CustomEntryView
+                        x:Name="entryImageUrl"
+                        Margin="5"
+                        HasCharCounterText="False"
+                        HorizontalOptions="Fill"
+                        MaxLength="2048"
+                        Placeholder="Custom Image"
+                        ValidationType="ImageUrl" />
+                    <CustomViews:CustomEntryView
+                        x:Name="entryName"
+                        Margin="5"
+                        HasCharCounterText="True"
+                        HorizontalOptions="Fill"
+                        MaxLength="20"
+                        Placeholder="Name" />
 
-                <CustomItems:CustomButton
-                    Margin="5"
-                    Padding="20,10"
-                    BackgroundColor="Black"
-                    BorderColor="White"
-                    BorderWidth="1"
-                    Clicked="Save_Clicked"
-                    CornerRadius="15"
-                    HorizontalOptions="CenterAndExpand"
-                    Text="Save"
-                    TextColor="White"
-                    VerticalOptions="End" />
-            </StackLayout>
-        </Frame>
+                    <CustomItems:CustomButton
+                        Margin="5"
+                        Padding="20,10"
+                        BackgroundColor="Black"
+                        BorderColor="White"
+                        BorderWidth="1"
+                        Clicked="Save_Clicked"
+                        CornerRadius="15"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Save"
+                        TextColor="White"
+                        VerticalOptions="End" />
+                </StackLayout>
+            </Frame>
+        </Grid>
     </StackLayout>
 
 </toolkit:Popup>
