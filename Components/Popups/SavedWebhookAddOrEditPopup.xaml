@@ -6,6 +6,7 @@
     xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
     xmlns:CustomViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
     xmlns:local="clr-namespace:DiscordWebhookRemoteApp.Components.Popups"
+    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Size="{x:Static local:PopupSize.WebhookAddOrEditPopup}"
     Color="Transparent">
@@ -14,8 +15,8 @@
         <Grid>
             <Frame
                 Padding="10,5"
-                BackgroundColor="Black"
-                BorderColor="White"
+                BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                BorderColor="{x:Static services:AppThemeColors.BorderColor}"
                 CornerRadius="15"
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand">
@@ -23,6 +24,7 @@
                     <CustomViews:CustomEntryView
                         x:Name="entryWebhookUrl"
                         Margin="5,10,5,5"
+                        BorderColor="{x:Static services:AppThemeColors.BorderColor}"
                         HasCharCounterText="False"
                         HorizontalOptions="Fill"
                         Placeholder="WebhookUrl"
@@ -31,6 +33,7 @@
                     <CustomViews:CustomEntryView
                         x:Name="entryImageUrl"
                         Margin="5"
+                        BorderColor="{x:Static services:AppThemeColors.BorderColor}"
                         HasCharCounterText="False"
                         HorizontalOptions="Fill"
                         MaxLength="2048"
@@ -39,6 +42,7 @@
                     <CustomViews:CustomEntryView
                         x:Name="entryName"
                         Margin="5"
+                        BorderColor="{x:Static services:AppThemeColors.BorderColor}"
                         HasCharCounterText="True"
                         HorizontalOptions="Fill"
                         MaxLength="20"
@@ -47,14 +51,14 @@
                     <CustomItems:CustomButton
                         Margin="5"
                         Padding="20,10"
-                        BackgroundColor="Black"
-                        BorderColor="White"
+                        BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                        BorderColor="{x:Static services:AppThemeColors.BorderColor}"
                         BorderWidth="1"
                         Clicked="Save_Clicked"
                         CornerRadius="15"
                         HorizontalOptions="CenterAndExpand"
                         Text="Save"
-                        TextColor="White"
+                        TextColor="{x:Static services:AppThemeColors.TextColor}"
                         VerticalOptions="End" />
                 </StackLayout>
             </Frame>

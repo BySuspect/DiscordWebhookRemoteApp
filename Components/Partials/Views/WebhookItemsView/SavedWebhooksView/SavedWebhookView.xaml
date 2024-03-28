@@ -5,12 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
     xmlns:local="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWebhooksView"
-    xmlns:toolkit="toolkit">
+    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     <ContentView.Content>
         <Frame
             Margin="5,0"
             Padding="0"
-            BorderColor="White"
+            BorderColor="{x:Static services:AppThemeColors.BorderColor}"
             CornerRadius="15"
             HasShadow="False"
             Scale="{Binding Source={x:Reference WebhookViewFrame}, Path=Scale}"
@@ -32,10 +33,13 @@
                             Margin="-1"
                             HeightRequest="32"
                             HorizontalOptions="Center"
-                            Source="editwhite.png"
+                            Source="editicon.png"
                             TouchEffect.PressedOpacity="0.8"
                             TouchEffect.PressedScale="0.9"
                             WidthRequest="32">
+                            <ImageButton.Behaviors>
+                                <toolkit:IconTintColorBehavior TintColor="{x:Static services:AppThemeColors.TextColor}" />
+                            </ImageButton.Behaviors>
                             <ImageButton.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="Edit_Tapped" />
                             </ImageButton.GestureRecognizers>
@@ -54,10 +58,13 @@
                             Margin="-1"
                             HeightRequest="32"
                             HorizontalOptions="Center"
-                            Source="deletewhite.png"
+                            Source="deleteicon.png"
                             TouchEffect.PressedOpacity="0.8"
                             TouchEffect.PressedScale="0.9"
                             WidthRequest="32">
+                            <ImageButton.Behaviors>
+                                <toolkit:IconTintColorBehavior TintColor="{x:Static services:AppThemeColors.TextColor}" />
+                            </ImageButton.Behaviors>
                             <ImageButton.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="Delete_Tapped" />
                             </ImageButton.GestureRecognizers>
@@ -70,8 +77,8 @@
                 <Frame
                     x:Name="WebhookViewFrame"
                     Padding="0"
-                    BackgroundColor="Black"
-                    BorderColor="White"
+                    BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                    BorderColor="{x:Static services:AppThemeColors.BorderColor}"
                     CornerRadius="15"
                     HasShadow="False"
                     HeightRequest="115"
@@ -81,7 +88,6 @@
                     <StackLayout Margin="10,5" TouchEffect.LongPressCommand="{Binding LongPressCommand}">
                         <Frame
                             Padding="0"
-                            BackgroundColor="Transparent"
                             CornerRadius="60"
                             HeightRequest="48"
                             TouchEffect.LongPressCommand="{Binding LongPressCommand}"
@@ -106,6 +112,7 @@
                             HorizontalOptions="Center"
                             HorizontalTextAlignment="Center"
                             MaximumWidthRequest="64"
+                            TextColor="{x:Static services:AppThemeColors.TextColor}"
                             TouchEffect.LongPressCommand="{Binding LongPressCommand}"
                             VerticalOptions="CenterAndExpand"
                             VerticalTextAlignment="Center">

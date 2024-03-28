@@ -5,13 +5,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
     xmlns:local="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWebhooksView"
+    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     <ContentView.Content>
         <StackLayout>
             <Frame
                 Margin="0"
                 Padding="0"
-                BorderColor="White"
+                BorderColor="{x:Static services:AppThemeColors.BorderColor}"
                 CornerRadius="15"
                 HorizontalOptions="FillAndExpand">
                 <StackLayout Margin="5,10">
@@ -38,14 +39,17 @@
                             <ImageButton
                                 Margin="5,0"
                                 Padding="13"
-                                BorderColor="White"
+                                BorderColor="{x:Static services:AppThemeColors.BorderColor}"
                                 BorderWidth="2"
                                 CornerRadius="15"
                                 HeightRequest="115"
-                                Source="plusiconwhite.png"
+                                Source="plusicon.png"
                                 TouchEffect.PressedOpacity="0.8"
                                 TouchEffect.PressedScale="0.9"
                                 WidthRequest="75">
+                                <ImageButton.Behaviors>
+                                    <toolkit:IconTintColorBehavior TintColor="{x:Static services:AppThemeColors.TextColor}" />
+                                </ImageButton.Behaviors>
                                 <ImageButton.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="AddNewWebhookTapped" />
                                 </ImageButton.GestureRecognizers>

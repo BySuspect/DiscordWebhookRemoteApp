@@ -1,10 +1,10 @@
 using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Behaviors;
 using CommunityToolkit.Maui.Views;
 using Discord;
 using DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews;
 using DiscordWebhookRemoteApp.Components.Popups;
 using DiscordWebhookRemoteApp.Helpers;
-using DiscordWebhookRemoteApp.Services;
 
 namespace DiscordWebhookRemoteApp.Components.Pages;
 
@@ -98,9 +98,6 @@ public partial class MainPage : ContentPage
         try
         {
             Console.WriteLine("Test Clicked");
-            ApplicationService.ShowLoadingView();
-            await Task.Delay(5000);
-            ApplicationService.HideLoadingView();
         }
         catch (Exception ex)
         {

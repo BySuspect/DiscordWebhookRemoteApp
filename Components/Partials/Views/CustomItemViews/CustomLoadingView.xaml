@@ -3,13 +3,12 @@
     x:Class="DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews.CustomLoadingView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Services="clr-namespace:DiscordWebhookRemoteApp.Services">
+    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services">
     <Grid
         x:Name="Loodinglayout"
         BackgroundColor="#77767676"
         IsVisible="{Binding LoadingViewVisible}">
         <Frame
-            BackgroundColor="#77767676"
             CornerRadius="15"
             HorizontalOptions="CenterAndExpand"
             VerticalOptions="CenterAndExpand">
@@ -21,7 +20,7 @@
                     HorizontalOptions="Center"
                     IsRunning="{Binding Source={x:Reference Loodinglayout}, Path=IsVisible}"
                     VerticalOptions="Center"
-                    Color="White" />
+                    Color="{x:Static services:AppThemeColors.TextColor}" />
             </StackLayout>
         </Frame>
     </Grid>

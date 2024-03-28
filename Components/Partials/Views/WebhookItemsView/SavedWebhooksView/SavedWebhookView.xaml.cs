@@ -2,7 +2,6 @@ using System.Windows.Input;
 using CommunityToolkit.Maui.Views;
 using DiscordWebhookRemoteApp.Components.Partials.CustomGestureRecognizers;
 using DiscordWebhookRemoteApp.Components.Popups;
-using DiscordWebhookRemoteApp.Services;
 using Microsoft.Maui.Controls;
 
 namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWebhooksView;

@@ -10,9 +10,14 @@
     xmlns:WebhookItemsView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView"
     xmlns:WebhookProfileView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.WebhookProfileView"
     xmlns:controls="clr-namespace:Plugin.MauiMTAdmob.Controls;assembly=Plugin.MauiMtAdmob"
+    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    BackgroundColor="Black"
+    BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+    BackgroundImageSource="{x:Static services:AppThemeColors.backgroundImg}"
     NavigationPage.HasNavigationBar="True">
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="{x:Static services:AppThemeColors.BackgroundColor}" StatusBarStyle="{x:Static services:AppThemeColors.StatusBarStyle}" />
+    </ContentPage.Behaviors>
     <ContentPage.ToolbarItems>
         <ToolbarItem Clicked="Discord_Clicked" IconImageSource="discordlogo.png" />
     </ContentPage.ToolbarItems>
@@ -31,25 +36,25 @@
                             Orientation="Horizontal">
                             <CustomItems:CustomButton
                                 x:Name="btnSend"
-                                BackgroundColor="Black"
-                                BorderColor="White"
+                                BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                                BorderColor="{x:Static services:AppThemeColors.BorderColor}"
                                 BorderWidth="1"
                                 Clicked="SendButton_Clicked"
                                 CornerRadius="15"
                                 HorizontalOptions="Center"
                                 Text="Send"
-                                TextColor="White" />
+                                TextColor="{x:Static services:AppThemeColors.TextColor}" />
                             <CustomItems:CustomButton
                                 x:Name="btnTest"
-                                BackgroundColor="Black"
-                                BorderColor="White"
+                                BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                                BorderColor="{x:Static services:AppThemeColors.BorderColor}"
                                 BorderWidth="1"
                                 Clicked="btnTest_Clicked"
                                 CornerRadius="15"
                                 HorizontalOptions="Center"
                                 IsVisible="True"
                                 Text="Test"
-                                TextColor="White" />
+                                TextColor="{x:Static services:AppThemeColors.TextColor}" />
                         </StackLayout>
                     </StackLayout>
                 </ScrollView>

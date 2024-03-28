@@ -4,12 +4,12 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
+    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
     x:DataType="local:CustomEntryView">
     <ContentView.Content>
         <Grid>
             <Frame
                 Padding="10,5"
-                BackgroundColor="Transparent"
                 BorderColor="{Binding BorderColor}"
                 CornerRadius="{Binding CornerRadius}"
                 HorizontalOptions="FillAndExpand">
@@ -23,6 +23,7 @@
                         PlaceholderColor="Transparent"
                         Text="{Binding Text}"
                         TextChanged="Input_TextChanged"
+                        TextColor="{x:Static services:AppThemeColors.TextColor}"
                         VerticalOptions="Fill" />
                     <Label
                         x:Name="lblInputLenght"
@@ -30,12 +31,12 @@
                         FontSize="Caption"
                         HorizontalOptions="End"
                         IsVisible="{Binding HasCharCounterText}"
-                        TextColor="White"
+                        TextColor="{x:Static services:AppThemeColors.TextColor}"
                         VerticalOptions="End">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span x:Name="spCharacterCount" Text="0" />
-                                <Span Text="/" TextColor="White" />
+                                <Span Text="/" TextColor="{x:Static services:AppThemeColors.TextColor}" />
                                 <Span Text="{Binding Source={x:Reference Input}, Path=MaxLength}" />
                             </FormattedString>
                         </Label.FormattedText>
@@ -45,8 +46,6 @@
             <Frame
                 x:Name="titleView"
                 Padding="10,2"
-                BackgroundColor="Transparent"
-                BorderColor="Transparent"
                 CornerRadius="15"
                 HorizontalOptions="Start"
                 IsVisible="true"
@@ -58,7 +57,7 @@
                     FontSize="Header"
                     HorizontalOptions="Center"
                     Text="{Binding Placeholder}"
-                    TextColor="LightGray"
+                    TextColor="{x:Static services:AppThemeColors.PlaceholderTextColor}"
                     VerticalOptions="Center" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="titleTapped" />

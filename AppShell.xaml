@@ -5,14 +5,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:DiscordWebhookRemoteApp"
     xmlns:pages="clr-namespace:DiscordWebhookRemoteApp.Components.Pages"
-    Title="Discord Webhook Remote"
+    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
         ContentTemplate="{DataTemplate pages:MainPage}"
         NavigationPage.HasNavigationBar="True"
         Route="MainPage"
-        Shell.BackgroundColor="Black" />
+        Shell.BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}" />
 
     <!--<Shell.FlyoutContent>
         <StackLayout>

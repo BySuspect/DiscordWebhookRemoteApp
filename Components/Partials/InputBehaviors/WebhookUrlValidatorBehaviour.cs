@@ -34,7 +34,7 @@ namespace DiscordWebhookRemoteApp.Components.Partials.InputBehaviors
             {
                 if (regexMatchs(e.NewTextValue))
                 {
-                    entry.TextColor = Colors.White;
+                    entry.TextColor = AppThemeColors.TextColor;
                 }
                 else
                     entry.TextColor = Colors.Red;

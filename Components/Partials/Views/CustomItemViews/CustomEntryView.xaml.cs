@@ -157,15 +157,15 @@ public partial class CustomEntryView : ContentView
 
         if (this.Text.Length > 0)
         {
-            lblTitle.TextColor = Colors.White;
-            titleView.BorderColor = BorderColor;
-            titleView.BackgroundColor = Colors.Black;
+            lblTitle.TextColor = AppThemeColors.TextColor;
+            titleView.BorderColor = AppThemeColors.BorderColor;
+            titleView.BackgroundColor = AppThemeColors.BackgroundColor;
             titleView.TranslationX = 15;
             titleView.TranslationY = -8;
         }
         else
         {
-            lblTitle.TextColor = Colors.LightGray;
+            lblTitle.TextColor = AppThemeColors.PlaceholderTextColor;
             titleView.BorderColor = Colors.Transparent;
             titleView.BackgroundColor = Colors.Transparent;
             titleView.TranslationX = 0;
@@ -186,22 +186,22 @@ public partial class CustomEntryView : ContentView
         if (e.NewTextValue.Length >= Input.MaxLength)
             lblInputLenght.TextColor = Colors.Red;
         else
-            lblInputLenght.TextColor = Colors.White;
+            lblInputLenght.TextColor = AppThemeColors.TextColor;
 
         spCharacterCount.Text = e.NewTextValue.Length.ToString();
 
         if (e.NewTextValue.Length > 0)
         {
             titleView.CancelAnimations();
-            lblTitle.TextColor = Colors.White;
-            titleView.BorderColor = Colors.White;
-            titleView.BackgroundColor = Colors.Black;
+            lblTitle.TextColor = AppThemeColors.TextColor;
+            titleView.BorderColor = AppThemeColors.BorderColor;
+            titleView.BackgroundColor = AppThemeColors.BackgroundColor;
             titleView.TranslateTo(15, -9, 150);
         }
         else
         {
             titleView.CancelAnimations();
-            lblTitle.TextColor = Colors.LightGray;
+            lblTitle.TextColor = AppThemeColors.PlaceholderTextColor;
             titleView.BorderColor = Colors.Transparent;
             titleView.BackgroundColor = Colors.Transparent;
             titleView.TranslateTo(5, 13, 150);

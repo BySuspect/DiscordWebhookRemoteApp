@@ -4,21 +4,19 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:CustomViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
+    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     <ContentView.Content>
         <Frame
             Margin="0"
             Padding="0"
             BackgroundColor="Transparent"
-            BorderColor="White"
+            BorderColor="{x:Static services:AppThemeColors.BorderColor}"
             CornerRadius="15"
             HorizontalOptions="FillAndExpand">
             <StackLayout>
                 <StackLayout Margin="10,10,10,10" Orientation="Horizontal">
-                    <Frame
-                        Padding="0"
-                        BackgroundColor="Transparent"
-                        CornerRadius="60">
+                    <Frame Padding="0" CornerRadius="60">
                         <Grid>
                             <Image
                                 HeightRequest="48"
@@ -36,7 +34,6 @@
                                 Source="{Binding AvatarImageSource}"
                                 WidthRequest="48" />
                         </Grid>
-
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Avatar_Tapped" />
                         </Frame.GestureRecognizers>
@@ -44,7 +41,7 @@
                     <BoxView
                         Margin="5,0"
                         WidthRequest="1"
-                        Color="White" />
+                        Color="{x:Static services:AppThemeColors.BorderColor}" />
                     <CustomViews:CustomEntryView
                         x:Name="Input"
                         BorderColor="Transparent"

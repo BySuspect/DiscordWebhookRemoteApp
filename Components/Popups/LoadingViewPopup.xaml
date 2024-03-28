@@ -3,6 +3,7 @@
     x:Class="DiscordWebhookRemoteApp.Components.Popups.LoadingViewPopup"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Color="Transparent">
     <VerticalStackLayout>
@@ -19,7 +20,7 @@
                     HorizontalOptions="Center"
                     IsRunning="True"
                     VerticalOptions="Center"
-                    Color="White" />
+                    Color="{x:Static services:AppThemeColors.TextColor}" />
             </StackLayout>
         </Frame>
     </VerticalStackLayout>

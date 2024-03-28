@@ -18,6 +18,7 @@ namespace DiscordWebhookRemoteApp
                 .UseMauiTouchEffect();
 
             FormHandler.RemoveBorders();
+            AppThemeService.SetTheme(AppThemeTypes.Discord);
 
 #if DEBUG
             builder.Logging.AddDebug();

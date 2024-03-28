@@ -42,12 +42,12 @@
         <ApplicationId>com.discordwebhookremote</ApplicationId>
         <ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
         <ApplicationDisplayVersion>0.1.2</ApplicationDisplayVersion>
-        <AndroidEnableMultiDex>True</AndroidEnableMultiDex>
+        <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
         <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
         <ApplicationVersion>3</ApplicationVersion>
         <AndroidUseAapt2>True</AndroidUseAapt2>
         <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
-        <AndroidPackageFormat>aab</AndroidPackageFormat>
+        <AndroidPackageFormat>apk</AndroidPackageFormat>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
@@ -75,8 +75,8 @@
         <ApplicationId>com.discordwebhookremote</ApplicationId>
         <ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
         <ApplicationDisplayVersion>0.1.2</ApplicationDisplayVersion>
-        <AndroidPackageFormat>aab</AndroidPackageFormat>
-        <AndroidEnableMultiDex>True</AndroidEnableMultiDex>
+        <AndroidPackageFormat>apk</AndroidPackageFormat>
+        <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
         <AndroidLinkTool>r8</AndroidLinkTool>
         <ApplicationVersion>3</ApplicationVersion>
         <AndroidUseAapt2>True</AndroidUseAapt2>
@@ -124,13 +124,10 @@
         <None Remove="Resources\AppIcon\icon.png" />
         <None Remove="Resources\Images\app_logo.png" />
         <None Remove="Resources\Images\app_logo_fore.png" />
-        <None Remove="Resources\Images\deletedark.png" />
-        <None Remove="Resources\Images\deletewhite.png" />
+        <None Remove="Resources\Images\deleteicon.png" />
         <None Remove="Resources\Images\discordlogo.png" />
-        <None Remove="Resources\Images\editdark.png" />
-        <None Remove="Resources\Images\editwhite.png" />
-        <None Remove="Resources\Images\plusiconblack.png" />
-        <None Remove="Resources\Images\plusiconwhite.png" />
+        <None Remove="Resources\Images\editicon.png" />
+        <None Remove="Resources\Images\plusicon.png" />
         <None Remove="Resources\Splash\splash_logo.png" />
     </ItemGroup>
 
