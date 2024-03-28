@@ -68,6 +68,7 @@ public partial class SavedWebhooksView : ContentView
     {
         try
         {
+            addNewBtn.IsEnabled = false;
             ApplicationService.ShowLoadingView();
             savedWebhookAddOrEditPopup = new SavedWebhookAddOrEditPopup();
             savedWebhookAddOrEditPopup.NewMode();
@@ -97,6 +98,7 @@ public partial class SavedWebhooksView : ContentView
             _ = Application.Current.MainPage.DisplayAlert("Error!", ex.Message, "ok");
         }
 
+        addNewBtn.IsEnabled = true;
         ApplicationService.HideLoadingView();
     }
 
@@ -129,6 +131,8 @@ public partial class SavedWebhooksView : ContentView
         else
         {
             //editing
+            var btn = (Frame)sender;
+            btn.IsEnabled = false;
             savedWebhookAddOrEditPopup = new SavedWebhookAddOrEditPopup();
             savedWebhookAddOrEditPopup.EditMode(
                 new SavedWebhookViewItems
@@ -156,6 +160,7 @@ public partial class SavedWebhooksView : ContentView
                 _list = _list.OrderBy(x => x.WebhookId).ToList();
                 SavedWebhooks = _list.ToObservableCollection();
             }
+            btn.IsEnabled = true;
         }
 
         ApplicationService.HideLoadingView();

@@ -147,21 +147,28 @@ public partial class SavedWebhookView : ContentView
 
     private void Edit_Tapped(object sender, TappedEventArgs e)
     {
-        OnSavedWebhookPropertyChanged(new SavedWebhookPropertyChangedEventArgs(this, this));
+        OnSavedWebhookPropertyChanged(
+            EditBtnFrame,
+            new SavedWebhookPropertyChangedEventArgs(this, this)
+        );
     }
 
     private async void Delete_Tapped(object sender, TappedEventArgs e)
     {
+        DeleteBtnFrame.IsEnabled = false;
         var res = await Application.Current.MainPage.DisplayAlert(
             "Warning!",
             $"Are you sure about to delete {Name}?",
             "Yes",
             "No"
         );
-        if (!res)
-            return;
+        if (res)
+            OnSavedWebhookPropertyChanged(
+                DeleteBtnFrame,
+                new SavedWebhookPropertyChangedEventArgs(this, null)
+            );
 
-        OnSavedWebhookPropertyChanged(new SavedWebhookPropertyChangedEventArgs(this, null));
+        DeleteBtnFrame.IsEnabled = true;
     }
 
     #region Events
@@ -179,10 +186,13 @@ public partial class SavedWebhookView : ContentView
     #region SavedWebhookPropertyChanged
     public event EventHandler<SavedWebhookPropertyChangedEventArgs> SavedWebhookPropertyChanged;
 
-    protected virtual void OnSavedWebhookPropertyChanged(SavedWebhookPropertyChangedEventArgs e)
+    protected virtual void OnSavedWebhookPropertyChanged(
+        object sender,
+        SavedWebhookPropertyChangedEventArgs e
+    )
     {
         EventHandler<SavedWebhookPropertyChangedEventArgs> handler = SavedWebhookPropertyChanged;
-        handler?.Invoke(this, e);
+        handler?.Invoke(sender, e);
     }
     #endregion
 

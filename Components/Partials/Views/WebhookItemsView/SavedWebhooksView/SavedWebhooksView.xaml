@@ -36,24 +36,25 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                         <CollectionView.Footer>
-                            <ImageButton
+                            <Frame
+                                x:Name="addNewBtn"
                                 Margin="5,0"
-                                Padding="13"
+                                Padding="0"
                                 BorderColor="{x:Static services:AppThemeColors.BorderColor}"
-                                BorderWidth="2"
                                 CornerRadius="15"
                                 HeightRequest="115"
-                                Source="plusicon.png"
                                 TouchEffect.PressedOpacity="0.8"
                                 TouchEffect.PressedScale="0.9"
                                 WidthRequest="75">
-                                <ImageButton.Behaviors>
-                                    <toolkit:IconTintColorBehavior TintColor="{x:Static services:AppThemeColors.TextColor}" />
-                                </ImageButton.Behaviors>
-                                <ImageButton.GestureRecognizers>
+                                <Image HeightRequest="43" Source="plusicon.png">
+                                    <Image.Behaviors>
+                                        <toolkit:IconTintColorBehavior TintColor="{x:Static services:AppThemeColors.TextColor}" />
+                                    </Image.Behaviors>
+                                </Image>
+                                <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="AddNewWebhookTapped" />
-                                </ImageButton.GestureRecognizers>
-                            </ImageButton>
+                                </Frame.GestureRecognizers>
+                            </Frame>
                         </CollectionView.Footer>
                     </CollectionView>
                 </StackLayout>
