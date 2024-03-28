@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
@@ -128,6 +128,7 @@
         <None Remove="Resources\Images\discordlogo.png" />
         <None Remove="Resources\Images\editicon.png" />
         <None Remove="Resources\Images\plusicon.png" />
+        <None Remove="Resources\Images\settingsicon.png" />
         <None Remove="Resources\Splash\splash_logo.png" />
     </ItemGroup>
 

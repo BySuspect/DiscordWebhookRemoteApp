@@ -184,4 +184,29 @@ public partial class MainPage : ContentPage
         }
         #endregion
     }
+
+    private async void Settings_Clicked(object sender, EventArgs e)
+    {
+        var res = await App.Current.MainPage.DisplayActionSheet(
+            "Settings",
+            "",
+            "Cancel",
+            "Import Webhooks"
+        );
+        if (res == "Import Webhooks")
+        {
+            var webhooksData = await App.Current.MainPage.DisplayPromptAsync(
+                title: "Import Webhooks",
+                message: "Paste your webhooks data here",
+                placeholder: "Webhooks Data"
+            );
+            if (webhooksData != null)
+            {
+                ApplicationService.ShowLoadingView();
+                await SavedWebhooksService.ImportSavedWebhoksFromOldApp(webhooksData);
+                await SavedWebhooksView.RefreshList();
+                ApplicationService.HideLoadingView();
+            }
+        }
+    }
 }

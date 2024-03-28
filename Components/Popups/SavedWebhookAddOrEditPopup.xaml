@@ -8,7 +8,6 @@
     xmlns:local="clr-namespace:DiscordWebhookRemoteApp.Components.Popups"
     xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    Size="{x:Static local:PopupSize.WebhookAddOrEditPopup}"
     Color="Transparent">
 
     <StackLayout VerticalOptions="Center">
@@ -29,7 +28,8 @@
                         HorizontalOptions="Fill"
                         Placeholder="WebhookUrl"
                         TextComplated="WebhookUrl_TextComplated"
-                        ValidationType="WebhookUrl" />
+                        ValidationType="WebhookUrl"
+                        WidthRequest="250" />
                     <CustomViews:CustomEntryView
                         x:Name="entryImageUrl"
                         Margin="5"
@@ -38,7 +38,8 @@
                         HorizontalOptions="Fill"
                         MaxLength="2048"
                         Placeholder="Custom Image"
-                        ValidationType="ImageUrl" />
+                        ValidationType="ImageUrl"
+                        WidthRequest="250" />
                     <CustomViews:CustomEntryView
                         x:Name="entryName"
                         Margin="5"
@@ -46,7 +47,8 @@
                         HasCharCounterText="True"
                         HorizontalOptions="Fill"
                         MaxLength="20"
-                        Placeholder="Name" />
+                        Placeholder="Name"
+                        WidthRequest="250" />
 
                     <CustomItems:CustomButton
                         Margin="5"

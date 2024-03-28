@@ -47,6 +47,12 @@ public partial class SavedWebhooksView : ContentView
         {
             Console.WriteLine(e.PropertyName);
         };
+
+        RefreshList();
+    }
+
+    public Task RefreshList()
+    {
         var _list = new List<SavedWebhookView>();
         foreach (var item in SavedWebhooksService.SavedWebhookList)
         {
@@ -62,6 +68,7 @@ public partial class SavedWebhooksView : ContentView
             );
         }
         SavedWebhooks = _list.ToObservableCollection();
+        return Task.CompletedTask;
     }
 
     private async void AddNewWebhookTapped(object sender, TappedEventArgs e)

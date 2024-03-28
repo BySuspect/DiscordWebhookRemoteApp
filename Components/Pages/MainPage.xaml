@@ -19,6 +19,7 @@
         <toolkit:StatusBarBehavior StatusBarColor="{x:Static services:AppThemeColors.BackgroundColor}" StatusBarStyle="{x:Static services:AppThemeColors.StatusBarStyle}" />
     </ContentPage.Behaviors>
     <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="Settings_Clicked" IconImageSource="settingsicon.png" />
         <ToolbarItem Clicked="Discord_Clicked" IconImageSource="discordlogo.png" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>

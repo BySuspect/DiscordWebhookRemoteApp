@@ -5,7 +5,6 @@
         public static Size Tiny => new Size(100, 100);
 
         public static Size Small => new Size(300, 250);
-        public static Size WebhookAddOrEditPopup => new Size(300, 265);
         public static Size Medium =>
             new Size(
                 0.7 * (DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density),

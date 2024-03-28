@@ -87,6 +87,7 @@
                     WidthRequest="75">
                     <StackLayout Margin="10,5" TouchEffect.LongPressCommand="{Binding LongPressCommand}">
                         <Frame
+                            Margin="0,5,0,0"
                             Padding="0"
                             CornerRadius="60"
                             HeightRequest="48"
@@ -109,6 +110,7 @@
                         <Label
                             x:Name="lblName"
                             Margin="0,5,0,0"
+                            FontSize="Micro"
                             HorizontalOptions="Center"
                             HorizontalTextAlignment="Center"
                             MaximumWidthRequest="64"
