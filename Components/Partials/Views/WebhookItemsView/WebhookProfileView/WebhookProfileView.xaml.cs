@@ -25,21 +25,10 @@ public partial class WebhookProfileView : ContentView, INotifyPropertyChanged
     #endregion
 
     #region Username Binding
-    public static readonly BindableProperty UsernameProperty = BindableProperty.Create(
-        nameof(Username),
-        typeof(string),
-        typeof(WebhookProfileView),
-        defaultBindingMode: BindingMode.TwoWay,
-        defaultValue: ""
-    );
     public string Username
     {
-        get { return (string)GetValue(UsernameProperty); }
-        set
-        {
-            SetValue(UsernameProperty, value);
-            OnPropertyChanged(nameof(Username));
-        }
+        get { return entryUsername.Text.Trim(); }
+        set { entryUsername.Text = value; }
     }
     #endregion
 

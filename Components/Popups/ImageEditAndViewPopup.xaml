@@ -24,12 +24,12 @@
                     VerticalOptions="Start">
                     <Grid>
                         <Image
-                            HeightRequest="128"
+                            HeightRequest="120"
                             HorizontalOptions="Start"
-                            MinimumHeightRequest="128"
-                            MinimumWidthRequest="128"
+                            MinimumHeightRequest="120"
+                            MinimumWidthRequest="120"
                             Source="discordlogo.png"
-                            WidthRequest="128" />
+                            WidthRequest="120" />
                         <Image
                             x:Name="ImageView"
                             HeightRequest="128"

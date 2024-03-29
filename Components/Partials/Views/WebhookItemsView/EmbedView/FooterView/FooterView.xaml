@@ -20,20 +20,42 @@
                     FontSize="Header"
                     Text="Footer: "
                     TextColor="{x:Static services:AppThemeColors.TextColor}" />
-                <CustomViews:CustomEntryView
-                    x:Name="entryFooterText"
-                    Margin="0,5"
+                <Frame
+                    Padding="0"
                     BorderColor="{x:Static services:AppThemeColors.BorderColor}"
-                    MaxLength="2048"
-                    Placeholder="Text" />
-                <CustomViews:CustomEntryView
-                    x:Name="entryFooterIconUrl"
-                    Margin="0,5"
-                    BorderColor="{x:Static services:AppThemeColors.BorderColor}"
-                    HasCharCounterText="False"
-                    MaxLength="2048"
-                    Placeholder="Icon Url"
-                    ValidationType="ImageUrl" />
+                    CornerRadius="15">
+                    <StackLayout Orientation="Horizontal">
+                        <Frame
+                            x:Name="iconBtn"
+                            Margin="10,5"
+                            Padding="0"
+                            CornerRadius="60"
+                            HeightRequest="48"
+                            TouchEffect.PressedOpacity="0.8"
+                            TouchEffect.PressedScale="0.9"
+                            WidthRequest="48">
+                            <Image
+                                x:Name="FooterIconImg"
+                                HeightRequest="48"
+                                Source="{Binding FooterIcon}"
+                                WidthRequest="48" />
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Icon_Tapped" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <BoxView
+                            Margin="5,0"
+                            WidthRequest="1"
+                            Color="{x:Static services:AppThemeColors.BorderColor}" />
+                        <CustomViews:CustomEntryView
+                            x:Name="entryFooterText"
+                            Margin="0,5"
+                            BorderColor="Transparent"
+                            HorizontalOptions="FillAndExpand"
+                            MaxLength="2048"
+                            Placeholder="Text" />
+                    </StackLayout>
+                </Frame>
                 <StackLayout Margin="10,5,0,5" Orientation="Horizontal">
                     <CheckBox x:Name="cbTimestamp" Color="{x:Static services:AppThemeColors.TextColor}" />
                     <Label

@@ -5,8 +5,8 @@ public partial class EmbedView : ContentView
     #region AuthorView
     public string AuthorIconUrl
     {
-        get { return _authorView.AuthorIconUrl; }
-        set { _authorView.AuthorIconUrl = value; }
+        get { return (_authorView.AuthorIcon == "discordlogo.png") ? "" : _authorView.AuthorIcon; }
+        set { _authorView.AuthorIcon = value; }
     }
     public string AuthorName
     {
@@ -66,8 +66,8 @@ public partial class EmbedView : ContentView
 
     public string FooterIconUrl
     {
-        get { return _footerView.FooterIconUrl; }
-        set { _footerView.FooterIconUrl = value; }
+        get { return (_footerView.FooterIcon == "discordlogo.png") ? "" : _footerView.FooterIcon; }
+        set { _footerView.FooterIcon = value; }
     }
 
     public bool FooterTimestamp

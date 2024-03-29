@@ -1,17 +1,28 @@
+using CommunityToolkit.Maui.ImageSources;
+using DiscordWebhookRemoteApp.Components.Popups;
+
 namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.AuthorView;
 
 public partial class AuthorView : ContentView
 {
-    #region AuthorIconUrl Binding
-    public string AuthorIconUrl
+    #region AuthorIcon Binding
+    public static readonly BindableProperty AuthorIconProperty = BindableProperty.Create(
+        nameof(AuthorIcon),
+        typeof(string),
+        typeof(AuthorView),
+        defaultBindingMode: BindingMode.TwoWay,
+        defaultValue: "discordlogo.png"
+    );
+    public string AuthorIcon
     {
-        get { return entryAuthorIconUrl.Text; }
+        get { return (string)GetValue(AuthorIconProperty); }
         set
         {
-            if (entryAuthorIconUrl.Text != value)
-            {
-                entryAuthorIconUrl.Text = value;
-            }
+            SetValue(
+                AuthorIconProperty,
+                (string.IsNullOrWhiteSpace(value)) ? "discordlogo.png" : value
+            );
+            OnPropertyChanged(nameof(AuthorIcon));
         }
     }
 
@@ -52,5 +63,18 @@ public partial class AuthorView : ContentView
     {
         InitializeComponent();
         BindingContext = this;
+    }
+
+    private async void Icon_Tapped(object sender, EventArgs e)
+    {
+        iconBtn.IsEnabled = false;
+        var res = await ApplicationService.ShowPopupAsync(
+            new ImageEditAndViewPopup((AuthorIcon == "discordlogo.png") ? "" : AuthorIcon, false)
+        );
+        if (res != null)
+        {
+            AuthorIcon = (string)res;
+        }
+        iconBtn.IsEnabled = true;
     }
 }

@@ -20,8 +20,10 @@
                         x:Name="avatarBtn"
                         Padding="0"
                         CornerRadius="60"
+                        HeightRequest="48"
                         TouchEffect.PressedOpacity="0.8"
-                        TouchEffect.PressedScale="0.9">
+                        TouchEffect.PressedScale="0.9"
+                        WidthRequest="48">
                         <Grid>
                             <Image
                                 HeightRequest="48"
@@ -48,7 +50,7 @@
                         WidthRequest="1"
                         Color="{x:Static services:AppThemeColors.BorderColor}" />
                     <CustomViews:CustomEntryView
-                        x:Name="Input"
+                        x:Name="entryUsername"
                         BorderColor="Transparent"
                         CornerRadius="0"
                         HorizontalOptions="FillAndExpand"

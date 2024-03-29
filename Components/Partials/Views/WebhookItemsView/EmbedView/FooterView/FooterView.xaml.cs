@@ -1,17 +1,27 @@
+using DiscordWebhookRemoteApp.Components.Popups;
+
 namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FooterView;
 
 public partial class FooterView : ContentView
 {
-    #region FooterIconUrl Binding
-    public string FooterIconUrl
+    #region FooterIcon Binding
+    public static readonly BindableProperty FooterIconProperty = BindableProperty.Create(
+        nameof(FooterIcon),
+        typeof(string),
+        typeof(FooterView),
+        defaultBindingMode: BindingMode.TwoWay,
+        defaultValue: "discordlogo.png"
+    );
+    public string FooterIcon
     {
-        get { return entryFooterIconUrl.Text; }
+        get { return (string)GetValue(FooterIconProperty); }
         set
         {
-            if (entryFooterIconUrl.Text != value)
-            {
-                entryFooterIconUrl.Text = value;
-            }
+            SetValue(
+                FooterIconProperty,
+                (string.IsNullOrWhiteSpace(value)) ? "discordlogo.png" : value
+            );
+            OnPropertyChanged(nameof(FooterIcon));
         }
     }
 
@@ -57,5 +67,18 @@ public partial class FooterView : ContentView
     private void TimestampCheckBoxLabelTapped(object sender, EventArgs e)
     {
         cbTimestamp.IsChecked = !cbTimestamp.IsChecked;
+    }
+
+    private async void Icon_Tapped(object sender, EventArgs e)
+    {
+        iconBtn.IsEnabled = false;
+        var res = await ApplicationService.ShowPopupAsync(
+            new ImageEditAndViewPopup((FooterIcon == "discordlogo.png") ? "" : FooterIcon, false)
+        );
+        if (res != null)
+        {
+            FooterIcon = (string)res;
+        }
+        iconBtn.IsEnabled = true;
     }
 }
