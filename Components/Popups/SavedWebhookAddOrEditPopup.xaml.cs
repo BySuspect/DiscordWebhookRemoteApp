@@ -39,7 +39,7 @@ public partial class SavedWebhookAddOrEditPopup : Popup
     {
         if (string.IsNullOrEmpty(entryWebhookUrl.Text.Trim()))
             return;
-
+        btnSave.IsEnabled = false;
         var webhook = new SavedWebhookViewItems
         {
             WebhookUrl = entryWebhookUrl.Text.Trim(),
@@ -49,6 +49,7 @@ public partial class SavedWebhookAddOrEditPopup : Popup
             Name = string.IsNullOrEmpty(entryName.Text.Trim()) ? "Webhook" : entryName.Text.Trim(),
         };
         Close(webhook);
+        btnSave.IsEnabled = true;
     }
 
     private async void WebhookUrl_TextComplated(object sender, EventArgs e)

@@ -65,6 +65,7 @@
                         TextColor="{x:Static services:AppThemeColors.TextColor}"
                         VerticalOptions="End" />
                     <CustomItems:CustomButton
+                        x:Name="btnDelete"
                         Margin="5,0,5,0"
                         Padding="20,10"
                         BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
@@ -77,6 +78,7 @@
                         TextColor="{x:Static services:AppThemeColors.TextColor}"
                         VerticalOptions="End" />
                     <CustomItems:CustomButton
+                        x:Name="btnSave"
                         Margin="5,0,5,0"
                         Padding="20,10"
                         BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"

@@ -202,10 +202,10 @@
         <MauiXaml Update="Components\Popups\SavedWebhookAddOrEditPopup.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
-        <MauiXaml Update="Components\Popups\SavedWebhookProfileImagesViewPopup.xaml">
+        <MauiXaml Update="Components\Popups\SavedImagesViewPopup.xaml">
           <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
-        <MauiXaml Update="Components\Popups\WebhookProfileImageEditAndViewPopup.xaml">
+        <MauiXaml Update="Components\Popups\ImageEditAndViewPopup.xaml">
           <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Tests\TestPage.xaml">
@@ -257,6 +257,15 @@
 
     <ItemGroup>
       <Folder Include="Components\Partials\Views\PopupViews\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Components\Popups\SavedImagesViewPopup.xaml.cs">
+        <DependentUpon>SavedImagesViewPopup.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="Components\Popups\ImageEditAndViewPopup.xaml.cs">
+        <DependentUpon>ImageEditAndViewPopup.xaml</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>

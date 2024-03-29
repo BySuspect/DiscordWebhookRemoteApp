@@ -4,9 +4,9 @@ using DiscordWebhookRemoteApp.Components.Partials.InputBehaviors;
 
 namespace DiscordWebhookRemoteApp.Components.Popups;
 
-public partial class WebhookProfileImageEditAndViewPopup : Popup
+public partial class ImageEditAndViewPopup : Popup
 {
-    public WebhookProfileImageEditAndViewPopup(string imageUrl, bool isNew = true)
+    public ImageEditAndViewPopup(string imageUrl, bool isNew = true)
     {
         InitializeComponent();
         entryImageUrl.Text = imageUrl;
@@ -18,20 +18,20 @@ public partial class WebhookProfileImageEditAndViewPopup : Popup
 
     private async void Load_Clicked(object sender, EventArgs e)
     {
-        btnLoad.IsVisible = false;
-        var res = await ApplicationService.ShowPopupAsync(new SavedWebhookProfileImagesViewPopup());
+        btnLoad.IsEnabled = false;
+        var res = await ApplicationService.ShowPopupAsync(new SavedImagesViewPopup());
         if (res != null)
         {
             entryImageUrl.Text = res?.ToString();
         }
-        btnLoad.IsVisible = true;
+        btnLoad.IsEnabled = true;
     }
 
     private async void Save_Clicked(object sender, EventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(entryImageUrl.Text))
-            Close();
-        await CloseAsync(((UriImageSource)ImageView.Source).Uri.AbsoluteUri);
+        btnSave.IsEnabled = false;
+        await CloseAsync(entryImageUrl.Text);
+        btnSave.IsEnabled = true;
     }
 
     private void entryImageUrl_TextChanged(object sender, TextChangedEventArgs e)

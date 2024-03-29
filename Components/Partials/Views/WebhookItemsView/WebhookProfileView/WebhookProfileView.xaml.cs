@@ -53,7 +53,7 @@ public partial class WebhookProfileView : ContentView, INotifyPropertyChanged
     {
         avatarBtn.IsEnabled = false;
         var res = await ApplicationService.ShowPopupAsync(
-            new WebhookProfileImageEditAndViewPopup(AvatarImageSource.ToString(), false)
+            new ImageEditAndViewPopup(AvatarImageSource.ToString(), false)
         );
         if (res != null)
         {

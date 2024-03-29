@@ -19,7 +19,9 @@
                     <Frame
                         x:Name="avatarBtn"
                         Padding="0"
-                        CornerRadius="60">
+                        CornerRadius="60"
+                        TouchEffect.PressedOpacity="0.8"
+                        TouchEffect.PressedScale="0.9">
                         <Grid>
                             <Image
                                 HeightRequest="48"

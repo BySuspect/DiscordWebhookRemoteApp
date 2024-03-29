@@ -76,7 +76,6 @@ public partial class SavedWebhooksView : ContentView
         try
         {
             addNewBtn.IsEnabled = false;
-            ApplicationService.ShowLoadingView();
             savedWebhookAddOrEditPopup = new SavedWebhookAddOrEditPopup();
             savedWebhookAddOrEditPopup.NewMode();
             var res =
@@ -106,7 +105,6 @@ public partial class SavedWebhooksView : ContentView
         }
 
         addNewBtn.IsEnabled = true;
-        ApplicationService.HideLoadingView();
     }
 
     private void OnSavedWebhookViewTapped(object sender, TappedEventArgs e)

@@ -7,7 +7,7 @@ using static DiscordWebhookRemoteApp.Components.Popups.SavedImagesEditOrViewPopu
 
 namespace DiscordWebhookRemoteApp.Components.Popups;
 
-public partial class SavedWebhookProfileImagesViewPopup : Popup
+public partial class SavedImagesViewPopup : Popup
 {
     private ObservableCollection<SavedImagesItems> imageList;
     public ObservableCollection<SavedImagesItems> ImageList
@@ -21,7 +21,7 @@ public partial class SavedWebhookProfileImagesViewPopup : Popup
         }
     }
 
-    public SavedWebhookProfileImagesViewPopup()
+    public SavedImagesViewPopup()
     {
         InitializeComponent();
         ImageList = SavedImagesService.SavedImages.ToObservableCollection();
@@ -37,9 +37,7 @@ public partial class SavedWebhookProfileImagesViewPopup : Popup
     private async void AddNew_Tapped(object sender, TappedEventArgs e)
     {
         addNewBtn.IsEnabled = false;
-        var res = await ApplicationService.ShowPopupAsync(
-            new WebhookProfileImageEditAndViewPopup("")
-        );
+        var res = await ApplicationService.ShowPopupAsync(new ImageEditAndViewPopup(""));
 
         if (res == null)
         {

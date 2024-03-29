@@ -51,6 +51,7 @@
                         WidthRequest="250" />
 
                     <CustomItems:CustomButton
+                        x:Name="btnSave"
                         Margin="5"
                         Padding="20,10"
                         BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"

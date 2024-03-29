@@ -14,26 +14,32 @@ public partial class SavedImagesEditOrViewPopup : Popup
 
     private async void Load_Clicked(object sender, EventArgs e)
     {
+        btnLoad.IsEnabled = false;
         await CloseAsync(
             new SavedImagesEditOrViewPopupResult(SavedImagesEditOrViewPopupResultTypes.Select, null)
         );
+        btnLoad.IsEnabled = true;
     }
 
     private async void Save_Clicked(object sender, EventArgs e)
     {
+        btnSave.IsEnabled = false;
         await CloseAsync(
             new SavedImagesEditOrViewPopupResult(
                 SavedImagesEditOrViewPopupResultTypes.Save,
                 entryImageUrl.Text
             )
         );
+        btnSave.IsEnabled = true;
     }
 
     private async void Delete_Clicked(object sender, EventArgs e)
     {
+        btnDelete.IsEnabled = false;
         await CloseAsync(
             new SavedImagesEditOrViewPopupResult(SavedImagesEditOrViewPopupResultTypes.Delete, null)
         );
+        btnDelete.IsEnabled = true;
     }
 
     private void entryImageUrl_TextChanged(object sender, TextChangedEventArgs e)

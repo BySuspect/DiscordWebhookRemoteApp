@@ -30,7 +30,7 @@ public partial class MainPage : ContentPage
             "OK"
         );
 #endif
-        //ApplicationService.ShowPopup(new SavedWebhookProfileImagesViewPopup());
+        //ApplicationService.ShowPopup(new SavedImagesViewPopup());
         base.OnAppearing();
     }
 
@@ -202,10 +202,8 @@ public partial class MainPage : ContentPage
             );
             if (webhooksData != null)
             {
-                ApplicationService.ShowLoadingView();
                 await SavedWebhooksService.ImportSavedWebhoksFromOldApp(webhooksData);
                 await SavedWebhooksView.RefreshList();
-                ApplicationService.HideLoadingView();
             }
         }
     }
