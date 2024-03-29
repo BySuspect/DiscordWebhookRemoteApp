@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +31,19 @@ namespace DiscordWebhookRemoteApp.Services
 
             loadingPopup.Close();
             IsOpen = false;
+        }
+        #endregion
+
+        #region ShowPopup Section
+        public static async Task<object?> ShowPopupAsync(Popup popup)
+        {
+            return await PopupExtensions.ShowPopupAsync(Application.Current.MainPage, popup);
+        }
+
+        public static Task ShowPopup(Popup popup)
+        {
+            PopupExtensions.ShowPopupAsync(Application.Current.MainPage, popup);
+            return Task.CompletedTask;
         }
         #endregion
     }

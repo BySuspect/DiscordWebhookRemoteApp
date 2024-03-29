@@ -1,4 +1,6 @@
-﻿namespace DiscordWebhookRemoteApp
+﻿using DiscordWebhookRemoteApp.Tests;
+
+namespace DiscordWebhookRemoteApp
 {
     public partial class App : Application
     {
@@ -7,6 +9,7 @@
             InitializeComponent();
 
             MainPage = new AppShell();
+            //MainPage = new TestPage();
         }
     }
 }

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
@@ -196,8 +196,20 @@
         <MauiXaml Update="Components\Popups\LoadingViewPopup.xaml">
           <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
+        <MauiXaml Update="Components\Popups\SavedImagesEditOrViewPopup.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
         <MauiXaml Update="Components\Popups\SavedWebhookAddOrEditPopup.xaml">
             <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Components\Popups\SavedWebhookProfileImagesViewPopup.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Components\Popups\WebhookProfileImageEditAndViewPopup.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Tests\TestPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
     </ItemGroup>
 
@@ -244,7 +256,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Tests\" />
+      <Folder Include="Components\Partials\Views\PopupViews\" />
     </ItemGroup>
 
 </Project>

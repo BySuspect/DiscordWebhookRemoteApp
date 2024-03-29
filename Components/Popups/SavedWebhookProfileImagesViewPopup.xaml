@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="DiscordWebhookRemoteApp.Components.Popups.SavedWebhookProfileImagesViewPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
+    xmlns:CustomViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
+    xmlns:local="clr-namespace:DiscordWebhookRemoteApp.Components.Popups"
+    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Color="Transparent">
+    <Grid ZIndex="-1">
+        <Frame
+            Margin="20,0"
+            Padding="0"
+            BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+            BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+            CornerRadius="15"
+            HeightRequest="{x:Static services:ScreenServices._70PercentHeight}"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
+            WidthRequest="350"
+            ZIndex="1">
+            <Grid Margin="10">
+                <Frame Padding="0" CornerRadius="15">
+                    <ScrollView Margin="10,10,10,30" VerticalOptions="Fill">
+                        <toolkit:UniformItemsLayout
+                            x:Name="ImageListView"
+                            BindableLayout.ItemsSource="{Binding ImageList}"
+                            MaxColumns="2"
+                            VerticalOptions="Fill">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame
+                                        Margin="10"
+                                        Padding="0"
+                                        AutomationId="{Binding Id}"
+                                        CornerRadius="15"
+                                        HeightRequest="120"
+                                        TouchEffect.PressedOpacity="0.8"
+                                        TouchEffect.PressedScale="0.9"
+                                        WidthRequest="120">
+                                        <Image Source="{Binding ImageUrl}" />
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="ImageSelect_Tapped" />
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </toolkit:UniformItemsLayout>
+                    </ScrollView>
+                </Frame>
+                <Frame
+                    x:Name="addNewBtn"
+                    Margin="15"
+                    Padding="0"
+                    BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                    BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                    CornerRadius="60"
+                    HeightRequest="48"
+                    HorizontalOptions="End"
+                    TouchEffect.PressedOpacity="0.8"
+                    TouchEffect.PressedScale="0.9"
+                    VerticalOptions="EndAndExpand"
+                    WidthRequest="48">
+                    <Image
+                        HeightRequest="32"
+                        Source="plusicon.png"
+                        WidthRequest="32" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="AddNew_Tapped" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </Grid>
+        </Frame>
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer Tapped="Dismiss_Tapped" />
+        </Grid.GestureRecognizers>
+    </Grid>
+</toolkit:Popup>

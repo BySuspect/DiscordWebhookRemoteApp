@@ -7,7 +7,7 @@
     <ContentView.Content>
         <CustomViews:CustomEditorView
             x:Name="MesageContentEditor"
-            HeightRequest="250"
+            HeightRequest="200"
             MaxLength="2000"
             Placeholder="Message Content" />
     </ContentView.Content>

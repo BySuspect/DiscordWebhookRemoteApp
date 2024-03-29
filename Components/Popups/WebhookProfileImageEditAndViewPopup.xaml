@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="DiscordWebhookRemoteApp.Components.Popups.WebhookProfileImageEditAndViewPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
+    xmlns:CustomViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
+    xmlns:local="clr-namespace:DiscordWebhookRemoteApp.Components.Popups"
+    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Color="Transparent">
+    <VerticalStackLayout>
+        <Frame
+            Padding="0"
+            BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+            BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+            CornerRadius="15">
+            <StackLayout Margin="10">
+                <Frame
+                    Margin="10"
+                    Padding="0"
+                    CornerRadius="15"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start">
+                    <Grid>
+                        <Image
+                            HeightRequest="128"
+                            HorizontalOptions="Start"
+                            MinimumHeightRequest="128"
+                            MinimumWidthRequest="128"
+                            Source="discordlogo.png"
+                            WidthRequest="128" />
+                        <Image
+                            x:Name="ImageView"
+                            HeightRequest="128"
+                            HorizontalOptions="Start"
+                            MinimumHeightRequest="128"
+                            MinimumWidthRequest="128"
+                            WidthRequest="128" />
+                    </Grid>
+                </Frame>
+                <CustomViews:CustomEntryView
+                    x:Name="entryImageUrl"
+                    Margin="5,20,5,10"
+                    BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                    HasCharCounterText="False"
+                    HorizontalOptions="Fill"
+                    MaxLength="2048"
+                    Placeholder="Image Url"
+                    TextChanged="entryImageUrl_TextChanged"
+                    ValidationType="ImageUrl"
+                    WidthRequest="250" />
+                <HorizontalStackLayout Margin="10" HorizontalOptions="Center">
+                    <CustomItems:CustomButton
+                        x:Name="btnLoad"
+                        Margin="5,0,5,0"
+                        Padding="20,10"
+                        BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                        BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                        BorderWidth="1"
+                        Clicked="Load_Clicked"
+                        CornerRadius="15"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Select"
+                        TextColor="{x:Static services:AppThemeColors.TextColor}"
+                        VerticalOptions="End" />
+                    <CustomItems:CustomButton
+                        Margin="5,0,5,0"
+                        Padding="20,10"
+                        BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                        BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                        BorderWidth="1"
+                        Clicked="Save_Clicked"
+                        CornerRadius="15"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Save"
+                        TextColor="{x:Static services:AppThemeColors.TextColor}"
+                        VerticalOptions="End" />
+                </HorizontalStackLayout>
+            </StackLayout>
+        </Frame>
+    </VerticalStackLayout>
+</toolkit:Popup>

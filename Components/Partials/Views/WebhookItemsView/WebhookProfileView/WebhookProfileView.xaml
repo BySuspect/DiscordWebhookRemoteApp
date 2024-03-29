@@ -16,7 +16,10 @@
             HorizontalOptions="FillAndExpand">
             <StackLayout>
                 <StackLayout Margin="10,10,10,10" Orientation="Horizontal">
-                    <Frame Padding="0" CornerRadius="60">
+                    <Frame
+                        x:Name="avatarBtn"
+                        Padding="0"
+                        CornerRadius="60">
                         <Grid>
                             <Image
                                 HeightRequest="48"

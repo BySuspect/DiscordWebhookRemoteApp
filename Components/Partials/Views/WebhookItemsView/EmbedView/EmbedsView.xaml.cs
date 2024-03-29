@@ -2,7 +2,7 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.Emb
 
 public partial class EmbedsView : ContentView
 {
-    //TODO: ObservableCollection deneyebilirm
+    //TODO: ObservableCollection ile ve herbir embed viewi harici popup yada sayfada gösterilicek
     public static BindableProperty EmbedsProperty = BindableProperty.Create(
         nameof(Embeds),
         typeof(IEnumerable<Discord.Embed>),

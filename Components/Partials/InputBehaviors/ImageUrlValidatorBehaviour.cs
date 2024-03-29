@@ -4,6 +4,9 @@ namespace DiscordWebhookRemoteApp.Components.Partials.InputBehaviors
 {
     public class ImageUrlValidatorBehaviour : Behavior<Entry>
     {
+        public static readonly string pattern =
+            @"^(http?|https?)://[^\s/$.?#].[^\s]*\.(?:png|jpg|gif)(?:\?.*)?$";
+
         protected override void OnAttachedTo(Entry bindable)
         {
             base.OnAttachedTo(bindable);
@@ -43,7 +46,6 @@ namespace DiscordWebhookRemoteApp.Components.Partials.InputBehaviors
 
         private bool regexMatchs(string text)
         {
-            string pattern = @"^(http?|https?)://[^\s/$.?#].[^\s]*\.(?:png|jpg|gif)(?:\?.*)?$";
             return Regex.IsMatch(text, pattern, RegexOptions.IgnoreCase);
         }
 

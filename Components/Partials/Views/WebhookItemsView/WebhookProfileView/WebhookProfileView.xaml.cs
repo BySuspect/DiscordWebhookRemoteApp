@@ -1,9 +1,11 @@
 using System.ComponentModel;
+using DiscordWebhookRemoteApp.Components.Popups;
 
 namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.WebhookProfileView;
 
 public partial class WebhookProfileView : ContentView, INotifyPropertyChanged
 {
+    #region AvatarImageSource Binding
     public static readonly BindableProperty AvatarImageSourceProperty = BindableProperty.Create(
         nameof(AvatarImageSource),
         typeof(string),
@@ -20,7 +22,9 @@ public partial class WebhookProfileView : ContentView, INotifyPropertyChanged
             OnPropertyChanged(nameof(AvatarImageSource));
         }
     }
+    #endregion
 
+    #region Username Binding
     public static readonly BindableProperty UsernameProperty = BindableProperty.Create(
         nameof(Username),
         typeof(string),
@@ -37,6 +41,7 @@ public partial class WebhookProfileView : ContentView, INotifyPropertyChanged
             OnPropertyChanged(nameof(Username));
         }
     }
+    #endregion
 
     public WebhookProfileView()
     {
@@ -46,17 +51,14 @@ public partial class WebhookProfileView : ContentView, INotifyPropertyChanged
 
     private async void Avatar_Tapped(object sender, EventArgs e)
     {
-        var res = await Application.Current.MainPage.DisplayPromptAsync(
-            title: "Change Avatar",
-            message: "Enter a new URL for the avatar",
-            accept: "OK",
-            cancel: "Cancel",
-            placeholder: "https://example.com/image.jpg",
-            initialValue: AvatarImageSource
+        avatarBtn.IsEnabled = false;
+        var res = await ApplicationService.ShowPopupAsync(
+            new WebhookProfileImageEditAndViewPopup(AvatarImageSource.ToString(), false)
         );
         if (res != null)
         {
-            AvatarImageSource = res;
+            AvatarImageSource = (string)res;
         }
+        avatarBtn.IsEnabled = true;
     }
 }

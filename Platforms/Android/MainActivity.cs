@@ -12,7 +12,8 @@ namespace DiscordWebhookRemoteApp
             | ConfigChanges.UiMode
             | ConfigChanges.ScreenLayout
             | ConfigChanges.SmallestScreenSize
-            | ConfigChanges.Density
+            | ConfigChanges.Density,
+        ScreenOrientation = ScreenOrientation.Portrait
     )]
     public class MainActivity : MauiAppCompatActivity
     {
