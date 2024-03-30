@@ -34,9 +34,10 @@
                             HeightRequest="32"
                             HorizontalOptions="Center"
                             Source="editicon.png"
+                            TouchEffect.PressedOpacity="0.8"
+                            TouchEffect.PressedScale="0.9"
                             WidthRequest="32">
                             <ImageButton.Behaviors>
-                                <toolkit:TouchBehavior PressedOpacity="0.8" PressedScale="0.9" />
                                 <toolkit:IconTintColorBehavior TintColor="{x:Static services:AppThemeColors.TextColor}" />
                             </ImageButton.Behaviors>
                             <ImageButton.GestureRecognizers>
@@ -58,9 +59,10 @@
                             HeightRequest="32"
                             HorizontalOptions="Center"
                             Source="deleteicon.png"
+                            TouchEffect.PressedOpacity="0.8"
+                            TouchEffect.PressedScale="0.9"
                             WidthRequest="32">
                             <ImageButton.Behaviors>
-                                <toolkit:TouchBehavior PressedOpacity="0.8" PressedScale="0.9" />
                                 <toolkit:IconTintColorBehavior TintColor="{x:Static services:AppThemeColors.TextColor}" />
                             </ImageButton.Behaviors>
                             <ImageButton.GestureRecognizers>
@@ -81,18 +83,21 @@
                     HasShadow="False"
                     HeightRequest="115"
                     HorizontalOptions="Start"
+                    TouchEffect.LongPressCommand="{Binding LongPressCommand}"
                     WidthRequest="75">
-                    <StackLayout Margin="10,5">
+                    <StackLayout Margin="10,5" TouchEffect.LongPressCommand="{Binding LongPressCommand}">
                         <Frame
                             Margin="0,5,0,0"
                             Padding="0"
                             CornerRadius="60"
                             HeightRequest="48"
+                            TouchEffect.LongPressCommand="{Binding LongPressCommand}"
                             WidthRequest="48">
                             <Image
                                 x:Name="img"
                                 HorizontalOptions="Fill"
                                 Source="{Binding ImageSource}"
+                                TouchEffect.LongPressCommand="{Binding LongPressCommand}"
                                 VerticalOptions="Fill">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="WebhookSelect_Tapped" />
@@ -110,6 +115,7 @@
                             HorizontalTextAlignment="Center"
                             MaximumWidthRequest="64"
                             TextColor="{x:Static services:AppThemeColors.TextColor}"
+                            TouchEffect.LongPressCommand="{Binding LongPressCommand}"
                             VerticalOptions="CenterAndExpand"
                             VerticalTextAlignment="Center">
                             <Label.GestureRecognizers>

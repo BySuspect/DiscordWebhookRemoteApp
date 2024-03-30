@@ -43,15 +43,14 @@
                                 BorderColor="{x:Static services:AppThemeColors.BorderColor}"
                                 CornerRadius="15"
                                 HeightRequest="115"
+                                TouchEffect.PressedOpacity="0.8"
+                                TouchEffect.PressedScale="0.9"
                                 WidthRequest="75">
                                 <Image HeightRequest="43" Source="plusicon.png">
                                     <Image.Behaviors>
                                         <toolkit:IconTintColorBehavior TintColor="{x:Static services:AppThemeColors.TextColor}" />
                                     </Image.Behaviors>
                                 </Image>
-                                <Frame.Behaviors>
-                                    <toolkit:TouchBehavior PressedOpacity="0.8" PressedScale="0.9" />
-                                </Frame.Behaviors>
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="AddNewWebhookTapped" />
                                 </Frame.GestureRecognizers>
