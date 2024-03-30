@@ -41,44 +41,44 @@
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
         <ApplicationId>com.discordwebhookremote</ApplicationId>
         <ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
-        <ApplicationDisplayVersion>0.1.2</ApplicationDisplayVersion>
+        <ApplicationDisplayVersion>0.1.3</ApplicationDisplayVersion>
         <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
         <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
-        <ApplicationVersion>3</ApplicationVersion>
+        <ApplicationVersion>4</ApplicationVersion>
         <AndroidUseAapt2>True</AndroidUseAapt2>
         <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
-        <AndroidPackageFormat>apk</AndroidPackageFormat>
+        <AndroidPackageFormat>aab</AndroidPackageFormat>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
         <ApplicationId>com.discordwebhookremote</ApplicationId>
         <ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
-        <ApplicationDisplayVersion>0.1.2</ApplicationDisplayVersion>
-        <ApplicationVersion>3</ApplicationVersion>
+        <ApplicationDisplayVersion>0.1.3</ApplicationDisplayVersion>
+        <ApplicationVersion>4</ApplicationVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|AnyCPU'">
         <ApplicationId>com.discordwebhookremote</ApplicationId>
         <ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
-        <ApplicationDisplayVersion>0.1.2</ApplicationDisplayVersion>
-        <ApplicationVersion>3</ApplicationVersion>
+        <ApplicationDisplayVersion>0.1.3</ApplicationDisplayVersion>
+        <ApplicationVersion>4</ApplicationVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|AnyCPU'">
         <ApplicationId>com.discordwebhookremote</ApplicationId>
         <ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
-        <ApplicationDisplayVersion>0.1.2</ApplicationDisplayVersion>
-        <ApplicationVersion>3</ApplicationVersion>
+        <ApplicationDisplayVersion>0.1.3</ApplicationDisplayVersion>
+        <ApplicationVersion>4</ApplicationVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
         <ApplicationId>com.discordwebhookremote</ApplicationId>
         <ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
-        <ApplicationDisplayVersion>0.1.2</ApplicationDisplayVersion>
-        <AndroidPackageFormat>apk</AndroidPackageFormat>
+        <ApplicationDisplayVersion>0.1.3</ApplicationDisplayVersion>
+        <AndroidPackageFormat>aab</AndroidPackageFormat>
         <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
         <AndroidLinkTool>r8</AndroidLinkTool>
-        <ApplicationVersion>3</ApplicationVersion>
+        <ApplicationVersion>4</ApplicationVersion>
         <AndroidUseAapt2>True</AndroidUseAapt2>
         <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
     </PropertyGroup>
@@ -86,27 +86,27 @@
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
         <ApplicationId>com.discordwebhookremote</ApplicationId>
         <ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
-        <ApplicationDisplayVersion>0.1.2</ApplicationDisplayVersion>
-        <ApplicationVersion>3</ApplicationVersion>
+        <ApplicationDisplayVersion>0.1.3</ApplicationDisplayVersion>
+        <ApplicationVersion>4</ApplicationVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|AnyCPU'">
         <ApplicationId>com.discordwebhookremote</ApplicationId>
         <ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
-        <ApplicationDisplayVersion>0.1.2</ApplicationDisplayVersion>
-        <ApplicationVersion>3</ApplicationVersion>
+        <ApplicationDisplayVersion>0.1.3</ApplicationDisplayVersion>
+        <ApplicationVersion>4</ApplicationVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|AnyCPU'">
         <ApplicationId>com.discordwebhookremote</ApplicationId>
         <ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
-        <ApplicationDisplayVersion>0.1.2</ApplicationDisplayVersion>
-        <ApplicationVersion>3</ApplicationVersion>
+        <ApplicationDisplayVersion>0.1.3</ApplicationDisplayVersion>
+        <ApplicationVersion>4</ApplicationVersion>
     </PropertyGroup>
 
     <ItemGroup>
         <!-- App Icon -->
-        <MauiIcon Include="Resources\AppIcon\icon.png" ForegroundFile="Resources\AppIcon\icon_fore.png" ForegroundScale="0.65" />
+        <MauiIcon Include="Resources\AppIcon\icon.png" ForegroundScale="0.65" ForegroundFile="Resources\AppIcon\icon_fore.png" />
 
         <!-- Splash Screen -->
         <MauiSplashScreen Include="Resources\Splash\splash_logo.png" />
@@ -155,7 +155,7 @@
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Partials\Views\CustomItemViews\CustomLoadingView.xaml">
-          <Generator>MSBuild:Compile</Generator>
+            <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Partials\Views\WebhookItemsView\EmbedView\AuthorView\AuthorView.xaml">
             <Generator>MSBuild:Compile</Generator>
@@ -194,22 +194,22 @@
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Popups\LoadingViewPopup.xaml">
-          <Generator>MSBuild:Compile</Generator>
+            <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Popups\SavedImagesEditOrViewPopup.xaml">
-          <Generator>MSBuild:Compile</Generator>
+            <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Popups\SavedWebhookAddOrEditPopup.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Popups\SavedImagesViewPopup.xaml">
-          <Generator>MSBuild:Compile</Generator>
+            <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Popups\ImageEditAndViewPopup.xaml">
-          <Generator>MSBuild:Compile</Generator>
+            <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Tests\TestPage.xaml">
-          <Generator>MSBuild:Compile</Generator>
+            <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
     </ItemGroup>
 
@@ -256,16 +256,16 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Components\Partials\Views\PopupViews\" />
+        <Folder Include="Components\Partials\Views\PopupViews\" />
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Components\Popups\SavedImagesViewPopup.xaml.cs">
-        <DependentUpon>SavedImagesViewPopup.xaml</DependentUpon>
-      </Compile>
-      <Compile Update="Components\Popups\ImageEditAndViewPopup.xaml.cs">
-        <DependentUpon>ImageEditAndViewPopup.xaml</DependentUpon>
-      </Compile>
+        <Compile Update="Components\Popups\SavedImagesViewPopup.xaml.cs">
+            <DependentUpon>SavedImagesViewPopup.xaml</DependentUpon>
+        </Compile>
+        <Compile Update="Components\Popups\ImageEditAndViewPopup.xaml.cs">
+            <DependentUpon>ImageEditAndViewPopup.xaml</DependentUpon>
+        </Compile>
     </ItemGroup>
 
 </Project>
