@@ -21,8 +21,6 @@
                         Padding="0"
                         CornerRadius="60"
                         HeightRequest="48"
-                        TouchEffect.PressedOpacity="0.8"
-                        TouchEffect.PressedScale="0.9"
                         WidthRequest="48">
                         <Grid>
                             <Image
@@ -41,6 +39,9 @@
                                 Source="{Binding AvatarImageSource}"
                                 WidthRequest="48" />
                         </Grid>
+                        <Frame.Behaviors>
+                            <toolkit:TouchBehavior PressedOpacity="0.8" PressedScale="0.9" />
+                        </Frame.Behaviors>
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Avatar_Tapped" />
                         </Frame.GestureRecognizers>

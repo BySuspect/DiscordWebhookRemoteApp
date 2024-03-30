@@ -28,14 +28,15 @@
                             Padding="0"
                             CornerRadius="60"
                             HeightRequest="48"
-                            TouchEffect.PressedOpacity="0.8"
-                            TouchEffect.PressedScale="0.9"
                             WidthRequest="48">
                             <Image
                                 x:Name="AuthorIconImg"
                                 HeightRequest="48"
                                 Source="{Binding AuthorIcon}"
                                 WidthRequest="48" />
+                            <Frame.Behaviors>
+                                <toolkit:TouchBehavior PressedOpacity="0.8" PressedScale="0.9" />
+                            </Frame.Behaviors>
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="Icon_Tapped" />
                             </Frame.GestureRecognizers>
