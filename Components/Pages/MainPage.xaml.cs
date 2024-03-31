@@ -98,11 +98,6 @@ public partial class MainPage : ContentPage
         try
         {
             Console.WriteLine("Test Clicked");
-            var sendHelper = new WebhookSendHelper(
-                "",
-                WebhookProfileView.Username,
-                WebhookProfileView.AvatarImageSource
-            );
         }
         catch (Exception ex)
         {

@@ -60,11 +60,19 @@
                     </StackLayout>
                 </ScrollView>
             </Grid>
-            <!--<controls:MTAdView
-                AdsId="ca-app-pub-3940256099942544/6300978111"
-                HeightRequest="{OnIdiom Phone=50,
-                                        Tablet=90}"
-                VerticalOptions="EndAndExpand" />-->
+            <!--<StackLayout>
+                <BoxView
+                    Margin="0"
+                    HeightRequest="1"
+                    HorizontalOptions="Fill"
+                    IsVisible="{Binding Source={x:Reference adsBottom}, Path=IsVisible}"
+                    Color="{x:Static services:AppThemeColors.BorderColor}" />
+                <controls:MTAdView
+                    x:Name="adsBottom"
+                    AdsId="ca-app-pub-3881259676793306/1418745998"
+                    HeightRequest="{OnIdiom Phone=50,
+                                            Tablet=90}" />
+            </StackLayout>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
