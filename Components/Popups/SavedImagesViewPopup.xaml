@@ -37,10 +37,15 @@
                                         AutomationId="{Binding Id}"
                                         CornerRadius="15"
                                         HeightRequest="120"
-                                        TouchEffect.PressedOpacity="0.8"
-                                        TouchEffect.PressedScale="0.9"
                                         WidthRequest="120">
-                                        <Image Source="{Binding ImageUrl}" />
+                                        <Image
+                                            HeightRequest="120"
+                                            Source="{Binding ImageUrl}"
+                                            WidthRequest="120" />
+
+                                        <Frame.Behaviors>
+                                            <toolkit:TouchBehavior PressedOpacity="0.8" PressedScale="0.9" />
+                                        </Frame.Behaviors>
                                         <Frame.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="ImageSelect_Tapped" />
                                         </Frame.GestureRecognizers>
@@ -59,14 +64,15 @@
                     CornerRadius="60"
                     HeightRequest="48"
                     HorizontalOptions="End"
-                    TouchEffect.PressedOpacity="0.8"
-                    TouchEffect.PressedScale="0.9"
                     VerticalOptions="EndAndExpand"
                     WidthRequest="48">
                     <Image
                         HeightRequest="32"
                         Source="plusicon.png"
                         WidthRequest="32" />
+                    <Frame.Behaviors>
+                        <toolkit:TouchBehavior PressedOpacity="0.8" PressedScale="0.9" />
+                    </Frame.Behaviors>
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="AddNew_Tapped" />
                     </Frame.GestureRecognizers>

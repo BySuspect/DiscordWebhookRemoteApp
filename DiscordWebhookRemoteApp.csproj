@@ -47,7 +47,7 @@
         <ApplicationVersion>4</ApplicationVersion>
         <AndroidUseAapt2>True</AndroidUseAapt2>
         <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
-        <AndroidPackageFormat>aab</AndroidPackageFormat>
+        <AndroidPackageFormat>apk</AndroidPackageFormat>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
@@ -133,14 +133,13 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
+        <PackageReference Include="CommunityToolkit.Maui" Version="8.0.0" />
         <PackageReference Include="Discord.Net.Webhook" Version="3.14.1" />
         <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.14" />
         <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.14" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
         <PackageReference Include="Plugin.MauiMTAdmob" Version="1.4.1" />
-        <PackageReference Include="TouchEffect.Maui" Version="7.0.0" />
         <PackageReference Include="Xamarin.Google.iOS.MobileAds" Version="8.13.0.3" />
     </ItemGroup>
 

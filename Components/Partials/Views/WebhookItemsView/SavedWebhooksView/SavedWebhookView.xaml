@@ -28,22 +28,21 @@
                         Margin="0,0,0,5"
                         Padding="0"
                         CornerRadius="90"
-                        VerticalOptions="Center">
-                        <ImageButton
-                            Margin="-1"
+                        HeightRequest="32"
+                        VerticalOptions="Center"
+                        WidthRequest="32">
+                        <Image
                             HeightRequest="32"
                             HorizontalOptions="Center"
                             Source="editicon.png"
-                            TouchEffect.PressedOpacity="0.8"
-                            TouchEffect.PressedScale="0.9"
                             WidthRequest="32">
-                            <ImageButton.Behaviors>
+                            <Image.Behaviors>
                                 <toolkit:IconTintColorBehavior TintColor="{x:Static services:AppThemeColors.TextColor}" />
-                            </ImageButton.Behaviors>
-                            <ImageButton.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="Edit_Tapped" />
-                            </ImageButton.GestureRecognizers>
-                        </ImageButton>
+                            </Image.Behaviors>
+                        </Image>
+                        <Frame.Behaviors>
+                            <toolkit:TouchBehavior PressedOpacity="0.8" PressedScale="0.9" />
+                        </Frame.Behaviors>
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Edit_Tapped" />
                         </Frame.GestureRecognizers>
@@ -53,22 +52,21 @@
                         Margin="0,5,0,0"
                         Padding="0"
                         CornerRadius="90"
-                        VerticalOptions="Center">
-                        <ImageButton
-                            Margin="-1"
+                        HeightRequest="32"
+                        VerticalOptions="Center"
+                        WidthRequest="32">
+                        <Image
                             HeightRequest="32"
                             HorizontalOptions="Center"
                             Source="deleteicon.png"
-                            TouchEffect.PressedOpacity="0.8"
-                            TouchEffect.PressedScale="0.9"
                             WidthRequest="32">
-                            <ImageButton.Behaviors>
+                            <Image.Behaviors>
                                 <toolkit:IconTintColorBehavior TintColor="{x:Static services:AppThemeColors.TextColor}" />
-                            </ImageButton.Behaviors>
-                            <ImageButton.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="Delete_Tapped" />
-                            </ImageButton.GestureRecognizers>
-                        </ImageButton>
+                            </Image.Behaviors>
+                        </Image>
+                        <Frame.Behaviors>
+                            <toolkit:TouchBehavior PressedOpacity="0.8" PressedScale="0.9" />
+                        </Frame.Behaviors>
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Delete_Tapped" />
                         </Frame.GestureRecognizers>
@@ -83,29 +81,21 @@
                     HasShadow="False"
                     HeightRequest="115"
                     HorizontalOptions="Start"
-                    TouchEffect.LongPressCommand="{Binding LongPressCommand}"
                     WidthRequest="75">
-                    <StackLayout Margin="10,5" TouchEffect.LongPressCommand="{Binding LongPressCommand}">
+                    <StackLayout Margin="10,5">
                         <Frame
                             Margin="0,5,0,0"
                             Padding="0"
                             CornerRadius="60"
                             HeightRequest="48"
-                            TouchEffect.LongPressCommand="{Binding LongPressCommand}"
                             WidthRequest="48">
                             <Image
                                 x:Name="img"
+                                HeightRequest="48"
                                 HorizontalOptions="Fill"
                                 Source="{Binding ImageSource}"
-                                TouchEffect.LongPressCommand="{Binding LongPressCommand}"
-                                VerticalOptions="Fill">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="WebhookSelect_Tapped" />
-                                </Image.GestureRecognizers>
-                            </Image>
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="WebhookSelect_Tapped" />
-                            </Frame.GestureRecognizers>
+                                VerticalOptions="Fill"
+                                WidthRequest="48" />
                         </Frame>
                         <Label
                             x:Name="lblName"
@@ -115,16 +105,8 @@
                             HorizontalTextAlignment="Center"
                             MaximumWidthRequest="64"
                             TextColor="{x:Static services:AppThemeColors.TextColor}"
-                            TouchEffect.LongPressCommand="{Binding LongPressCommand}"
                             VerticalOptions="CenterAndExpand"
-                            VerticalTextAlignment="Center">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="WebhookSelect_Tapped" />
-                            </Label.GestureRecognizers>
-                        </Label>
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="WebhookSelect_Tapped" />
-                        </StackLayout.GestureRecognizers>
+                            VerticalTextAlignment="Center" />
                     </StackLayout>
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer Tapped="WebhookSelect_Tapped" />
