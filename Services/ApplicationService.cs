@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Views;
 using DiscordWebhookRemoteApp.Components.Popups;
 
@@ -44,6 +41,50 @@ namespace DiscordWebhookRemoteApp.Services
         {
             PopupExtensions.ShowPopupAsync(Application.Current.MainPage, popup);
             return Task.CompletedTask;
+        }
+        #endregion
+
+        #region ShowToast Section
+        public static async Task ShowShortToastAsync(string text)
+        {
+            await Toast.Make(text, ToastDuration.Short).Show();
+        }
+
+        public static void ShowShortToast(string text)
+        {
+            Task.Run(() => showShortToast(text));
+        }
+
+        private static Task showShortToast(string text)
+        {
+            return Toast.Make(text, ToastDuration.Short).Show();
+        }
+
+        public static async Task ShowLongToastAsync(string text)
+        {
+            await Toast.Make(text, ToastDuration.Long).Show();
+        }
+
+        public static void ShowLongToast(string text)
+        {
+            Task.Run(() => showLongToast(text));
+        }
+
+        public static Task showLongToast(string text)
+        {
+            return Toast.Make(text, ToastDuration.Long).Show();
+        }
+        #endregion
+
+        #region Alerts Section
+        public static Task ShowWarning(string message)
+        {
+            return Application.Current.MainPage.DisplayAlert("Warning!", message, "OK");
+        }
+
+        public static Task ShowError(string message)
+        {
+            return Application.Current.MainPage.DisplayAlert("Error!", message, "OK");
         }
         #endregion
     }

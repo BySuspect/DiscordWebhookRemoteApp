@@ -2,10 +2,90 @@
 <ContentView
     x:Class="DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.FileSendView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
+    xmlns:CustomViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
+    xmlns:local="clr-namespace:DiscordWebhookRemoteApp.Components.Popups"
+    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     <ContentView.Content>
         <StackLayout>
-            <Label Text="FileSendView" />
+            <Frame
+                Padding="0"
+                BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                CornerRadius="15"
+                HorizontalOptions="FillAndExpand">
+                <StackLayout>
+                    <CollectionView
+                        x:Name="FilesListView"
+                        ItemsSource="{Binding SelectedFiles}"
+                        SelectionMode="None">
+                        <CollectionView.Header>
+                            <StackLayout>
+                                <Label
+                                    Margin="10,10,0,10"
+                                    FontSize="Header"
+                                    Text="Files: "
+                                    TextColor="{x:Static services:AppThemeColors.TextColor}" />
+                            </StackLayout>
+                        </CollectionView.Header>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
+                                    <Label
+                                        Margin="15,5,10,5"
+                                        FontSize="Caption"
+                                        TextColor="{x:Static services:AppThemeColors.TextColor}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding FileName}" />
+                                                <Span Text=" | " />
+                                                <Span Text="{Binding FileSizeText}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.Footer>
+                            <StackLayout>
+                                <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
+                                <StackLayout Margin="10,5,5,5" Orientation="Horizontal">
+                                    <Label
+                                        FontSize="Caption"
+                                        HorizontalOptions="Start"
+                                        TextColor="{x:Static services:AppThemeColors.BorderColor}"
+                                        VerticalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Files Count: " />
+                                                <Span Text="{Binding TotalFileCount}" TextColor="{x:Static services:AppThemeColors.TextColor}" />
+                                                <Span Text=" | " />
+                                                <Span Text="Total File Size: " />
+                                                <Span Text="{Binding TotalFileSizeText}" TextColor="{x:Static services:AppThemeColors.TextColor}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Button
+                                        x:Name="btnSelect"
+                                        Padding="15,7"
+                                        BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                                        BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                                        BorderWidth="1"
+                                        Clicked="Select_Clicked"
+                                        CornerRadius="10"
+                                        FontSize="Caption"
+                                        HorizontalOptions="EndAndExpand"
+                                        Text="Select"
+                                        TextColor="{x:Static services:AppThemeColors.TextColor}"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                            </StackLayout>
+                        </CollectionView.Footer>
+                    </CollectionView>
+                </StackLayout>
+            </Frame>
         </StackLayout>
     </ContentView.Content>
 </ContentView>

@@ -30,6 +30,7 @@
                         <SavedWebhooksView:SavedWebhooksView x:Name="SavedWebhooksView" Margin="0,5,0,5" />
                         <WebhookProfileView:WebhookProfileView x:Name="WebhookProfileView" Margin="0,0,0,5" />
                         <WebhookItemsView:MessageContentView x:Name="MessageContentView" Margin="0,0,0,5" />
+                        <WebhookItemsView:FileSendView x:Name="FileSendView" Margin="0,0,0,5" />
                         <EmbedViews:EmbedView x:Name="EmbedView" Margin="0,0,0,5" />
                         <StackLayout
                             Margin="0,0,0,5"

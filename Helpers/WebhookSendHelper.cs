@@ -21,11 +21,34 @@ namespace DiscordWebhookRemoteApp.Helpers
             client = new DiscordWebhookClient(webhookUrl);
         }
 
-        public async Task<ulong?> SendMessageAsync(string Message, List<Embed> embeds = null)
+        public async Task<ulong?> SendMessageAsync(
+            string Message,
+            List<Embed>? embeds = null,
+            List<FileAttachment>? files = null
+        )
         {
             try
             {
-                if (embeds != null && embeds.Count >= 1)
+                if (embeds != null && embeds.Count >= 1 && files != null)
+                {
+                    return await client.SendFilesAsync(
+                        attachments: files,
+                        text: Message,
+                        username: userName,
+                        avatarUrl: avatarImage,
+                        embeds: embeds
+                    );
+                }
+                else if (files != null)
+                {
+                    return await client.SendFilesAsync(
+                        attachments: files,
+                        text: Message,
+                        username: userName,
+                        avatarUrl: avatarImage
+                    );
+                }
+                else if (embeds != null && embeds.Count >= 1)
                 {
                     return await client.SendMessageAsync(
                         text: Message,

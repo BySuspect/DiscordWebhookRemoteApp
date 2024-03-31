@@ -52,11 +52,15 @@ public partial class MainPage : ContentPage
             var embed = embedBuild.Item1;
             var hasEmbed = embedBuild.Item2;
 
-            string uri =
-                (SavedWebhooksView.selectedWebhook.WebhookUrl == null)
-                    ? Preferences.Get("TestWebhookUrl", "null")
-                    : SavedWebhooksView.selectedWebhook.WebhookUrl
-                        ?? Preferences.Get("WebhookUrl", string.Empty);
+            var _files = new List<FileAttachment>();
+
+            foreach (var file in FileSendView.SelectedFiles)
+            {
+                _files.Add(new FileAttachment(file.Path));
+            }
+
+            string uri = SavedWebhooksView.selectedWebhook.WebhookUrl;
+
             if (string.IsNullOrEmpty(uri))
             {
                 btnSend.IsEnabled = true;
@@ -67,19 +71,29 @@ public partial class MainPage : ContentPage
                 WebhookProfileView.Username,
                 WebhookProfileView.AvatarImageSource
             );
+
+            // Send Message if has embed
             if (hasEmbed)
                 result = await sendHelper.SendMessageAsync(
                     !string.IsNullOrEmpty(MessageContentView.MessageContent)
                         ? MessageContentView.MessageContent
                         : "",
-                    new List<Embed>() { embed }
+                    new List<Embed>() { embed },
+                    _files.Count >= 1 ? _files : null
                 );
+            // Send Message if has files and message
             else if (!string.IsNullOrEmpty(MessageContentView.MessageContent))
                 result = await sendHelper.SendMessageAsync(
                     !string.IsNullOrEmpty(MessageContentView.MessageContent)
                         ? MessageContentView.MessageContent
-                        : ""
+                        : "",
+                    null,
+                    _files.Count >= 1 ? _files : null
                 );
+            // Send Message if has files
+            else if (_files.Count >= 1)
+                result = await sendHelper.SendMessageAsync("", null, _files);
+
             if (result != null)
                 _ = Toast.Make("Message Sent").Show();
             else
