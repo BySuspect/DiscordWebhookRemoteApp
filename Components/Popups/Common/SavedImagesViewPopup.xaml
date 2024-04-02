@@ -1,29 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <toolkit:Popup
-    x:Class="DiscordWebhookRemoteApp.Components.Popups.SavedImagesViewPopup"
+    x:Class="DiscordWebhookRemoteApp.Components.Popups.Common.SavedImagesViewPopup"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
     xmlns:CustomViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
-    xmlns:local="clr-namespace:DiscordWebhookRemoteApp.Components.Popups"
     xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    VerticalOptions="Center"
     Color="Transparent">
-    <Grid ZIndex="-1">
+    <VerticalStackLayout WidthRequest="340">
         <Frame
-            Margin="20,0"
-            Padding="0"
+            Padding="10"
             BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
             BorderColor="{x:Static services:AppThemeColors.BorderColor}"
             CornerRadius="15"
             HeightRequest="{x:Static services:ScreenServices._70PercentHeight}"
-            HorizontalOptions="Fill"
-            VerticalOptions="Fill"
-            WidthRequest="350"
-            ZIndex="1">
-            <Grid Margin="10">
+            HorizontalOptions="Fill">
+            <Grid>
                 <Frame Padding="0" CornerRadius="15">
-                    <ScrollView Margin="10,10,10,30" VerticalOptions="Fill">
+                    <ScrollView Margin="5,5,5,30">
                         <toolkit:UniformItemsLayout
                             x:Name="ImageListView"
                             BindableLayout.ItemsSource="{Binding ImageList}"
@@ -32,7 +28,7 @@
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
                                     <Frame
-                                        Margin="10"
+                                        Margin="5"
                                         Padding="0"
                                         AutomationId="{Binding Id}"
                                         CornerRadius="15"
@@ -42,7 +38,6 @@
                                             HeightRequest="120"
                                             Source="{Binding ImageUrl}"
                                             WidthRequest="120" />
-
                                         <Frame.Behaviors>
                                             <toolkit:TouchBehavior PressedOpacity="0.8" PressedScale="0.9" />
                                         </Frame.Behaviors>
@@ -79,8 +74,5 @@
                 </Frame>
             </Grid>
         </Frame>
-        <Grid.GestureRecognizers>
-            <TapGestureRecognizer Tapped="Dismiss_Tapped" />
-        </Grid.GestureRecognizers>
-    </Grid>
+    </VerticalStackLayout>
 </toolkit:Popup>

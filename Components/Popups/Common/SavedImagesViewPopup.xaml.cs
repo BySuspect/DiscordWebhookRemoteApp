@@ -2,10 +2,9 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Core.Extensions;
 using CommunityToolkit.Maui.ImageSources;
 using CommunityToolkit.Maui.Views;
-using static System.Net.Mime.MediaTypeNames;
-using static DiscordWebhookRemoteApp.Components.Popups.SavedImagesEditOrViewPopup;
+using static DiscordWebhookRemoteApp.Components.Popups.Common.SavedImagesEditOrViewPopup;
 
-namespace DiscordWebhookRemoteApp.Components.Popups;
+namespace DiscordWebhookRemoteApp.Components.Popups.Common;
 
 public partial class SavedImagesViewPopup : Popup
 {

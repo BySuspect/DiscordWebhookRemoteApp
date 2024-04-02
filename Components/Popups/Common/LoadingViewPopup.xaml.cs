@@ -1,6 +1,6 @@
 using CommunityToolkit.Maui.Views;
 
-namespace DiscordWebhookRemoteApp.Components.Popups;
+namespace DiscordWebhookRemoteApp.Components.Popups.Common;
 
 public partial class LoadingViewPopup : Popup
 {

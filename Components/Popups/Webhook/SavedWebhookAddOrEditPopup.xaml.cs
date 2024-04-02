@@ -3,7 +3,7 @@ using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWe
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace DiscordWebhookRemoteApp.Components.Popups;
+namespace DiscordWebhookRemoteApp.Components.Popups.Webhook;
 
 public partial class SavedWebhookAddOrEditPopup : Popup
 {

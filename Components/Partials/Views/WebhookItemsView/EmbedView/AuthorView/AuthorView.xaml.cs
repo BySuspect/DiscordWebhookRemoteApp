@@ -1,5 +1,5 @@
 using CommunityToolkit.Maui.ImageSources;
-using DiscordWebhookRemoteApp.Components.Popups;
+using DiscordWebhookRemoteApp.Components.Popups.Common;
 
 namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.AuthorView;
 

@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Core.Extensions;
 using CommunityToolkit.Maui.Views;
-using DiscordWebhookRemoteApp.Components.Popups;
+using DiscordWebhookRemoteApp.Components.Popups.Webhook;
 
 namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWebhooksView;
 

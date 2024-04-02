@@ -195,19 +195,22 @@
         <MauiXaml Update="Components\Partials\Views\WebhookItemsView\WebhookProfileView\WebhookProfileView.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
-        <MauiXaml Update="Components\Popups\LoadingViewPopup.xaml">
+        <MauiXaml Update="Components\Popups\Common\LoadingViewPopup.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
-        <MauiXaml Update="Components\Popups\SavedImagesEditOrViewPopup.xaml">
+        <MauiXaml Update="Components\Popups\Common\SavedImagesEditOrViewPopup.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
-        <MauiXaml Update="Components\Popups\SavedWebhookAddOrEditPopup.xaml">
+        <MauiXaml Update="Components\Popups\Embed\EmbedFieldsEditAndNewPopup.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Components\Popups\Webhook\SavedWebhookAddOrEditPopup.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
-        <MauiXaml Update="Components\Popups\SavedImagesViewPopup.xaml">
+        <MauiXaml Update="Components\Popups\Common\SavedImagesViewPopup.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
-        <MauiXaml Update="Components\Popups\ImageEditAndViewPopup.xaml">
+        <MauiXaml Update="Components\Popups\Common\ImageEditAndViewPopup.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Tests\TestPage.xaml">
@@ -262,10 +265,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Update="Components\Popups\SavedImagesViewPopup.xaml.cs">
+        <Compile Update="Components\Popups\Common\SavedImagesViewPopup.xaml.cs">
             <DependentUpon>SavedImagesViewPopup.xaml</DependentUpon>
         </Compile>
-        <Compile Update="Components\Popups\ImageEditAndViewPopup.xaml.cs">
+        <Compile Update="Components\Popups\Common\ImageEditAndViewPopup.xaml.cs">
             <DependentUpon>ImageEditAndViewPopup.xaml</DependentUpon>
         </Compile>
     </ItemGroup>

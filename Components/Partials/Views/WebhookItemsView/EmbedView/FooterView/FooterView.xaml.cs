@@ -1,4 +1,4 @@
-using DiscordWebhookRemoteApp.Components.Popups;
+using DiscordWebhookRemoteApp.Components.Popups.Common;
 
 namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FooterView;
 

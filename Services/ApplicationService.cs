@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Views;
-using DiscordWebhookRemoteApp.Components.Popups;
+using DiscordWebhookRemoteApp.Components.Popups.Common;
 
 namespace DiscordWebhookRemoteApp.Services
 {
