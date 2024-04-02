@@ -77,7 +77,7 @@ public partial class MainPage : ContentPage
                 result = await sendHelper.SendMessageAsync(
                     !string.IsNullOrEmpty(MessageContentView.MessageContent)
                         ? MessageContentView.MessageContent
-                        : "",
+                        : string.Empty,
                     new List<Embed>() { embed },
                     _files.Count >= 1 ? _files : null
                 );
@@ -86,13 +86,13 @@ public partial class MainPage : ContentPage
                 result = await sendHelper.SendMessageAsync(
                     !string.IsNullOrEmpty(MessageContentView.MessageContent)
                         ? MessageContentView.MessageContent
-                        : "",
+                        : string.Empty,
                     null,
                     _files.Count >= 1 ? _files : null
                 );
             // Send Message if has files
             else if (_files.Count >= 1)
-                result = await sendHelper.SendMessageAsync("", null, _files);
+                result = await sendHelper.SendMessageAsync(string.Empty, null, _files);
 
             if (result != null)
                 _ = Toast.Make("Message Sent").Show();
@@ -183,7 +183,7 @@ public partial class MainPage : ContentPage
 
         var res = await App.Current.MainPage.DisplayActionSheet(
             "Discord Invite",
-            "",
+            string.Empty,
             "Cancel",
             "Open Link",
             "Copy Link"
@@ -203,7 +203,7 @@ public partial class MainPage : ContentPage
     {
         var res = await App.Current.MainPage.DisplayActionSheet(
             "Settings",
-            "",
+            string.Empty,
             "Cancel",
             "Import Webhooks"
         );

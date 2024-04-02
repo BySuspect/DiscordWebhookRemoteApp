@@ -29,7 +29,7 @@ public partial class SavedWebhookView : ContentView
         nameof(Name),
         typeof(string),
         typeof(SavedWebhookView),
-        defaultValue: "",
+        defaultValue: string.Empty,
         BindingMode.TwoWay,
         propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -122,7 +122,8 @@ public partial class SavedWebhookView : ContentView
         nameof(WebhookUrl),
         typeof(string),
         typeof(SavedWebhookView),
-        defaultValue: ""
+        defaultValue: string.Empty,
+        defaultBindingMode: BindingMode.TwoWay
     );
     public string WebhookUrl
     {

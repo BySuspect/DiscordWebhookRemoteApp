@@ -8,10 +8,10 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     <ContentView.Content>
         <Frame
-            Padding="20,10,10,10"
+            Padding="20,0,10,0"
             CornerRadius="0"
             HorizontalOptions="FillAndExpand">
-            <StackLayout>
+            <StackLayout Margin="0,10,0,10">
                 <Label
                     Margin="5,0,0,10"
                     FontSize="Header"
@@ -47,7 +47,7 @@
                             Color="{x:Static services:AppThemeColors.BorderColor}" />
                         <CustomViews:CustomEntryView
                             x:Name="entryAuthorName"
-                            Margin="0,5,10,5"
+                            Margin="0,10,0,5"
                             BorderColor="Transparent"
                             HorizontalOptions="FillAndExpand"
                             MaxLength="256"

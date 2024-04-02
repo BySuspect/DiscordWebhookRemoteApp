@@ -7,7 +7,8 @@ public partial class CustomEntryView : ContentView
         nameof(Text),
         typeof(string),
         typeof(CustomEntryView),
-        defaultValue: ""
+        defaultValue: string.Empty,
+        defaultBindingMode: BindingMode.TwoWay
     );
     public string Text
     {
@@ -25,7 +26,8 @@ public partial class CustomEntryView : ContentView
         nameof(Placeholder),
         typeof(string),
         typeof(CustomEntryView),
-        defaultValue: ""
+        defaultValue: string.Empty,
+        defaultBindingMode: BindingMode.TwoWay
     );
     public string Placeholder
     {
@@ -43,7 +45,8 @@ public partial class CustomEntryView : ContentView
         nameof(MaxLength),
         typeof(string),
         typeof(CustomEntryView),
-        defaultValue: ""
+        defaultValue: string.Empty,
+        defaultBindingMode: BindingMode.TwoWay
     );
     public string MaxLength
     {
@@ -61,7 +64,8 @@ public partial class CustomEntryView : ContentView
         nameof(CornerRadius),
         typeof(int),
         typeof(CustomEntryView),
-        defaultValue: 15
+        defaultValue: 15,
+        defaultBindingMode: BindingMode.TwoWay
     );
     public int CornerRadius
     {
@@ -79,7 +83,8 @@ public partial class CustomEntryView : ContentView
         nameof(BorderColor),
         typeof(Color),
         typeof(CustomEntryView),
-        defaultValue: Colors.White
+        defaultValue: Colors.White,
+        defaultBindingMode: BindingMode.TwoWay
     );
     public Color BorderColor
     {
@@ -137,7 +142,8 @@ public partial class CustomEntryView : ContentView
         nameof(HasCharCounterText),
         typeof(bool),
         typeof(CustomEntryView),
-        defaultValue: true
+        defaultValue: true,
+        defaultBindingMode: BindingMode.TwoWay
     );
     public bool HasCharCounterText
     {

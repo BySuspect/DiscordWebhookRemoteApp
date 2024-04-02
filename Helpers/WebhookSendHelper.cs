@@ -5,7 +5,7 @@ namespace DiscordWebhookRemoteApp.Helpers
 {
     public class WebhookSendHelper
     {
-        private string webhookUrl = "";
+        private string webhookUrl = string.Empty;
         private string? userName = null;
         private string? avatarImage = null;
 

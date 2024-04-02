@@ -73,7 +73,10 @@ public partial class FooterView : ContentView
     {
         iconBtn.IsEnabled = false;
         var res = await ApplicationService.ShowPopupAsync(
-            new ImageEditAndViewPopup((FooterIcon == "discordlogo.png") ? "" : FooterIcon, false)
+            new ImageEditAndViewPopup(
+                (FooterIcon == "discordlogo.png") ? string.Empty : FooterIcon,
+                false
+            )
         );
         if (res != null)
         {

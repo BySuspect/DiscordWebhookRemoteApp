@@ -19,9 +19,9 @@ public partial class SavedWebhookAddOrEditPopup : Popup
     public void NewMode()
     {
         isEditMode = false;
-        entryWebhookUrl.Text = "";
-        entryImageUrl.Text = "";
-        entryName.Text = "";
+        entryWebhookUrl.Text = string.Empty;
+        entryImageUrl.Text = string.Empty;
+        entryName.Text = string.Empty;
     }
 
     public void EditMode(SavedWebhookViewItems item)

@@ -37,7 +37,7 @@ public partial class SavedImagesViewPopup : Popup
     private async void AddNew_Tapped(object sender, TappedEventArgs e)
     {
         addNewBtn.IsEnabled = false;
-        var res = await ApplicationService.ShowPopupAsync(new ImageEditAndViewPopup(""));
+        var res = await ApplicationService.ShowPopupAsync(new ImageEditAndViewPopup(string.Empty));
 
         if (res == null)
         {

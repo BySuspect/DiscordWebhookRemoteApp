@@ -7,7 +7,8 @@ public partial class CustomLoadingView : ContentView
         nameof(LoadingViewVisible),
         typeof(bool),
         typeof(CustomEntryView),
-        defaultValue: false
+        defaultValue: false,
+        defaultBindingMode: BindingMode.TwoWay
     );
     public bool LoadingViewVisible
     {

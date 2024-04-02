@@ -23,13 +23,15 @@
                         Text="Embed: "
                         TextColor="{x:Static services:AppThemeColors.TextColor}" />
                     <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
-                    <AuthorView:AuthorView x:Name="_authorView" Padding="0,0,0,-7" />
+                    <AuthorView:AuthorView x:Name="_authorView" />
                     <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
-                    <BodyView:BodyView x:Name="_bodyView" Padding="0,0,0,-7" />
+                    <BodyView:BodyView x:Name="_bodyView" />
                     <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
-                    <ImagesView:ImagesView x:Name="_imagesView" Padding="0,0,0,-7" />
+                    <FieldsView:FieldsView x:Name="_fieldsView" />
                     <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
-                    <FooterView:FooterView x:Name="_footerView" Padding="0,0,0,-7" />
+                    <ImagesView:ImagesView x:Name="_imagesView" />
+                    <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
+                    <FooterView:FooterView x:Name="_footerView" />
                 </StackLayout>
             </Frame>
         </StackLayout>

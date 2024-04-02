@@ -11,7 +11,7 @@ public partial class WebhookProfileView : ContentView, INotifyPropertyChanged
         typeof(string),
         typeof(WebhookProfileView),
         defaultBindingMode: BindingMode.TwoWay,
-        defaultValue: ""
+        defaultValue: string.Empty
     );
     public string AvatarImageSource
     {

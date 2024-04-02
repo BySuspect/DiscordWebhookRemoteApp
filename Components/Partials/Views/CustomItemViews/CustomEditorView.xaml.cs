@@ -10,7 +10,7 @@ public partial class CustomEditorView : ContentView
         typeof(string),
         typeof(CustomEditorView),
         defaultBindingMode: BindingMode.TwoWay,
-        defaultValue: ""
+        defaultValue: string.Empty
     );
     public string Text
     {
@@ -29,7 +29,7 @@ public partial class CustomEditorView : ContentView
         typeof(string),
         typeof(CustomEditorView),
         defaultBindingMode: BindingMode.TwoWay,
-        defaultValue: ""
+        defaultValue: string.Empty
     );
     public string Placeholder
     {
@@ -48,7 +48,7 @@ public partial class CustomEditorView : ContentView
         typeof(string),
         typeof(CustomEditorView),
         defaultBindingMode: BindingMode.TwoWay,
-        defaultValue: ""
+        defaultValue: string.Empty
     );
     public string MaxLength
     {

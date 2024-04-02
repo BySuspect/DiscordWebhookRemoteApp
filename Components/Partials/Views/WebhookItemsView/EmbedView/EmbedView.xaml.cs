@@ -5,7 +5,12 @@ public partial class EmbedView : ContentView
     #region AuthorView
     public string AuthorIconUrl
     {
-        get { return (_authorView.AuthorIcon == "discordlogo.png") ? "" : _authorView.AuthorIcon; }
+        get
+        {
+            return (_authorView.AuthorIcon == "discordlogo.png")
+                ? string.Empty
+                : _authorView.AuthorIcon;
+        }
         set { _authorView.AuthorIcon = value; }
     }
     public string AuthorName
@@ -66,7 +71,12 @@ public partial class EmbedView : ContentView
 
     public string FooterIconUrl
     {
-        get { return (_footerView.FooterIcon == "discordlogo.png") ? "" : _footerView.FooterIcon; }
+        get
+        {
+            return (_footerView.FooterIcon == "discordlogo.png")
+                ? string.Empty
+                : _footerView.FooterIcon;
+        }
         set { _footerView.FooterIcon = value; }
     }
 

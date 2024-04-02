@@ -3,11 +3,72 @@
     x:Class="DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FieldsView.FieldsView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="FieldsView"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+    xmlns:CustomViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
+    xmlns:local="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FieldsView"
+    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    <StackLayout>
+        <Frame
+            Padding="20,0,10,0"
+            CornerRadius="0"
+            HorizontalOptions="FillAndExpand">
+            <StackLayout Margin="0,10,0,10">
+                <StackLayout Margin="5,0,5,10" Orientation="Horizontal">
+                    <Label
+                        FontSize="Header"
+                        HorizontalOptions="Start"
+                        Text="Fields: "
+                        TextColor="{x:Static services:AppThemeColors.TextColor}" />
+                    <HorizontalStackLayout HorizontalOptions="EndAndExpand">
+                        <Label
+                            FontSize="Caption"
+                            Text="{Binding FieldsCount}"
+                            TextColor="{x:Static services:AppThemeColors.TextColor}"
+                            VerticalOptions="Center" />
+                        <Frame
+                            x:Name="addNewBtn"
+                            Margin="5,0"
+                            Padding="0"
+                            BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                            CornerRadius="90"
+                            HeightRequest="28"
+                            VerticalOptions="Center"
+                            WidthRequest="28">
+                            <Image
+                                HeightRequest="24"
+                                Source="plusicon.png"
+                                WidthRequest="24">
+                                <Image.Behaviors>
+                                    <toolkit:IconTintColorBehavior TintColor="{x:Static services:AppThemeColors.TextColor}" />
+                                </Image.Behaviors>
+                            </Image>
+                            <Frame.Behaviors>
+                                <toolkit:TouchBehavior
+                                    IsEnabled="{Binding Source={x:Reference addNewBtn}, Path=IsVisible}"
+                                    PressedOpacity="0.8"
+                                    PressedScale="0.9" />
+                            </Frame.Behaviors>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AddNew_Tapped" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </HorizontalStackLayout>
+                </StackLayout>
+                <CollectionView ItemsSource="{Binding Fields}" SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <local:FieldView
+                                Name="{Binding Name}"
+                                DeleteTapped="FieldDelete_Tapped"
+                                EditTapped="FieldEdit_Tapped"
+                                ID="{Binding ID}"
+                                InLine="{Binding InLine}"
+                                Order="{Binding Order}"
+                                Value="{Binding Value}" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
 </ContentView>

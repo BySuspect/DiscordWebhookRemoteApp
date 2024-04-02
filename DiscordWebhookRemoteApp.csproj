@@ -171,6 +171,9 @@
         <MauiXaml Update="Components\Partials\Views\WebhookItemsView\EmbedView\FieldsView\FieldsView.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
+        <MauiXaml Update="Components\Partials\Views\WebhookItemsView\EmbedView\FieldsView\FieldView.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
         <MauiXaml Update="Components\Partials\Views\WebhookItemsView\EmbedView\FooterView\FooterView.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>

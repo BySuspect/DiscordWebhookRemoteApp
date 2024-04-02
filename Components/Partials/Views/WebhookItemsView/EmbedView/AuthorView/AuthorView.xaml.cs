@@ -69,7 +69,10 @@ public partial class AuthorView : ContentView
     {
         iconBtn.IsEnabled = false;
         var res = await ApplicationService.ShowPopupAsync(
-            new ImageEditAndViewPopup((AuthorIcon == "discordlogo.png") ? "" : AuthorIcon, false)
+            new ImageEditAndViewPopup(
+                (AuthorIcon == "discordlogo.png") ? string.Empty : AuthorIcon,
+                false
+            )
         );
         if (res != null)
         {
