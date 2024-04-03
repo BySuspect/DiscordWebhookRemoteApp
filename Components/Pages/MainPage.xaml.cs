@@ -4,6 +4,7 @@ using CommunityToolkit.Maui.Views;
 using Discord;
 using DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews;
 using DiscordWebhookRemoteApp.Components.Popups;
+using DiscordWebhookRemoteApp.Components.Popups.Embed;
 using DiscordWebhookRemoteApp.Helpers;
 
 namespace DiscordWebhookRemoteApp.Components.Pages;
@@ -30,7 +31,7 @@ public partial class MainPage : ContentPage
             "OK"
         );
 #endif
-        //ApplicationService.ShowPopup(new SavedImagesViewPopup());
+        //ApplicationService.ShowPopup(new EmbedFieldsEditAndNewPopup());
         base.OnAppearing();
     }
 
@@ -151,6 +152,14 @@ public partial class MainPage : ContentPage
                         ? EmbedView.AuthorIconUrl
                         : null
             },
+            Fields = EmbedView
+                .Fields.Select(f => new Discord.EmbedFieldBuilder()
+                {
+                    Name = f.Name,
+                    Value = f.Value,
+                    IsInline = f.InLine
+                })
+                .ToList(),
             Footer = new Discord.EmbedFooterBuilder()
             {
                 Text = (!string.IsNullOrEmpty(EmbedView.FooterText)) ? EmbedView.FooterText : null,
@@ -167,6 +176,7 @@ public partial class MainPage : ContentPage
             || embed.Description != null
             || embed.Author.Value.Name != null
             || embed.Footer.Value.Text != null
+            || embed.Fields.Count() >= 1
         )
             hasEmbed = true;
         return Task.FromResult((embed, hasEmbed));

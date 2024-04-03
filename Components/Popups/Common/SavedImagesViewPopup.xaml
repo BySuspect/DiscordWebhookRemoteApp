@@ -34,10 +34,16 @@
                                         CornerRadius="15"
                                         HeightRequest="120"
                                         WidthRequest="120">
-                                        <Image
-                                            HeightRequest="120"
-                                            Source="{Binding ImageUrl}"
-                                            WidthRequest="120" />
+                                        <Grid>
+                                            <Image
+                                                HeightRequest="100"
+                                                Source="imageerroricon.png"
+                                                WidthRequest="100" />
+                                            <Image
+                                                HeightRequest="120"
+                                                Source="{Binding ImageUrl}"
+                                                WidthRequest="120" />
+                                        </Grid>
                                         <Frame.Behaviors>
                                             <toolkit:TouchBehavior PressedOpacity="0.8" PressedScale="0.9" />
                                         </Frame.Behaviors>

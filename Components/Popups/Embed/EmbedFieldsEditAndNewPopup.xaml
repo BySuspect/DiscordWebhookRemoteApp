@@ -1,13 +1,61 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<toolkit:Popup
     x:Class="DiscordWebhookRemoteApp.Components.Popups.Embed.EmbedFieldsEditAndNewPopup"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="EmbedFieldsEditAndNewPopup">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
+    xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
+    xmlns:CustomViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
+    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    VerticalOptions="Center"
+    Color="Transparent">
+    <VerticalStackLayout Margin="20" WidthRequest="300">
+        <Frame
+            Padding="0"
+            BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+            BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+            CornerRadius="15">
+            <StackLayout Margin="25">
+                <CustomViews:CustomEntryView
+                    x:Name="entryTitle"
+                    Margin="0,10,0,5"
+                    MaxLength="256"
+                    Placeholder="Title" />
+                <CustomViews:CustomEditorView
+                    x:Name="entryValue"
+                    Margin="0,10,0,5"
+                    HeightRequest="150"
+                    MaxLength="1024"
+                    Placeholder="Value" />
+                <CustomViews:CustomCheckBox
+                    x:Name="cbInline"
+                    Title="InLine"
+                    HorizontalOptions="Center" />
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <CustomItems:CustomButton
+                        x:Name="btnDelete"
+                        Margin="5,5,5,0"
+                        BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                        BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                        BorderWidth="1"
+                        Clicked="btnDelete_Clicked"
+                        CornerRadius="15"
+                        HorizontalOptions="Center"
+                        Text="Delete"
+                        TextColor="{x:Static services:AppThemeColors.TextColor}" />
+                    <CustomItems:CustomButton
+                        x:Name="btnSave"
+                        Margin="5,5,5,0"
+                        BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                        BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                        BorderWidth="1"
+                        Clicked="btnSave_Clicked"
+                        CornerRadius="15"
+                        HorizontalOptions="Center"
+                        Text="Save"
+                        TextColor="{x:Static services:AppThemeColors.TextColor}" />
+                </HorizontalStackLayout>
+            </StackLayout>
+        </Frame>
     </VerticalStackLayout>
-</ContentPage>
+</toolkit:Popup>

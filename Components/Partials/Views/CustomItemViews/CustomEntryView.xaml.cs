@@ -78,12 +78,12 @@ public partial class CustomEntryView : ContentView
     }
     #endregion
 
-    #region CornerRadius Binding
+    #region BorderColor Binding
     public static readonly BindableProperty BorderColorProperty = BindableProperty.Create(
         nameof(BorderColor),
         typeof(Color),
         typeof(CustomEntryView),
-        defaultValue: Colors.White,
+        defaultValue: AppThemeColors.BorderColor,
         defaultBindingMode: BindingMode.TwoWay
     );
     public Color BorderColor

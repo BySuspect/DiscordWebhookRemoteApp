@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Core.Extensions;
+using DiscordWebhookRemoteApp.Components.Popups.Embed;
 
 namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FieldsView;
 
@@ -35,10 +36,21 @@ public partial class FieldsView : ContentView
         BindingContext = this;
     }
 
-    private void FieldEdit_Tapped(object sender, TappedEventArgs e)
+    private async void FieldEdit_Tapped(object sender, TappedEventArgs e)
     {
         var selected = (FieldView)sender;
-        Console.WriteLine("Edit tapped " + selected.Order);
+
+        var res = await ApplicationService.ShowPopupAsync(
+            new EmbedFieldsEditAndNewPopup(selected.Name, selected.Value, selected.InLine)
+        );
+        if (res == null)
+        {
+            addNewBtn.IsEnabled = true;
+            return;
+        }
+        if (res == "delete")
+            await DeleteField(selected);
+        addNewBtn.IsEnabled = true;
     }
 
     private async void FieldDelete_Tapped(object sender, TappedEventArgs e)
@@ -57,29 +69,41 @@ public partial class FieldsView : ContentView
             selected.IsEnabled = true;
             return;
         }
+        await DeleteField(selected);
+        selected.IsEnabled = true;
+    }
+
+    private Task DeleteField(FieldView selected)
+    {
         var _list = Fields.ToList();
         _list.Remove(_list.First(x => x.ID == selected.ID));
         Fields = _list.ToObservableCollection();
         ReOrderList();
-
-        selected.IsEnabled = true;
+        return Task.CompletedTask;
     }
 
-    private void AddNew_Tapped(object sender, TappedEventArgs e)
+    private async void AddNew_Tapped(object sender, TappedEventArgs e)
     {
         if (Fields.Count >= 25)
             return;
         addNewBtn.IsEnabled = false;
+        var res = await ApplicationService.ShowPopupAsync(new EmbedFieldsEditAndNewPopup());
+        if (res == null || res == "delete")
+        {
+            addNewBtn.IsEnabled = true;
+            return;
+        }
+        var newField = (FieldView)res;
         ReOrderList();
         var _list = Fields.ToList();
-        //before adding asks on popup for field content
         _list.Add(
             new FieldView(
                 (_list.Count > 0) ? _list.Last().ID + 1 : 0,
                 (_list.Count > 0) ? _list.Last().Order + 1 : 1,
-                "",
-                "",
-                false
+                newField.Name,
+                newField.Value,
+                newField.InLine,
+                newField.IsEmpty
             )
         );
         Fields = _list.ToObservableCollection();

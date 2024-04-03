@@ -1,3 +1,6 @@
+using CommunityToolkit.Maui.Core.Extensions;
+using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FieldsView;
+
 namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView;
 
 public partial class EmbedView : ContentView
@@ -59,6 +62,14 @@ public partial class EmbedView : ContentView
     {
         get { return _imagesView.ImagesThumbnailUrl; }
         set { _imagesView.ImagesThumbnailUrl = value; }
+    }
+    #endregion
+
+    #region FieldsView
+    public List<FieldView> Fields
+    {
+        get { return _fieldsView.Fields.ToList(); }
+        set { _fieldsView.Fields = value.ToObservableCollection(); }
     }
     #endregion
 
