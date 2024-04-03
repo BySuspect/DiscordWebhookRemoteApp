@@ -1,9 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using
+/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-maccatalyst)'
+Before:
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+After:
+using System.Threading.Tasks;
+
+using Newtonsoft.Json;
+*/
+
+/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-ios)'
+Before:
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+After:
+using System.Threading.Tasks;
+
+using Newtonsoft.Json;
+*/
+
+/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-windows10.0.19041.0)'
+Before:
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+After:
+using System.Threading.Tasks;
+
+using Newtonsoft.Json;
+*/
+Newtonsoft.Json;
 
 namespace DiscordWebhookRemoteApp.Services
 {

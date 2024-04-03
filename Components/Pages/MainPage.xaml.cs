@@ -1,10 +1,44 @@
-using CommunityToolkit.Maui.Alerts;
-using CommunityToolkit.Maui.Behaviors;
+using
+/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-maccatalyst)'
+Before:
 using CommunityToolkit.Maui.Views;
 using Discord;
 using DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews;
-using DiscordWebhookRemoteApp.Components.Popups;
-using DiscordWebhookRemoteApp.Components.Popups.Embed;
+After:
+using CommunityToolkit.Maui.Views;
+
+using Discord;
+
+using DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews;
+*/
+
+/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-ios)'
+Before:
+using CommunityToolkit.Maui.Views;
+using Discord;
+using DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews;
+After:
+using CommunityToolkit.Maui.Views;
+
+using Discord;
+
+using DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews;
+*/
+
+/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-windows10.0.19041.0)'
+Before:
+using CommunityToolkit.Maui.Views;
+using Discord;
+using DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews;
+After:
+using CommunityToolkit.Maui.Views;
+
+using Discord;
+
+using DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews;
+*/
+Discord;
+using CommunityToolkit.Maui.Alerts;
 using DiscordWebhookRemoteApp.Helpers;
 
 namespace DiscordWebhookRemoteApp.Components.Pages;

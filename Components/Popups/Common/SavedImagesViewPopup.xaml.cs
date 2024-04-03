@@ -1,6 +1,5 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Core.Extensions;
-using CommunityToolkit.Maui.ImageSources;
 using CommunityToolkit.Maui.Views;
 using static DiscordWebhookRemoteApp.Components.Popups.Common.SavedImagesEditOrViewPopup;
 

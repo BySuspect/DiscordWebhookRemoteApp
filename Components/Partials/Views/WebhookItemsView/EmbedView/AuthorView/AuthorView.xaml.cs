@@ -1,4 +1,32 @@
+/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-maccatalyst)'
+Before:
 using CommunityToolkit.Maui.ImageSources;
+using DiscordWebhookRemoteApp.Components.Popups.Common;
+After:
+using CommunityToolkit.Maui.ImageSources;
+
+using DiscordWebhookRemoteApp.Components.Popups.Common;
+*/
+
+/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-ios)'
+Before:
+using CommunityToolkit.Maui.ImageSources;
+using DiscordWebhookRemoteApp.Components.Popups.Common;
+After:
+using CommunityToolkit.Maui.ImageSources;
+
+using DiscordWebhookRemoteApp.Components.Popups.Common;
+*/
+
+/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-windows10.0.19041.0)'
+Before:
+using CommunityToolkit.Maui.ImageSources;
+using DiscordWebhookRemoteApp.Components.Popups.Common;
+After:
+using CommunityToolkit.Maui.ImageSources;
+
+using DiscordWebhookRemoteApp.Components.Popups.Common;
+*/
 using DiscordWebhookRemoteApp.Components.Popups.Common;
 
 namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.AuthorView;

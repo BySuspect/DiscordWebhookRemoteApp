@@ -1,6 +1,4 @@
-﻿using DiscordWebhookRemoteApp.Tests;
-
-namespace DiscordWebhookRemoteApp
+﻿namespace DiscordWebhookRemoteApp
 {
     public partial class App : Application
     {

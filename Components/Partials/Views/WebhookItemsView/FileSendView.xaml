@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
     xmlns:CustomViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
-    xmlns:local="clr-namespace:DiscordWebhookRemoteApp.Components.Popups"
     xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     <ContentView.Content>
@@ -34,10 +33,11 @@
                             <DataTemplate>
                                 <StackLayout>
                                     <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
-                                    <StackLayout Orientation="Horizontal">
+                                    <Grid>
                                         <Label
-                                            Margin="15,5,10,5"
+                                            Margin="15,5,20,5"
                                             FontSize="Caption"
+                                            HorizontalOptions="FillAndExpand"
                                             TextColor="{x:Static services:AppThemeColors.TextColor}"
                                             VerticalOptions="Center"
                                             VerticalTextAlignment="Center">
@@ -73,7 +73,7 @@
                                                 <TapGestureRecognizer Tapped="Delete_Tapped" />
                                             </Frame.GestureRecognizers>
                                         </Frame>
-                                    </StackLayout>
+                                    </Grid>
                                 </StackLayout>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>

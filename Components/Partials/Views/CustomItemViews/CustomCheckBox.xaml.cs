@@ -1,5 +1,3 @@
-using static System.Net.Mime.MediaTypeNames;
-
 namespace DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews;
 
 public partial class CustomCheckBox : ContentView

@@ -1,10 +1,49 @@
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
+/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-maccatalyst)'
+Before:
 using System.IO.Enumeration;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core.Extensions;
 using Discord;
+After:
+using System.IO.Enumeration;
+
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core.Extensions;
+
+using Discord;
+*/
+
+/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-ios)'
+Before:
+using System.IO.Enumeration;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core.Extensions;
+using Discord;
+After:
+using System.IO.Enumeration;
+
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core.Extensions;
+
+using Discord;
+*/
+
+/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-windows10.0.19041.0)'
+Before:
+using System.IO.Enumeration;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core.Extensions;
+using Discord;
+After:
+using System.IO.Enumeration;
+
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core.Extensions;
+
+using Discord;
+*/
+using CommunityToolkit.Maui.Core.Extensions;
 
 namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView;
 
@@ -73,12 +112,14 @@ public partial class FileSendView : ContentView
             if (result == null)
             {
                 btnSelect.IsEnabled = true;
+                ApplicationService.HideLoadingView();
                 return;
             }
 
             if (result.Count() > 10)
             {
-                ApplicationService.ShowShortToast("Please select max 10 files!");
+                _ = ApplicationService.ShowWarning("Please select max 10 files!");
+                ApplicationService.HideLoadingView();
                 btnSelect.IsEnabled = true;
                 return;
             }
