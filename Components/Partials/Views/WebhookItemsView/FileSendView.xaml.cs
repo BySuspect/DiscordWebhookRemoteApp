@@ -142,6 +142,42 @@ public partial class FileSendView : ContentView
             return $"{mbSize:N2} MB";
         }
     }
+
+    private async void Delete_Tapped(object sender, TappedEventArgs e)
+    {
+        var selected = (Frame)sender;
+        selected.IsEnabled = false;
+        var _list = SelectedFiles.ToList();
+        var selectedFile = _list.First(x => x.Id == Convert.ToInt32(selected.AutomationId));
+        var res = await Application.Current.MainPage.DisplayAlert(
+            "Warning!",
+            $"Are you sure you want to delete {selectedFile.FileName}?",
+            "Yes",
+            "No"
+        );
+        if (!res)
+        {
+            selected.IsEnabled = true;
+            return;
+        }
+        _list.Remove(_list.First(x => x.Id == selectedFile.Id));
+        SelectedFiles = _list.ToObservableCollection();
+        refreshList();
+        selected.IsEnabled = true;
+    }
+
+    private void refreshList()
+    {
+        var _list = selectedFiles.ToList();
+        long totalFileSize = 0;
+        foreach (var item in _list)
+        {
+            totalFileSize += item.FileSize;
+        }
+
+        TotalFileCount = _list.Count;
+        TotalFileSizeText = GetSizeString(totalFileSize);
+    }
 }
 
 public class FileSendViewItems
