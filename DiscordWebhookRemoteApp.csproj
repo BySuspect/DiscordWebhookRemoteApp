@@ -75,7 +75,7 @@
         <ApplicationId>com.discordwebhookremote</ApplicationId>
         <ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
         <ApplicationDisplayVersion>0.1.4</ApplicationDisplayVersion>
-        <AndroidPackageFormat>apk</AndroidPackageFormat>
+        <AndroidPackageFormat>aab</AndroidPackageFormat>
         <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
         <AndroidLinkTool>r8</AndroidLinkTool>
         <ApplicationVersion>5</ApplicationVersion>
