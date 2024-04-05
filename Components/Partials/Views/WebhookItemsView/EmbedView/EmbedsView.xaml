@@ -3,135 +3,85 @@
     x:Class="DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.EmbedsView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView"
+    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     <ContentView.Content>
-        <!--<StackLayout>
-            <ListView
-                x:Name="lvEmbeds"
-                HasUnevenRows="True"
-                HeightRequest="400"
-                HorizontalScrollBarVisibility="Never"
-                ItemsSource="{Binding Embeds, Mode=TwoWay}"
-                PropertyChanged="ListView_PropertyChanged"
-                SelectionMode="None"
-                VerticalScrollBarVisibility="Never">
-                <ListView.Header>
-                    <StackLayout>
-                        <StackLayout
-                            Margin="10,10,10,5"
-                            HorizontalOptions="FillAndExpand"
-                            Orientation="Horizontal">
+        <StackLayout>
+            <Frame
+                Padding="20,0,10,0"
+                BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                CornerRadius="15"
+                HorizontalOptions="FillAndExpand"
+                MinimumHeightRequest="200">
+                <StackLayout Margin="0,10,0,10">
+                    <StackLayout Margin="5,0,5,10" Orientation="Horizontal">
+                        <Label
+                            FontSize="Header"
+                            HorizontalOptions="Start"
+                            Text="Embeds: "
+                            TextColor="{x:Static services:AppThemeColors.TextColor}" />
+                        <HorizontalStackLayout HorizontalOptions="EndAndExpand">
                             <Label
-                                FontSize="Header"
-                                HorizontalOptions="Start"
-                                Text="Embeds"
-                                TextColor="White"
+                                FontSize="Caption"
+                                Text="{Binding EmbedsCount}"
+                                TextColor="{x:Static services:AppThemeColors.TextColor}"
                                 VerticalOptions="Center" />
-                            <StackLayout
-                                HorizontalOptions="EndAndExpand"
-                                Orientation="Horizontal"
-                                VerticalOptions="Center">
-                                <Label
-                                    x:Name="lblEmbedCount"
-                                    Margin="0,0,5,5"
-                                    FontSize="Caption"
-                                    HorizontalOptions="End"
-                                    Text="0/0"
-                                    TextColor="White"
-                                    VerticalOptions="Center">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span x:Name="spEmbedCount" Text="0" />
-                                            <Span Text="/" />
-                                            <Span Text="10" />
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                                <CustomItems:CustomButton
-                                    x:Name="btnNewEmbed"
-                                    Clicked="btnNewEmbed_Clicked"
-                                    CornerRadius="365"
-                                    HeightRequest="48"
-                                    HorizontalOptions="End"
-                                    Text="N"
-                                    VerticalOptions="Center"
-                                    WidthRequest="48" />
-                            </StackLayout>
-                        </StackLayout>
-                        <BoxView HeightRequest="1" Color="Green" />
-                    </StackLayout>
-                </ListView.Header>
-
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
                             <Frame
-                                Margin="5"
-                                Padding="5"
-                                BackgroundColor="Transparent"
-                                BorderColor="White"
-                                CornerRadius="15"
-                                HorizontalOptions="FillAndExpand">
-                                <toolkit:Expander>
-                                    <toolkit:Expander.Header>
-                                        <StackLayout Margin="10,0" HeightRequest="48">
-                                            <Label
-                                                HorizontalOptions="Start"
-                                                TextColor="White"
-                                                VerticalOptions="CenterAndExpand">
-                                                <Label.FormattedText>
-                                                    <FormattedString>
-                                                        <Span Text="Embed " />
-                                                        <Span Text="#" />
-                                                        <Span Text="1" />
-                                                    </FormattedString>
-                                                </Label.FormattedText>
-                                            </Label>
-                                        </StackLayout>
-                                    </toolkit:Expander.Header>
-                                    <toolkit:Expander.ControlTemplate>
-                                        <DataTemplate>
-                                            <Frame
-                                                BackgroundColor="Transparent"
-                                                BorderColor="White"
-                                                CornerRadius="15"
-                                                HorizontalOptions="Fill"
-                                                VerticalOptions="Fill">
-                                                <StackLayout>
-                                                    <Frame
-                                                        Padding="10"
-                                                        BackgroundColor="Transparent"
-                                                        BorderColor="White"
-                                                        CornerRadius="15"
-                                                        HorizontalOptions="FillAndExpand">
-                                                        <Entry
-                                                            HorizontalOptions="Fill"
-                                                            Text="{Binding Author.Name}"
-                                                            TextColor="White" />
-                                                    </Frame>
-                                                    <Frame
-                                                        Padding="10"
-                                                        BackgroundColor="Transparent"
-                                                        BorderColor="White"
-                                                        CornerRadius="15"
-                                                        HeightRequest="200"
-                                                        HorizontalOptions="FillAndExpand">
-                                                        <Editor
-                                                            HorizontalOptions="Fill"
-                                                            Text="{Binding Description}"
-                                                            TextColor="White"
-                                                            VerticalOptions="Fill" />
-                                                    </Frame>
-                                                </StackLayout>
-                                            </Frame>
-                                        </DataTemplate>
-                                    </toolkit:Expander.ControlTemplate>
-                                </toolkit:Expander>
+                                x:Name="addNewBtn"
+                                Margin="5,0"
+                                Padding="0"
+                                BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                                CornerRadius="90"
+                                HeightRequest="28"
+                                VerticalOptions="Center"
+                                WidthRequest="28">
+                                <Image
+                                    HeightRequest="24"
+                                    Source="plusicon.png"
+                                    WidthRequest="24">
+                                    <Image.Behaviors>
+                                        <toolkit:IconTintColorBehavior TintColor="{x:Static services:AppThemeColors.TextColor}" />
+                                    </Image.Behaviors>
+                                </Image>
+                                <Frame.Behaviors>
+                                    <toolkit:TouchBehavior
+                                        IsEnabled="{Binding Source={x:Reference addNewBtn}, Path=IsVisible}"
+                                        PressedOpacity="0.8"
+                                        PressedScale="0.9" />
+                                </Frame.Behaviors>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="AddNew_Tapped" />
+                                </Frame.GestureRecognizers>
                             </Frame>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>-->
+                        </HorizontalStackLayout>
+                    </StackLayout>
+                    <CollectionView ItemsSource="{Binding Embeds}" SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <local:EmbedView
+                                    AuthorIcon="{Binding AuthorIcon}"
+                                    AuthorName="{Binding AuthorName}"
+                                    AuthorUrl="{Binding AuthorUrl}"
+                                    BodyColor="{Binding BodyColor}"
+                                    BodyContent="{Binding BodyContent}"
+                                    BodyTitle="{Binding BodyTitle}"
+                                    BodyUrl="{Binding BodyUrl}"
+                                    DeleteTapped="EmbedDelete_Tapped"
+                                    EditTapped="EmbedEdit_Tapped"
+                                    Fields="{Binding Fields}"
+                                    FooterIcon="{Binding FooterIcon}"
+                                    FooterTimestamp="{Binding FooterTimestamp}"
+                                    FooterTitle="{Binding FooterTitle}"
+                                    ID="{Binding ID}"
+                                    ImagesImageUrl="{Binding ImagesImageUrl}"
+                                    ImagesThumbnailUrl="{Binding ImagesThumbnailUrl}"
+                                    Order="{Binding Order}" />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
     </ContentView.Content>
 </ContentView>

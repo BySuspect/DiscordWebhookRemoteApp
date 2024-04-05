@@ -208,6 +208,9 @@
         <MauiXaml Update="Components\Popups\Common\SavedImagesEditOrViewPopup.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
+        <MauiXaml Update="Components\Popups\Embed\EmbedEditAndNewPopup.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
         <MauiXaml Update="Components\Popups\Embed\EmbedFieldsEditAndNewPopup.xaml">
           <Generator>MSBuild:Compile</Generator>
         </MauiXaml>

@@ -45,13 +45,12 @@ public partial class BodyView : ContentView
     #endregion
 
     #region BodyColor Binding
-    [Obsolete]
     public Color BodyColor
     {
         get
         {
             if (!string.IsNullOrEmpty(entryBodyColor.Text))
-                return Color.FromHex(entryBodyColor.Text);
+                return Color.Parse(entryBodyColor.Text);
             else
                 return new Color(
                     Discord.Color.Default.R,
@@ -61,7 +60,7 @@ public partial class BodyView : ContentView
         }
         set
         {
-            if (Color.FromHex(entryBodyColor.Text) != value)
+            if (Color.Parse(entryBodyColor.Text) != value)
             {
                 entryBodyColor.Text = value.ToHex();
             }

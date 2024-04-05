@@ -55,8 +55,8 @@ public partial class EmbedFieldsEditAndNewPopup : Popup
             new FieldView(
                 -1,
                 -1,
-                entryTitle.Text,
-                entryValue.Text,
+                entryTitle.Text.Trim(),
+                entryValue.Text.Trim(),
                 cbInline.IsChecked,
                 string.IsNullOrWhiteSpace(entryTitle.Text)
                     && string.IsNullOrWhiteSpace(entryValue.Text)

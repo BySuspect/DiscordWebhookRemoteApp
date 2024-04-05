@@ -29,7 +29,7 @@ public partial class FooterView : ContentView
 
     #region FooterTitle Binding
 
-    public string FooterText
+    public string FooterTitle
     {
         get { return entryFooterText.Text; }
         set

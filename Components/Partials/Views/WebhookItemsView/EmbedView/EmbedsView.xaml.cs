@@ -1,8 +1,185 @@
+using System.Collections.ObjectModel;
+using CommunityToolkit.Maui.Core.Extensions;
+using Discord;
+using DiscordWebhookRemoteApp.Components.Popups.Embed;
+
 namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView;
 
 public partial class EmbedsView : ContentView
 {
-    //TODO: ObservableCollection ile ve herbir embed viewi harici popup yada sayfada gösterilicek
+    private ObservableCollection<EmbedView> embeds;
+
+    public ObservableCollection<EmbedView> Embeds
+    {
+        get { return embeds ?? new ObservableCollection<EmbedView>(); }
+        set
+        {
+            embeds = value;
+            EmbedsCount = $"{value.Count}/10";
+            OnPropertyChanged(nameof(Embeds));
+        }
+    }
+    private string embedsCount;
+
+    public string EmbedsCount
+    {
+        get { return embedsCount ?? "0/10"; }
+        set
+        {
+            embedsCount = value;
+            OnPropertyChanged(nameof(EmbedsCount));
+        }
+    }
+
+    public EmbedsView()
+    {
+        InitializeComponent();
+        BindingContext = this;
+    }
+
+    private async void EmbedEdit_Tapped(object sender, TappedEventArgs e)
+    {
+        var selected = (EmbedView)sender;
+
+        var res = await ApplicationService.ShowPopupAsync(
+            new EmbedEditAndNewPopup(
+                selected.AuthorIcon,
+                selected.AuthorName,
+                selected.AuthorUrl,
+                selected.BodyTitle,
+                selected.BodyContent,
+                selected.BodyUrl,
+                selected.BodyColor,
+                selected.Fields,
+                selected.ImagesImageUrl,
+                selected.ImagesThumbnailUrl,
+                selected.FooterIcon,
+                selected.FooterTitle,
+                selected.FooterTimestamp
+            )
+        );
+        if (res == null)
+        {
+            addNewBtn.IsEnabled = true;
+            return;
+        }
+        if (res == "delete")
+        {
+            await DeleteEmbed(selected);
+            addNewBtn.IsEnabled = true;
+            return;
+        }
+
+        await DeleteEmbed(selected);
+        var editedEmbed = (EmbedView)res;
+        var _list = Embeds.ToList();
+        _list.Add(
+            new EmbedView(
+                selected.ID,
+                selected.Order,
+                editedEmbed.AuthorIcon,
+                editedEmbed.AuthorName,
+                editedEmbed.AuthorUrl,
+                editedEmbed.BodyTitle,
+                editedEmbed.BodyContent,
+                editedEmbed.BodyUrl,
+                editedEmbed.BodyColor,
+                editedEmbed.Fields,
+                editedEmbed.ImagesImageUrl,
+                editedEmbed.ImagesThumbnailUrl,
+                editedEmbed.FooterIcon,
+                editedEmbed.FooterTitle,
+                editedEmbed.FooterTimestamp,
+                editedEmbed.IsEmpty
+            )
+        );
+        Embeds = _list.ToObservableCollection();
+
+        addNewBtn.IsEnabled = true;
+    }
+
+    private async void EmbedDelete_Tapped(object sender, TappedEventArgs e)
+    {
+        var selected = (EmbedView)sender;
+        selected.IsEnabled = false;
+
+        var res = await Application.Current.MainPage.DisplayAlert(
+            "Warning!",
+            $"Are you sure you want to delete Embed #{selected.Order}?",
+            "Yes",
+            "No"
+        );
+        if (!res)
+        {
+            selected.IsEnabled = true;
+            return;
+        }
+        await DeleteEmbed(selected);
+        selected.IsEnabled = true;
+    }
+
+    private Task DeleteEmbed(EmbedView selected)
+    {
+        var _list = Embeds.ToList();
+        _list.Remove(_list.First(x => x.ID == selected.ID));
+        Embeds = _list.ToObservableCollection();
+        ReOrderList();
+        return Task.CompletedTask;
+    }
+
+    private async void AddNew_Tapped(object sender, TappedEventArgs e)
+    {
+        if (Embeds.Count >= 10)
+            return;
+        addNewBtn.IsEnabled = false;
+        var res = await ApplicationService.ShowPopupAsync(new EmbedEditAndNewPopup());
+        if (res == null || res == "delete")
+        {
+            addNewBtn.IsEnabled = true;
+            return;
+        }
+        var newEmbed = (EmbedView)res;
+        ReOrderList();
+
+        var _list = Embeds.ToList();
+        _list.Add(
+            new EmbedView(
+                (_list.Count > 0) ? _list.Last().ID + 1 : 0,
+                (_list.Count > 0) ? _list.Last().Order + 1 : 1,
+                newEmbed.AuthorIcon,
+                newEmbed.AuthorName,
+                newEmbed.AuthorUrl,
+                newEmbed.BodyTitle,
+                newEmbed.BodyContent,
+                newEmbed.BodyUrl,
+                newEmbed.BodyColor,
+                newEmbed.Fields,
+                newEmbed.ImagesImageUrl,
+                newEmbed.ImagesThumbnailUrl,
+                newEmbed.FooterIcon,
+                newEmbed.FooterTitle,
+                newEmbed.FooterTimestamp,
+                newEmbed.IsEmpty
+            )
+        );
+        Embeds = _list.ToObservableCollection();
+        addNewBtn.IsEnabled = true;
+    }
+
+    private void ReOrderList()
+    {
+        var _list = Embeds.ToList();
+        _list.OrderBy(x => x.ID);
+        for (int i = 0; i < _list.Count; i++)
+        {
+            _list[i].Order = i + 1;
+        }
+        Embeds = _list.ToObservableCollection();
+    }
+}
+
+/*
+//TODO: ObservableCollection ile ve herbir embed viewi harici popup yada sayfada gösterilicek
     public static BindableProperty EmbedsProperty = BindableProperty.Create(
         nameof(Embeds),
         typeof(IEnumerable<Discord.Embed>),
@@ -32,23 +209,9 @@ public partial class EmbedsView : ContentView
             //view.lvEmbeds.ItemsSource = (IEnumerable<Discord.Embed>)newValue;
         }
     );
-    public IEnumerable<Discord.Embed> Embeds
-    {
-        get { return (IEnumerable<Discord.Embed>)GetValue(EmbedsProperty); }
-        set { SetValue(EmbedsProperty, value); }
-    }
 
-    public EmbedsView()
-    {
-        InitializeComponent();
-        BindingContext = this;
-
-        Embeds = new List<Discord.Embed>();
-    }
-
-    private void btnNewEmbed_Clicked(object sender, EventArgs e)
-    {
-        //var embed = new Discord.EmbedBuilder
+ 
+ //var embed = new Discord.EmbedBuilder
         //{
         //    Author = new Discord.EmbedAuthorBuilder
         //    {
@@ -66,23 +229,23 @@ public partial class EmbedsView : ContentView
         //    ThumbnailUrl = "https://i.imgur.com/niLjyNS.jpg",
         //    Timestamp = DateTime.Now,
 
-        //    Fields = new List<Discord.EmbedFieldBuilder>()
+        //    Embeds = new List<Discord.EmbedEmbedBuilder>()
         //    {
-        //        new Discord.EmbedFieldBuilder
+        //        new Discord.EmbedEmbedBuilder
         //        {
-        //            Name = "Field 1",
+        //            Name = "Embed 1",
         //            Value = "Value 1",
         //            IsInline = true
         //        },
-        //        new Discord.EmbedFieldBuilder
+        //        new Discord.EmbedEmbedBuilder
         //        {
-        //            Name = "Field 2",
+        //            Name = "Embed 2",
         //            Value = "Value 2",
         //            IsInline = true
         //        },
-        //        new Discord.EmbedFieldBuilder
+        //        new Discord.EmbedEmbedBuilder
         //        {
-        //            Name = "Field 3",
+        //            Name = "Embed 3",
         //            Value = "Value 3",
         //            IsInline = false
         //        }
@@ -118,15 +281,4 @@ public partial class EmbedsView : ContentView
         //Embeds = Embeds.Union(new[] { embed });
 
         //spEmbedCount.Text = Embeds.Count().ToString();
-    }
-
-    private void ListView_PropertyChanged(
-        object sender,
-        System.ComponentModel.PropertyChangedEventArgs e
-    )
-    {
-        Console.WriteLine(".n.nProperty Changed: " + e.PropertyName + ".n.n");
-    }
-}
-
-public class WebhookMessageEmbedsViewItems { }
+ */

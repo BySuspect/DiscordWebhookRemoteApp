@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="DiscordWebhookRemoteApp.Components.Popups.Embed.EmbedEditAndNewPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:AuthorView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.AuthorView"
+    xmlns:BodyView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.BodyView"
+    xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
+    xmlns:CustomViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
+    xmlns:FieldsView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FieldsView"
+    xmlns:FooterView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FooterView"
+    xmlns:ImagesView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.ImagesView"
+    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    HorizontalOptions="Center"
+    VerticalOptions="Center"
+    Color="Transparent">
+    <VerticalStackLayout WidthRequest="350">
+        <Frame
+            Padding="0"
+            BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+            BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+            CornerRadius="15">
+            <ScrollView
+                Margin="0,20"
+                HeightRequest="{x:Static services:ScreenServices._80PercentHeight}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <VerticalStackLayout>
+                    <Label
+                        Margin="10,0,0,0"
+                        FontSize="Header"
+                        Text="Embed: "
+                        TextColor="{x:Static services:AppThemeColors.TextColor}" />
+
+                    <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
+                    <AuthorView:AuthorView x:Name="_authorView" />
+                    <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
+                    <BodyView:BodyView x:Name="_bodyView" />
+                    <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
+                    <FieldsView:FieldsView x:Name="_fieldsView" />
+                    <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
+                    <ImagesView:ImagesView x:Name="_imagesView" />
+                    <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
+                    <FooterView:FooterView x:Name="_footerView" />
+
+                    <HorizontalStackLayout Margin="0,0,0,10" HorizontalOptions="Center">
+                        <CustomItems:CustomButton
+                            x:Name="btnDelete"
+                            Margin="5,5,5,0"
+                            BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                            BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                            BorderWidth="1"
+                            Clicked="btnDelete_Clicked"
+                            CornerRadius="15"
+                            HorizontalOptions="Center"
+                            Text="Delete"
+                            TextColor="{x:Static services:AppThemeColors.TextColor}" />
+                        <CustomItems:CustomButton
+                            x:Name="btnSave"
+                            Margin="5,5,5,0"
+                            BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                            BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                            BorderWidth="1"
+                            Clicked="btnSave_Clicked"
+                            CornerRadius="15"
+                            HorizontalOptions="Center"
+                            Text="Save"
+                            TextColor="{x:Static services:AppThemeColors.TextColor}" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Frame>
+    </VerticalStackLayout>
+</toolkit:Popup>

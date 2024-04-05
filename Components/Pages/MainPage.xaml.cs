@@ -1,44 +1,5 @@
-using
-/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-maccatalyst)'
-Before:
-using CommunityToolkit.Maui.Views;
-using Discord;
-using DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews;
-After:
-using CommunityToolkit.Maui.Views;
-
-using Discord;
-
-using DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews;
-*/
-
-/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-ios)'
-Before:
-using CommunityToolkit.Maui.Views;
-using Discord;
-using DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews;
-After:
-using CommunityToolkit.Maui.Views;
-
-using Discord;
-
-using DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews;
-*/
-
-/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-windows10.0.19041.0)'
-Before:
-using CommunityToolkit.Maui.Views;
-using Discord;
-using DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews;
-After:
-using CommunityToolkit.Maui.Views;
-
-using Discord;
-
-using DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews;
-*/
-Discord;
 using CommunityToolkit.Maui.Alerts;
+using Discord;
 using DiscordWebhookRemoteApp.Helpers;
 
 namespace DiscordWebhookRemoteApp.Components.Pages;
@@ -84,8 +45,8 @@ public partial class MainPage : ContentPage
             ulong? result = null;
 
             var embedBuild = await BuildEmbed();
-            var embed = embedBuild.Item1;
-            var hasEmbed = embedBuild.Item2;
+            var embeds = embedBuild.Item1;
+            var hasEmbeds = embedBuild.Item2;
 
             var _files = new List<FileAttachment>();
 
@@ -108,12 +69,12 @@ public partial class MainPage : ContentPage
             );
 
             // Send Message if has embed
-            if (hasEmbed)
+            if (hasEmbeds)
                 result = await sendHelper.SendMessageAsync(
                     !string.IsNullOrEmpty(MessageContentView.MessageContent)
                         ? MessageContentView.MessageContent
                         : string.Empty,
-                    new List<Embed>() { embed },
+                    embeds,
                     _files.Count >= 1 ? _files : null
                 );
             // Send Message if has files and message
@@ -130,9 +91,15 @@ public partial class MainPage : ContentPage
                 result = await sendHelper.SendMessageAsync(string.Empty, null, _files);
 
             if (result != null)
-                _ = Toast.Make("Message Sent").Show();
+            {
+                _ = App.Current.MainPage.DisplayAlert("Success.", "Message Sent", "Ok");
+                //_ = Toast.Make("Message Sent").Show();
+            }
             else
-                _ = Toast.Make("Message Not Sent").Show();
+            {
+                _ = App.Current.MainPage.DisplayAlert("Warning!", "Message Not Sent", "Ok");
+                //_ = Toast.Make("Message Not Sent").Show();
+            }
         }
         catch (Exception ex)
         {
@@ -154,66 +121,71 @@ public partial class MainPage : ContentPage
         }
     }
 
-    private Task<(Discord.Embed, bool)> BuildEmbed()
+    private Task<(List<Discord.Embed>, bool)> BuildEmbed()
     {
-        Discord.Embed embed = null;
-        bool hasEmbed = false;
+        List<Discord.Embed> embeds = new List<Embed>();
+        bool hasEmbeds = false;
 
-        embed = new Discord.EmbedBuilder()
+        if (EmbedsView.Embeds.Count() == 0)
+            return Task.FromResult((new List<Discord.Embed>(), false));
+
+        foreach (var embed in EmbedsView.Embeds)
         {
-            Title = (!string.IsNullOrEmpty(EmbedView.BodyTitle)) ? EmbedView.BodyTitle : null,
-            Description =
-                (!string.IsNullOrEmpty(EmbedView.BodyContent)) ? EmbedView.BodyContent : null,
-            Url = (!string.IsNullOrEmpty(EmbedView.BodyUrl)) ? EmbedView.BodyUrl : null,
-            ImageUrl =
-                (!string.IsNullOrEmpty(EmbedView.ImagesImageUrl)) ? EmbedView.ImagesImageUrl : null,
-            ThumbnailUrl =
-                (!string.IsNullOrEmpty(EmbedView.ImagesThumbnailUrl))
-                    ? EmbedView.ImagesThumbnailUrl
-                    : null,
-            Color = new Discord.Color(
-                (byte)EmbedView.BodyColor.Red,
-                (byte)EmbedView.BodyColor.Green,
-                (byte)EmbedView.BodyColor.Blue
-            ),
-            Timestamp = EmbedView.FooterTimestamp ? DateTime.Now : null,
-            Author = new Discord.EmbedAuthorBuilder()
+            if (!embed.IsEmpty)
             {
-                Name = (!string.IsNullOrEmpty(EmbedView.AuthorName)) ? EmbedView.AuthorName : null,
-                Url = (!string.IsNullOrEmpty(EmbedView.AuthorUrl)) ? EmbedView.AuthorUrl : null,
-                IconUrl =
-                    (!string.IsNullOrEmpty(EmbedView.AuthorIconUrl))
-                        ? EmbedView.AuthorIconUrl
-                        : null
-            },
-            Fields = EmbedView
-                .Fields.Select(f => new Discord.EmbedFieldBuilder()
-                {
-                    Name = f.Name,
-                    Value = f.Value,
-                    IsInline = f.InLine
-                })
-                .ToList(),
-            Footer = new Discord.EmbedFooterBuilder()
-            {
-                Text = (!string.IsNullOrEmpty(EmbedView.FooterText)) ? EmbedView.FooterText : null,
-                IconUrl =
-                    (!string.IsNullOrEmpty(EmbedView.FooterIconUrl))
-                        ? EmbedView.FooterIconUrl
-                        : null
-            },
-        }.Build();
-        if (
-            embed.Title != null
-            || embed.Image.Value.Url != null
-            || embed.Thumbnail.Value.Url != null
-            || embed.Description != null
-            || embed.Author.Value.Name != null
-            || embed.Footer.Value.Text != null
-            || embed.Fields.Count() >= 1
-        )
-            hasEmbed = true;
-        return Task.FromResult((embed, hasEmbed));
+                embeds.Add(
+                    new Discord.EmbedBuilder()
+                    {
+                        Title = (!string.IsNullOrEmpty(embed.BodyTitle)) ? embed.BodyTitle : null,
+                        Description =
+                            (!string.IsNullOrEmpty(embed.BodyContent)) ? embed.BodyContent : null,
+                        Url = (!string.IsNullOrEmpty(embed.BodyUrl)) ? embed.BodyUrl : null,
+                        ImageUrl =
+                            (!string.IsNullOrEmpty(embed.ImagesImageUrl))
+                                ? embed.ImagesImageUrl
+                                : null,
+                        ThumbnailUrl =
+                            (!string.IsNullOrEmpty(embed.ImagesThumbnailUrl))
+                                ? embed.ImagesThumbnailUrl
+                                : null,
+                        Color = new Discord.Color(
+                            (byte)embed.BodyColor.Red,
+                            (byte)embed.BodyColor.Green,
+                            (byte)embed.BodyColor.Blue
+                        ),
+                        Timestamp = embed.FooterTimestamp ? DateTime.Now : null,
+                        Author = new Discord.EmbedAuthorBuilder()
+                        {
+                            Name =
+                                (!string.IsNullOrEmpty(embed.AuthorName)) ? embed.AuthorName : null,
+                            Url = (!string.IsNullOrEmpty(embed.AuthorUrl)) ? embed.AuthorUrl : null,
+                            IconUrl =
+                                (!string.IsNullOrEmpty(embed.AuthorIcon)) ? embed.AuthorIcon : null
+                        },
+                        Fields = embed
+                            .Fields.Select(f => new Discord.EmbedFieldBuilder()
+                            {
+                                Name = f.Name,
+                                Value = f.Value,
+                                IsInline = f.InLine
+                            })
+                            .ToList(),
+                        Footer = new Discord.EmbedFooterBuilder()
+                        {
+                            Text =
+                                (!string.IsNullOrEmpty(embed.FooterTitle))
+                                    ? embed.FooterTitle
+                                    : null,
+                            IconUrl =
+                                (!string.IsNullOrEmpty(embed.FooterIcon)) ? embed.FooterIcon : null
+                        },
+                    }.Build()
+                );
+                hasEmbeds = true;
+            }
+        }
+
+        return Task.FromResult((embeds, hasEmbeds));
     }
 
     private async void Discord_Clicked(object sender, EventArgs e)
