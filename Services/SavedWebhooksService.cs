@@ -10,13 +10,13 @@ namespace DiscordWebhookRemoteApp.Services
             get
             {
                 return JsonConvert.DeserializeObject<List<SavedWebhookViewItems>>(
-                    Preferences.Get("SavedWebhooksBeta", "[]")
+                    Preferences.Get("SavedWebhooks", "[]")
                 );
             }
             set
             {
                 string json = JsonConvert.SerializeObject(value);
-                Preferences.Set("SavedWebhooksBeta", json);
+                Preferences.Set("SavedWebhooks", json);
             }
         }
 
