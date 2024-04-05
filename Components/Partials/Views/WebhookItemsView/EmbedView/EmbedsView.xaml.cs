@@ -69,30 +69,24 @@ public partial class EmbedsView : ContentView
             addNewBtn.IsEnabled = true;
             return;
         }
-
-        await DeleteEmbed(selected);
         var editedEmbed = (EmbedView)res;
         var _list = Embeds.ToList();
-        _list.Add(
-            new EmbedView(
-                selected.ID,
-                selected.Order,
-                editedEmbed.AuthorIcon,
-                editedEmbed.AuthorName,
-                editedEmbed.AuthorUrl,
-                editedEmbed.BodyTitle,
-                editedEmbed.BodyContent,
-                editedEmbed.BodyUrl,
-                editedEmbed.BodyColor,
-                editedEmbed.Fields,
-                editedEmbed.ImagesImageUrl,
-                editedEmbed.ImagesThumbnailUrl,
-                editedEmbed.FooterIcon,
-                editedEmbed.FooterTitle,
-                editedEmbed.FooterTimestamp,
-                editedEmbed.IsEmpty
-            )
-        );
+
+        _list.First(x => x.ID == selected.ID).AuthorIcon = editedEmbed.AuthorIcon;
+        _list.First(x => x.ID == selected.ID).AuthorName = editedEmbed.AuthorName;
+        _list.First(x => x.ID == selected.ID).AuthorUrl = editedEmbed.AuthorUrl;
+        _list.First(x => x.ID == selected.ID).BodyTitle = editedEmbed.BodyTitle;
+        _list.First(x => x.ID == selected.ID).BodyContent = editedEmbed.BodyContent;
+        _list.First(x => x.ID == selected.ID).BodyUrl = editedEmbed.BodyUrl;
+        _list.First(x => x.ID == selected.ID).BodyColor = editedEmbed.BodyColor;
+        _list.First(x => x.ID == selected.ID).Fields = editedEmbed.Fields;
+        _list.First(x => x.ID == selected.ID).ImagesImageUrl = editedEmbed.ImagesImageUrl;
+        _list.First(x => x.ID == selected.ID).ImagesThumbnailUrl = editedEmbed.ImagesThumbnailUrl;
+        _list.First(x => x.ID == selected.ID).FooterIcon = editedEmbed.FooterIcon;
+        _list.First(x => x.ID == selected.ID).FooterTitle = editedEmbed.FooterTitle;
+        _list.First(x => x.ID == selected.ID).FooterTimestamp = editedEmbed.FooterTimestamp;
+        _list.First(x => x.ID == selected.ID).IsEmpty = editedEmbed.IsEmpty;
+
         Embeds = _list.ToObservableCollection();
 
         addNewBtn.IsEnabled = true;
@@ -229,21 +223,21 @@ public partial class EmbedsView : ContentView
         //    ThumbnailUrl = "https://i.imgur.com/niLjyNS.jpg",
         //    Timestamp = DateTime.Now,
 
-        //    Embeds = new List<Discord.EmbedEmbedBuilder>()
+        //    Embeds = new List<Discord.EmbeditedEmbedBuilder>()
         //    {
-        //        new Discord.EmbedEmbedBuilder
+        //        new Discord.EmbeditedEmbedBuilder
         //        {
         //            Name = "Embed 1",
         //            Value = "Value 1",
         //            IsInline = true
         //        },
-        //        new Discord.EmbedEmbedBuilder
+        //        new Discord.EmbeditedEmbedBuilder
         //        {
         //            Name = "Embed 2",
         //            Value = "Value 2",
         //            IsInline = true
         //        },
-        //        new Discord.EmbedEmbedBuilder
+        //        new Discord.EmbeditedEmbedBuilder
         //        {
         //            Name = "Embed 3",
         //            Value = "Value 3",

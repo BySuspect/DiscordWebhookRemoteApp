@@ -49,7 +49,18 @@ public partial class FieldsView : ContentView
             return;
         }
         if (res == "delete")
+        {
             await DeleteField(selected);
+            addNewBtn.IsEnabled = true;
+            return;
+        }
+
+        var editedield = (FieldView)res;
+        var _list = Fields.ToList();
+        _list.First(x => x.ID == selected.ID).Name = editedield.Name;
+        _list.First(x => x.ID == selected.ID).Value = editedield.Value;
+        _list.First(x => x.ID == selected.ID).InLine = editedield.InLine;
+        Fields = _list.ToObservableCollection();
         addNewBtn.IsEnabled = true;
     }
 
