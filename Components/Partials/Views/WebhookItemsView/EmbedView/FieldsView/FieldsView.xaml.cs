@@ -69,7 +69,7 @@ public partial class FieldsView : ContentView
         var selected = (FieldView)sender;
         selected.IsEnabled = false;
 
-        var res = await Application.Current.MainPage.DisplayAlert(
+        var res = await ApplicationService.ShowCustomAlertAsync(
             "Warning!",
             $"Are you sure you want to delete Field #{selected.Order}?",
             "Yes",

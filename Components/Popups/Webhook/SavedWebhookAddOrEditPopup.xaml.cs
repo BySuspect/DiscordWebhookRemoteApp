@@ -91,11 +91,7 @@ public partial class SavedWebhookAddOrEditPopup : Popup
                 }
             }
             else
-                _ = Application.Current?.MainPage?.DisplayAlert(
-                    "Error!",
-                    "Webhook URL is not valid!",
-                    "OK"
-                );
+                ApplicationService.ShowCustomAlert("Error!", "Webhook URL is not valid!", "OK");
         }
         catch { }
 

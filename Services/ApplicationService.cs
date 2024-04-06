@@ -77,14 +77,24 @@ namespace DiscordWebhookRemoteApp.Services
         #endregion
 
         #region Alerts Section
-        public static Task ShowWarning(string message)
+        public static async Task<bool> ShowCustomAlertAsync(
+            string title,
+            string content,
+            string ok,
+            string? cancel = null
+        )
         {
-            return Application.Current.MainPage.DisplayAlert("Warning!", message, "OK");
+            return (bool)await ShowPopupAsync(new CustomAlertPopup(title, content, ok, cancel));
         }
 
-        public static Task ShowError(string message)
+        public static void ShowCustomAlert(
+            string title,
+            string content,
+            string ok,
+            string? cancel = null
+        )
         {
-            return Application.Current.MainPage.DisplayAlert("Error!", message, "OK");
+            ShowPopup(new CustomAlertPopup(title, content, ok, cancel));
         }
         #endregion
     }

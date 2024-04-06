@@ -74,7 +74,7 @@ public partial class FileSendView : ContentView
 
             if (result.Count() > 10)
             {
-                _ = ApplicationService.ShowWarning("Please select max 10 files!");
+                ApplicationService.ShowCustomAlert("Warning!", "Please select max 10 files!", "OK");
                 ApplicationService.HideLoadingView();
                 btnSelect.IsEnabled = true;
                 return;
@@ -101,7 +101,11 @@ public partial class FileSendView : ContentView
             }
             if (TotalFileSize > 26214400)
             {
-                _ = ApplicationService.ShowWarning("Please select total less than 25mb files!");
+                ApplicationService.ShowCustomAlert(
+                    "Warning!",
+                    "Please select total less than 25mb files!",
+                    "OK"
+                );
                 btnSelect.IsEnabled = true;
                 ApplicationService.HideLoadingView();
                 return;
@@ -112,7 +116,7 @@ public partial class FileSendView : ContentView
         }
         catch (Exception ex)
         {
-            _ = ApplicationService.ShowError(ex.Message);
+            ApplicationService.ShowCustomAlert("File Select Error!", ex.Message, "OK");
         }
 
         btnSelect.IsEnabled = true;
@@ -146,7 +150,7 @@ public partial class FileSendView : ContentView
         selected.IsEnabled = false;
         var _list = SelectedFiles.ToList();
         var selectedFile = _list.First(x => x.Id == Convert.ToInt32(selected.AutomationId));
-        var res = await Application.Current.MainPage.DisplayAlert(
+        var res = await ApplicationService.ShowCustomAlertAsync(
             "Warning!",
             $"Are you sure you want to delete {selectedFile.FileName}?",
             "Yes",

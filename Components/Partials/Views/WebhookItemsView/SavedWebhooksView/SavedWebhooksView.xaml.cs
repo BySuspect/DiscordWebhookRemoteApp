@@ -101,7 +101,7 @@ public partial class SavedWebhooksView : ContentView
         }
         catch (Exception ex)
         {
-            _ = Application.Current.MainPage.DisplayAlert("Error!", ex.Message, "ok");
+            ApplicationService.ShowCustomAlert("Error!", ex.Message, "ok");
         }
 
         addNewBtn.IsEnabled = true;

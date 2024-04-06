@@ -33,7 +33,7 @@ public partial class EmbedFieldsEditAndNewPopup : Popup
             return;
         }
         btnDelete.IsEnabled = false;
-        var res = await Application.Current.MainPage.DisplayAlert(
+        var res = await ApplicationService.ShowCustomAlertAsync(
             "Warning!",
             $"Are you sure you want to delete Field?",
             "Yes",

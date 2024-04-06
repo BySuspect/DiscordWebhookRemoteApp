@@ -55,8 +55,8 @@ namespace DiscordWebhookRemoteApp.Services
             }
             catch (Exception ex)
             {
-                Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                ApplicationService.ShowCustomAlert(
+                    "Error!",
                     "Something went wrong while trying importin webhooks.\nError Message: "
                         + ex.Message,
                     "Ok"

@@ -1,5 +1,6 @@
 using CommunityToolkit.Maui.Alerts;
 using Discord;
+using DiscordWebhookRemoteApp.Components.Popups.Common;
 
 namespace DiscordWebhookRemoteApp.Components.Pages;
 
@@ -21,7 +22,7 @@ public partial class MainPage : ContentPage
 #if !DEBUG
 
 #endif
-        //ApplicationService.ShowPopup(new EmbedFieldsEditAndNewPopup());
+        //ApplicationService.ShowPopup(new CustomAlertPopup());
         base.OnAppearing();
     }
 
@@ -86,18 +87,24 @@ public partial class MainPage : ContentPage
 
             if (result != null)
             {
-                _ = App.Current.MainPage.DisplayAlert("Success.", "Message Sent", "Ok");
-                //_ = Toast.Make("Message Sent").Show();
+                var resSave = await ApplicationService.ShowCustomAlertAsync(
+                    "Success.",
+                    "Message Sent.",
+                    "OK"
+                );
+                if (resSave)
+                {
+                    Console.WriteLine("Save Message");
+                }
             }
             else
             {
-                _ = App.Current.MainPage.DisplayAlert("Warning!", "Message Not Sent", "Ok");
-                //_ = Toast.Make("Message Not Sent").Show();
+                ApplicationService.ShowCustomAlert("Warning!", "Message Not Sent.", "Ok");
             }
         }
         catch (Exception ex)
         {
-            _ = DisplayAlert("Send Error", ex.Message, "Ok");
+            ApplicationService.ShowCustomAlert("Send Error!", ex.Message, "Ok");
         }
         btnSend.IsEnabled = true;
         ApplicationService.HideLoadingView();
@@ -111,7 +118,7 @@ public partial class MainPage : ContentPage
         }
         catch (Exception ex)
         {
-            _ = DisplayAlert("Send Error", ex.Message, "Ok");
+            ApplicationService.ShowCustomAlert("Test Error!", ex.Message, "Ok");
         }
     }
 

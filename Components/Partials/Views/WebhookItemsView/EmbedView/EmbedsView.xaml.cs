@@ -97,7 +97,7 @@ public partial class EmbedsView : ContentView
         var selected = (EmbedView)sender;
         selected.IsEnabled = false;
 
-        var res = await Application.Current.MainPage.DisplayAlert(
+        var res = await ApplicationService.ShowCustomAlertAsync(
             "Warning!",
             $"Are you sure you want to delete Embed #{selected.Order}?",
             "Yes",

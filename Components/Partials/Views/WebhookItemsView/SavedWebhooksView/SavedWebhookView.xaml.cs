@@ -204,7 +204,7 @@ public partial class SavedWebhookView : ContentView
     private async void Delete_Tapped(object sender, TappedEventArgs e)
     {
         DeleteBtnFrame.IsEnabled = false;
-        var res = await Application.Current.MainPage.DisplayAlert(
+        var res = await ApplicationService.ShowCustomAlertAsync(
             "Warning!",
             $"Are you sure about to delete {Name}?",
             "Yes",
