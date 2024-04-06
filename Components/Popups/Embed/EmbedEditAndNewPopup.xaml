@@ -21,55 +21,56 @@
             BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
             BorderColor="{x:Static services:AppThemeColors.BorderColor}"
             CornerRadius="15">
-            <ScrollView
-                Margin="0,20"
-                HeightRequest="{x:Static services:ScreenServices._80PercentHeight}"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand">
-                <VerticalStackLayout>
-                    <Label
-                        Margin="10,0,0,0"
-                        FontSize="Header"
-                        Text="Embed: "
+            <StackLayout Margin="0,10,0,0">
+                <Label
+                    Margin="10,0,0,0"
+                    FontSize="Header"
+                    Text="Embed: "
+                    TextColor="{x:Static services:AppThemeColors.TextColor}" />
+
+                <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
+                <ScrollView
+                    HeightRequest="{x:Static services:ScreenServices._80PercentHeight}"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                    <VerticalStackLayout>
+                        <AuthorView:AuthorView x:Name="_authorView" />
+                        <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
+                        <BodyView:BodyView x:Name="_bodyView" />
+                        <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
+                        <FieldsView:FieldsView x:Name="_fieldsView" />
+                        <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
+                        <ImagesView:ImagesView x:Name="_imagesView" />
+                        <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
+                        <FooterView:FooterView x:Name="_footerView" />
+                    </VerticalStackLayout>
+                </ScrollView>
+                <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
+                <HorizontalStackLayout Margin="0,0,0,10" HorizontalOptions="Center">
+                    <CustomItems:CustomButton
+                        x:Name="btnDelete"
+                        Margin="5,5,5,0"
+                        BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                        BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                        BorderWidth="1"
+                        Clicked="btnDelete_Clicked"
+                        CornerRadius="15"
+                        HorizontalOptions="Center"
+                        Text="Delete"
                         TextColor="{x:Static services:AppThemeColors.TextColor}" />
-
-                    <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
-                    <AuthorView:AuthorView x:Name="_authorView" />
-                    <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
-                    <BodyView:BodyView x:Name="_bodyView" />
-                    <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
-                    <FieldsView:FieldsView x:Name="_fieldsView" />
-                    <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
-                    <ImagesView:ImagesView x:Name="_imagesView" />
-                    <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
-                    <FooterView:FooterView x:Name="_footerView" />
-
-                    <HorizontalStackLayout Margin="0,0,0,10" HorizontalOptions="Center">
-                        <CustomItems:CustomButton
-                            x:Name="btnDelete"
-                            Margin="5,5,5,0"
-                            BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
-                            BorderColor="{x:Static services:AppThemeColors.BorderColor}"
-                            BorderWidth="1"
-                            Clicked="btnDelete_Clicked"
-                            CornerRadius="15"
-                            HorizontalOptions="Center"
-                            Text="Delete"
-                            TextColor="{x:Static services:AppThemeColors.TextColor}" />
-                        <CustomItems:CustomButton
-                            x:Name="btnSave"
-                            Margin="5,5,5,0"
-                            BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
-                            BorderColor="{x:Static services:AppThemeColors.BorderColor}"
-                            BorderWidth="1"
-                            Clicked="btnSave_Clicked"
-                            CornerRadius="15"
-                            HorizontalOptions="Center"
-                            Text="Save"
-                            TextColor="{x:Static services:AppThemeColors.TextColor}" />
-                    </HorizontalStackLayout>
-                </VerticalStackLayout>
-            </ScrollView>
+                    <CustomItems:CustomButton
+                        x:Name="btnSave"
+                        Margin="5,5,5,0"
+                        BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                        BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                        BorderWidth="1"
+                        Clicked="btnSave_Clicked"
+                        CornerRadius="15"
+                        HorizontalOptions="Center"
+                        Text="Save"
+                        TextColor="{x:Static services:AppThemeColors.TextColor}" />
+                </HorizontalStackLayout>
+            </StackLayout>
         </Frame>
     </VerticalStackLayout>
 </toolkit:Popup>

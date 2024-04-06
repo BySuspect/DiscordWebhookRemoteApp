@@ -1,12 +1,11 @@
 using CommunityToolkit.Maui.Alerts;
 using Discord;
-using DiscordWebhookRemoteApp.Helpers;
 
 namespace DiscordWebhookRemoteApp.Components.Pages;
 
 public partial class MainPage : ContentPage
 {
-    WebhookSendHelper sendHelper;
+    WebhookService.MessageSend sendHelper;
 
     public MainPage()
     {
@@ -58,12 +57,11 @@ public partial class MainPage : ContentPage
                 btnSend.IsEnabled = true;
                 return;
             }
-            sendHelper = new WebhookSendHelper(
+            sendHelper = new WebhookService.MessageSend(
                 uri,
                 WebhookProfileView.Username,
                 WebhookProfileView.AvatarImageSource
             );
-
             // Send Message if has embed
             if (hasEmbeds)
                 result = await sendHelper.SendMessageAsync(
@@ -228,7 +226,7 @@ public partial class MainPage : ContentPage
             );
             if (webhooksData != null)
             {
-                await SavedWebhooksService.ImportSavedWebhoksFromOldApp(webhooksData);
+                await WebhookService.ImportSavedWebhoksFromOldApp(webhooksData);
                 await SavedWebhooksView.RefreshList();
             }
         }

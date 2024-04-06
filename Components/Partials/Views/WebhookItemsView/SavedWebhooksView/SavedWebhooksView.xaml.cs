@@ -30,7 +30,7 @@ public partial class SavedWebhooksView : ContentView
                     }
                 );
             }
-            SavedWebhooksService.SavedWebhookList = _list;
+            WebhookService.SavedWebhookList = _list;
         }
     }
 
@@ -54,7 +54,7 @@ public partial class SavedWebhooksView : ContentView
     public Task RefreshList()
     {
         var _list = new List<SavedWebhookView>();
-        foreach (var item in SavedWebhooksService.SavedWebhookList)
+        foreach (var item in WebhookService.SavedWebhookList)
         {
             _list.Add(
                 new SavedWebhookView

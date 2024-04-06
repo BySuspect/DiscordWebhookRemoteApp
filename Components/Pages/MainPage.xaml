@@ -25,17 +25,35 @@
     <ContentPage.Content>
         <StackLayout>
             <Grid VerticalOptions="FillAndExpand">
-                <ScrollView Margin="0,5,0,0">
-                    <StackLayout Margin="10,0,10,100">
-                        <SavedWebhooksView:SavedWebhooksView x:Name="SavedWebhooksView" Margin="0,5,0,5" />
-                        <WebhookProfileView:WebhookProfileView x:Name="WebhookProfileView" Margin="0,0,0,5" />
-                        <WebhookItemsView:MessageContentView x:Name="MessageContentView" Margin="0,0,0,5" />
-                        <EmbedViews:EmbedsView x:Name="EmbedsView" Margin="0,0,0,5" />
-                        <WebhookItemsView:FileSendView x:Name="FileSendView" Margin="0,0,0,5" />
+                <StackLayout>
+                    <ScrollView Margin="0,5" VerticalOptions="FillAndExpand">
+                        <StackLayout Margin="10,0,10,10">
+                            <controls:MTAdView AdsId="ca-app-pub-3881259676793306/1418745998" HeightRequest="{OnIdiom Phone=50, Tablet=90}" />
+                            <SavedWebhooksView:SavedWebhooksView x:Name="SavedWebhooksView" Margin="0,5,0,5" />
+                            <WebhookProfileView:WebhookProfileView x:Name="WebhookProfileView" Margin="0,0,0,5" />
+                            <WebhookItemsView:MessageContentView x:Name="MessageContentView" Margin="0,0,0,5" />
+                            <EmbedViews:EmbedsView x:Name="EmbedsView" Margin="0,0,0,5" />
+                            <WebhookItemsView:FileSendView x:Name="FileSendView" Margin="0,0,0,5" />
+                            <controls:MTAdView AdsId="ca-app-pub-3881259676793306/1418745998" HeightRequest="{OnIdiom Phone=50, Tablet=90}" />
+                        </StackLayout>
+                    </ScrollView>
+                    <StackLayout VerticalOptions="End">
+                        <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
                         <StackLayout
-                            Margin="0,0,0,5"
+                            Margin="0,10"
                             HorizontalOptions="Center"
                             Orientation="Horizontal">
+                            <CustomItems:CustomButton
+                                x:Name="btnTest"
+                                BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                                BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                                BorderWidth="1"
+                                Clicked="btnTest_Clicked"
+                                CornerRadius="15"
+                                HorizontalOptions="Center"
+                                IsVisible="False"
+                                Text="Test"
+                                TextColor="{x:Static services:AppThemeColors.TextColor}" />
                             <CustomItems:CustomButton
                                 x:Name="btnSend"
                                 BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
@@ -46,20 +64,9 @@
                                 HorizontalOptions="Center"
                                 Text="Send"
                                 TextColor="{x:Static services:AppThemeColors.TextColor}" />
-                            <CustomItems:CustomButton
-                                x:Name="btnTest"
-                                BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
-                                BorderColor="{x:Static services:AppThemeColors.BorderColor}"
-                                BorderWidth="1"
-                                Clicked="btnTest_Clicked"
-                                CornerRadius="15"
-                                HorizontalOptions="Center"
-                                IsVisible="True"
-                                Text="Test"
-                                TextColor="{x:Static services:AppThemeColors.TextColor}" />
                         </StackLayout>
                     </StackLayout>
-                </ScrollView>
+                </StackLayout>
                 <CustomViews:CustomLoadingView IsVisible="False" />
             </Grid>
             <!--<StackLayout>
@@ -67,7 +74,6 @@
                     Margin="0"
                     HeightRequest="1"
                     HorizontalOptions="Fill"
-                    IsVisible="{Binding Source={x:Reference adsBottom}, Path=IsVisible}"
                     Color="{x:Static services:AppThemeColors.BorderColor}" />
                 <controls:MTAdView
                     x:Name="adsBottom"

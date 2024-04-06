@@ -1,48 +1,4 @@
 using System.Collections.ObjectModel;
-/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-maccatalyst)'
-Before:
-using System.IO.Enumeration;
-using CommunityToolkit.Maui.Alerts;
-using CommunityToolkit.Maui.Core.Extensions;
-using Discord;
-After:
-using System.IO.Enumeration;
-
-using CommunityToolkit.Maui.Alerts;
-using CommunityToolkit.Maui.Core.Extensions;
-
-using Discord;
-*/
-
-/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-ios)'
-Before:
-using System.IO.Enumeration;
-using CommunityToolkit.Maui.Alerts;
-using CommunityToolkit.Maui.Core.Extensions;
-using Discord;
-After:
-using System.IO.Enumeration;
-
-using CommunityToolkit.Maui.Alerts;
-using CommunityToolkit.Maui.Core.Extensions;
-
-using Discord;
-*/
-
-/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-windows10.0.19041.0)'
-Before:
-using System.IO.Enumeration;
-using CommunityToolkit.Maui.Alerts;
-using CommunityToolkit.Maui.Core.Extensions;
-using Discord;
-After:
-using System.IO.Enumeration;
-
-using CommunityToolkit.Maui.Alerts;
-using CommunityToolkit.Maui.Core.Extensions;
-
-using Discord;
-*/
 using CommunityToolkit.Maui.Core.Extensions;
 
 namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView;
