@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="DiscordWebhookRemoteApp.Components.Popups.Common.PrivacyPolicyPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
+    xmlns:CustomViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
+    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    CanBeDismissedByTappingOutsideOfPopup="False"
+    VerticalOptions="End"
+    Color="Transparent">
+    <VerticalStackLayout MaximumWidthRequest="350">
+        <Frame
+            Margin="0,25"
+            Padding="10"
+            BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+            BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+            CornerRadius="15">
+            <StackLayout Margin="10,0">
+                <Label
+                    FontSize="Body"
+                    HorizontalOptions="Center"
+                    Text="Privacy Policy"
+                    TextColor="{x:Static services:AppThemeColors.TextColor}" />
+                <Label
+                    x:Name="lblText"
+                    FontSize="Caption"
+                    HorizontalOptions="Center"
+                    LineBreakMode="WordWrap"
+                    TextColor="{x:Static services:AppThemeColors.TextColor}"
+                    VerticalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span x:Name="lblUp" />
+                            <Span
+                                Text="Privacy Policy"
+                                TextColor="LightBlue"
+                                TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="PrivacyPolicy_Tapped" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                            <Span x:Name="lblDown" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                    <CustomItems:CustomButton
+                        x:Name="btnCancel"
+                        Grid.Column="0"
+                        Margin="0,10"
+                        BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                        BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                        BorderWidth="1"
+                        Clicked="btnCancel_Clicked"
+                        CornerRadius="15"
+                        FontSize="Caption"
+                        Text="Exit"
+                        TextColor="{x:Static services:AppThemeColors.TextColor}"
+                        WidthRequest="70" />
+                    <CustomItems:CustomButton
+                        x:Name="btnOk"
+                        Grid.Column="1"
+                        Margin="0,10"
+                        BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                        BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                        BorderWidth="1"
+                        Clicked="btnOk_Clicked"
+                        CornerRadius="15"
+                        FontSize="Caption"
+                        Text="Accept"
+                        TextColor="{x:Static services:AppThemeColors.TextColor}"
+                        WidthRequest="70" />
+                </HorizontalStackLayout>
+            </StackLayout>
+        </Frame>
+    </VerticalStackLayout>
+</toolkit:Popup>

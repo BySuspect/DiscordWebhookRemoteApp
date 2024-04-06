@@ -20,24 +20,22 @@
                 <Frame
                     Margin="10"
                     Padding="0"
-                    CornerRadius="60"
+                    CornerRadius="15"
+                    HeightRequest="128"
                     HorizontalOptions="Center"
-                    VerticalOptions="Start">
+                    VerticalOptions="Start"
+                    WidthRequest="128">
                     <Grid>
                         <Image
-                            HeightRequest="128"
+                            HeightRequest="120"
                             HorizontalOptions="Start"
-                            MinimumHeightRequest="128"
-                            MinimumWidthRequest="128"
                             Source="discordlogo.png"
-                            WidthRequest="128" />
+                            WidthRequest="120" />
                         <Image
                             x:Name="ImageView"
                             Aspect="AspectFill"
                             HeightRequest="128"
                             HorizontalOptions="Start"
-                            MinimumHeightRequest="128"
-                            MinimumWidthRequest="128"
                             WidthRequest="128" />
                     </Grid>
                 </Frame>

@@ -75,7 +75,7 @@
         <ApplicationId>com.discordwebhookremote</ApplicationId>
         <ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
         <ApplicationDisplayVersion>0.1.4</ApplicationDisplayVersion>
-        <AndroidPackageFormat>aab</AndroidPackageFormat>
+        <AndroidPackageFormat>apk</AndroidPackageFormat>
         <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
         <AndroidLinkTool>r8</AndroidLinkTool>
         <ApplicationVersion>5</ApplicationVersion>
@@ -207,6 +207,9 @@
         </MauiXaml>
         <MauiXaml Update="Components\Popups\Common\LoadingViewPopup.xaml">
             <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Components\Popups\Common\PrivacyPolicyPopup.xaml">
+          <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Popups\Common\SavedImagesEditOrViewPopup.xaml">
             <Generator>MSBuild:Compile</Generator>

@@ -21,8 +21,10 @@
                     Margin="10"
                     Padding="0"
                     CornerRadius="15"
+                    HeightRequest="128"
                     HorizontalOptions="Center"
-                    VerticalOptions="Start">
+                    VerticalOptions="Start"
+                    WidthRequest="128">
                     <Grid>
                         <Image
                             HeightRequest="120"

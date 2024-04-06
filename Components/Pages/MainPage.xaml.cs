@@ -19,11 +19,10 @@ public partial class MainPage : ContentPage
 
     protected override void OnAppearing()
     {
-#if !DEBUG
-
-#endif
-        //ApplicationService.ShowPopup(new CustomAlertPopup());
         base.OnAppearing();
+
+        if (!Preferences.Get("PrivacyPolicyV1Accepted", false))
+            ApplicationService.ShowPopup(new PrivacyPolicyPopup());
     }
 
     private async void SendButton_Clicked(object sender, EventArgs e)
