@@ -1,3 +1,5 @@
+using DiscordWebhookRemoteApp.Components.Popups.Embed;
+
 namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.BodyView;
 
 public partial class BodyView : ContentView
@@ -47,23 +49,11 @@ public partial class BodyView : ContentView
     #region BodyColor Binding
     public Color BodyColor
     {
-        get
-        {
-            if (!string.IsNullOrEmpty(entryBodyColor.Text))
-                return Color.Parse(entryBodyColor.Text);
-            else
-                return new Color(
-                    Discord.Color.Default.R,
-                    Discord.Color.Default.G,
-                    Discord.Color.Default.B
-                );
-        }
+        get { return bvColor.Color; }
         set
         {
-            if (Color.Parse(entryBodyColor.Text) != value)
-            {
-                entryBodyColor.Text = value.ToHex();
-            }
+            bvColor.Color = value;
+            lblColorText.TextColor = ApplicationService.InvertColor(value);
         }
     }
     #endregion
@@ -71,5 +61,16 @@ public partial class BodyView : ContentView
     {
         InitializeComponent();
         BindingContext = this;
+    }
+
+    private async void BodyColor_Tapped(object sender, TappedEventArgs e)
+    {
+        var res = await ApplicationService.ShowPopupAsync(new ColorPickPopup(bvColor.Color));
+        if (res == null)
+            return;
+
+        var selectedColor = (Microsoft.Maui.Graphics.Color)res;
+        bvColor.Color = selectedColor;
+        lblColorText.TextColor = ApplicationService.InvertColor(selectedColor);
     }
 }

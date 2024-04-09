@@ -38,15 +38,31 @@
                     MaxLength="2048"
                     Placeholder="Url"
                     ValidationType="Url" />
-                <CustomViews:CustomEntryView
-                    x:Name="entryBodyColor"
+                <Frame
                     Margin="0,5"
+                    Padding="0"
                     BorderColor="{x:Static services:AppThemeColors.BorderColor}"
-                    HasCharCounterText="False"
-                    MaxLength="7"
-                    Placeholder="Color (HEX ONLY FOR NOW)"
-                    Text="#000000"
-                    ValidationType="ColorHex" />
+                    CornerRadius="15">
+                    <Grid>
+                        <BoxView
+                            x:Name="bvColor"
+                            Margin="1,0"
+                            CornerRadius="15"
+                            HeightRequest="35"
+                            Color="Black" />
+                        <Label
+                            x:Name="lblColorText"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="Embed Color"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="BodyColor_Tapped" />
+                    </Frame.GestureRecognizers>
+                </Frame>
             </StackLayout>
         </Frame>
     </ContentView.Content>

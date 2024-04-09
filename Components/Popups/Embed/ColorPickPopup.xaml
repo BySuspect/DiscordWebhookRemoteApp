@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="DiscordWebhookRemoteApp.Components.Popups.Embed.ColorPickPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
+    xmlns:CustomViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
+    xmlns:customBehaviors="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.InputBehaviors"
+    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Color="Transparent">
+    <VerticalStackLayout MaximumWidthRequest="350">
+        <Frame
+            Padding="0"
+            BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+            BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+            CornerRadius="15">
+            <StackLayout Margin="0">
+                <Frame
+                    Margin="10"
+                    Padding="0"
+                    CornerRadius="10">
+                    <CustomViews:CustomColorPicker
+                        x:Name="colorPicker"
+                        Margin="5"
+                        BackgroundColor="Transparent"
+                        ColorFlowDirection="Horizontal"
+                        ColorSpectrumStyle="TintToHueToShadeStyle"
+                        HeightRequest="200"
+                        PickedColorChanged="colorPicker_PickedColorChanged"
+                        PointerRingPositionXUnits="0.5"
+                        PointerRingPositionYUnits="1" />
+                </Frame>
+                <BoxView
+                    HeightRequest="1"
+                    HorizontalOptions="FillAndExpand"
+                    Color="{x:Static services:AppThemeColors.BorderColor}" />
+                <Grid Margin="0,5">
+                    <BoxView
+                        x:Name="bvColor"
+                        Margin="15,5"
+                        HeightRequest="35"
+                        Color="{Binding Source={x:Reference colorPicker}, Path=PickedColor}" />
+                    <Label
+                        x:Name="lblColorText"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="Color"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </Grid>
+                <BoxView
+                    HeightRequest="1"
+                    HorizontalOptions="FillAndExpand"
+                    Color="{x:Static services:AppThemeColors.BorderColor}" />
+                <StackLayout
+                    Margin="10"
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal">
+                    <Frame
+                        Margin="5"
+                        Padding="0"
+                        BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                        CornerRadius="15"
+                        WidthRequest="65">
+                        <StackLayout
+                            Margin="10,0"
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal">
+                            <Label
+                                Text="R: "
+                                TextColor="{x:Static services:AppThemeColors.TextColor}"
+                                VerticalOptions="Center" />
+                            <Entry
+                                x:Name="entryRed"
+                                Completed="entryRed_Completed"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                MaxLength="3"
+                                Text="0"
+                                VerticalOptions="Center">
+                                <Entry.Behaviors>
+                                    <customBehaviors:NumericValidatorBehaviour MaximumValue="255" MinimumValue="0" />
+                                </Entry.Behaviors>
+                            </Entry>
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                        Margin="5"
+                        Padding="0"
+                        BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                        CornerRadius="15"
+                        WidthRequest="65">
+                        <StackLayout
+                            Margin="10,0"
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal">
+                            <Label
+                                Text="G: "
+                                TextColor="{x:Static services:AppThemeColors.TextColor}"
+                                VerticalOptions="Center" />
+                            <Entry
+                                x:Name="entryGreen"
+                                Completed="entryGreen_Completed"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                MaxLength="3"
+                                Text="0"
+                                VerticalOptions="Center">
+                                <Entry.Behaviors>
+                                    <customBehaviors:NumericValidatorBehaviour MaximumValue="255" MinimumValue="0" />
+                                </Entry.Behaviors>
+                            </Entry>
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                        Margin="5"
+                        Padding="0"
+                        BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                        CornerRadius="15"
+                        WidthRequest="65">
+                        <StackLayout
+                            Margin="10,0"
+                            HorizontalOptions="Center"
+                            Orientation="Horizontal">
+                            <Label
+                                Text="B: "
+                                TextColor="{x:Static services:AppThemeColors.TextColor}"
+                                VerticalOptions="Center" />
+                            <Entry
+                                x:Name="entryBlue"
+                                Completed="entryBlue_Completed"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                MaxLength="3"
+                                Text="0"
+                                VerticalOptions="Center">
+                                <Entry.Behaviors>
+                                    <customBehaviors:NumericValidatorBehaviour MaximumValue="255" MinimumValue="0" />
+                                </Entry.Behaviors>
+                            </Entry>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+                <Frame
+                    Margin="10"
+                    Padding="0,0"
+                    BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                    CornerRadius="15"
+                    WidthRequest="115">
+                    <StackLayout
+                        Margin="10,0"
+                        HorizontalOptions="Center"
+                        Orientation="Horizontal">
+                        <Label
+                            Text="Hex: "
+                            TextColor="{x:Static services:AppThemeColors.TextColor}"
+                            VerticalOptions="Center" />
+                        <Entry
+                            x:Name="entryHex"
+                            Completed="entryHex_Completed"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            MaxLength="7"
+                            Text="#000000"
+                            VerticalOptions="Center">
+                            <Entry.Behaviors>
+                                <customBehaviors:ColorHexValidatorBehaviour />
+                            </Entry.Behaviors>
+                        </Entry>
+                    </StackLayout>
+                </Frame>
+                <BoxView
+                    HeightRequest="1"
+                    HorizontalOptions="FillAndExpand"
+                    Color="{x:Static services:AppThemeColors.BorderColor}" />
+                <CustomItems:CustomButton
+                    x:Name="btnSave"
+                    Margin="10"
+                    BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                    BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                    BorderWidth="1"
+                    Clicked="btnSave_Clicked"
+                    CornerRadius="15"
+                    HorizontalOptions="Center"
+                    Text="Save"
+                    TextColor="{x:Static services:AppThemeColors.TextColor}" />
+            </StackLayout>
+        </Frame>
+    </VerticalStackLayout>
+</toolkit:Popup>

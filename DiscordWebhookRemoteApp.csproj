@@ -150,7 +150,7 @@
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Partials\Views\CustomItemViews\CustomCheckBox.xaml">
-          <Generator>MSBuild:Compile</Generator>
+            <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Partials\Views\CustomItemViews\CustomColorPicker.xaml">
           <Generator>MSBuild:Compile</Generator>
@@ -162,7 +162,7 @@
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Partials\Views\CustomItemViews\CustomImageButton.xaml">
-          <Generator>MSBuild:Compile</Generator>
+            <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Partials\Views\CustomItemViews\CustomLoadingView.xaml">
             <Generator>MSBuild:Compile</Generator>
@@ -183,7 +183,7 @@
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Partials\Views\WebhookItemsView\EmbedView\FieldsView\FieldView.xaml">
-          <Generator>MSBuild:Compile</Generator>
+            <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Partials\Views\WebhookItemsView\EmbedView\FooterView\FooterView.xaml">
             <Generator>MSBuild:Compile</Generator>
@@ -207,22 +207,25 @@
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Popups\Common\CustomAlertPopup.xaml">
-          <Generator>MSBuild:Compile</Generator>
+            <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Popups\Common\LoadingViewPopup.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Popups\Common\PrivacyPolicyPopup.xaml">
-          <Generator>MSBuild:Compile</Generator>
+            <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Popups\Common\SavedImagesEditOrViewPopup.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
+        <MauiXaml Update="Components\Popups\Embed\ColorPickPopup.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
         <MauiXaml Update="Components\Popups\Embed\EmbedEditAndNewPopup.xaml">
-          <Generator>MSBuild:Compile</Generator>
+            <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Popups\Embed\EmbedFieldsEditAndNewPopup.xaml">
-          <Generator>MSBuild:Compile</Generator>
+            <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Popups\Webhook\SavedWebhookAddOrEditPopup.xaml">
             <Generator>MSBuild:Compile</Generator>
