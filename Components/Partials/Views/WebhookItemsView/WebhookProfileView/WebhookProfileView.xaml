@@ -15,9 +15,10 @@
             CornerRadius="15"
             HorizontalOptions="FillAndExpand">
             <StackLayout>
-                <StackLayout Margin="10,10,10,10" Orientation="Horizontal">
+                <StackLayout Margin="10,0,10,0" Orientation="Horizontal">
                     <Frame
                         x:Name="avatarBtn"
+                        Margin="0,5"
                         Padding="0"
                         CornerRadius="60"
                         HeightRequest="48"
@@ -51,6 +52,7 @@
                         x:Name="entryUsername"
                         BorderColor="Transparent"
                         CornerRadius="0"
+                        HasTitle="False"
                         HorizontalOptions="FillAndExpand"
                         MaxLength="80"
                         Placeholder="Username"

@@ -51,7 +51,6 @@
                                 Clicked="btnTest_Clicked"
                                 CornerRadius="15"
                                 HorizontalOptions="Center"
-                                IsVisible="False"
                                 Text="Test"
                                 TextColor="{x:Static services:AppThemeColors.TextColor}" />
                             <CustomItems:CustomButton

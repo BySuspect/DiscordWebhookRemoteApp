@@ -57,7 +57,8 @@
                         CornerRadius="15"
                         HorizontalOptions="Center"
                         Text="Delete"
-                        TextColor="{x:Static services:AppThemeColors.TextColor}" />
+                        TextColor="{x:Static services:AppThemeColors.TextColor}"
+                        WidthRequest="70" />
                     <CustomItems:CustomButton
                         x:Name="btnSave"
                         Margin="5,5,5,0"
@@ -68,7 +69,8 @@
                         CornerRadius="15"
                         HorizontalOptions="Center"
                         Text="Save"
-                        TextColor="{x:Static services:AppThemeColors.TextColor}" />
+                        TextColor="{x:Static services:AppThemeColors.TextColor}"
+                        WidthRequest="70" />
                 </HorizontalStackLayout>
             </StackLayout>
         </Frame>

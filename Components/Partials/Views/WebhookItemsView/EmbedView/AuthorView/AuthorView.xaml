@@ -24,7 +24,7 @@
                     <StackLayout Orientation="Horizontal">
                         <Frame
                             x:Name="iconBtn"
-                            Margin="10,5"
+                            Margin="10,2"
                             Padding="0"
                             CornerRadius="60"
                             HeightRequest="48"
@@ -41,14 +41,12 @@
                                 <TapGestureRecognizer Tapped="Icon_Tapped" />
                             </Frame.GestureRecognizers>
                         </Frame>
-                        <BoxView
-                            Margin="5,0"
-                            WidthRequest="1"
-                            Color="{x:Static services:AppThemeColors.BorderColor}" />
+                        <BoxView WidthRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
                         <CustomViews:CustomEntryView
                             x:Name="entryAuthorName"
-                            Margin="0,10,0,5"
+                            Margin="0,5"
                             BorderColor="Transparent"
+                            HasTitle="False"
                             HorizontalOptions="FillAndExpand"
                             MaxLength="256"
                             Placeholder="Author Name" />
@@ -56,12 +54,13 @@
                 </Frame>
                 <CustomViews:CustomEntryView
                     x:Name="entryAuthorUrl"
-                    Margin="0,5"
+                    Margin="0,15,0,5"
                     BorderColor="{x:Static services:AppThemeColors.BorderColor}"
                     HasCharCounterText="False"
                     MaxLength="2048"
                     Placeholder="Author Url"
-                    ValidationType="Url" />
+                    ValidationType="Url"
+                    ZIndex="10" />
             </StackLayout>
         </Frame>
     </ContentView.Content>

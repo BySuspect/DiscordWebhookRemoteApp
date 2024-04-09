@@ -137,6 +137,37 @@ public partial class CustomEntryView : ContentView
     }
     #endregion
 
+    #region HasTitle Binding
+    public static readonly BindableProperty HasTitleProperty = BindableProperty.Create(
+        nameof(HasTitle),
+        typeof(bool),
+        typeof(CustomEntryView),
+        defaultValue: true,
+        defaultBindingMode: BindingMode.TwoWay,
+        propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var control = (CustomEntryView)bindable;
+            if ((bool)newValue)
+            {
+                control.Input.PlaceholderColor = Colors.Transparent;
+            }
+            else
+            {
+                control.Input.PlaceholderColor = AppThemeColors.PlaceholderTextColor;
+            }
+        }
+    );
+    public bool HasTitle
+    {
+        get { return (bool)GetValue(HasTitleProperty); }
+        set
+        {
+            SetValue(HasTitleProperty, value);
+            OnPropertyChanged(nameof(HasTitle));
+        }
+    }
+    #endregion
+
     #region HasCharCounterText Binding
     public static readonly BindableProperty HasCharCounterTextProperty = BindableProperty.Create(
         nameof(HasCharCounterText),
@@ -166,8 +197,8 @@ public partial class CustomEntryView : ContentView
             lblTitle.TextColor = AppThemeColors.TextColor;
             titleView.BorderColor = AppThemeColors.BorderColor;
             titleView.BackgroundColor = AppThemeColors.BackgroundColor;
-            titleView.TranslationX = 15;
-            titleView.TranslationY = -8;
+            titleView.TranslationX = 20;
+            titleView.TranslationY = -20;
         }
         else
         {
@@ -175,7 +206,7 @@ public partial class CustomEntryView : ContentView
             titleView.BorderColor = Colors.Transparent;
             titleView.BackgroundColor = Colors.Transparent;
             titleView.TranslationX = 0;
-            titleView.TranslationY = 13;
+            titleView.TranslationY = 0;
         }
 
         Input.Completed += (s, e) => OnTextComplated(s, e);
@@ -202,7 +233,7 @@ public partial class CustomEntryView : ContentView
             lblTitle.TextColor = AppThemeColors.TextColor;
             titleView.BorderColor = AppThemeColors.BorderColor;
             titleView.BackgroundColor = AppThemeColors.BackgroundColor;
-            titleView.TranslateTo(15, -9, 150);
+            titleView.TranslateTo(20, -20, 150);
         }
         else
         {
@@ -210,7 +241,7 @@ public partial class CustomEntryView : ContentView
             lblTitle.TextColor = AppThemeColors.PlaceholderTextColor;
             titleView.BorderColor = Colors.Transparent;
             titleView.BackgroundColor = Colors.Transparent;
-            titleView.TranslateTo(5, 13, 150);
+            titleView.TranslateTo(0, 0, 150);
         }
         OnTextChanged(sender, e);
     }

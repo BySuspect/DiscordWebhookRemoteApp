@@ -27,7 +27,7 @@
                     <StackLayout Orientation="Horizontal">
                         <Frame
                             x:Name="iconBtn"
-                            Margin="10,5"
+                            Margin="10,2"
                             Padding="0"
                             CornerRadius="60"
                             HeightRequest="48"
@@ -44,14 +44,12 @@
                                 <TapGestureRecognizer Tapped="Icon_Tapped" />
                             </Frame.GestureRecognizers>
                         </Frame>
-                        <BoxView
-                            Margin="5,0"
-                            WidthRequest="1"
-                            Color="{x:Static services:AppThemeColors.BorderColor}" />
+                        <BoxView WidthRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
                         <CustomViews:CustomEntryView
                             x:Name="entryFooterText"
-                            Margin="0,10,0,5"
+                            Margin="0,5"
                             BorderColor="Transparent"
+                            HasTitle="False"
                             HorizontalOptions="FillAndExpand"
                             MaxLength="2048"
                             Placeholder="Text" />

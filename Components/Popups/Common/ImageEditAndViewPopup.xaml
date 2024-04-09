@@ -66,7 +66,8 @@
                         HorizontalOptions="CenterAndExpand"
                         Text="Select"
                         TextColor="{x:Static services:AppThemeColors.TextColor}"
-                        VerticalOptions="End" />
+                        VerticalOptions="End"
+                        WidthRequest="80" />
                     <CustomItems:CustomButton
                         x:Name="btnSave"
                         Margin="5,0,5,0"
@@ -79,7 +80,8 @@
                         HorizontalOptions="CenterAndExpand"
                         Text="Save"
                         TextColor="{x:Static services:AppThemeColors.TextColor}"
-                        VerticalOptions="End" />
+                        VerticalOptions="End"
+                        WidthRequest="80" />
                 </HorizontalStackLayout>
             </StackLayout>
         </Frame>

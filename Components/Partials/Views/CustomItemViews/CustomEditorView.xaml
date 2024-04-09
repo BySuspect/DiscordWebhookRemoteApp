@@ -17,7 +17,7 @@
                     <Editor
                         x:Name="Input"
                         Margin="0,20,0,10"
-                        FontSize="Small"
+                        FontSize="Caption"
                         HeightRequest="{Binding HeightRequest}"
                         HorizontalOptions="Fill"
                         MaxLength="{Binding MaxLength}"
@@ -54,10 +54,11 @@
                 IsVisible="true"
                 TranslationX="0"
                 TranslationY="13"
-                VerticalOptions="Start">
+                VerticalOptions="Start"
+                ZIndex="99">
                 <Label
                     x:Name="lblTitle"
-                    FontSize="Header"
+                    FontSize="Caption"
                     HorizontalOptions="Center"
                     Text="{Binding Placeholder}"
                     TextColor="{x:Static services:AppThemeColors.PlaceholderTextColor}"

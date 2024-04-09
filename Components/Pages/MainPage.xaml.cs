@@ -1,6 +1,7 @@
 using CommunityToolkit.Maui.Alerts;
 using Discord;
 using DiscordWebhookRemoteApp.Components.Popups.Common;
+using DiscordWebhookRemoteApp.Components.Popups.Embed;
 
 namespace DiscordWebhookRemoteApp.Components.Pages;
 
@@ -23,13 +24,15 @@ public partial class MainPage : ContentPage
 
         if (!Preferences.Get("PrivacyPolicyV1Accepted", false))
             ApplicationService.ShowPopup(new PrivacyPolicyPopup());
+
+        //ApplicationService.ShowPopup(new ColorPickPopup());
     }
 
     private async void SendButton_Clicked(object sender, EventArgs e)
     {
         if (SavedWebhooksView.selectedWebhook == null)
         {
-            _ = Toast.Make("Please select a webhook").Show();
+            ApplicationService.ShowCustomAlert("Warning!", "Please select a webhook.", "Ok");
             return;
         }
 
@@ -86,6 +89,7 @@ public partial class MainPage : ContentPage
 
             if (result != null)
             {
+                ApplicationService.HideLoadingView();
                 var resSave = await ApplicationService.ShowCustomAlertAsync(
                     "Success.",
                     "Message Sent.",
@@ -114,6 +118,12 @@ public partial class MainPage : ContentPage
         try
         {
             Console.WriteLine("Test Clicked");
+            var res = await ApplicationService.ShowPopupAsync(new ColorPickPopup(Colors.Red));
+            if (res == null)
+                return;
+
+            var selectedColor = (Microsoft.Maui.Graphics.Color)res;
+            Console.WriteLine(selectedColor.ToHex());
         }
         catch (Exception ex)
         {
@@ -149,9 +159,9 @@ public partial class MainPage : ContentPage
                                 ? embed.ImagesThumbnailUrl
                                 : null,
                         Color = new Discord.Color(
-                            (byte)embed.BodyColor.Red,
-                            (byte)embed.BodyColor.Green,
-                            (byte)embed.BodyColor.Blue
+                            (byte)Math.Round(embed.BodyColor.Red * 255),
+                            (byte)Math.Round(embed.BodyColor.Green * 255),
+                            (byte)Math.Round(embed.BodyColor.Blue * 255)
                         ),
                         Timestamp = embed.FooterTimestamp ? DateTime.Now : null,
                         Author = new Discord.EmbedAuthorBuilder()

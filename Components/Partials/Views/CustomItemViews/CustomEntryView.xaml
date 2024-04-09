@@ -9,14 +9,14 @@
     <ContentView.Content>
         <Grid>
             <Frame
-                Padding="10,5"
+                Padding="5,2"
                 BorderColor="{Binding BorderColor}"
                 CornerRadius="{Binding CornerRadius}"
                 HorizontalOptions="FillAndExpand">
                 <Grid>
                     <Entry
                         x:Name="Input"
-                        FontSize="Small"
+                        FontSize="Caption"
                         HorizontalOptions="Fill"
                         MaxLength="{Binding MaxLength}"
                         Placeholder="{Binding Placeholder}"
@@ -24,7 +24,7 @@
                         Text="{Binding Text}"
                         TextChanged="Input_TextChanged"
                         TextColor="{x:Static services:AppThemeColors.TextColor}"
-                        VerticalOptions="Fill" />
+                        VerticalOptions="Center" />
                     <Label
                         x:Name="lblInputLenght"
                         Margin="0,0,5,5"
@@ -48,13 +48,13 @@
                 Padding="10,2"
                 CornerRadius="15"
                 HorizontalOptions="Start"
-                IsVisible="true"
-                TranslationX="5"
-                TranslationY="13"
-                VerticalOptions="Start">
+                IsVisible="{Binding HasTitle}"
+                TranslationX="0"
+                TranslationY="0"
+                VerticalOptions="Center">
                 <Label
                     x:Name="lblTitle"
-                    FontSize="Header"
+                    FontSize="Caption"
                     HorizontalOptions="Center"
                     Text="{Binding Placeholder}"
                     TextColor="{x:Static services:AppThemeColors.PlaceholderTextColor}"
