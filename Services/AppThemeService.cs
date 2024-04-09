@@ -1,34 +1,4 @@
-﻿using
-/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-maccatalyst)'
-Before:
-using System.Threading.Tasks;
-using CommunityToolkit.Maui.Core;
-After:
-using System.Threading.Tasks;
-
-using CommunityToolkit.Maui.Core;
-*/
-
-/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-ios)'
-Before:
-using System.Threading.Tasks;
-using CommunityToolkit.Maui.Core;
-After:
-using System.Threading.Tasks;
-
-using CommunityToolkit.Maui.Core;
-*/
-
-/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-windows10.0.19041.0)'
-Before:
-using System.Threading.Tasks;
-using CommunityToolkit.Maui.Core;
-After:
-using System.Threading.Tasks;
-
-using CommunityToolkit.Maui.Core;
-*/
-CommunityToolkit.Maui.Core;
+﻿using CommunityToolkit.Maui.Core;
 
 namespace DiscordWebhookRemoteApp.Services
 {

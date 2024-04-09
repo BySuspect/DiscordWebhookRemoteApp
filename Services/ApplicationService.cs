@@ -37,10 +37,9 @@ namespace DiscordWebhookRemoteApp.Services
             return await PopupExtensions.ShowPopupAsync(Application.Current.MainPage, popup);
         }
 
-        public static Task ShowPopup(Popup popup)
+        public static void ShowPopup(Popup popup)
         {
             PopupExtensions.ShowPopupAsync(Application.Current.MainPage, popup);
-            return Task.CompletedTask;
         }
         #endregion
 
@@ -95,6 +94,17 @@ namespace DiscordWebhookRemoteApp.Services
         )
         {
             ShowPopup(new CustomAlertPopup(title, content, ok, cancel));
+        }
+        #endregion
+
+        #region Color Section
+        public static Color InvertColor(Color color)
+        {
+            int invertedR = (byte)(255 - Math.Round(color.Red * 255));
+            int invertedG = (byte)(255 - Math.Round(color.Green * 255));
+            int invertedB = (byte)(255 - Math.Round(color.Blue * 255));
+
+            return Color.FromRgb(invertedR, invertedG, invertedB);
         }
         #endregion
     }
