@@ -37,7 +37,7 @@ public partial class SavedImagesViewPopup : Popup
         addNewBtn.IsEnabled = false;
         var res = await ApplicationService.ShowPopupAsync(new ImageEditAndViewPopup(string.Empty));
 
-        if (res == null)
+        if (res == null || string.IsNullOrWhiteSpace((string)res))
         {
             addNewBtn.IsEnabled = true;
             return;
