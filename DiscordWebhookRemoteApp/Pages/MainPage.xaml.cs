@@ -1,25 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
-using Xamarin.Forms;
+using System.Timers;
 using Discord;
 using Discord.Webhook;
-using System.IO;
-using System.Net.Http;
-using Xamarin.Essentials;
-using Xamarin.Forms.Xaml;
 using DiscordWebhookRemoteApp.Helpers;
-using System.Diagnostics;
-using Xamarin.CommunityToolkit.Extensions;
-using Xamarin.CommunityToolkit.UI.Views;
 using DiscordWebhookRemoteApp.Pages.Popups;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Xamarin.DateTimePopups;
 using MarcTron.Plugin;
 using MarcTron.Plugin.Extra;
-using System.Timers;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Xamarin.CommunityToolkit.Extensions;
+using Xamarin.CommunityToolkit.UI.Views;
+using Xamarin.DateTimePopups;
+using Xamarin.Essentials;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace DiscordWebhookRemoteApp.Pages
 {
@@ -30,8 +30,7 @@ namespace DiscordWebhookRemoteApp.Pages
 
         DiscordWebhook hook = new DiscordWebhook();
 
-        bool
-            webhookSelected = false,
+        bool webhookSelected = false,
             webhookProfileAvatar = false,
             webhookProfileName = false;
 
@@ -41,16 +40,18 @@ namespace DiscordWebhookRemoteApp.Pages
             embedFooterIconUrl = "",
             embedAuthorIconUrl = "";
 
-
         List<FileInfo> SelectedFiles = new List<FileInfo>();
 
         int selectedId = -1;
+
         public MainPage()
         {
             InitializeComponent();
 
-            CrossMTAdmob.Current.TagForChildDirectedTreatment = MTTagForChildDirectedTreatment.TagForChildDirectedTreatmentUnspecified;
-            CrossMTAdmob.Current.TagForUnderAgeOfConsent = MTTagForUnderAgeOfConsent.TagForUnderAgeOfConsentUnspecified;
+            CrossMTAdmob.Current.TagForChildDirectedTreatment =
+                MTTagForChildDirectedTreatment.TagForChildDirectedTreatmentUnspecified;
+            CrossMTAdmob.Current.TagForUnderAgeOfConsent =
+                MTTagForUnderAgeOfConsent.TagForUnderAgeOfConsentUnspecified;
             CrossMTAdmob.Current.MaxAdContentRating = MTMaxAdContentRating.MaxAdContentRatingG;
 
             BindingContext = this;
@@ -70,7 +71,8 @@ namespace DiscordWebhookRemoteApp.Pages
             //popupInfoBack.IsVisible = false;
 #endif
         }
-        protected async override void OnAppearing()
+
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
             await References.CheckAppVersion();
@@ -79,6 +81,7 @@ namespace DiscordWebhookRemoteApp.Pages
         #region Back Exit
         Timer timer = new Timer { Interval = 2000 };
         int _backButtonCounter = 0;
+
         void setupTimer()
         {
             if (!timer.Enabled)
@@ -91,6 +94,7 @@ namespace DiscordWebhookRemoteApp.Pages
                 timer.Start();
             }
         }
+
         protected override bool OnBackButtonPressed()
         {
             if (MessageSaveLoadCV.IsVisible)
@@ -98,7 +102,8 @@ namespace DiscordWebhookRemoteApp.Pages
                 MessageSaveLoadCV.IsVisible = false;
                 return true;
             }
-            if (_backButtonCounter >= 2) return false;
+            if (_backButtonCounter >= 2)
+                return false;
             if (_backButtonCounter == 0)
             {
                 ToastController.ShowShortToast("Press 3 times to exit.");
@@ -118,10 +123,13 @@ namespace DiscordWebhookRemoteApp.Pages
             await App.Current.MainPage.Navigation.ShowPopupAsync(popup);
             BindableLayout.SetItemsSource(blSavedWebhooks, References.WebhookList);
         }
+
         private async void WebhookSelect_Tapped(object sender, EventArgs e)
         {
             Loodinglayout.IsVisible = true;
-            var selected = References.WebhookList.Where(x => x.ID == Convert.ToInt32((sender as Frame).AutomationId)).FirstOrDefault();
+            var selected = References
+                .WebhookList.Where(x => x.ID == Convert.ToInt32((sender as Frame).AutomationId))
+                .FirstOrDefault();
             hook.Url = selected.url;
             selectedUrl = selected.url;
             selectedId = selected.ID;
@@ -140,7 +148,8 @@ namespace DiscordWebhookRemoteApp.Pages
                     var avatar = json["avatar"].ToString();
                     if (!string.IsNullOrEmpty(avatar))
                     {
-                        webhookImageUrl = $"https://cdn.discordapp.com/avatars/{json["id"]}/{avatar}.png";
+                        webhookImageUrl =
+                            $"https://cdn.discordapp.com/avatars/{json["id"]}/{avatar}.png";
                         imgWebhookImage.Source = webhookImageUrl;
                         webhookProfileAvatar = true;
                     }
@@ -165,13 +174,11 @@ namespace DiscordWebhookRemoteApp.Pages
                     }
                 }
             }
-            catch
-            {
-
-            }
+            catch { }
 
             Loodinglayout.IsVisible = false;
         }
+
         private async void webhookEditDelete_Clicked(object sender, EventArgs e)
         {
             if (webhookSelected)
@@ -189,7 +196,9 @@ namespace DiscordWebhookRemoteApp.Pages
                 }
                 else
                 {
-                    var selected = References.WebhookList.Where(x => x.ID == selectedId).FirstOrDefault();
+                    var selected = References
+                        .WebhookList.Where(x => x.ID == selectedId)
+                        .FirstOrDefault();
                     hook.Url = selected.url;
                     selectedUrl = selected.url;
                     selectedId = selected.ID;
@@ -251,18 +260,24 @@ namespace DiscordWebhookRemoteApp.Pages
                     webhookProfileName = true;
                 }
             }
-            catch
-            {
-
-            }
+            catch { }
         }
+
         private async void WebhookImage_Tapped(object sender, EventArgs e)
         {
             try
             {
                 string oldAvatarUrl = "";
-                if (webhookProfileAvatar) oldAvatarUrl = webhookImageUrl;
-                string result = await DisplayPromptAsync("Webhook Image", "Only \".jpg\", \".jpeg\", \".png\", \".gif\" Supported!", accept: "Ok", cancel: "Cancel", placeholder: "Image url.", initialValue: oldAvatarUrl);
+                if (webhookProfileAvatar)
+                    oldAvatarUrl = webhookImageUrl;
+                string result = await DisplayPromptAsync(
+                    "Webhook Image",
+                    "Only \".jpg\", \".jpeg\", \".png\", \".gif\" Supported!",
+                    accept: "Ok",
+                    cancel: "Cancel",
+                    placeholder: "Image url.",
+                    initialValue: oldAvatarUrl
+                );
                 Debug.WriteLine(result);
                 if (!string.IsNullOrEmpty(result.Trim()))
                 {
@@ -290,6 +305,7 @@ namespace DiscordWebhookRemoteApp.Pages
             }
             catch { }
         }
+
         private void entryWebhookName_Completed(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(entryWebhookName.Text))
@@ -304,8 +320,8 @@ namespace DiscordWebhookRemoteApp.Pages
                 webhookName = entryWebhookName.Text;
                 webhookProfileName = true;
             }
-
         }
+
         private void entryWebhookName_Unfocused(object sender, FocusEventArgs e) =>
             entryWebhookName_Completed(null, null);
         #endregion
@@ -324,12 +340,20 @@ namespace DiscordWebhookRemoteApp.Pages
             }
 #pragma warning restore CS0252 // Possible unintended reference comparison; left hand side needs cast
         }
+
         private async void EmbedAuthorImage_Tapped(object sender, EventArgs e)
         {
             try
             {
                 string oldAvatarUrl = embedAuthorIconUrl;
-                string result = await DisplayPromptAsync("Author Icon Image", "Only \".jpg\", \".jpeg\", \".png\", \".gif\" Supported!", accept: "Ok", cancel: "Cancel", placeholder: "Image url.", initialValue: oldAvatarUrl);
+                string result = await DisplayPromptAsync(
+                    "Author Icon Image",
+                    "Only \".jpg\", \".jpeg\", \".png\", \".gif\" Supported!",
+                    accept: "Ok",
+                    cancel: "Cancel",
+                    placeholder: "Image url.",
+                    initialValue: oldAvatarUrl
+                );
                 Debug.WriteLine(result);
                 if (!string.IsNullOrEmpty(result.Trim()))
                 {
@@ -339,7 +363,6 @@ namespace DiscordWebhookRemoteApp.Pages
                     {
                         embedAuthorIconUrl = result.Trim();
                         ImgEmbedAuthor.Source = result.Trim();
-
                     }
                     else
                     {
@@ -354,12 +377,20 @@ namespace DiscordWebhookRemoteApp.Pages
             }
             catch { }
         }
+
         private async void EmbedFooterAuthorImage_Tapped(object sender, EventArgs e)
         {
             try
             {
                 string oldAvatarUrl = embedFooterIconUrl;
-                string result = await DisplayPromptAsync("Author Icon Image", "Only \".jpg\", \".jpeg\", \".png\", \".gif\" Supported!", accept: "Ok", cancel: "Cancel", placeholder: "Image url.", initialValue: oldAvatarUrl);
+                string result = await DisplayPromptAsync(
+                    "Author Icon Image",
+                    "Only \".jpg\", \".jpeg\", \".png\", \".gif\" Supported!",
+                    accept: "Ok",
+                    cancel: "Cancel",
+                    placeholder: "Image url.",
+                    initialValue: oldAvatarUrl
+                );
                 Debug.WriteLine(result);
                 if (!string.IsNullOrEmpty(result.Trim()))
                 {
@@ -369,7 +400,6 @@ namespace DiscordWebhookRemoteApp.Pages
                     {
                         embedFooterIconUrl = result.Trim();
                         ImgEmbedFooterIconUrl.Source = result.Trim();
-
                     }
                     else
                     {
@@ -384,6 +414,7 @@ namespace DiscordWebhookRemoteApp.Pages
             }
             catch { }
         }
+
         private async void EmbedFooterSelectTimebtn_Clicked(object sender, EventArgs e)
         {
             try
@@ -391,12 +422,23 @@ namespace DiscordWebhookRemoteApp.Pages
                 DateTime? selectedFooterDate = await DateTimePopups.PickDateAsync(DateTime.Now);
                 if (selectedFooterDate != null)
                 {
-                    TimeSpan? selectedFooterTime = await DateTimePopups.PickTimeAsync(DateTime.Now.TimeOfDay);
+                    TimeSpan? selectedFooterTime = await DateTimePopups.PickTimeAsync(
+                        DateTime.Now.TimeOfDay
+                    );
                     if (selectedFooterTime != null)
                     {
-                        var selectedFooterDateTime = new DateTime(selectedFooterDate.Value.Year, selectedFooterDate.Value.Month, selectedFooterDate.Value.Day, selectedFooterTime.Value.Hours, selectedFooterTime.Value.Minutes, 0);
+                        var selectedFooterDateTime = new DateTime(
+                            selectedFooterDate.Value.Year,
+                            selectedFooterDate.Value.Month,
+                            selectedFooterDate.Value.Day,
+                            selectedFooterTime.Value.Hours,
+                            selectedFooterTime.Value.Minutes,
+                            0
+                        );
                         EmbedFooterTimestampSelectedLbl.SavedDateTimeData = selectedFooterDateTime;
-                        ToastController.ShowLongToast($"{selectedFooterDate.Value.ToLongDateString()} selected");
+                        ToastController.ShowLongToast(
+                            $"{selectedFooterDate.Value.ToLongDateString()} selected"
+                        );
                     }
                     else
                         throw null;
@@ -409,12 +451,14 @@ namespace DiscordWebhookRemoteApp.Pages
                 ToastController.ShowShortToast("Footer timestamp select error!");
             }
         }
+
         private void cbFooterSendInstantTime_IsCheckedChanged(object sender, bool e)
         {
             EmbedFooterSelectTimebtn.IsEnabled = !e;
             if (e)
                 EmbedFooterTimestampSelectedLbl.SavedDateTimeData = null;
         }
+
         private void EmbedFooterTimestampClearbtn_Clicked(object sender, EventArgs e)
         {
             EmbedFooterTimestampSelectedLbl.SavedDateTimeData = null;
@@ -427,10 +471,9 @@ namespace DiscordWebhookRemoteApp.Pages
         {
             try
             {
-                var result = await FilePicker.PickMultipleAsync(new PickOptions
-                {
-                    PickerTitle = "Select Max 10 Images",
-                });
+                var result = await FilePicker.PickMultipleAsync(
+                    new PickOptions { PickerTitle = "Select Max 10 Images", }
+                );
 
                 if (result.Count() > 0)
                 {
@@ -464,8 +507,15 @@ namespace DiscordWebhookRemoteApp.Pages
                             return;
                         }
                         else if (filesizeCounter > 16000000)
-                            _ = DisplayAlert("Warning!", "Discord may not accept file sizes over 16mb!", "ok");
-                        lblSelectedFile.Text = (filesizeCounter / 1024 / 1024).ToString("##") + "mb\n" + string.Join(", ", SelectedFiles.ConvertAll(x => x.Name.ToString()));
+                            _ = DisplayAlert(
+                                "Warning!",
+                                "Discord may not accept file sizes over 16mb!",
+                                "ok"
+                            );
+                        lblSelectedFile.Text =
+                            (filesizeCounter / 1024 / 1024).ToString("##")
+                            + "mb\n"
+                            + string.Join(", ", SelectedFiles.ConvertAll(x => x.Name.ToString()));
                     }
                 }
                 else
@@ -479,6 +529,7 @@ namespace DiscordWebhookRemoteApp.Pages
                 // The user canceled or something went wrong
             }
         }
+
         private void btnFileClear_Clicked(object sender, EventArgs e)
         {
             lblSelectedFile.Text = "";
@@ -521,7 +572,12 @@ namespace DiscordWebhookRemoteApp.Pages
 
         private async void clearContent_Clicked(object sender, EventArgs e)
         {
-            bool answer = await DisplayAlert("Warning!", "Are you sure about to clear content?", "Yes", "No");
+            bool answer = await DisplayAlert(
+                "Warning!",
+                "Are you sure about to clear content?",
+                "Yes",
+                "No"
+            );
             Debug.WriteLine("Answer: " + answer);
             if (answer)
             {
@@ -544,6 +600,22 @@ namespace DiscordWebhookRemoteApp.Pages
                 //entryWebhookName.Text = "";
                 //imgWebhookImage.Source = "dcdemoimage.png";
             }
+        }
+
+        private async void ExportWebhooks_Clicked(object sender, EventArgs e)
+        {
+            await Clipboard.SetTextAsync(
+                ConvertStringToBase64(JsonConvert.SerializeObject(References.WebhookList))
+            );
+
+            ToastController.ShowShortToast("Webhooks copied to clipboard.");
+        }
+
+        public static string ConvertStringToBase64(string originalString)
+        {
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(originalString);
+            string base64String = Convert.ToBase64String(bytes);
+            return base64String;
         }
 
         private void Preview_Clicked(object sender, EventArgs e)
@@ -592,8 +664,7 @@ namespace DiscordWebhookRemoteApp.Pages
                 //await Navigation.PushAsync(new TextEditorPage(jsonMessage), false);
                 MessageSaveLoadCV.IsVisible = true;
             }
-            catch
-            { }
+            catch { }
             Loodinglayout.IsVisible = false;
         }
 
@@ -601,6 +672,7 @@ namespace DiscordWebhookRemoteApp.Pages
         {
             MessageSaveLoadCV.IsVisible = false;
         }
+
         private async void sendContent_Clicked(object sender, EventArgs e)
         {
             if (webhookSelected)
@@ -617,7 +689,8 @@ namespace DiscordWebhookRemoteApp.Pages
                     }
 
                     ToastController.ShowShortToast("Submitted Successfully.");
-                    if (new Random().Next(1, 100) % 10 == 0) popupInfoBack.IsVisible = true;
+                    if (new Random().Next(1, 100) % 10 == 0)
+                        popupInfoBack.IsVisible = true;
                 }
                 catch (Exception ex)
                 {
@@ -712,8 +785,8 @@ namespace DiscordWebhookRemoteApp.Pages
 
             ////file
             ////hook.Send(message, new FileInfo("C:/File/Path.file"));
-
         }
+
         private void Button_Clicked2(object sender, EventArgs e)
         {
             //try
@@ -749,10 +822,8 @@ namespace DiscordWebhookRemoteApp.Pages
             //    // The user canceled or something went wrong
             //}
         }
-        private void Button_Clicked_1(object sender, EventArgs e)
-        {
 
-        }
+        private void Button_Clicked_1(object sender, EventArgs e) { }
         #endregion
 
 
@@ -760,9 +831,9 @@ namespace DiscordWebhookRemoteApp.Pages
         {
             /*
              *görüntü olarak video eklenicek
-             *tüm resim urllerini kontrol edip hatalı olanları 
-                   -bir string veride ekleyip display alertte 
-                   -göstericek ve hatalı resimler olmadan gönderip 
+             *tüm resim urllerini kontrol edip hatalı olanları
+                   -bir string veride ekleyip display alertte
+                   -göstericek ve hatalı resimler olmadan gönderip
                    -gönderilemeyeceği sorulacak.
              *
              */
@@ -820,129 +891,156 @@ namespace DiscordWebhookRemoteApp.Pages
 
                     if (expEmbedField1.IsExpanded)
                     {
-                        fields.Add(new EmbedField
-                        {
-                            InLine = cboxInlineField1.IsChecked,
-                            Name = EntryFieldName1.Text,
-                            Value = entryFieldValue1.Text,
-                        });
+                        fields.Add(
+                            new EmbedField
+                            {
+                                InLine = cboxInlineField1.IsChecked,
+                                Name = EntryFieldName1.Text,
+                                Value = entryFieldValue1.Text,
+                            }
+                        );
                     }
 
                     if (expEmbedField2.IsExpanded)
                     {
-                        fields.Add(new EmbedField
-                        {
-                            InLine = cboxInlineField2.IsChecked,
-                            Name = EntryFieldName2.Text,
-                            Value = entryFieldValue2.Text,
-                        });
+                        fields.Add(
+                            new EmbedField
+                            {
+                                InLine = cboxInlineField2.IsChecked,
+                                Name = EntryFieldName2.Text,
+                                Value = entryFieldValue2.Text,
+                            }
+                        );
                     }
 
                     if (expEmbedField3.IsExpanded)
                     {
-                        fields.Add(new EmbedField
-                        {
-                            InLine = cboxInlineField3.IsChecked,
-                            Name = EntryFieldName3.Text,
-                            Value = entryFieldValue3.Text,
-                        });
+                        fields.Add(
+                            new EmbedField
+                            {
+                                InLine = cboxInlineField3.IsChecked,
+                                Name = EntryFieldName3.Text,
+                                Value = entryFieldValue3.Text,
+                            }
+                        );
                     }
 
                     if (expEmbedField4.IsExpanded)
                     {
-                        fields.Add(new EmbedField
-                        {
-                            InLine = cboxInlineField4.IsChecked,
-                            Name = EntryFieldName4.Text,
-                            Value = entryFieldValue4.Text,
-                        });
+                        fields.Add(
+                            new EmbedField
+                            {
+                                InLine = cboxInlineField4.IsChecked,
+                                Name = EntryFieldName4.Text,
+                                Value = entryFieldValue4.Text,
+                            }
+                        );
                     }
 
                     if (expEmbedField5.IsExpanded)
                     {
-                        fields.Add(new EmbedField
-                        {
-                            InLine = cboxInlineField5.IsChecked,
-                            Name = EntryFieldName5.Text,
-                            Value = entryFieldValue5.Text,
-                        });
+                        fields.Add(
+                            new EmbedField
+                            {
+                                InLine = cboxInlineField5.IsChecked,
+                                Name = EntryFieldName5.Text,
+                                Value = entryFieldValue5.Text,
+                            }
+                        );
                     }
 
                     if (expEmbedField6.IsExpanded)
                     {
-                        fields.Add(new EmbedField
-                        {
-                            InLine = cboxInlineField6.IsChecked,
-                            Name = EntryFieldName6.Text,
-                            Value = entryFieldValue6.Text,
-                        });
+                        fields.Add(
+                            new EmbedField
+                            {
+                                InLine = cboxInlineField6.IsChecked,
+                                Name = EntryFieldName6.Text,
+                                Value = entryFieldValue6.Text,
+                            }
+                        );
                     }
 
                     if (expEmbedField7.IsExpanded)
                     {
-                        fields.Add(new EmbedField
-                        {
-                            InLine = cboxInlineField7.IsChecked,
-                            Name = EntryFieldName7.Text,
-                            Value = entryFieldValue7.Text,
-                        });
+                        fields.Add(
+                            new EmbedField
+                            {
+                                InLine = cboxInlineField7.IsChecked,
+                                Name = EntryFieldName7.Text,
+                                Value = entryFieldValue7.Text,
+                            }
+                        );
                     }
 
                     if (expEmbedField8.IsExpanded)
                     {
-                        fields.Add(new EmbedField
-                        {
-                            InLine = cboxInlineField8.IsChecked,
-                            Name = EntryFieldName8.Text,
-                            Value = entryFieldValue8.Text,
-                        });
+                        fields.Add(
+                            new EmbedField
+                            {
+                                InLine = cboxInlineField8.IsChecked,
+                                Name = EntryFieldName8.Text,
+                                Value = entryFieldValue8.Text,
+                            }
+                        );
                     }
 
                     if (expEmbedField9.IsExpanded)
                     {
-                        fields.Add(new EmbedField
-                        {
-                            InLine = cboxInlineField9.IsChecked,
-                            Name = EntryFieldName9.Text,
-                            Value = entryFieldValue9.Text,
-                        });
+                        fields.Add(
+                            new EmbedField
+                            {
+                                InLine = cboxInlineField9.IsChecked,
+                                Name = EntryFieldName9.Text,
+                                Value = entryFieldValue9.Text,
+                            }
+                        );
                     }
 
                     if (expEmbedField10.IsExpanded)
                     {
-                        fields.Add(new EmbedField
-                        {
-                            InLine = cboxInlineField10.IsChecked,
-                            Name = EntryFieldName10.Text,
-                            Value = entryFieldValue10.Text,
-                        });
+                        fields.Add(
+                            new EmbedField
+                            {
+                                InLine = cboxInlineField10.IsChecked,
+                                Name = EntryFieldName10.Text,
+                                Value = entryFieldValue10.Text,
+                            }
+                        );
                     }
 
                     if (expEmbedField11.IsExpanded)
                     {
-                        fields.Add(new EmbedField
-                        {
-                            InLine = cboxInlineField11.IsChecked,
-                            Name = EntryFieldName11.Text,
-                            Value = entryFieldValue11.Text,
-                        });
+                        fields.Add(
+                            new EmbedField
+                            {
+                                InLine = cboxInlineField11.IsChecked,
+                                Name = EntryFieldName11.Text,
+                                Value = entryFieldValue11.Text,
+                            }
+                        );
                     }
 
                     if (expEmbedField12.IsExpanded)
                     {
-                        fields.Add(new EmbedField
-                        {
-                            InLine = cboxInlineField12.IsChecked,
-                            Name = EntryFieldName12.Text,
-                            Value = entryFieldValue12.Text,
-                        });
+                        fields.Add(
+                            new EmbedField
+                            {
+                                InLine = cboxInlineField12.IsChecked,
+                                Name = EntryFieldName12.Text,
+                                Value = entryFieldValue12.Text,
+                            }
+                        );
                     }
 
                     //Embed fields empty check
                     if (fields.Count != 0)
                         foreach (var item in fields)
                         {
-                            if (!string.IsNullOrEmpty(item.Name) && !string.IsNullOrEmpty(item.Value))
+                            if (
+                                !string.IsNullOrEmpty(item.Name)
+                                && !string.IsNullOrEmpty(item.Value)
+                            )
                             {
                                 IsEmpty = false;
                                 break;
@@ -955,12 +1053,21 @@ namespace DiscordWebhookRemoteApp.Pages
                 if (expEmbedImages.IsExpanded)
                 {
                     //Image
-                    if (!string.IsNullOrEmpty(EntryEmbedImagesImageUrl.Text) && IsULCCheck(EntryEmbedImagesImageUrl.Text))
+                    if (
+                        !string.IsNullOrEmpty(EntryEmbedImagesImageUrl.Text)
+                        && IsULCCheck(EntryEmbedImagesImageUrl.Text)
+                    )
                         embed.Image = new EmbedMedia { Url = EntryEmbedImagesImageUrl.Text };
 
                     //Thumbnail
-                    if (!string.IsNullOrEmpty(EntryEmbedImagesThumbnailUrl.Text) && IsULCCheck(EntryEmbedImagesThumbnailUrl.Text))
-                        embed.Thumbnail = new EmbedMedia { Url = EntryEmbedImagesThumbnailUrl.Text };
+                    if (
+                        !string.IsNullOrEmpty(EntryEmbedImagesThumbnailUrl.Text)
+                        && IsULCCheck(EntryEmbedImagesThumbnailUrl.Text)
+                    )
+                        embed.Thumbnail = new EmbedMedia
+                        {
+                            Url = EntryEmbedImagesThumbnailUrl.Text
+                        };
 
                     //Embed image empty check
                     if (embed.Image != null || embed.Thumbnail != null)
@@ -982,8 +1089,7 @@ namespace DiscordWebhookRemoteApp.Pages
                     //Embed footer timestamp
                     if (cbFooterSendInstantTime.IsChecked)
                         embed.Timestamp = DateTime.Now;
-                    else
-                        if (EmbedFooterTimestampSelectedLbl.SavedDateTimeData != null)
+                    else if (EmbedFooterTimestampSelectedLbl.SavedDateTimeData != null)
                         embed.Timestamp = EmbedFooterTimestampSelectedLbl.SavedDateTimeData.Value;
 
                     //Embed footer empty check
@@ -1004,34 +1110,46 @@ namespace DiscordWebhookRemoteApp.Pages
                 return new DiscordEmbed { Description = "{Embed31Build31Hataya31Dustu31}" };
             }
         }
+
         private bool IsULCCheck(string url)
         {
             Uri uriResult;
-            bool isUrl = Uri.TryCreate(url, UriKind.Absolute, out uriResult)
-                         && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+            bool isUrl =
+                Uri.TryCreate(url, UriKind.Absolute, out uriResult)
+                && (
+                    uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps
+                );
             return isUrl;
         }
-
 
         private void btnSupportCancel_Clicked(object sender, EventArgs e)
         {
             popupInfoBack.IsVisible = false;
             Preferences.Set("SupportPopupDate", DateTime.Now);
         }
+
         private async void btnSupport_Clicked(object sender, EventArgs e)
         {
             popupInfoBack.IsVisible = false;
             Preferences.Set("SupportPopupDate", DateTime.Now);
             try
             {
-                await Browser.OpenAsync(new Uri("https://bit.ly/3pR7H0W"), BrowserLaunchMode.External);
+                await Browser.OpenAsync(
+                    new Uri("https://bit.ly/3pR7H0W"),
+                    BrowserLaunchMode.External
+                );
             }
-            catch { Debug.WriteLine("Support Browser Error"); }
+            catch
+            {
+                Debug.WriteLine("Support Browser Error");
+            }
         }
+
         private void DiscordButton_Clicked(object sender, EventArgs e)
         {
             References.discordClicked();
         }
+
         private async void FeedbackButton_Clicked(object sender, EventArgs e)
         {
             try
@@ -1047,10 +1165,7 @@ namespace DiscordWebhookRemoteApp.Pages
                     await DisplayAlert("Error!", "Something went wrong try again later.", "Ok");
                 }
             }
-            catch
-            {
-
-            }
+            catch { }
         }
     }
 }

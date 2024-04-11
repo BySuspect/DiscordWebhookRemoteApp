@@ -124,26 +124,48 @@
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
-                                    <Button
+                                    <StackLayout
                                         Grid.Column="1"
                                         Margin="0,5,10,5"
-                                        Padding="10,5,10,5"
-                                        xct:TouchEffect.NativeAnimation="true"
-                                        xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
-                                        xct:TouchEffect.PressedAnimationDuration="500"
-                                        xct:TouchEffect.PressedOpacity="0.6"
-                                        xct:TouchEffect.PressedScale="0.98"
-                                        BackgroundColor="Transparent"
-                                        BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
-                                        BorderWidth="1"
-                                        Clicked="webhookEditDelete_Clicked"
-                                        CornerRadius="15"
-                                        FontSize="Caption"
-                                        HeightRequest="40"
                                         HorizontalOptions="EndAndExpand"
-                                        Text="Edit &amp; Delete"
-                                        TextColor="{x:Static helpers:ThemeColors.TextColor}"
-                                        VerticalOptions="Center" />
+                                        Orientation="Vertical">
+                                        <Button
+                                            Padding="10,5,10,5"
+                                            xct:TouchEffect.NativeAnimation="true"
+                                            xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                                            xct:TouchEffect.PressedAnimationDuration="500"
+                                            xct:TouchEffect.PressedOpacity="0.6"
+                                            xct:TouchEffect.PressedScale="0.98"
+                                            BackgroundColor="Transparent"
+                                            BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                            BorderWidth="1"
+                                            Clicked="webhookEditDelete_Clicked"
+                                            CornerRadius="15"
+                                            FontSize="Caption"
+                                            HeightRequest="40"
+                                            HorizontalOptions="EndAndExpand"
+                                            Text="Edit &amp; Delete"
+                                            TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                                            VerticalOptions="Center" />
+                                        <Button
+                                            Padding="10,5,10,5"
+                                            xct:TouchEffect.NativeAnimation="true"
+                                            xct:TouchEffect.NativeAnimationColor="#2EFFCCA3"
+                                            xct:TouchEffect.PressedAnimationDuration="500"
+                                            xct:TouchEffect.PressedOpacity="0.6"
+                                            xct:TouchEffect.PressedScale="0.98"
+                                            BackgroundColor="Transparent"
+                                            BorderColor="{x:Static helpers:ThemeColors.BorderColor}"
+                                            BorderWidth="1"
+                                            Clicked="ExportWebhooks_Clicked"
+                                            CornerRadius="15"
+                                            FontSize="Caption"
+                                            HeightRequest="40"
+                                            HorizontalOptions="EndAndExpand"
+                                            Text="Export Webhooks"
+                                            TextColor="{x:Static helpers:ThemeColors.TextColor}"
+                                            VerticalOptions="Center" />
+                                    </StackLayout>
                                 </Grid>
                             </StackLayout>
                         </Frame>

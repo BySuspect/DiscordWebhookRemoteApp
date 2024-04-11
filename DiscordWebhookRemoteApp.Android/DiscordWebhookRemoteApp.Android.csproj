@@ -239,7 +239,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadUnhandledDeviceExceptionDiscordWebhookRemoteAppAndroidHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionDiscordWebhookRemoteAppAndroidHideInfoBar="True" XamarinHotReloadWrongLinkerErrorInfoBarDiscordWebhookRemoteAppAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadWrongLinkerErrorInfoBarDiscordWebhookRemoteAppAndroidHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionDiscordWebhookRemoteAppAndroidHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionDiscordWebhookRemoteAppAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
