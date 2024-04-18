@@ -37,6 +37,12 @@ public partial class EmbedsView : ContentView
         BindingContext = this;
     }
 
+    public Task ClearEmbeds()
+    {
+        Embeds = new ObservableCollection<EmbedView>();
+        return Task.CompletedTask;
+    }
+
     private async void EmbedEdit_Tapped(object sender, TappedEventArgs e)
     {
         var selected = (EmbedView)sender;
@@ -126,37 +132,49 @@ public partial class EmbedsView : ContentView
         if (Embeds.Count >= 10)
             return;
         addNewBtn.IsEnabled = false;
-        var res = await ApplicationService.ShowPopupAsync(new EmbedEditAndNewPopup());
-        if (res == null || res == "delete")
+        var resNewOrSelect = await ApplicationService.ShowPopupAsync(new EmbedNewAndSelectPopup());
+        if (resNewOrSelect is "Load")
         {
-            addNewBtn.IsEnabled = true;
-            return;
+            var resSelect = await ApplicationService.ShowPopupAsync(new SavedEmbedsViewPopup());
+            if (resSelect is not null)
+            {
+                addNewBtn.IsEnabled = true;
+            }
         }
-        var newEmbed = (EmbedView)res;
-        ReOrderList();
+        else if (resNewOrSelect is "New")
+        {
+            var resNew = await ApplicationService.ShowPopupAsync(new EmbedEditAndNewPopup());
+            if (resNew is null || resNew is "delete")
+            {
+                addNewBtn.IsEnabled = true;
+                return;
+            }
+            var newEmbed = (EmbedView)resNew;
+            ReOrderList();
 
-        var _list = Embeds.ToList();
-        _list.Add(
-            new EmbedView(
-                (_list.Count > 0) ? _list.Last().ID + 1 : 0,
-                (_list.Count > 0) ? _list.Last().Order + 1 : 1,
-                newEmbed.AuthorIcon,
-                newEmbed.AuthorName,
-                newEmbed.AuthorUrl,
-                newEmbed.BodyTitle,
-                newEmbed.BodyContent,
-                newEmbed.BodyUrl,
-                newEmbed.BodyColor,
-                newEmbed.Fields,
-                newEmbed.ImagesImageUrl,
-                newEmbed.ImagesThumbnailUrl,
-                newEmbed.FooterIcon,
-                newEmbed.FooterTitle,
-                newEmbed.FooterTimestamp,
-                newEmbed.IsEmpty
-            )
-        );
-        Embeds = _list.ToObservableCollection();
+            var _list = Embeds.ToList();
+            _list.Add(
+                new EmbedView(
+                    (_list.Count > 0) ? _list.Last().ID + 1 : 0,
+                    (_list.Count > 0) ? _list.Last().Order + 1 : 1,
+                    newEmbed.AuthorIcon,
+                    newEmbed.AuthorName,
+                    newEmbed.AuthorUrl,
+                    newEmbed.BodyTitle,
+                    newEmbed.BodyContent,
+                    newEmbed.BodyUrl,
+                    newEmbed.BodyColor,
+                    newEmbed.Fields,
+                    newEmbed.ImagesImageUrl,
+                    newEmbed.ImagesThumbnailUrl,
+                    newEmbed.FooterIcon,
+                    newEmbed.FooterTitle,
+                    newEmbed.FooterTimestamp,
+                    newEmbed.IsEmpty
+                )
+            );
+            Embeds = _list.ToObservableCollection();
+        }
         addNewBtn.IsEnabled = true;
     }
 
@@ -173,7 +191,7 @@ public partial class EmbedsView : ContentView
 }
 
 /*
-//TODO: ObservableCollection ile ve herbir embed viewi harici popup yada sayfada gösterilicek
+//TODO: ObservableCollection ile ve herbir embed viewi harici popup yada sayfada gï¿½sterilicek
     public static BindableProperty EmbedsProperty = BindableProperty.Create(
         nameof(Embeds),
         typeof(IEnumerable<Discord.Embed>),

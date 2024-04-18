@@ -42,7 +42,8 @@
                         <StackLayout
                             Margin="0,10"
                             HorizontalOptions="Center"
-                            Orientation="Horizontal">
+                            Orientation="Horizontal"
+                            Spacing="10">
                             <CustomItems:CustomButton
                                 x:Name="btnTest"
                                 BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
@@ -52,7 +53,21 @@
                                 CornerRadius="15"
                                 HorizontalOptions="Center"
                                 Text="Test"
-                                TextColor="{x:Static services:AppThemeColors.TextColor}" />
+                                TextColor="{x:Static services:AppThemeColors.TextColor}"
+                                VerticalOptions="Center"
+                                WidthRequest="70" />
+                            <CustomItems:CustomButton
+                                x:Name="btnClear"
+                                BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                                BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                                BorderWidth="1"
+                                Clicked="btnClear_Clicked"
+                                CornerRadius="15"
+                                HorizontalOptions="Center"
+                                Text="Clear"
+                                TextColor="{x:Static services:AppThemeColors.TextColor}"
+                                VerticalOptions="Center"
+                                WidthRequest="70" />
                             <CustomItems:CustomButton
                                 x:Name="btnSend"
                                 BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
@@ -62,7 +77,9 @@
                                 CornerRadius="15"
                                 HorizontalOptions="Center"
                                 Text="Send"
-                                TextColor="{x:Static services:AppThemeColors.TextColor}" />
+                                TextColor="{x:Static services:AppThemeColors.TextColor}"
+                                VerticalOptions="Center"
+                                WidthRequest="70" />
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>

@@ -53,6 +53,14 @@ public partial class FileSendView : ContentView
         BindingContext = this;
     }
 
+    public Task ClearFiles()
+    {
+        SelectedFiles = new ObservableCollection<FileSendViewItems>();
+        TotalFileCount = 0;
+        TotalFileSizeText = "0";
+        return Task.CompletedTask;
+    }
+
     private async void Select_Clicked(object sender, EventArgs e)
     {
         btnSelect.IsEnabled = false;

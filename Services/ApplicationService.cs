@@ -83,7 +83,11 @@ namespace DiscordWebhookRemoteApp.Services
             string? cancel = null
         )
         {
-            return (bool)await ShowPopupAsync(new CustomAlertPopup(title, content, ok, cancel));
+            var res = await ShowPopupAsync(new CustomAlertPopup(title, content, ok, cancel));
+            if (res is null)
+                return false;
+
+            return (bool)res;
         }
 
         public static void ShowCustomAlert(

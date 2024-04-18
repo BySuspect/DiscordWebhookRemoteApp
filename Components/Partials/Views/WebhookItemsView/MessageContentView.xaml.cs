@@ -13,4 +13,10 @@ public partial class MessageContentView : ContentView
         InitializeComponent();
         BindingContext = this;
     }
+
+    public Task ClearMessage()
+    {
+        MessageContent = string.Empty;
+        return Task.CompletedTask;
+    }
 }

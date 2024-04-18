@@ -25,7 +25,7 @@ public partial class MainPage : ContentPage
         if (!Preferences.Get("PrivacyPolicyV1Accepted", false))
             ApplicationService.ShowPopup(new PrivacyPolicyPopup());
 
-        //ApplicationService.ShowPopup(new ColorPickPopup());
+        //ApplicationService.ShowPopup(new EmbedNewAndSelectPopup());
     }
 
     private async void SendButton_Clicked(object sender, EventArgs e)
@@ -113,17 +113,32 @@ public partial class MainPage : ContentPage
         ApplicationService.HideLoadingView();
     }
 
+    private async void btnClear_Clicked(object sender, EventArgs e)
+    {
+        var res = await ApplicationService.ShowCustomAlertAsync(
+            "Clear All",
+            "Are you sure you want to clear all content?",
+            "Yes",
+            "No"
+        );
+        if (!res)
+            return;
+
+        await MessageContentView.ClearMessage();
+        await EmbedsView.ClearEmbeds();
+        await FileSendView.ClearFiles();
+    }
+
     private async void btnTest_Clicked(object sender, EventArgs e)
     {
         try
         {
             Console.WriteLine("Test Clicked");
-            var res = await ApplicationService.ShowPopupAsync(new ColorPickPopup(Colors.Red));
-            if (res == null)
+            var res = await ApplicationService.ShowPopupAsync(new EmbedNewAndSelectPopup());
+            if (res is null)
                 return;
 
-            var selectedColor = (Microsoft.Maui.Graphics.Color)res;
-            Console.WriteLine(selectedColor.ToHex());
+            Console.WriteLine(res);
         }
         catch (Exception ex)
         {
