@@ -43,12 +43,12 @@ public partial class FieldsView : ContentView
         var res = await ApplicationService.ShowPopupAsync(
             new EmbedFieldsEditAndNewPopup(selected.Name, selected.Value, selected.InLine)
         );
-        if (res == null)
+        if (res is null)
         {
             addNewBtn.IsEnabled = true;
             return;
         }
-        if (res == "delete")
+        if (res is "delete")
         {
             await DeleteField(selected);
             addNewBtn.IsEnabled = true;
@@ -99,7 +99,7 @@ public partial class FieldsView : ContentView
             return;
         addNewBtn.IsEnabled = false;
         var res = await ApplicationService.ShowPopupAsync(new EmbedFieldsEditAndNewPopup());
-        if (res == null || res == "delete")
+        if (res is null || res is "delete")
         {
             addNewBtn.IsEnabled = true;
             return;

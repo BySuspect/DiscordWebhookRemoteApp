@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="DiscordWebhookRemoteApp.Components.Popups.Embed.EmbedNewAndSelectPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
+    xmlns:CustomViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
+    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Color="Transparent">
+    <StackLayout MaximumWidthRequest="220" WidthRequest="220">
+        <Frame
+            Padding="0"
+            BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+            BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+            CornerRadius="15">
+            <StackLayout>
+                <Label
+                    x:Name="lblTitle"
+                    Margin="10,10,10,5"
+                    FontSize="Body"
+                    Text="Adding Embed"
+                    TextColor="{x:Static services:AppThemeColors.TextColor}" />
+                <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
+                <HorizontalStackLayout
+                    Margin="0,20"
+                    HorizontalOptions="Center"
+                    Spacing="10">
+                    <CustomItems:CustomButton
+                        x:Name="btnLoad"
+                        Grid.Column="0"
+                        BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                        BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                        BorderWidth="1"
+                        Clicked="btnLoad_Clicked"
+                        CornerRadius="15"
+                        FontSize="Caption"
+                        Text="Load"
+                        TextColor="{x:Static services:AppThemeColors.TextColor}"
+                        WidthRequest="70" />
+                    <CustomItems:CustomButton
+                        x:Name="btnNew"
+                        Grid.Column="1"
+                        BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                        BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                        BorderWidth="1"
+                        Clicked="btnNew_Clicked"
+                        CornerRadius="15"
+                        FontSize="Caption"
+                        Text="New"
+                        TextColor="{x:Static services:AppThemeColors.TextColor}"
+                        WidthRequest="70" />
+                </HorizontalStackLayout>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</toolkit:Popup>

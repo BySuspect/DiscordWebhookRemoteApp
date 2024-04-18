@@ -379,7 +379,7 @@ public partial class CustomColorPicker : ContentView
             using (
                 var shader = SKShader.CreateLinearGradient(
                     new SKPoint(0, 0),
-                    ColorFlowDirection == ColorFlowDirection.Horizontal
+                    ColorFlowDirection is ColorFlowDirection.Horizontal
                         ? new SKPoint(skCanvasWidth, 0)
                         : new SKPoint(0, skCanvasHeight),
                     colors.ToArray(),
@@ -405,7 +405,7 @@ public partial class CustomColorPicker : ContentView
             using (
                 var shader = SKShader.CreateLinearGradient(
                     new SKPoint(0, 0),
-                    ColorFlowDirection == ColorFlowDirection.Horizontal
+                    ColorFlowDirection is ColorFlowDirection.Horizontal
                         ? new SKPoint(0, skCanvasHeight)
                         : new SKPoint(skCanvasWidth, 0),
                     colors,
@@ -423,7 +423,7 @@ public partial class CustomColorPicker : ContentView
         // Represent the color of the current Touch point
         SKColor touchPointColor;
 
-        if (pendingPickedColor == null)
+        if (pendingPickedColor is null)
         {
             // The user hasn't explicitly specified the touchPoint color.
             // The touchPoint can therefore be calculated quickly.

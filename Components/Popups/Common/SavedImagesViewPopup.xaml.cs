@@ -37,7 +37,7 @@ public partial class SavedImagesViewPopup : Popup
         addNewBtn.IsEnabled = false;
         var res = await ApplicationService.ShowPopupAsync(new ImageEditAndViewPopup(string.Empty));
 
-        if (res == null || string.IsNullOrWhiteSpace((string)res))
+        if (res is null || string.IsNullOrWhiteSpace((string)res))
         {
             addNewBtn.IsEnabled = true;
             return;
@@ -67,7 +67,7 @@ public partial class SavedImagesViewPopup : Popup
                 _list.First(x => x.Id == int.Parse(selected.AutomationId)).ImageUrl
             )
         );
-        if (res == null)
+        if (res is null)
         {
             selected.IsEnabled = true;
             return;
@@ -75,20 +75,20 @@ public partial class SavedImagesViewPopup : Popup
 
         var resultType = ((SavedImagesEditOrViewPopupResult)res).ResultType;
 
-        if (resultType == SavedImagesEditOrViewPopupResultTypes.Delete)
+        if (resultType is SavedImagesEditOrViewPopupResultTypes.Delete)
         {
             _list.Remove(_list.First(x => x.Id == int.Parse(selected.AutomationId)));
             ImageList = _list.ToObservableCollection();
             selected.IsEnabled = true;
             return;
         }
-        if (resultType == SavedImagesEditOrViewPopupResultTypes.Select)
+        if (resultType is SavedImagesEditOrViewPopupResultTypes.Select)
         {
             Close(_list.First(x => x.Id == int.Parse(selected.AutomationId)).ImageUrl);
             selected.IsEnabled = true;
             return;
         }
-        if (resultType == SavedImagesEditOrViewPopupResultTypes.Save)
+        if (resultType is SavedImagesEditOrViewPopupResultTypes.Save)
         {
             _list.First(x => x.Id == int.Parse(selected.AutomationId)).ImageUrl = (
                 (SavedImagesEditOrViewPopupResult)res

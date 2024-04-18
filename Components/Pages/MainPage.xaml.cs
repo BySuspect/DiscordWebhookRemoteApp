@@ -25,12 +25,12 @@ public partial class MainPage : ContentPage
         if (!Preferences.Get("PrivacyPolicyV1Accepted", false))
             ApplicationService.ShowPopup(new PrivacyPolicyPopup());
 
-        //ApplicationService.ShowPopup(new EmbedNewAndSelectPopup());
+        //ApplicationService.ShowPopup(new SavedEmbedsViewPopup());
     }
 
     private async void SendButton_Clicked(object sender, EventArgs e)
     {
-        if (SavedWebhooksView.selectedWebhook == null)
+        if (SavedWebhooksView.selectedWebhook is null)
         {
             ApplicationService.ShowCustomAlert("Warning!", "Please select a webhook.", "Ok");
             return;
@@ -151,7 +151,7 @@ public partial class MainPage : ContentPage
         List<Discord.Embed> embeds = new List<Embed>();
         bool hasEmbeds = false;
 
-        if (EmbedsView.Embeds.Count() == 0)
+        if (EmbedsView.Embeds.Count() is 0)
             return Task.FromResult((new List<Discord.Embed>(), false));
 
         foreach (var embed in EmbedsView.Embeds)
@@ -229,11 +229,11 @@ public partial class MainPage : ContentPage
             "Open Link",
             "Copy Link"
         );
-        if (res == "Open Link")
+        if (res is "Open Link")
         {
             _ = Browser.OpenAsync(discorInviteShorten, BrowserLaunchMode.SystemPreferred);
         }
-        else if (res == "Copy Link")
+        else if (res is "Copy Link")
         {
             await Clipboard.SetTextAsync(discorInvite);
         }
@@ -248,7 +248,7 @@ public partial class MainPage : ContentPage
             "Cancel",
             "Import Webhooks"
         );
-        if (res == "Import Webhooks")
+        if (res is "Import Webhooks")
         {
             var webhooksData = await App.Current.MainPage.DisplayPromptAsync(
                 title: "Import Webhooks",

@@ -64,12 +64,12 @@ public partial class EmbedsView : ContentView
                 selected.FooterTimestamp
             )
         );
-        if (res == null)
+        if (res is null)
         {
             addNewBtn.IsEnabled = true;
             return;
         }
-        if (res == "delete")
+        if (res is "delete")
         {
             await DeleteEmbed(selected);
             addNewBtn.IsEnabled = true;
@@ -135,10 +135,34 @@ public partial class EmbedsView : ContentView
         var resNewOrSelect = await ApplicationService.ShowPopupAsync(new EmbedNewAndSelectPopup());
         if (resNewOrSelect is "Load")
         {
-            var resSelect = await ApplicationService.ShowPopupAsync(new SavedEmbedsViewPopup());
-            if (resSelect is not null)
+            var resSelected = await ApplicationService.ShowPopupAsync(new SavedEmbedsViewPopup());
+            if (resSelected is not null)
             {
-                addNewBtn.IsEnabled = true;
+                var newEmbed = (EmbedView)resSelected;
+                ReOrderList();
+
+                var _list = Embeds.ToList();
+                _list.Add(
+                    new EmbedView(
+                        (_list.Count > 0) ? _list.Last().ID + 1 : 0,
+                        (_list.Count > 0) ? _list.Last().Order + 1 : 1,
+                        newEmbed.AuthorIcon,
+                        newEmbed.AuthorName,
+                        newEmbed.AuthorUrl,
+                        newEmbed.BodyTitle,
+                        newEmbed.BodyContent,
+                        newEmbed.BodyUrl,
+                        newEmbed.BodyColor,
+                        newEmbed.Fields,
+                        newEmbed.ImagesImageUrl,
+                        newEmbed.ImagesThumbnailUrl,
+                        newEmbed.FooterIcon,
+                        newEmbed.FooterTitle,
+                        newEmbed.FooterTimestamp,
+                        newEmbed.IsEmpty
+                    )
+                );
+                Embeds = _list.ToObservableCollection();
             }
         }
         else if (resNewOrSelect is "New")
@@ -191,7 +215,7 @@ public partial class EmbedsView : ContentView
 }
 
 /*
-//TODO: ObservableCollection ile ve herbir embed viewi harici popup yada sayfada gï¿½sterilicek
+//TODO: ObservableCollection ile ve herbir embed viewi harici popup yada sayfada gösterilicek
     public static BindableProperty EmbedsProperty = BindableProperty.Create(
         nameof(Embeds),
         typeof(IEnumerable<Discord.Embed>),

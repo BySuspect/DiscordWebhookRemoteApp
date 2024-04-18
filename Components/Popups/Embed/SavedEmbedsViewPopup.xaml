@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="DiscordWebhookRemoteApp.Components.Popups.Embed.SavedEmbedsViewPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
+    xmlns:CustomViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
+    xmlns:embedView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView"
+    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    HorizontalOptions="Center"
+    VerticalOptions="Center"
+    Color="Transparent">
+    <VerticalStackLayout WidthRequest="340">
+        <Frame
+            Padding="10"
+            BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+            BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+            CornerRadius="15"
+            HeightRequest="{x:Static services:ScreenServices._70PercentHeight}"
+            HorizontalOptions="Fill">
+            <Grid>
+                <Frame
+                    Margin="5,20"
+                    Padding="0"
+                    CornerRadius="15">
+                    <CollectionView ItemsSource="{Binding EmbedList}" SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame
+                                    Margin="0,5"
+                                    Padding="10"
+                                    BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                                    CornerRadius="15"
+                                    VerticalOptions="Center">
+                                    <StackLayout Margin="5,0" Orientation="Horizontal">
+                                        <Label
+                                            FontSize="Caption"
+                                            Text="{Binding Title}"
+                                            TextColor="{x:Static services:AppThemeColors.TextColor}"
+                                            VerticalOptions="Center"
+                                            VerticalTextAlignment="Center" />
+                                        <Label
+                                            Margin="10,0"
+                                            FontSize="Caption"
+                                            IsVisible="{Binding IsEmpty}"
+                                            Text="IsEmpty"
+                                            TextColor="Red"
+                                            VerticalOptions="Center"
+                                            VerticalTextAlignment="Center" />
+                                        <HorizontalStackLayout HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                                            <Frame
+                                                Margin="5,0"
+                                                Padding="0"
+                                                AutomationId="{Binding ID}"
+                                                CornerRadius="90"
+                                                HeightRequest="24"
+                                                VerticalOptions="Center"
+                                                WidthRequest="24">
+                                                <Image
+                                                    HeightRequest="24"
+                                                    Source="editicon.png"
+                                                    WidthRequest="24">
+                                                    <Image.Behaviors>
+                                                        <toolkit:IconTintColorBehavior TintColor="{x:Static services:AppThemeColors.TextColor}" />
+                                                    </Image.Behaviors>
+                                                </Image>
+                                                <Frame.Behaviors>
+                                                    <toolkit:TouchBehavior PressedOpacity="0.8" PressedScale="0.9" />
+                                                </Frame.Behaviors>
+                                                <Frame.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Edit_Tapped" />
+                                                </Frame.GestureRecognizers>
+                                            </Frame>
+                                        </HorizontalStackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Frame>
+                <Frame
+                    x:Name="addNewBtn"
+                    Margin="15"
+                    Padding="0"
+                    BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                    BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                    CornerRadius="60"
+                    HeightRequest="48"
+                    HorizontalOptions="End"
+                    VerticalOptions="EndAndExpand"
+                    WidthRequest="48">
+                    <Image
+                        HeightRequest="32"
+                        Source="plusicon.png"
+                        WidthRequest="32" />
+                    <Frame.Behaviors>
+                        <toolkit:TouchBehavior PressedOpacity="0.8" PressedScale="0.9" />
+                    </Frame.Behaviors>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="AddNew_Tapped" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </Grid>
+        </Frame>
+    </VerticalStackLayout>
+</toolkit:Popup>

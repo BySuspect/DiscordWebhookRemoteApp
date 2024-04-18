@@ -66,7 +66,7 @@ public partial class BodyView : ContentView
     private async void BodyColor_Tapped(object sender, TappedEventArgs e)
     {
         var res = await ApplicationService.ShowPopupAsync(new ColorPickPopup(bvColor.Color));
-        if (res == null)
+        if (res is null)
             return;
 
         var selectedColor = (Microsoft.Maui.Graphics.Color)res;

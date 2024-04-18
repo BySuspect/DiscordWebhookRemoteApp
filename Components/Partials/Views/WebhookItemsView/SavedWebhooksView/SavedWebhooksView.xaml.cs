@@ -126,7 +126,7 @@ public partial class SavedWebhooksView : ContentView
     )
     {
         ApplicationService.ShowLoadingView();
-        if (e.NewItem == null)
+        if (e.NewItem is null)
         {
             //deleting
             var _list = SavedWebhooks.ToList();

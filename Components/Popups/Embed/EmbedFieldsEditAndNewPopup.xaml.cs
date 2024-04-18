@@ -39,7 +39,7 @@ public partial class EmbedFieldsEditAndNewPopup : Popup
             "Yes",
             "No"
         );
-        if (res == null || !res)
+        if (!res)
         {
             btnDelete.IsEnabled = true;
             return;

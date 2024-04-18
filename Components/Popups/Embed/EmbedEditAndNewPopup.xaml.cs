@@ -9,6 +9,7 @@ namespace DiscordWebhookRemoteApp.Components.Popups.Embed;
 public partial class EmbedEditAndNewPopup : Popup
 {
     private bool isEditMode = false;
+    private bool isSavingMode = false;
 
     public EmbedEditAndNewPopup(
         string authorIcon,
@@ -23,7 +24,9 @@ public partial class EmbedEditAndNewPopup : Popup
         string imagesThumbnailUrl,
         string footerIcon,
         string footerTitle,
-        bool footerTimestamp
+        bool footerTimestamp,
+        bool isEditMode = false,
+        bool isSavingMode = false
     )
     {
         InitializeComponent();
@@ -42,6 +45,14 @@ public partial class EmbedEditAndNewPopup : Popup
         _footerView.FooterIcon = footerIcon;
         _footerView.FooterTitle = footerTitle;
         _footerView.FooterTimestamp = footerTimestamp;
+
+        this.isEditMode = isEditMode;
+        this.isSavingMode = isSavingMode;
+
+        if (isSavingMode)
+        {
+            btnSelect.IsVisible = true;
+        }
     }
 
     public EmbedEditAndNewPopup()
@@ -64,7 +75,7 @@ public partial class EmbedEditAndNewPopup : Popup
             "Yes",
             "No"
         );
-        if (res == null || !res)
+        if (!res)
         {
             btnDelete.IsEnabled = true;
             return;
@@ -126,5 +137,10 @@ public partial class EmbedEditAndNewPopup : Popup
                 isEmpty
             )
         );
+    }
+
+    private async void btnSelect_Clicked(object sender, EventArgs e)
+    {
+        await CloseAsync("select");
     }
 }

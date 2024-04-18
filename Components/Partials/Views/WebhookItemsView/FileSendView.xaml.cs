@@ -73,7 +73,7 @@ public partial class FileSendView : ContentView
                 new PickOptions { PickerTitle = "Select Files", }
             );
 
-            if (result == null)
+            if (result is null)
             {
                 btnSelect.IsEnabled = true;
                 ApplicationService.HideLoadingView();

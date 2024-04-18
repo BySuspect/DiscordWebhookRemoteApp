@@ -30,8 +30,9 @@ public partial class SavedWebhookAddOrEditPopup : Popup
         webhookUrl = item.WebhookUrl;
 
         entryWebhookUrl.Text = item.WebhookUrl;
-        entryImageUrl.Text =
-            item.ImageSource == "discordlogo.png" ? string.Empty : item.ImageSource;
+        entryImageUrl.Text = item.ImageSource is "discordlogo.png"
+            ? string.Empty
+            : item.ImageSource;
         entryName.Text = item.Name;
     }
 

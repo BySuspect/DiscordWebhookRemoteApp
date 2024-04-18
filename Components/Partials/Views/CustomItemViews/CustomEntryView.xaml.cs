@@ -108,22 +108,22 @@ public partial class CustomEntryView : ContentView
             {
                 validationType = value;
 
-                if (value == ValidationType.ColorHex)
+                if (value is ValidationType.ColorHex)
                 {
                     Input.Behaviors.Clear();
                     Input.Behaviors.Add(new InputBehaviors.ColorHexValidatorBehaviour());
                 }
-                else if (value == ValidationType.Url)
+                else if (value is ValidationType.Url)
                 {
                     Input.Behaviors.Clear();
                     Input.Behaviors.Add(new InputBehaviors.UrlValidatorBehaviour());
                 }
-                else if (value == ValidationType.ImageUrl)
+                else if (value is ValidationType.ImageUrl)
                 {
                     Input.Behaviors.Clear();
                     Input.Behaviors.Add(new InputBehaviors.ImageUrlValidatorBehaviour());
                 }
-                else if (value == ValidationType.WebhookUrl)
+                else if (value is ValidationType.WebhookUrl)
                 {
                     Input.Behaviors.Clear();
                     Input.Behaviors.Add(new InputBehaviors.WebhookUrlValidatorBehaviour());
