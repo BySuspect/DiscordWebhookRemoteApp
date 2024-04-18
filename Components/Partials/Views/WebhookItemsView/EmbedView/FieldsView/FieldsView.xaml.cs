@@ -34,6 +34,7 @@ public partial class FieldsView : ContentView
     {
         InitializeComponent();
         BindingContext = this;
+        ReOrderList();
     }
 
     private async void FieldEdit_Tapped(object sender, TappedEventArgs e)
@@ -121,14 +122,17 @@ public partial class FieldsView : ContentView
         addNewBtn.IsEnabled = true;
     }
 
-    private void ReOrderList()
+    public Task ReOrderList()
     {
         var _list = Fields.ToList();
+        if (_list.Count is 0)
+            return Task.CompletedTask;
         _list.OrderBy(x => x.ID);
         for (int i = 0; i < _list.Count; i++)
         {
             _list[i].Order = i + 1;
         }
         Fields = _list.ToObservableCollection();
+        return Task.CompletedTask;
     }
 }

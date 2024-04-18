@@ -25,7 +25,9 @@ public partial class MainPage : ContentPage
         if (!Preferences.Get("PrivacyPolicyV1Accepted", false))
             ApplicationService.ShowPopup(new PrivacyPolicyPopup());
 
-        //ApplicationService.ShowPopup(new SavedEmbedsViewPopup());
+        /*ApplicationService.ShowPopup(
+            new CustomInputPopup("title", "input", "placeholder", "ok", "cancel", 24, true, true)
+        );/**/
     }
 
     private async void SendButton_Clicked(object sender, EventArgs e)

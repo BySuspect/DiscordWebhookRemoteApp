@@ -46,6 +46,8 @@ public partial class EmbedEditAndNewPopup : Popup
         _footerView.FooterTitle = footerTitle;
         _footerView.FooterTimestamp = footerTimestamp;
 
+        _fieldsView.ReOrderList();
+
         this.isEditMode = isEditMode;
         this.isSavingMode = isSavingMode;
 

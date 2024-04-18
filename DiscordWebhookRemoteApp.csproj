@@ -209,6 +209,9 @@
         <MauiXaml Update="Components\Popups\Common\CustomAlertPopup.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
+        <MauiXaml Update="Components\Popups\Common\CustomInputPopup.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
         <MauiXaml Update="Components\Popups\Common\LoadingViewPopup.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>

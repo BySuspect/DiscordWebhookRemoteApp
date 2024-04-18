@@ -202,15 +202,18 @@ public partial class EmbedsView : ContentView
         addNewBtn.IsEnabled = true;
     }
 
-    private void ReOrderList()
+    public Task ReOrderList()
     {
         var _list = Embeds.ToList();
+        if (_list.Count is 0)
+            return Task.CompletedTask;
         _list.OrderBy(x => x.ID);
         for (int i = 0; i < _list.Count; i++)
         {
             _list[i].Order = i + 1;
         }
         Embeds = _list.ToObservableCollection();
+        return Task.CompletedTask;
     }
 }
 

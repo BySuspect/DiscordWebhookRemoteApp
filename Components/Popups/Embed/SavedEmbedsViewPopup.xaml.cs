@@ -44,13 +44,19 @@ public partial class SavedEmbedsViewPopup : Popup
             return;
         }
         var newEmbed = (EmbedView)resNew;
-
         var _list = EmbedList.ToList();
+
+        var resTitle = await ApplicationService.ShowPopupAsync(
+            new CustomInputPopup("Embed Name?", "", "name", "Ok", "Cancel", 24, true, true)
+        );
+        if (resTitle is null)
+            resTitle = "Embed";
+
         _list.Add(
             new SavedEmbedsItems
             {
                 ID = (_list.Count > 0) ? _list.Last().ID + 1 : 0,
-                Title = "test",
+                Title = (string)resTitle,
                 AuthorIcon = newEmbed.AuthorIcon,
                 AuthorName = newEmbed.AuthorName,
                 AuthorUrl = newEmbed.AuthorUrl,
@@ -165,6 +171,22 @@ public partial class SavedEmbedsViewPopup : Popup
         var editedEmbed = (EmbedView)res;
         var _list = EmbedList.ToList();
 
+        var resTitle = await ApplicationService.ShowPopupAsync(
+            new CustomInputPopup(
+                "Embed Name?",
+                _list.First(x => x.ID == selected.ID).Title,
+                "name",
+                "Ok",
+                "Cancel",
+                24,
+                true,
+                true
+            )
+        );
+        if (resTitle is null)
+            resTitle = _list.First(x => x.ID == selected.ID).Title;
+
+        _list.First(x => x.ID == selected.ID).Title = (string)resTitle;
         _list.First(x => x.ID == selected.ID).AuthorIcon = editedEmbed.AuthorIcon;
         _list.First(x => x.ID == selected.ID).AuthorName = editedEmbed.AuthorName;
         _list.First(x => x.ID == selected.ID).AuthorUrl = editedEmbed.AuthorUrl;
