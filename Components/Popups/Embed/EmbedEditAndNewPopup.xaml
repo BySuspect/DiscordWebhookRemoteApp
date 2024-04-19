@@ -58,7 +58,7 @@
                         HorizontalOptions="Center"
                         Text="Delete"
                         TextColor="{x:Static services:AppThemeColors.TextColor}"
-                        WidthRequest="70" />
+                        WidthRequest="80" />
                     <CustomItems:CustomButton
                         x:Name="btnSave"
                         Margin="5,5,5,0"
@@ -70,7 +70,7 @@
                         HorizontalOptions="Center"
                         Text="Save"
                         TextColor="{x:Static services:AppThemeColors.TextColor}"
-                        WidthRequest="70" />
+                        WidthRequest="80" />
                     <CustomItems:CustomButton
                         x:Name="btnSelect"
                         Margin="5,5,5,0"
@@ -83,7 +83,7 @@
                         IsVisible="false"
                         Text="Select"
                         TextColor="{x:Static services:AppThemeColors.TextColor}"
-                        WidthRequest="70" />
+                        WidthRequest="80" />
                 </HorizontalStackLayout>
             </StackLayout>
         </Frame>
