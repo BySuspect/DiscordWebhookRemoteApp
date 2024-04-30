@@ -1,6 +1,8 @@
 using System.Collections.ObjectModel;
+
 using CommunityToolkit.Maui.Core.Extensions;
 using CommunityToolkit.Maui.Views;
+
 using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView;
 using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FieldsView;
 
@@ -26,7 +28,8 @@ public partial class EmbedEditAndNewPopup : Popup
         string footerTitle,
         bool footerTimestamp,
         bool isEditMode = false,
-        bool isSavingMode = false
+        bool isSavingMode = false,
+        string type = null
     )
     {
         InitializeComponent();
@@ -55,6 +58,9 @@ public partial class EmbedEditAndNewPopup : Popup
         {
             btnSelect.IsVisible = true;
         }
+
+        if (type is "View")
+            btnSelect.IsVisible = false;
     }
 
     public EmbedEditAndNewPopup()

@@ -45,7 +45,7 @@
         <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
         <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
         <ApplicationVersion>8</ApplicationVersion>
-        <AndroidUseAapt2>False</AndroidUseAapt2>
+        <AndroidUseAapt2>True</AndroidUseAapt2>
         <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
         <AndroidPackageFormat>apk</AndroidPackageFormat>
     </PropertyGroup>
@@ -128,6 +128,7 @@
         <None Remove="Resources\Images\discordlogo.png" />
         <None Remove="Resources\Images\editicon.png" />
         <None Remove="Resources\Images\imageerroricon.png" />
+        <None Remove="Resources\Images\menuicon.png" />
         <None Remove="Resources\Images\plusicon.png" />
         <None Remove="Resources\Images\settingsicon.png" />
         <None Remove="Resources\Splash\splash_logo.png" />
@@ -136,12 +137,12 @@
     <ItemGroup>
         <PackageReference Include="CommunityToolkit.Maui" Version="8.0.1" />
         <PackageReference Include="Discord.Net.Webhook" Version="3.14.1" />
-        <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.14" />
-        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.14" />
+        <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.21" />
+        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.21" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-        <PackageReference Include="Plugin.MauiMTAdmob" Version="1.4.1" />
-        <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.7" />
+        <PackageReference Include="Plugin.MauiMTAdmob" Version="1.4.2" />
+        <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.8" />
         <PackageReference Include="Xamarin.Google.iOS.MobileAds" Version="8.13.0.3" />
     </ItemGroup>
 
@@ -235,6 +236,9 @@
         </MauiXaml>
         <MauiXaml Update="Components\Popups\Embed\SavedEmbedsViewPopup.xaml">
             <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Components\Popups\Menu\MenuViewPopup.xaml">
+          <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Popups\Webhook\SavedWebhookAddOrEditPopup.xaml">
             <Generator>MSBuild:Compile</Generator>

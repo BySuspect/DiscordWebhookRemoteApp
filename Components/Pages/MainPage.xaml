@@ -19,7 +19,6 @@
         <toolkit:StatusBarBehavior StatusBarColor="{x:Static services:AppThemeColors.BackgroundColor}" StatusBarStyle="{x:Static services:AppThemeColors.StatusBarStyle}" />
     </ContentPage.Behaviors>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Clicked="Settings_Clicked" IconImageSource="settingsicon.png" />
         <ToolbarItem Clicked="Discord_Clicked" IconImageSource="discordlogo.png" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
@@ -37,66 +36,84 @@
                             <controls:MTAdView AdsId="ca-app-pub-3881259676793306/1418745998" HeightRequest="{OnIdiom Phone=50, Tablet=90}" />
                         </StackLayout>
                     </ScrollView>
-                    <StackLayout VerticalOptions="End">
+                    <StackLayout HorizontalOptions="Fill" VerticalOptions="End">
                         <BoxView HeightRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
-                        <StackLayout
-                            Margin="0,10"
-                            HorizontalOptions="Center"
-                            Orientation="Horizontal"
-                            Spacing="10">
-                            <CustomItems:CustomButton
-                                x:Name="btnTest"
-                                BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
-                                BorderColor="{x:Static services:AppThemeColors.BorderColor}"
-                                BorderWidth="1"
-                                Clicked="btnTest_Clicked"
-                                CornerRadius="15"
+                        <Grid Margin="0,10" VerticalOptions="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout
+                                Grid.Column="0"
                                 HorizontalOptions="Center"
-                                Text="Test"
-                                TextColor="{x:Static services:AppThemeColors.TextColor}"
-                                VerticalOptions="Center"
-                                WidthRequest="70" />
-                            <CustomItems:CustomButton
-                                x:Name="btnClear"
-                                BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
-                                BorderColor="{x:Static services:AppThemeColors.BorderColor}"
-                                BorderWidth="1"
-                                Clicked="btnClear_Clicked"
-                                CornerRadius="15"
+                                VerticalOptions="Center" />
+                            <HorizontalStackLayout
+                                Grid.Column="1"
                                 HorizontalOptions="Center"
-                                Text="Clear"
-                                TextColor="{x:Static services:AppThemeColors.TextColor}"
+                                Spacing="10"
+                                VerticalOptions="Center">
+                                <CustomItems:CustomButton
+                                    x:Name="btnTest"
+                                    BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                                    BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                                    BorderWidth="1"
+                                    Clicked="btnTest_Clicked"
+                                    CornerRadius="15"
+                                    HorizontalOptions="Center"
+                                    Text="Test"
+                                    TextColor="{x:Static services:AppThemeColors.TextColor}"
+                                    VerticalOptions="Center"
+                                    WidthRequest="70" />
+                                <CustomItems:CustomButton
+                                    x:Name="btnClear"
+                                    BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                                    BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                                    BorderWidth="1"
+                                    Clicked="btnClear_Clicked"
+                                    CornerRadius="15"
+                                    HorizontalOptions="Center"
+                                    Text="Clear"
+                                    TextColor="{x:Static services:AppThemeColors.TextColor}"
+                                    VerticalOptions="Center"
+                                    WidthRequest="70" />
+                                <CustomItems:CustomButton
+                                    x:Name="btnSend"
+                                    BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                                    BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                                    BorderWidth="1"
+                                    Clicked="SendButton_Clicked"
+                                    CornerRadius="15"
+                                    HorizontalOptions="Center"
+                                    Text="Send"
+                                    TextColor="{x:Static services:AppThemeColors.TextColor}"
+                                    VerticalOptions="Center"
+                                    WidthRequest="70" />
+                            </HorizontalStackLayout>
+                            <Image
+                                Grid.Column="2"
+                                Margin="0,0,10,0"
+                                HeightRequest="32"
+                                HorizontalOptions="End"
+                                Source="menuicon.png"
                                 VerticalOptions="Center"
-                                WidthRequest="70" />
-                            <CustomItems:CustomButton
-                                x:Name="btnSend"
-                                BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
-                                BorderColor="{x:Static services:AppThemeColors.BorderColor}"
-                                BorderWidth="1"
-                                Clicked="SendButton_Clicked"
-                                CornerRadius="15"
-                                HorizontalOptions="Center"
-                                Text="Send"
-                                TextColor="{x:Static services:AppThemeColors.TextColor}"
-                                VerticalOptions="Center"
-                                WidthRequest="70" />
-                        </StackLayout>
+                                WidthRequest="32">
+                                <Image.Behaviors>
+                                    <toolkit:IconTintColorBehavior TintColor="{x:Static services:AppThemeColors.BorderColor}" />
+                                    <toolkit:TouchBehavior PressedOpacity="0.9" PressedScale="0.8" />
+                                </Image.Behaviors>
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Menu_Tapped" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Grid>
                     </StackLayout>
                 </StackLayout>
                 <CustomViews:CustomLoadingView IsVisible="False" />
             </Grid>
-            <!--<StackLayout>
-                <BoxView
-                    Margin="0"
-                    HeightRequest="1"
-                    HorizontalOptions="Fill"
-                    Color="{x:Static services:AppThemeColors.BorderColor}" />
-                <controls:MTAdView
-                    x:Name="adsBottom"
-                    AdsId="ca-app-pub-3881259676793306/1418745998"
-                    HeightRequest="{OnIdiom Phone=50,
-                                            Tablet=90}" />
-            </StackLayout>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

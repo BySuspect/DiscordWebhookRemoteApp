@@ -27,18 +27,18 @@ namespace DiscordWebhookRemoteApp.Services
 
         private static void LightTheme()
         {
-            AppThemeColors.TextColor = Color.FromHex("#000000");
-            AppThemeColors.BorderColor = Color.FromHex("#000000");
-            AppThemeColors.BackgroundColor = Color.FromHex("#FFFFFF");
+            AppThemeColors.TextColor = Color.Parse("#000000");
+            AppThemeColors.BorderColor = Color.Parse("#000000");
+            AppThemeColors.BackgroundColor = Color.Parse("#FFFFFF");
             AppThemeColors.StatusBarStyle = StatusBarStyle.DarkContent;
             AppThemeColors.backgroundImg = null;
         }
 
         private static void DarkTheme()
         {
-            AppThemeColors.TextColor = Color.FromHex("#FFFFFF");
-            AppThemeColors.BorderColor = Color.FromHex("#E6B8B8B8");
-            AppThemeColors.BackgroundColor = Color.FromHex("#101010");
+            AppThemeColors.TextColor = Color.Parse("#FFFFFF");
+            AppThemeColors.BorderColor = Color.Parse("#E6B8B8B8");
+            AppThemeColors.BackgroundColor = Color.Parse("#101010");
             AppThemeColors.StatusBarStyle = StatusBarStyle.LightContent;
             AppThemeColors.backgroundImg = null;
         }

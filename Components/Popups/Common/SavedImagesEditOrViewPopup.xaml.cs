@@ -1,15 +1,20 @@
 using System.Text.RegularExpressions;
+
 using CommunityToolkit.Maui.Views;
+
 using DiscordWebhookRemoteApp.Components.Partials.InputBehaviors;
 
 namespace DiscordWebhookRemoteApp.Components.Popups.Common;
 
 public partial class SavedImagesEditOrViewPopup : Popup
 {
-    public SavedImagesEditOrViewPopup(string imageUrl)
+    public SavedImagesEditOrViewPopup(string imageUrl, string type = null)
     {
         InitializeComponent();
         entryImageUrl.Text = imageUrl;
+
+        if (type is "View")
+            btnLoad.IsVisible = false;
     }
 
     private async void Load_Clicked(object sender, EventArgs e)

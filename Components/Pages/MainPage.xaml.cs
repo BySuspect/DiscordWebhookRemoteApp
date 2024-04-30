@@ -1,7 +1,10 @@
 using CommunityToolkit.Maui.Alerts;
+
 using Discord;
+
 using DiscordWebhookRemoteApp.Components.Popups.Common;
 using DiscordWebhookRemoteApp.Components.Popups.Embed;
+using DiscordWebhookRemoteApp.Components.Popups.Menu;
 
 namespace DiscordWebhookRemoteApp.Components.Pages;
 
@@ -26,7 +29,7 @@ public partial class MainPage : ContentPage
             ApplicationService.ShowPopup(new PrivacyPolicyPopup());
 
         /*ApplicationService.ShowPopup(
-            new CustomInputPopup("title", "input", "placeholder", "ok", "cancel", 24, true, true)
+            new MenuViewPopup()
         );/**/
     }
 
@@ -136,11 +139,7 @@ public partial class MainPage : ContentPage
         try
         {
             Console.WriteLine("Test Clicked");
-            var res = await ApplicationService.ShowPopupAsync(new EmbedNewAndSelectPopup());
-            if (res is null)
-                return;
 
-            Console.WriteLine(res);
         }
         catch (Exception ex)
         {
@@ -242,26 +241,8 @@ public partial class MainPage : ContentPage
         #endregion
     }
 
-    private async void Settings_Clicked(object sender, EventArgs e)
+    private void Menu_Tapped(object sender, TappedEventArgs e)
     {
-        var res = await App.Current.MainPage.DisplayActionSheet(
-            "Settings",
-            string.Empty,
-            "Cancel",
-            "Import Webhooks"
-        );
-        if (res is "Import Webhooks")
-        {
-            var webhooksData = await App.Current.MainPage.DisplayPromptAsync(
-                title: "Import Webhooks",
-                message: "Paste your webhooks data here",
-                placeholder: "Webhooks Data"
-            );
-            if (webhooksData != null)
-            {
-                await WebhookService.ImportSavedWebhoksFromOldApp(webhooksData);
-                await SavedWebhooksView.RefreshList();
-            }
-        }
+        ApplicationService.ShowPopup(new MenuViewPopup(SavedWebhooksView));
     }
 }

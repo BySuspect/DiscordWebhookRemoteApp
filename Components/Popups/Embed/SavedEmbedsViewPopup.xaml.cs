@@ -1,7 +1,9 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel.Design;
+
 using CommunityToolkit.Maui.Core.Extensions;
 using CommunityToolkit.Maui.Views;
+
 using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView;
 using DiscordWebhookRemoteApp.Components.Popups.Common;
 
@@ -21,12 +23,15 @@ public partial class SavedEmbedsViewPopup : Popup
         }
     }
 
-    public SavedEmbedsViewPopup()
+    private string type;
+
+    public SavedEmbedsViewPopup(string type = null)
     {
         InitializeComponent();
         EmbedList = SavedEmbedsService.SavedEmbeds.ToObservableCollection();
-
         BindingContext = this;
+
+        this.type = type;
     }
 
     private void Dismiss_Tapped(object sender, TappedEventArgs e)
@@ -118,7 +123,8 @@ public partial class SavedEmbedsViewPopup : Popup
                 selected.FooterTitle,
                 selected.FooterTimestamp,
                 true,
-                true
+                true,
+                type
             )
         );
         if (res is null)
