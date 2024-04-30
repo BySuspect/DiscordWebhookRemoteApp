@@ -1,10 +1,8 @@
 using CommunityToolkit.Maui.Alerts;
-
-using Discord;
-
 using DiscordWebhookRemoteApp.Components.Popups.Common;
-using DiscordWebhookRemoteApp.Components.Popups.Embed;
 using DiscordWebhookRemoteApp.Components.Popups.Menu;
+using Discord;
+using DiscordWebhookRemoteApp.Components.Popups.Message;
 
 namespace DiscordWebhookRemoteApp.Components.Pages;
 
@@ -28,8 +26,8 @@ public partial class MainPage : ContentPage
         if (!Preferences.Get("PrivacyPolicyV1Accepted", false))
             ApplicationService.ShowPopup(new PrivacyPolicyPopup());
 
-        /*ApplicationService.ShowPopup(
-            new MenuViewPopup()
+        ApplicationService.ShowPopup(
+            new MessagePreviewPopup()
         );/**/
     }
 
@@ -139,6 +137,7 @@ public partial class MainPage : ContentPage
         try
         {
             Console.WriteLine("Test Clicked");
+            ApplicationService.ShowPopup(new MessagePreviewPopup());
 
         }
         catch (Exception ex)
@@ -243,6 +242,6 @@ public partial class MainPage : ContentPage
 
     private void Menu_Tapped(object sender, TappedEventArgs e)
     {
-        ApplicationService.ShowPopup(new MenuViewPopup(SavedWebhooksView));
+        ApplicationService.ShowPopup(new MessagePreviewPopupViews(SavedWebhooksView));
     }
 }

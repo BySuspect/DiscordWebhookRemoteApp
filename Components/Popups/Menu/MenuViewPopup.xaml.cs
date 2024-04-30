@@ -6,10 +6,10 @@ using DiscordWebhookRemoteApp.Components.Popups.Embed;
 
 namespace DiscordWebhookRemoteApp.Components.Popups.Menu;
 
-public partial class MenuViewPopup : Popup
+public partial class MessagePreviewPopupViews : Popup
 {
     private SavedWebhooksView savedWebhooksView;
-    public MenuViewPopup(SavedWebhooksView swView = null)
+    public MessagePreviewPopupViews(SavedWebhooksView swView = null)
     {
         InitializeComponent();
         savedWebhooksView = swView;

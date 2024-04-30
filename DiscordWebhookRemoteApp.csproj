@@ -168,6 +168,24 @@
         <MauiXaml Update="Components\Partials\Views\CustomItemViews\CustomLoadingView.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
+        <MauiXaml Update="Components\Partials\Views\MessagePreviewPopupViews\EmbedView\EmbedAuthorView.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Components\Partials\Views\MessagePreviewPopupViews\EmbedView\EmbedBodyView.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Components\Partials\Views\MessagePreviewPopupViews\EmbedView\EmbedFieldsView.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Components\Partials\Views\MessagePreviewPopupViews\EmbedView\EmbedFooterView.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Components\Partials\Views\MessagePreviewPopupViews\EmbedView\EmbedPreviewView.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Components\Partials\Views\MessagePreviewPopupViews\MessageView.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
         <MauiXaml Update="Components\Partials\Views\WebhookItemsView\EmbedView\AuthorView\AuthorView.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
@@ -240,6 +258,9 @@
         <MauiXaml Update="Components\Popups\Menu\MenuViewPopup.xaml">
           <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
+        <MauiXaml Update="Components\Popups\Message\MessagePreviewPopup.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
         <MauiXaml Update="Components\Popups\Webhook\SavedWebhookAddOrEditPopup.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
@@ -294,10 +315,6 @@
         <None Update="Components\Partials\Views\WebhookItemsView\WebhookProfileView\WebhookProfileView.xaml">
             <Generator>MSBuild:Compile</Generator>
         </None>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Folder Include="Components\Partials\Views\PopupViews\" />
     </ItemGroup>
 
     <ItemGroup>
