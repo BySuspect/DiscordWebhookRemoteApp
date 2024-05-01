@@ -9,10 +9,23 @@
     xmlns:local="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.MessagePreviewPopupViews.EmbedView"
     xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
+    <VerticalStackLayout Margin="0,20,0,0">
+        <Frame
+            Padding="0"
+            CornerRadius="10"
+            WidthRequest="245">
+            <HorizontalStackLayout>
+                <BoxView
+                    VerticalOptions="FillAndExpand"
+                    WidthRequest="3"
+                    Color="White" />
+                <StackLayout Margin="10,10,10,10">
+                    <local:EmbedAuthorView x:Name="authorView" />
+                    <local:EmbedBodyView x:Name="bodyView" />
+                    <local:EmbedFieldsView x:Name="fieldsView" />
+                    <local:EmbedFooterView x:Name="footerView" />
+                </StackLayout>
+            </HorizontalStackLayout>
+        </Frame>
     </VerticalStackLayout>
 </ContentView>

@@ -1,8 +1,6 @@
 using System.Collections.ObjectModel;
-
 using CommunityToolkit.Maui.Core.Extensions;
 using CommunityToolkit.Maui.Views;
-
 using static DiscordWebhookRemoteApp.Components.Popups.Common.SavedImagesEditOrViewPopup;
 
 namespace DiscordWebhookRemoteApp.Components.Popups.Common;
@@ -68,8 +66,9 @@ public partial class SavedImagesViewPopup : Popup
 
         var res = await ApplicationService.ShowPopupAsync(
             new SavedImagesEditOrViewPopup(
-                _list.First(x => x.Id == int.Parse(selected.AutomationId)).ImageUrl
-            , type)
+                _list.First(x => x.Id == int.Parse(selected.AutomationId)).ImageUrl,
+                type
+            )
         );
         if (res is null)
         {

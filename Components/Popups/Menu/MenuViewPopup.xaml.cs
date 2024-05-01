@@ -1,5 +1,4 @@
 using CommunityToolkit.Maui.Views;
-
 using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWebhooksView;
 using DiscordWebhookRemoteApp.Components.Popups.Common;
 using DiscordWebhookRemoteApp.Components.Popups.Embed;
@@ -9,6 +8,7 @@ namespace DiscordWebhookRemoteApp.Components.Popups.Menu;
 public partial class MessagePreviewPopupViews : Popup
 {
     private SavedWebhooksView savedWebhooksView;
+
     public MessagePreviewPopupViews(SavedWebhooksView swView = null)
     {
         InitializeComponent();
@@ -34,10 +34,10 @@ public partial class MessagePreviewPopupViews : Popup
     {
         this.Close();
         var webhooksData = await App.Current.MainPage.DisplayPromptAsync(
-                title: "Import Webhooks",
-                message: "Paste your webhooks data here",
-                placeholder: "Webhooks Data"
-            );
+            title: "Import Webhooks",
+            message: "Paste your webhooks data here",
+            placeholder: "Webhooks Data"
+        );
         if (webhooksData != null)
         {
             await WebhookService.ImportSavedWebhoksFromOldApp(webhooksData);

@@ -12,7 +12,7 @@
     Color="Transparent">
     <StackLayout WidthRequest="340">
         <Frame
-            Padding="10"
+            Padding="5"
             BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
             BorderColor="{x:Static services:AppThemeColors.BorderColor}"
             CornerRadius="15"
@@ -24,23 +24,20 @@
                         Margin="10,10,20,0"
                         Padding="0"
                         CornerRadius="255"
-                        HeightRequest="48"
+                        HeightRequest="40"
                         VerticalOptions="Start"
-                        WidthRequest="48">
+                        WidthRequest="40">
                         <Image
-                            HeightRequest="48"
+                            HeightRequest="40"
                             Source="https://i.imgur.com/niLjyNS.jpg"
-                            WidthRequest="48" />
+                            WidthRequest="40" />
                     </Frame>
-                    <StackLayout>
+                    <StackLayout Margin="0,5,0,0">
                         <Label
                             FontSize="Body"
                             Text="Bot"
                             TextColor="{x:Static services:AppThemeColors.TextColor}" />
-                        <views:MessageView
-                            x:Name="messageView"
-                            HorizontalOptions="Start"
-                            WidthRequest="240" />
+                        <views:MessageView x:Name="messageView" />
                         <embedView:EmbedPreviewView x:Name="embedView" />
                     </StackLayout>
                 </HorizontalStackLayout>

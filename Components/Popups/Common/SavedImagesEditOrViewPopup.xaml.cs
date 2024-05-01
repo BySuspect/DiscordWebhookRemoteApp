@@ -1,7 +1,5 @@
 using System.Text.RegularExpressions;
-
 using CommunityToolkit.Maui.Views;
-
 using DiscordWebhookRemoteApp.Components.Partials.InputBehaviors;
 
 namespace DiscordWebhookRemoteApp.Components.Popups.Common;

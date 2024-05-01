@@ -1,8 +1,6 @@
 using System.Collections.ObjectModel;
-
 using CommunityToolkit.Maui.Core.Extensions;
 using CommunityToolkit.Maui.Views;
-
 using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView;
 using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FieldsView;
 

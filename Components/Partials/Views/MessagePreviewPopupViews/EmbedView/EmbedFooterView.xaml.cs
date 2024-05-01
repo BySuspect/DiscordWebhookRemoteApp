@@ -2,8 +2,8 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.MessagePreviewPopupV
 
 public partial class EmbedFooterView : ContentView
 {
-	public EmbedFooterView()
-	{
-		InitializeComponent();
-	}
+    public EmbedFooterView()
+    {
+        InitializeComponent();
+    }
 }
