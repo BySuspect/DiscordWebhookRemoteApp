@@ -180,7 +180,7 @@
         <MauiXaml Update="Components\Partials\Views\MessagePreviewPopupViews\EmbedView\EmbedFooterView.xaml">
           <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
-        <MauiXaml Update="Components\Partials\Views\MessagePreviewPopupViews\EmbedView\EmbedPreviewView.xaml">
+        <MauiXaml Update="Components\Partials\Views\MessagePreviewPopupViews\EmbedView\EmbedView.xaml">
           <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Partials\Views\MessagePreviewPopupViews\MessageView.xaml">
@@ -318,6 +318,9 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Compile Update="Components\Partials\Views\MessagePreviewPopupViews\EmbedView\EmbedView.xaml.cs">
+          <DependentUpon>EmbedView.xaml</DependentUpon>
+        </Compile>
         <Compile Update="Components\Popups\Common\SavedImagesViewPopup.xaml.cs">
             <DependentUpon>SavedImagesViewPopup.xaml</DependentUpon>
         </Compile>

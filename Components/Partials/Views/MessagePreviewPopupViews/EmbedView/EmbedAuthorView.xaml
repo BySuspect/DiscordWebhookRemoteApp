@@ -7,20 +7,21 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
     <HorizontalStackLayout Margin="5,0,5,10" WidthRequest="245">
         <Frame
+            x:Name="frameAuthorIcon"
             Padding="0"
             CornerRadius="255"
             HeightRequest="32"
             WidthRequest="32">
             <Image
+                x:Name="imageAuthorIcon"
                 HeightRequest="32"
-                Source="https://i.imgur.com/niLjyNS.jpg"
                 WidthRequest="32" />
         </Frame>
         <Label
+            x:Name="lblAuthorText"
             Margin="10,0,0,0"
             FontSize="Default"
             HorizontalOptions="Start"
-            Text="Author awghjlakwjhlkaşwjhlaşjlawkjlşakjla"
             VerticalOptions="Center"
             WidthRequest="170" />
     </HorizontalStackLayout>

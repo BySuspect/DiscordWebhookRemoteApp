@@ -2,6 +2,11 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.MessagePreviewPopupV
 
 public partial class MessageView : ContentView
 {
+    public string? Message
+    {
+        set { lblMessage.Text = value; }
+    }
+
     public MessageView()
     {
         InitializeComponent();

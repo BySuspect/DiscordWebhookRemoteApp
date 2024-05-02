@@ -187,6 +187,24 @@ public partial class FileSendView : ContentView
         TotalFileCount = _list.Count;
         TotalFileSizeText = GetSizeString(totalFileSize);
     }
+
+    private async void btnCler_Clicked(object sender, EventArgs e)
+    {
+        btnCler.IsEnabled = false;
+        var res = await ApplicationService.ShowCustomAlertAsync(
+            "Warning!",
+            $"Are you sure you want to clear files?",
+            "Yes",
+            "No"
+        );
+        if (!res)
+        {
+            btnCler.IsEnabled = true;
+            return;
+        }
+        await ClearFiles();
+        btnCler.IsEnabled = true;
+    }
 }
 
 public class FileSendViewItems

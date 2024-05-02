@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView
-    x:Class="DiscordWebhookRemoteApp.Components.Partials.Views.MessagePreviewPopupViews.EmbedView.EmbedPreviewView"
+    x:Class="DiscordWebhookRemoteApp.Components.Partials.Views.MessagePreviewPopupViews.EmbedView.EmbedView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
@@ -12,18 +12,21 @@
     <VerticalStackLayout Margin="0,20,0,0">
         <Frame
             Padding="0"
+            BackgroundColor="#226A6262"
+            BorderColor="#226A6262"
             CornerRadius="10"
             WidthRequest="245">
             <HorizontalStackLayout>
                 <BoxView
+                    x:Name="bvEmbedColor"
                     VerticalOptions="FillAndExpand"
                     WidthRequest="3"
-                    Color="White" />
+                    Color="Black" />
                 <StackLayout Margin="10,10,10,10">
-                    <local:EmbedAuthorView x:Name="authorView" />
-                    <local:EmbedBodyView x:Name="bodyView" />
-                    <local:EmbedFieldsView x:Name="fieldsView" />
-                    <local:EmbedFooterView x:Name="footerView" />
+                    <local:EmbedAuthorView x:Name="authorView" IsVisible="False" />
+                    <local:EmbedBodyView x:Name="bodyView" IsVisible="False" />
+                    <local:EmbedFieldsView x:Name="fieldsView" IsVisible="False" />
+                    <local:EmbedFooterView x:Name="footerView" IsVisible="False" />
                 </StackLayout>
             </HorizontalStackLayout>
         </Frame>

@@ -96,19 +96,34 @@
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Button
-                                x:Name="btnSelect"
-                                Padding="15,7"
-                                BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
-                                BorderColor="{x:Static services:AppThemeColors.BorderColor}"
-                                BorderWidth="1"
-                                Clicked="Select_Clicked"
-                                CornerRadius="10"
-                                FontSize="Caption"
-                                HorizontalOptions="EndAndExpand"
-                                Text="Select"
-                                TextColor="{x:Static services:AppThemeColors.TextColor}"
-                                VerticalOptions="Center" />
+                            <HorizontalStackLayout HorizontalOptions="EndAndExpand" Spacing="5">
+                                <Button
+                                    x:Name="btnCler"
+                                    Padding="15,7"
+                                    BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                                    BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                                    BorderWidth="1"
+                                    Clicked="btnCler_Clicked"
+                                    CornerRadius="10"
+                                    FontSize="Caption"
+                                    HorizontalOptions="EndAndExpand"
+                                    Text="Clear"
+                                    TextColor="{x:Static services:AppThemeColors.TextColor}"
+                                    VerticalOptions="Center" />
+                                <Button
+                                    x:Name="btnSelect"
+                                    Padding="15,7"
+                                    BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                                    BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                                    BorderWidth="1"
+                                    Clicked="Select_Clicked"
+                                    CornerRadius="10"
+                                    FontSize="Caption"
+                                    HorizontalOptions="EndAndExpand"
+                                    Text="Select"
+                                    TextColor="{x:Static services:AppThemeColors.TextColor}"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
                         </StackLayout>
                     </StackLayout>
                 </StackLayout>

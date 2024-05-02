@@ -26,17 +26,27 @@ public partial class MainPage : ContentPage
         if (!Preferences.Get("PrivacyPolicyV1Accepted", false))
             ApplicationService.ShowPopup(new PrivacyPolicyPopup());
 
-        ApplicationService.ShowPopup(new MessagePreviewPopup()); /**/
+        /*ApplicationService.ShowPopup(
+            new MessagePreviewPopup(
+                "",
+                "username",
+                "",
+                new EmbedBuilder
+                {
+                    Fields = new List<EmbedFieldBuilder>()
+                    {
+                        new EmbedFieldBuilder { Name = "name 1", Value = "value 1" },
+                        new EmbedFieldBuilder { Name = "name 2", Value = "value 2" },
+                        new EmbedFieldBuilder { Name = "name 3", Value = "value 3" },
+                        new EmbedFieldBuilder { Name = "name 4", Value = "value 4" },
+                    }
+                }.Build()
+            )
+        ); /**/
     }
 
     private async void SendButton_Clicked(object sender, EventArgs e)
     {
-        if (SavedWebhooksView.selectedWebhook is null)
-        {
-            ApplicationService.ShowCustomAlert("Warning!", "Please select a webhook.", "Ok");
-            return;
-        }
-
         btnSend.IsEnabled = false;
         ApplicationService.ShowLoadingView();
         try
@@ -54,11 +64,54 @@ public partial class MainPage : ContentPage
                 _files.Add(new FileAttachment(file.Path));
             }
 
+            if (
+                string.IsNullOrWhiteSpace(MessageContentView.MessageContent)
+                && !hasEmbeds
+                && _files.Count == 0
+            )
+            {
+                ApplicationService.ShowCustomAlert("Warning!", "Message is Empty.", "Ok");
+                btnSend.IsEnabled = true;
+                ApplicationService.HideLoadingView();
+                return;
+            }
+
+            var preRes = await ApplicationService.ShowPopupAsync(
+                new MessagePreviewPopup(
+                    MessageContentView.MessageContent,
+                    (
+                        string.IsNullOrWhiteSpace(WebhookProfileView.Username)
+                            ? (SavedWebhooksView.selectedWebhook is null)
+                                ? "TEMP USERNAME"
+                                : SavedWebhooksView.selectedWebhook.Name
+                            : WebhookProfileView.Username
+                    ),
+                    WebhookProfileView.AvatarImageSource,
+                    (hasEmbeds) ? embeds[0] : null
+                )
+            );
+
+            if (preRes is not "Send")
+            {
+                btnSend.IsEnabled = true;
+                ApplicationService.HideLoadingView();
+                return;
+            }
+
+            if (SavedWebhooksView.selectedWebhook is null)
+            {
+                ApplicationService.ShowCustomAlert("Warning!", "Please select a webhook.", "Ok");
+                btnSend.IsEnabled = true;
+                ApplicationService.HideLoadingView();
+                return;
+            }
+
             string uri = SavedWebhooksView.selectedWebhook.WebhookUrl;
 
             if (string.IsNullOrEmpty(uri))
             {
                 btnSend.IsEnabled = true;
+                ApplicationService.HideLoadingView();
                 return;
             }
             sendHelper = new WebhookService.MessageSend(
@@ -90,6 +143,7 @@ public partial class MainPage : ContentPage
 
             if (result != null)
             {
+                Console.WriteLine(result);
                 ApplicationService.HideLoadingView();
                 var resSave = await ApplicationService.ShowCustomAlertAsync(
                     "Success.",
@@ -135,7 +189,7 @@ public partial class MainPage : ContentPage
         try
         {
             Console.WriteLine("Test Clicked");
-            ApplicationService.ShowPopup(new MessagePreviewPopup());
+            ApplicationService.ShowPopup(new MessagePreviewPopup("test click", "sagwahwa"));
         }
         catch (Exception ex)
         {

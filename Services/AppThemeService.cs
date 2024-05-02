@@ -38,7 +38,7 @@ namespace DiscordWebhookRemoteApp.Services
         {
             AppThemeColors.TextColor = Color.Parse("#FFFFFF");
             AppThemeColors.BorderColor = Color.Parse("#E6B8B8B8");
-            AppThemeColors.BackgroundColor = Color.Parse("#101010");
+            AppThemeColors.BackgroundColor = Color.Parse("#262323");
             AppThemeColors.StatusBarStyle = StatusBarStyle.LightContent;
             AppThemeColors.backgroundImg = null;
         }
