@@ -101,7 +101,7 @@ public partial class FileSendView : ContentView
                         Id = (_list.Count > 0) ? _list.Last().Id + 1 : 1,
                         FileName = fileinfo.Name,
                         Extension = fileinfo.Extension,
-                        Path = file.FullPath,
+                        FilePath = file.FullPath,
                         FileSize = fileinfo.Length,
                         FileSizeText = GetSizeString(fileinfo.Length),
                     }
@@ -212,7 +212,7 @@ public class FileSendViewItems
     public required int Id { get; set; }
     public required string FileName { get; set; }
     public required string Extension { get; set; }
-    public required string Path { get; set; }
+    public required string FilePath { get; set; }
     public long FileSize { get; set; }
     public required string FileSizeText { get; set; }
 }

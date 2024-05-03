@@ -1,4 +1,6 @@
 using CommunityToolkit.Maui.Views;
+using Discord;
+using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView;
 
 namespace DiscordWebhookRemoteApp.Components.Popups.Message;
 
@@ -7,8 +9,9 @@ public partial class MessagePreviewPopup : Popup
     public MessagePreviewPopup(
         string message,
         string userName,
-        string avatar = "",
-        Discord.Embed embed = null
+        string? avatar = null,
+        Discord.Embed? embed = null,
+        List<FileSendViewItems>? files = null
     )
     {
         InitializeComponent();
@@ -25,11 +28,15 @@ public partial class MessagePreviewPopup : Popup
         else
             messageView.Message = message;
 
-        if (embed is not null)
-        {
+        if (embed is null)
+            embedView.IsVisible = false;
+        else
             embedView.setupEmbed(embed);
-            embedView.IsVisible = true;
-        }
+
+        if (files is null)
+            filesView.IsVisible = false;
+        else
+            filesView.setupFiles(files);
     }
 
     private void btnCancel_Clicked(object sender, EventArgs e)

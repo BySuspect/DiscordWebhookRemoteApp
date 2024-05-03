@@ -183,6 +183,9 @@
         <MauiXaml Update="Components\Partials\Views\MessagePreviewPopupViews\EmbedView\EmbedView.xaml">
           <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
+        <MauiXaml Update="Components\Partials\Views\MessagePreviewPopupViews\FilesView.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
         <MauiXaml Update="Components\Partials\Views\MessagePreviewPopupViews\MessageView.xaml">
           <Generator>MSBuild:Compile</Generator>
         </MauiXaml>

@@ -1,5 +1,6 @@
 using CommunityToolkit.Maui.Alerts;
 using Discord;
+using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView;
 using DiscordWebhookRemoteApp.Components.Popups.Common;
 using DiscordWebhookRemoteApp.Components.Popups.Menu;
 using DiscordWebhookRemoteApp.Components.Popups.Message;
@@ -26,7 +27,7 @@ public partial class MainPage : ContentPage
         if (!Preferences.Get("PrivacyPolicyV1Accepted", false))
             ApplicationService.ShowPopup(new PrivacyPolicyPopup());
 
-        /*ApplicationService.ShowPopup(
+        ApplicationService.ShowPopup(
             new MessagePreviewPopup(
                 "",
                 "username",
@@ -40,7 +41,26 @@ public partial class MainPage : ContentPage
                         new EmbedFieldBuilder { Name = "name 3", Value = "value 3" },
                         new EmbedFieldBuilder { Name = "name 4", Value = "value 4" },
                     }
-                }.Build()
+                }.Build(),
+                new List<FileSendViewItems>()
+                {
+                    new FileSendViewItems()
+                    {
+                        Id = 1,
+                        Extension = ".jpg",
+                        FileName = "test.jpg",
+                        FileSizeText = "1.2 MB",
+                        FilePath = "https://i.imgur.com/niLjyNS.jpg"
+                    },
+                    new FileSendViewItems()
+                    {
+                        Id = 1,
+                        Extension = ".jpg",
+                        FileName = "test.jpg",
+                        FileSizeText = "1.2 MB",
+                        FilePath = "https://i.imgur.com/niLjyNS.jp"
+                    }
+                }
             )
         ); /**/
     }
@@ -61,7 +81,7 @@ public partial class MainPage : ContentPage
 
             foreach (var file in FileSendView.SelectedFiles)
             {
-                _files.Add(new FileAttachment(file.Path));
+                _files.Add(new FileAttachment(file.FilePath));
             }
 
             if (
@@ -87,7 +107,8 @@ public partial class MainPage : ContentPage
                             : WebhookProfileView.Username
                     ),
                     WebhookProfileView.AvatarImageSource,
-                    (hasEmbeds) ? embeds[0] : null
+                    (hasEmbeds) ? embeds[0] : null,
+                    FileSendView.SelectedFiles.ToList()
                 )
             );
 
@@ -189,7 +210,25 @@ public partial class MainPage : ContentPage
         try
         {
             Console.WriteLine("Test Clicked");
-            ApplicationService.ShowPopup(new MessagePreviewPopup("test click", "sagwahwa"));
+            ApplicationService.ShowPopup(
+                new MessagePreviewPopup(
+                    "test click",
+                    "sagwahwa",
+                    "",
+                    null,
+                    new List<FileSendViewItems>()
+                    {
+                        new FileSendViewItems()
+                        {
+                            Id = 1,
+                            Extension = ".jpg",
+                            FileName = "test.jpg",
+                            FileSizeText = "1.2 MB",
+                            FilePath = "https://i.imgur.com/niLjyNS.jpg"
+                        }
+                    }
+                )
+            );
         }
         catch (Exception ex)
         {

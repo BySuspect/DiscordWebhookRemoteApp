@@ -41,7 +41,8 @@
                                 Text="Bot"
                                 TextColor="{x:Static services:AppThemeColors.TextColor}" />
                             <views:MessageView x:Name="messageView" />
-                            <embedView:EmbedView x:Name="embedView" IsVisible="False" />
+                            <embedView:EmbedView x:Name="embedView" />
+                            <views:FilesView x:Name="filesView" />
                         </StackLayout>
                     </HorizontalStackLayout>
                 </ScrollView>

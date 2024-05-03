@@ -5,6 +5,10 @@
         <Setter Property="HorizontalScrollBarVisibility" Value="Never" />
         <Setter Property="VerticalScrollBarVisibility" Value="Never" />
     </Style>
+    <Style TargetType="ListView">
+        <Setter Property="HorizontalScrollBarVisibility" Value="Never" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Never" />
+    </Style>
 
     <Style TargetType="Frame">
         <Setter Property="BackgroundColor" Value="Transparent" />
