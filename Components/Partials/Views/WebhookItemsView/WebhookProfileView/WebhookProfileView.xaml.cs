@@ -40,14 +40,14 @@ public partial class WebhookProfileView : ContentView, INotifyPropertyChanged
 
     private async void Avatar_Tapped(object sender, EventArgs e)
     {
-        avatarBtn.IsEnabled = false;
+        avatarImg.IsEnabled = false;
         var res = await ApplicationService.ShowPopupAsync(
-            new ImageEditAndViewPopup(AvatarImageSource.ToString(), false)
+            new ImageEditAndViewPopup(AvatarImageSource.ToString(), "Select")
         );
         if (res != null)
         {
             AvatarImageSource = (string)res;
         }
-        avatarBtn.IsEnabled = true;
+        avatarImg.IsEnabled = true;
     }
 }

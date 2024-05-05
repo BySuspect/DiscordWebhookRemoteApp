@@ -8,11 +8,11 @@ public partial class EmbedFooterView : ContentView
         {
             if (string.IsNullOrWhiteSpace(value))
             {
-                frameFooterIcon.IsVisible = false;
+                ImgView.IsVisible = false;
             }
             else
             {
-                imageFooterIcon.Source = value;
+                ImgView.Source = value;
             }
         }
     }

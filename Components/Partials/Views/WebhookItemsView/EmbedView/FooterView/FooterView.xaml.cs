@@ -71,17 +71,17 @@ public partial class FooterView : ContentView
 
     private async void Icon_Tapped(object sender, EventArgs e)
     {
-        iconBtn.IsEnabled = false;
+        ImgView.IsEnabled = false;
         var res = await ApplicationService.ShowPopupAsync(
             new ImageEditAndViewPopup(
                 (FooterIcon is "discordlogo.png") ? string.Empty : FooterIcon,
-                false
+                "Select"
             )
         );
         if (res != null)
         {
             FooterIcon = (string)res;
         }
-        iconBtn.IsEnabled = true;
+        ImgView.IsEnabled = true;
     }
 }

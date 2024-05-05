@@ -17,31 +17,15 @@
             BorderColor="{x:Static services:AppThemeColors.BorderColor}"
             CornerRadius="15">
             <StackLayout Margin="10">
-                <Frame
+                <CustomItems:CustomImageView
+                    x:Name="ImgView"
                     Margin="10"
-                    Padding="0"
                     CornerRadius="15"
+                    ErrorSource="discordlogo.png"
                     HeightRequest="128"
                     HorizontalOptions="Center"
                     VerticalOptions="Start"
-                    WidthRequest="128">
-                    <Grid>
-                        <Image
-                            HeightRequest="120"
-                            HorizontalOptions="Start"
-                            MinimumHeightRequest="120"
-                            MinimumWidthRequest="120"
-                            Source="discordlogo.png"
-                            WidthRequest="120" />
-                        <Image
-                            x:Name="ImageView"
-                            HeightRequest="128"
-                            HorizontalOptions="Start"
-                            MinimumHeightRequest="128"
-                            MinimumWidthRequest="128"
-                            WidthRequest="128" />
-                    </Grid>
-                </Frame>
+                    WidthRequest="128" />
                 <CustomViews:CustomEntryView
                     x:Name="entryImageUrl"
                     Margin="5,20,5,10"
@@ -54,6 +38,20 @@
                     ValidationType="ImageUrl"
                     WidthRequest="250" />
                 <HorizontalStackLayout Margin="10" HorizontalOptions="Center">
+                    <CustomItems:CustomButton
+                        x:Name="btnDelete"
+                        Margin="5,0,5,0"
+                        Padding="20,10"
+                        BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
+                        BorderColor="{x:Static services:AppThemeColors.BorderColor}"
+                        BorderWidth="1"
+                        Clicked="Delete_Clicked"
+                        CornerRadius="15"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Delete"
+                        TextColor="{x:Static services:AppThemeColors.TextColor}"
+                        VerticalOptions="End"
+                        WidthRequest="80" />
                     <CustomItems:CustomButton
                         x:Name="btnSave"
                         Margin="5,0,5,0"

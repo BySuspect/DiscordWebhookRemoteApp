@@ -79,10 +79,8 @@ public partial class SavedWebhooksView : ContentView
             savedWebhookAddOrEditPopup = new SavedWebhookAddOrEditPopup();
             savedWebhookAddOrEditPopup.NewMode();
             var res =
-                await PopupExtensions.ShowPopupAsync(
-                    Application.Current.MainPage,
-                    savedWebhookAddOrEditPopup
-                ) as SavedWebhookViewItems;
+                await ApplicationService.ShowPopupAsync(savedWebhookAddOrEditPopup)
+                as SavedWebhookViewItems;
 
             if (res != null)
             {

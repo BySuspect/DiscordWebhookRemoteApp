@@ -27,7 +27,7 @@ public partial class MainPage : ContentPage
         if (!Preferences.Get("PrivacyPolicyV1Accepted", false))
             ApplicationService.ShowPopup(new PrivacyPolicyPopup());
 
-        ApplicationService.ShowPopup(
+        /*ApplicationService.ShowPopup(
             new MessagePreviewPopup(
                 "",
                 "username",

@@ -3,6 +3,7 @@
     x:Class="DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.AuthorView.AuthorView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
     xmlns:CustomViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
     xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
@@ -22,25 +23,23 @@
                     BorderColor="{x:Static services:AppThemeColors.BorderColor}"
                     CornerRadius="15">
                     <StackLayout Orientation="Horizontal">
-                        <Frame
-                            x:Name="iconBtn"
+                        <CustomItems:CustomImageView
+                            x:Name="imgAuthorIcon"
                             Margin="10,2"
-                            Padding="0"
-                            CornerRadius="60"
+                            CornerRadius="255"
+                            ErrorSource="discordlogo.png"
                             HeightRequest="48"
+                            HorizontalOptions="Fill"
+                            Source="{Binding AuthorIcon}"
                             WidthRequest="48">
-                            <Image
-                                x:Name="AuthorIconImg"
-                                HeightRequest="48"
-                                Source="{Binding AuthorIcon}"
-                                WidthRequest="48" />
-                            <Frame.Behaviors>
+                            <CustomItems:CustomImageView.Behaviors>
                                 <toolkit:TouchBehavior PressedOpacity="0.8" PressedScale="0.9" />
-                            </Frame.Behaviors>
-                            <Frame.GestureRecognizers>
+                            </CustomItems:CustomImageView.Behaviors>
+                            <CustomItems:CustomImageView.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="Icon_Tapped" />
-                            </Frame.GestureRecognizers>
-                        </Frame>
+                            </CustomItems:CustomImageView.GestureRecognizers>
+                        </CustomItems:CustomImageView>
+
                         <BoxView WidthRequest="1" Color="{x:Static services:AppThemeColors.BorderColor}" />
                         <CustomViews:CustomEntryView
                             x:Name="entryAuthorName"

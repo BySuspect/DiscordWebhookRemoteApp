@@ -1,7 +1,6 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Core.Extensions;
 using CommunityToolkit.Maui.Views;
-using static DiscordWebhookRemoteApp.Components.Popups.Common.SavedImagesEditOrViewPopup;
 
 namespace DiscordWebhookRemoteApp.Components.Popups.Common;
 
@@ -19,9 +18,9 @@ public partial class SavedImagesViewPopup : Popup
         }
     }
 
-    private string type;
+    private string? type = null;
 
-    public SavedImagesViewPopup(string type = null)
+    public SavedImagesViewPopup(string? type = null)
     {
         InitializeComponent();
         ImageList = SavedImagesService.SavedImages.ToObservableCollection();
@@ -37,7 +36,9 @@ public partial class SavedImagesViewPopup : Popup
     private async void AddNew_Tapped(object sender, TappedEventArgs e)
     {
         addNewBtn.IsEnabled = false;
-        var res = await ApplicationService.ShowPopupAsync(new ImageEditAndViewPopup(string.Empty));
+        var res = await ApplicationService.ShowPopupAsync(
+            new ImageEditAndViewPopup(string.Empty, "New")
+        );
 
         if (res is null || string.IsNullOrWhiteSpace((string)res))
         {
@@ -50,10 +51,9 @@ public partial class SavedImagesViewPopup : Popup
             new SavedImagesItems
             {
                 Id = (_list.Count > 0) ? _list.Last().Id + 1 : 1,
-                ImageUrl = res.ToString()
+                ImageUrl = (string)res
             }
         );
-        ;
         ImageList = _list.ToObservableCollection();
         addNewBtn.IsEnabled = true;
     }
@@ -65,9 +65,9 @@ public partial class SavedImagesViewPopup : Popup
         var _list = ImageList.ToList();
 
         var res = await ApplicationService.ShowPopupAsync(
-            new SavedImagesEditOrViewPopup(
+            new ImageEditAndViewPopup(
                 _list.First(x => x.Id == int.Parse(selected.AutomationId)).ImageUrl,
-                type
+                type ?? "Edit"
             )
         );
         if (res is null)
@@ -76,25 +76,38 @@ public partial class SavedImagesViewPopup : Popup
             return;
         }
 
-        var resultType = ((SavedImagesEditOrViewPopupResult)res).ResultType;
+        var resultType = ((ImagesEditOrViewPopupResult)res).ResultType;
 
-        if (resultType is SavedImagesEditOrViewPopupResultTypes.Delete)
+        if (resultType is ImagesEditOrViewPopupResultTypes.Delete)
         {
+            if (_list.Count == 1)
+            {
+                var resDelete = await ApplicationService.ShowCustomAlertAsync(
+                    "Warning!",
+                    "You are deleting the last image, For now the application is instantly crashing after deleting all the images. I cant figure out why it is crashing, so I added this alert. Are you sure about that?",
+                    "Yes",
+                    "No"
+                );
+                if (!resDelete)
+                {
+                    selected.IsEnabled = true;
+                    return;
+                }
+            }
             _list.Remove(_list.First(x => x.Id == int.Parse(selected.AutomationId)));
             ImageList = _list.ToObservableCollection();
-            selected.IsEnabled = true;
             return;
         }
-        if (resultType is SavedImagesEditOrViewPopupResultTypes.Select)
+        if (resultType is ImagesEditOrViewPopupResultTypes.Select)
         {
             Close(_list.First(x => x.Id == int.Parse(selected.AutomationId)).ImageUrl);
             selected.IsEnabled = true;
             return;
         }
-        if (resultType is SavedImagesEditOrViewPopupResultTypes.Save)
+        if (resultType is ImagesEditOrViewPopupResultTypes.Save)
         {
             _list.First(x => x.Id == int.Parse(selected.AutomationId)).ImageUrl = (
-                (SavedImagesEditOrViewPopupResult)res
+                (ImagesEditOrViewPopupResult)res
             ).ImageUrl;
             ImageList = _list.ToObservableCollection();
             selected.IsEnabled = true;

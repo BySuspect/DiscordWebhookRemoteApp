@@ -48,12 +48,21 @@ namespace DiscordWebhookRemoteApp.Components.Partials.CustomItems
         public CustomImageView()
         {
             var image = new Image();
+            image.Source = ImageService.isImage(Source) ? Source : ErrorSource;
 
             this.PropertyChanged += (sender, e) =>
             {
                 if (e.PropertyName == nameof(Source))
                 {
                     image.Source = ImageService.isImage(Source) ? Source : ErrorSource;
+                }
+                if (e.PropertyName == nameof(this.WidthRequest))
+                {
+                    image.WidthRequest = this.WidthRequest;
+                }
+                if (e.PropertyName == nameof(this.HeightRequest))
+                {
+                    image.HeightRequest = this.HeightRequest;
                 }
             };
 

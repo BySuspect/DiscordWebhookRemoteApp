@@ -96,11 +96,11 @@
                             <Image
                                 Grid.Column="2"
                                 Margin="0,0,10,0"
-                                HeightRequest="32"
+                                HeightRequest="28"
                                 HorizontalOptions="End"
                                 Source="menuicon.png"
                                 VerticalOptions="Center"
-                                WidthRequest="32">
+                                WidthRequest="28">
                                 <Image.Behaviors>
                                     <toolkit:IconTintColorBehavior TintColor="{x:Static services:AppThemeColors.BorderColor}" />
                                     <toolkit:TouchBehavior PressedOpacity="0.9" PressedScale="0.8" />

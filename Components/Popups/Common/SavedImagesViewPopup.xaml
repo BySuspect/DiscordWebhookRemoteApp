@@ -28,30 +28,23 @@
                             VerticalOptions="Fill">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
-                                    <Frame
+                                    <CustomItems:CustomImageView
                                         Margin="5"
-                                        Padding="0"
                                         AutomationId="{Binding Id}"
                                         CornerRadius="15"
+                                        ErrorSource="imageerroricon.png"
                                         HeightRequest="120"
+                                        HorizontalOptions="Center"
+                                        Source="{Binding ImageUrl}"
+                                        VerticalOptions="Start"
                                         WidthRequest="120">
-                                        <Grid>
-                                            <Image
-                                                HeightRequest="100"
-                                                Source="imageerroricon.png"
-                                                WidthRequest="100" />
-                                            <Image
-                                                HeightRequest="120"
-                                                Source="{Binding ImageUrl}"
-                                                WidthRequest="120" />
-                                        </Grid>
-                                        <Frame.Behaviors>
+                                        <CustomItems:CustomImageView.Behaviors>
                                             <toolkit:TouchBehavior PressedOpacity="0.8" PressedScale="0.9" />
-                                        </Frame.Behaviors>
-                                        <Frame.GestureRecognizers>
+                                        </CustomItems:CustomImageView.Behaviors>
+                                        <CustomItems:CustomImageView.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="ImageSelect_Tapped" />
-                                        </Frame.GestureRecognizers>
-                                    </Frame>
+                                        </CustomItems:CustomImageView.GestureRecognizers>
+                                    </CustomItems:CustomImageView>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </toolkit:UniformItemsLayout>

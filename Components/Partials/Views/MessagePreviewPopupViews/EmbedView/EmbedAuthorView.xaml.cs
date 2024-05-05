@@ -7,9 +7,9 @@ public partial class EmbedAuthorView : ContentView
         set
         {
             if (string.IsNullOrWhiteSpace(value))
-                frameAuthorIcon.IsVisible = false;
+                ImgView.IsVisible = false;
 
-            imageAuthorIcon.Source = value;
+            ImgView.Source = value;
         }
     }
 

@@ -3,21 +3,19 @@
     x:Class="DiscordWebhookRemoteApp.Components.Partials.Views.MessagePreviewPopupViews.EmbedView.EmbedFooterView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
     xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
 
     <HorizontalStackLayout Margin="5,5,5,0" WidthRequest="245">
-        <Frame
-            x:Name="frameFooterIcon"
-            Padding="0"
-            CornerRadius="255"
+        <CustomItems:CustomImageView
+            x:Name="ImgView"
+            CornerRadius="360"
+            ErrorSource="discordlogo.png"
             HeightRequest="32"
-            WidthRequest="32">
-            <Image
-                x:Name="imageFooterIcon"
-                HeightRequest="32"
-                WidthRequest="32" />
-        </Frame>
+            HorizontalOptions="Center"
+            VerticalOptions="Start"
+            WidthRequest="32" />
         <VerticalStackLayout Margin="10,10,0,0">
             <Label
                 x:Name="lblFooterText"
