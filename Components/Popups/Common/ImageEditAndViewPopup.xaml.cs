@@ -19,7 +19,10 @@ public partial class ImageEditAndViewPopup : Popup
             btnLoad.IsVisible = false;
 
         if (type is "View")
+        {
             btnLoad.IsVisible = false;
+            editMode = true;
+        }
 
         if (type is "Edit")
             editMode = true;
@@ -71,8 +74,21 @@ public partial class ImageEditAndViewPopup : Popup
     private async void Delete_Clicked(object sender, EventArgs e)
     {
         btnDelete.IsEnabled = false;
+
         if (editMode)
         {
+            var resDelete = await ApplicationService.ShowCustomAlertAsync(
+                "Warning",
+                "Are you sure you want to delete the current image?",
+                "Yes",
+                "No"
+            );
+
+            if (!resDelete)
+            {
+                btnDelete.IsEnabled = true;
+                return;
+            }
             await CloseAsync(
                 new ImagesEditOrViewPopupResult(ImagesEditOrViewPopupResultTypes.Delete, null)
             );

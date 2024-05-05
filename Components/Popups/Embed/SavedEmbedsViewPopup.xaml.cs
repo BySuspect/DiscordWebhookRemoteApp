@@ -52,7 +52,7 @@ public partial class SavedEmbedsViewPopup : Popup
         var resTitle = await ApplicationService.ShowPopupAsync(
             new CustomInputPopup("Embed Name?", "", "name", "Ok", "Cancel", 24, true, true)
         );
-        if (resTitle is null)
+        if (string.IsNullOrWhiteSpace((string?)resTitle))
             resTitle = "Embed";
 
         _list.Add(
@@ -187,8 +187,13 @@ public partial class SavedEmbedsViewPopup : Popup
                 true
             )
         );
-        if (resTitle is null)
+        if (string.IsNullOrWhiteSpace((string?)resTitle))
+        {
             resTitle = _list.First(x => x.ID == selected.ID).Title;
+
+            if (string.IsNullOrWhiteSpace((string?)resTitle))
+                resTitle = "Embed";
+        }
 
         _list.First(x => x.ID == selected.ID).Title = (string)resTitle;
         _list.First(x => x.ID == selected.ID).AuthorIcon = editedEmbed.AuthorIcon;

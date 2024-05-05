@@ -22,12 +22,12 @@ public partial class MessagePreviewPopupViews : Popup
 
     private void btnSavedImages_Clicked(object sender, EventArgs e)
     {
-        ApplicationService.ShowPopup(new SavedImagesViewPopup("Edit"));
+        ApplicationService.ShowPopup(new SavedImagesViewPopup("View"));
     }
 
     private void btnSavedEmbeds_Clicked(object sender, EventArgs e)
     {
-        ApplicationService.ShowPopup(new SavedEmbedsViewPopup("Edit"));
+        ApplicationService.ShowPopup(new SavedEmbedsViewPopup("View"));
     }
 
     private async void btnImportOldWebhooks_Clicked(object sender, EventArgs e)
