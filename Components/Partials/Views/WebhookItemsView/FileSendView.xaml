@@ -88,10 +88,10 @@
                                 VerticalOptions="Center">
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="Files Count: " />
+                                        <Span Text="Count: " />
                                         <Span Text="{Binding TotalFileCount}" TextColor="{x:Static services:AppThemeColors.TextColor}" />
                                         <Span Text=" | " />
-                                        <Span Text="Total File Size: " />
+                                        <Span Text="Total Size: " />
                                         <Span Text="{Binding TotalFileSizeText}" TextColor="{x:Static services:AppThemeColors.TextColor}" />
                                     </FormattedString>
                                 </Label.FormattedText>
