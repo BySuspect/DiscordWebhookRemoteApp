@@ -1,9 +1,14 @@
-using CommunityToolkit.Maui.Alerts;
+using System.Text;
+
 using Discord;
+
 using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView;
 using DiscordWebhookRemoteApp.Components.Popups.Common;
 using DiscordWebhookRemoteApp.Components.Popups.Menu;
 using DiscordWebhookRemoteApp.Components.Popups.Message;
+using DiscordWebhookRemoteApp.Helpers;
+
+using Newtonsoft.Json;
 
 namespace DiscordWebhookRemoteApp.Components.Pages;
 
@@ -15,7 +20,7 @@ public partial class MainPage : ContentPage
     {
         InitializeComponent();
         BindingContext = this;
-#if !DEBUG
+#if RELEASE
         btnTest.IsVisible = false;
 #endif
     }
@@ -23,7 +28,6 @@ public partial class MainPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-
         if (!Preferences.Get("PrivacyPolicyV1Accepted", false))
             ApplicationService.ShowPopup(new PrivacyPolicyPopup());
 
@@ -69,6 +73,7 @@ public partial class MainPage : ContentPage
     {
         btnSend.IsEnabled = false;
         ApplicationService.ShowLoadingView();
+        List<int> errorCounter = new List<int>();
         try
         {
             ulong? result = null;
@@ -76,6 +81,7 @@ public partial class MainPage : ContentPage
             var embedBuild = await BuildEmbed();
             var embeds = embedBuild.Item1;
             var hasEmbeds = embedBuild.Item2;
+            errorCounter.Add(1);
 
             var _files = new List<FileAttachment>();
 
@@ -83,6 +89,7 @@ public partial class MainPage : ContentPage
             {
                 _files.Add(new FileAttachment(file.FilePath));
             }
+            errorCounter.Add(2);
 
             if (
                 string.IsNullOrWhiteSpace(MessageContentView.MessageContent)
@@ -96,6 +103,7 @@ public partial class MainPage : ContentPage
                 return;
             }
 
+            errorCounter.Add(3);
             var preRes = await ApplicationService.ShowPopupAsync(
                 new MessagePreviewPopup(
                     MessageContentView.MessageContent,
@@ -112,6 +120,7 @@ public partial class MainPage : ContentPage
                 )
             );
 
+            errorCounter.Add(4);
             if (preRes is not "Send")
             {
                 btnSend.IsEnabled = true;
@@ -127,6 +136,7 @@ public partial class MainPage : ContentPage
                 return;
             }
 
+            errorCounter.Add(5);
             string uri = SavedWebhooksView.selectedWebhook.WebhookUrl;
 
             if (string.IsNullOrEmpty(uri))
@@ -140,8 +150,11 @@ public partial class MainPage : ContentPage
                 WebhookProfileView.Username,
                 WebhookProfileView.AvatarImageSource
             );
+            errorCounter.Add(6);
             // Send Message if has embed
             if (hasEmbeds)
+            {
+                errorCounter.Add(7);
                 result = await sendHelper.SendMessageAsync(
                     !string.IsNullOrEmpty(MessageContentView.MessageContent)
                         ? MessageContentView.MessageContent
@@ -149,8 +162,11 @@ public partial class MainPage : ContentPage
                     embeds,
                     _files.Count >= 1 ? _files : null
                 );
+            }
             // Send Message if has files and message
             else if (!string.IsNullOrEmpty(MessageContentView.MessageContent))
+            {
+                errorCounter.Add(8);
                 result = await sendHelper.SendMessageAsync(
                     !string.IsNullOrEmpty(MessageContentView.MessageContent)
                         ? MessageContentView.MessageContent
@@ -158,12 +174,17 @@ public partial class MainPage : ContentPage
                     null,
                     _files.Count >= 1 ? _files : null
                 );
+            }
             // Send Message if has files
             else if (_files.Count >= 1)
+            {
+                errorCounter.Add(9);
                 result = await sendHelper.SendMessageAsync(string.Empty, null, _files);
+            }
 
             if (result != null)
             {
+                errorCounter.Add(10);
                 Console.WriteLine(result);
                 ApplicationService.HideLoadingView();
                 var resSave = await ApplicationService.ShowCustomAlertAsync(
@@ -178,12 +199,20 @@ public partial class MainPage : ContentPage
             }
             else
             {
+                errorCounter.Add(11);
                 ApplicationService.ShowCustomAlert("Warning!", "Message Not Sent.", "Ok");
             }
         }
         catch (Exception ex)
         {
             ApplicationService.ShowCustomAlert("Send Error!", ex.Message, "Ok");
+
+            var logContent = new { Exception = ex, ErrorCounter = errorCounter, };
+            await LoggingService.Log(
+                JsonConvert.SerializeObject(logContent),
+                LoggingService.LogLevel.Error,
+                "message send error"
+            );
         }
         btnSend.IsEnabled = true;
         ApplicationService.HideLoadingView();
@@ -210,25 +239,7 @@ public partial class MainPage : ContentPage
         try
         {
             Console.WriteLine("Test Clicked");
-            ApplicationService.ShowPopup(
-                new MessagePreviewPopup(
-                    "test click",
-                    "sagwahwa",
-                    "",
-                    null,
-                    new List<FileSendViewItems>()
-                    {
-                        new FileSendViewItems()
-                        {
-                            Id = 1,
-                            Extension = ".jpg",
-                            FileName = "test.jpg",
-                            FileSizeText = "1.2 MB",
-                            FilePath = "https://i.imgur.com/niLjyNS.jpg"
-                        }
-                    }
-                )
-            );
+            ApplicationService.ShowPopup(new PrivacyPolicyPopup());
         }
         catch (Exception ex)
         {

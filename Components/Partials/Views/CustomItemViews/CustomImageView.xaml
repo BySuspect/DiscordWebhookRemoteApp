@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews.CustomImageView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:CustomItems="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.CustomItems"
+    xmlns:CustomViews="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews"
+    xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    <StackLayout>
+        <Grid>
+            <Frame
+                Padding="0"
+                BorderColor="{Binding BorderColor}"
+                CornerRadius="{Binding CornerRadius}"
+                HeightRequest="{Binding HeightRequest}"
+                WidthRequest="{Binding WidthRequest}">
+                <CustomItems:CustomImage
+                    x:Name="ImgView"
+                    Aspect="AspectFit"
+                    HeightRequest="{Binding HeightRequest}"
+                    Source="{Binding Source}"
+                    WidthRequest="{Binding WidthRequest}" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Image_Tapped" />
+                </Frame.GestureRecognizers>
+            </Frame>
+            <ActivityIndicator
+                HorizontalOptions="Center"
+                IsRunning="True"
+                IsVisible="True"
+                VerticalOptions="Center"
+                Color="{x:Static services:AppThemeColors.TextColor}" />
+        </Grid>
+    </StackLayout>
+</ContentView>

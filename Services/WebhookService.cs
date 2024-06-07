@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Discord;
 using Discord.Webhook;
+
 using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWebhooksView;
+
 using Newtonsoft.Json;
 
 namespace DiscordWebhookRemoteApp.Services
@@ -27,7 +30,7 @@ namespace DiscordWebhookRemoteApp.Services
             }
         }
 
-        public static Task ImportSavedWebhoksFromOldApp(string input)
+        public static async Task<Task> ImportSavedWebhoksFromOldApp(string input)
         {
             try
             {
@@ -60,6 +63,13 @@ namespace DiscordWebhookRemoteApp.Services
                     "Something went wrong while trying importin webhooks.\nError Message: "
                         + ex.Message,
                     "Ok"
+                );
+
+                var logContent = new { Exception = ex, };
+                await LoggingService.Log(
+                    JsonConvert.SerializeObject(logContent),
+                    LoggingService.LogLevel.Error,
+                    "ImportSavedWebhoksFromOldApp error"
                 );
             }
             return Task.CompletedTask;
@@ -153,7 +163,7 @@ namespace DiscordWebhookRemoteApp.Services
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception(ex.Message);
+                    throw ex;
                 }
             }
         }

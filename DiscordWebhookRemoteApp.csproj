@@ -114,13 +114,13 @@
         <!-- Images -->
         <MauiImage Include="Resources\Images\*" />
 
-        <!-- Custom Fonts -->
-
         <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
         <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
     </ItemGroup>
 
     <ItemGroup>
+        <None Remove="env-sample.json" />
+        <None Remove="env.json" />
         <None Remove="Resources\AppIcon\icon.png" />
         <None Remove="Resources\Images\app_logo.png" />
         <None Remove="Resources\Images\app_logo_fore.png" />
@@ -135,10 +135,17 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Maui" Version="8.0.1" />
-        <PackageReference Include="Discord.Net.Webhook" Version="3.14.1" />
-        <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.21" />
-        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.21" />
+      <EmbeddedResource Include="env-sample.json" />
+      <EmbeddedResource Include="env.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CommunityToolkit.Maui" Version="9.0.1" />
+        <PackageReference Include="Discord.Net.Webhook" Version="3.15.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.40" />
+        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.40" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
         <PackageReference Include="Plugin.MauiMTAdmob" Version="1.4.2" />
@@ -164,6 +171,9 @@
         </MauiXaml>
         <MauiXaml Update="Components\Partials\Views\CustomItemViews\CustomImageButton.xaml">
             <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Components\Partials\Views\CustomItemViews\CustomImageView.xaml">
+          <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Components\Partials\Views\CustomItemViews\CustomLoadingView.xaml">
             <Generator>MSBuild:Compile</Generator>
