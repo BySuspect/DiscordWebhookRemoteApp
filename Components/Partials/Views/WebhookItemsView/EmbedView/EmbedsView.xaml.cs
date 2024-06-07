@@ -1,6 +1,43 @@
 using System.Collections.ObjectModel;
+/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-windows10.0.19041.0)'
+Before:
 using CommunityToolkit.Maui.Core.Extensions;
 using Discord;
+using DiscordWebhookRemoteApp.Components.Popups.Embed;
+After:
+using CommunityToolkit.Maui.Core.Extensions;
+
+using Discord;
+
+using DiscordWebhookRemoteApp.Components.Popups.Embed;
+*/
+
+/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-maccatalyst)'
+Before:
+using CommunityToolkit.Maui.Core.Extensions;
+using Discord;
+using DiscordWebhookRemoteApp.Components.Popups.Embed;
+After:
+using CommunityToolkit.Maui.Core.Extensions;
+
+using Discord;
+
+using DiscordWebhookRemoteApp.Components.Popups.Embed;
+*/
+
+/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-ios)'
+Before:
+using CommunityToolkit.Maui.Core.Extensions;
+using Discord;
+using DiscordWebhookRemoteApp.Components.Popups.Embed;
+After:
+using CommunityToolkit.Maui.Core.Extensions;
+
+using Discord;
+
+using DiscordWebhookRemoteApp.Components.Popups.Embed;
+*/
+using CommunityToolkit.Maui.Core.Extensions;
 using DiscordWebhookRemoteApp.Components.Popups.Embed;
 
 namespace DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView;

@@ -1,5 +1,33 @@
 using System.Collections.ObjectModel;
+/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-windows10.0.19041.0)'
+Before:
 using System.ComponentModel.Design;
+using CommunityToolkit.Maui.Core.Extensions;
+After:
+using System.ComponentModel.Design;
+
+using CommunityToolkit.Maui.Core.Extensions;
+*/
+
+/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-maccatalyst)'
+Before:
+using System.ComponentModel.Design;
+using CommunityToolkit.Maui.Core.Extensions;
+After:
+using System.ComponentModel.Design;
+
+using CommunityToolkit.Maui.Core.Extensions;
+*/
+
+/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-ios)'
+Before:
+using System.ComponentModel.Design;
+using CommunityToolkit.Maui.Core.Extensions;
+After:
+using System.ComponentModel.Design;
+
+using CommunityToolkit.Maui.Core.Extensions;
+*/
 using CommunityToolkit.Maui.Core.Extensions;
 using CommunityToolkit.Maui.Views;
 using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView;

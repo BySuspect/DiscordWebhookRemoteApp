@@ -1,13 +1,8 @@
-using System.Text;
-
 using Discord;
-
 using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView;
 using DiscordWebhookRemoteApp.Components.Popups.Common;
 using DiscordWebhookRemoteApp.Components.Popups.Menu;
 using DiscordWebhookRemoteApp.Components.Popups.Message;
-using DiscordWebhookRemoteApp.Helpers;
-
 using Newtonsoft.Json;
 
 namespace DiscordWebhookRemoteApp.Components.Pages;

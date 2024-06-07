@@ -1,12 +1,9 @@
 using System.Text;
-
 using CommunityToolkit.Maui.Views;
-
 using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWebhooksView;
 using DiscordWebhookRemoteApp.Components.Popups.Common;
 using DiscordWebhookRemoteApp.Components.Popups.Embed;
 using DiscordWebhookRemoteApp.Helpers;
-
 using Newtonsoft.Json;
 
 namespace DiscordWebhookRemoteApp.Components.Popups.Menu;

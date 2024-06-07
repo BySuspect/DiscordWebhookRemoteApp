@@ -1,13 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
+﻿using
+/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-windows10.0.19041.0)'
+Before:
 using System.Threading.Tasks;
 using CommunityToolkit.Maui.Core.Extensions;
 using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView;
 using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FieldsView;
 using Newtonsoft.Json;
+After:
+using System.Threading.Tasks;
+
+using CommunityToolkit.Maui.Core.Extensions;
+
+using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView;
+using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FieldsView;
+
+using Newtonsoft.Json;
+*/
+
+/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-maccatalyst)'
+Before:
+using System.Threading.Tasks;
+using CommunityToolkit.Maui.Core.Extensions;
+using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView;
+using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FieldsView;
+using Newtonsoft.Json;
+After:
+using System.Threading.Tasks;
+
+using CommunityToolkit.Maui.Core.Extensions;
+
+using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView;
+using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FieldsView;
+
+using Newtonsoft.Json;
+*/
+
+/* Unmerged change from project 'DiscordWebhookRemoteApp (net8.0-ios)'
+Before:
+using System.Threading.Tasks;
+using CommunityToolkit.Maui.Core.Extensions;
+using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView;
+using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FieldsView;
+using Newtonsoft.Json;
+After:
+using System.Threading.Tasks;
+
+using CommunityToolkit.Maui.Core.Extensions;
+
+using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView;
+using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.EmbedView.FieldsView;
+
+using Newtonsoft.Json;
+*/
+Newtonsoft.Json;
 
 namespace DiscordWebhookRemoteApp.Services
 {
