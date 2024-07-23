@@ -12,7 +12,7 @@ namespace DiscordWebhookRemoteApp.Components.Partials.CustomItems
             defaultValue: false,
             defaultBindingMode: BindingMode.TwoWay
         );
-        public bool IsLoaded
+        public new bool IsLoaded
         {
             get { return (bool)GetValue(IsLoadedProperty); }
             set
@@ -24,14 +24,14 @@ namespace DiscordWebhookRemoteApp.Components.Partials.CustomItems
         #endregion
 
         #region IsLoading Binding
-        public static readonly BindableProperty IsLoadingProperty = BindableProperty.Create(
+        public static new readonly BindableProperty IsLoadingProperty = BindableProperty.Create(
             nameof(IsLoading),
             typeof(bool),
             typeof(CustomImage),
             defaultValue: true,
             defaultBindingMode: BindingMode.TwoWay
         );
-        public bool IsLoading
+        public new bool IsLoading
         {
             get { return (bool)GetValue(IsLoadingProperty); }
             set

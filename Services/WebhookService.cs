@@ -153,9 +153,9 @@ namespace DiscordWebhookRemoteApp.Services
                     //    appliedTags: null
                     //);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    throw ex;
+                    throw;
                 }
             }
         }

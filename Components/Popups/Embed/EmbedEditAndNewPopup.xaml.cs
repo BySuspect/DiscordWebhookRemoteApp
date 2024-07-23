@@ -26,7 +26,7 @@ public partial class EmbedEditAndNewPopup : Popup
         bool footerTimestamp,
         bool isEditMode = false,
         bool isSavingMode = false,
-        string type = null
+        string? type = null
     )
     {
         InitializeComponent();

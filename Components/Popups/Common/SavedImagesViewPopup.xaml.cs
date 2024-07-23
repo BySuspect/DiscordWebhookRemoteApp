@@ -18,7 +18,7 @@ public partial class SavedImagesViewPopup : Popup
         }
     }
 
-    private string? type = null;
+    private readonly string? type = null;
 
     public SavedImagesViewPopup(string? type = null)
     {

@@ -28,9 +28,9 @@ public partial class CustomColorPicker : ContentView
     public event EventHandler<PickedColorChangedEventArgs>? PickedColorChanged;
 
     /// <summary>
-    /// Checks whether this <see cref="CustomColorPicker"/> is in a rendering state.
-    /// A <see cref="CustomColorPicker"/> in a rendering state cannot have its properties
-    /// modified by outside code.
+    /// Checks whether this <see cref="CustomColorPicker"/> is in a rendering
+    /// state. A <see cref="CustomColorPicker"/> in a rendering state cannot
+    /// have its properties modified by outside code.
     /// </summary>
     public bool IsRendering => rendering;
 
@@ -59,17 +59,17 @@ public partial class CustomColorPicker : ContentView
     );
 
     /// <summary>
-    /// Gets and sets the current picked <see cref="Color"/>. This is a bindable property.
+    /// Gets and sets the current picked <see cref="Color"/>. This is a bindable
+    /// property.
     /// </summary>
-    /// <value>
-    /// A <see cref="Color"/> containing the picked color. The default value is <see langword="null"/>.
-    /// </value>
+    /// <value>A <see cref="Color"/> containing the picked color. The default
+    ///     value is <see langword="null"/>.</value>
     /// <remarks>
-    /// Setting this value to <see langword="null"/> makes the control honor the values set
-    /// to <see cref="PointerRingPositionXUnits"/> and <see cref="PointerRingPositionYUnits"/>
-    /// instead.
-    /// <br/>
-    /// Setting this property will cause the <see cref="PickedColorChanged"/> event to be emitted.
+    /// Setting this value to <see langword="null"/> makes the control honor the
+    /// values set to <see cref="PointerRingPositionXUnits"/> and
+    /// <see cref="PointerRingPositionYUnits"/> instead. <br/> Setting this
+    /// property will cause the <see cref="PickedColorChanged"/> event to be
+    /// emitted.
     /// </remarks>
     public Color PickedColor
     {
@@ -170,9 +170,8 @@ public partial class CustomColorPicker : ContentView
     /// <summary>
     /// Gets or sets the Color List flow Direction.
     /// </summary>
-    /// <value>
-    /// Either <see cref="ColorFlowDirection.Horizontal"/> or <see cref="ColorFlowDirection.Vertical"/>.
-    /// </value>
+    /// <value>Either <see cref="ColorFlowDirection.Horizontal"/> or
+    ///     <see cref="ColorFlowDirection.Vertical"/>.</value>
     public ColorFlowDirection ColorFlowDirection
     {
         get { return (ColorFlowDirection)GetValue(ColorFlowDirectionProperty); }
@@ -203,12 +202,10 @@ public partial class CustomColorPicker : ContentView
         );
 
     /// <summary>
-    /// Gets or sets the Picker Pointer Ring Diameter.
-    /// The size is calculated relative to the view canvas size.
+    /// Gets or sets the Picker Pointer Ring Diameter. The size is calculated
+    /// relative to the view canvas size.
     /// </summary>
-    /// <value>
-    /// A number between 0 - 1.
-    /// </value>
+    /// <value>A number between 0 - 1.</value>
     public double PointerRingDiameterUnits
     {
         get { return (double)GetValue(PointerRingDiameterUnitsProperty); }
@@ -239,12 +236,10 @@ public partial class CustomColorPicker : ContentView
         );
 
     /// <summary>
-    /// Gets or sets the Picker Pointer Ring Border Size.
-    /// The size is calculated relative to the pixel size of the picker pointer.
+    /// Gets or sets the Picker Pointer Ring Border Size. The size is calculated
+    /// relative to the pixel size of the picker pointer.
     /// </summary>
-    /// <value>
-    /// A number between 0 - 1.
-    /// </value>
+    /// <value>A number between 0 - 1.</value>
     public double PointerRingBorderUnits
     {
         get { return (double)GetValue(PointerRingBorderUnitsProperty); }
@@ -280,12 +275,10 @@ public partial class CustomColorPicker : ContentView
         );
 
     /// <summary>
-    /// Gets or sets the Picker Pointer X position.
-    /// The value is calculated relative to the view canvas width.
+    /// Gets or sets the Picker Pointer X position. The value is calculated
+    /// relative to the view canvas width.
     /// </summary>
-    /// <value>
-    /// A number between 0 - 1.
-    /// </value>
+    /// <value>A number between 0 - 1.</value>
     public double PointerRingPositionXUnits
     {
         get { return (double)GetValue(PointerRingPositionXUnitsProperty); }
@@ -327,12 +320,10 @@ public partial class CustomColorPicker : ContentView
         );
 
     /// <summary>
-    /// Gets or sets the Picker Pointer Y position.
-    /// The value is calculated relative to the view canvas height.
+    /// Gets or sets the Picker Pointer Y position. The value is calculated
+    /// relative to the view canvas height.
     /// </summary>
-    /// <value>
-    /// A number between 0 - 1.
-    /// </value>
+    /// <value>A number between 0 - 1.</value>
     public double PointerRingPositionYUnits
     {
         get { return (double)GetValue(PointerRingPositionYUnitsProperty); }
@@ -617,7 +608,8 @@ public partial class CustomColorPicker : ContentView
 public class PickedColorChangedEventArgs : EventArgs
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="PickedColorChangedEventArgs"/> class.
+    /// Initializes a new instance of the
+    /// <see cref="PickedColorChangedEventArgs"/> class.
     /// </summary>
     /// <param name="oldColor">The old color value.</param>
     /// <param name="newColor">The new color value.</param>
@@ -639,7 +631,8 @@ public class PickedColorChangedEventArgs : EventArgs
 }
 
 /// <summary>
-/// Enumerate values that describe color spectrum styles of a <see cref="CustomColorPicker"/>.
+/// Enumerate values that describe color spectrum styles of a
+/// <see cref="CustomColorPicker"/>.
 /// </summary>
 public enum ColorSpectrumStyle
 {
@@ -680,7 +673,8 @@ public enum ColorSpectrumStyle
 }
 
 /// <summary>
-/// Enumerate values that describe color flow directions of a <see cref="CustomColorPicker"/>.
+/// Enumerate values that describe color flow directions of a
+/// <see cref="CustomColorPicker"/>.
 /// </summary>
 public enum ColorFlowDirection
 {

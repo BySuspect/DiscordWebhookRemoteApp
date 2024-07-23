@@ -1,8 +1,10 @@
 using Discord;
+
 using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView;
 using DiscordWebhookRemoteApp.Components.Popups.Common;
 using DiscordWebhookRemoteApp.Components.Popups.Menu;
 using DiscordWebhookRemoteApp.Components.Popups.Message;
+
 using Newtonsoft.Json;
 
 namespace DiscordWebhookRemoteApp.Components.Pages;
@@ -234,11 +236,7 @@ public partial class MainPage : ContentPage
         try
         {
             Console.WriteLine("Test Clicked");
-            await LoggingService.Log("test",
-                LoggingService.LogLevel.Info,
-                "test"
-            );
-
+            await LoggingService.Log("test", LoggingService.LogLevel.Info, "test");
         }
         catch (Exception ex)
         {
@@ -311,33 +309,6 @@ public partial class MainPage : ContentPage
         }
 
         return Task.FromResult((embeds, hasEmbeds));
-    }
-
-    private async void Discord_Clicked(object sender, EventArgs e)
-    {
-        #region Discord Invite Section
-        string discorInviteShorten = "https://bit.ly/3NmBFDO";
-        string discorInvite = "https://discord.gg/aX4unxzZek";
-
-        _ = Browser.OpenAsync(discorInvite, BrowserLaunchMode.SystemPreferred);
-        return;
-
-        var res = await App.Current.MainPage.DisplayActionSheet(
-            "Discord Invite",
-            string.Empty,
-            "Cancel",
-            "Open Link",
-            "Copy Link"
-        );
-        if (res is "Open Link")
-        {
-            _ = Browser.OpenAsync(discorInviteShorten, BrowserLaunchMode.SystemPreferred);
-        }
-        else if (res is "Copy Link")
-        {
-            await Clipboard.SetTextAsync(discorInvite);
-        }
-        #endregion
     }
 
     private void Menu_Tapped(object sender, TappedEventArgs e)

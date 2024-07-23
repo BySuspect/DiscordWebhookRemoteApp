@@ -6,7 +6,7 @@ namespace DiscordWebhookRemoteApp.Components.Partials.CustomItems
     {
         private bool isLoaded;
 
-        public bool IsLoaded
+        public new bool IsLoaded
         {
             get { return isLoaded; }
             set

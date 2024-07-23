@@ -18,9 +18,6 @@
     <ContentPage.Behaviors>
         <toolkit:StatusBarBehavior StatusBarColor="{x:Static services:AppThemeColors.BackgroundColor}" StatusBarStyle="{x:Static services:AppThemeColors.StatusBarStyle}" />
     </ContentPage.Behaviors>
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Clicked="Discord_Clicked" IconImageSource="discordlogo.png" />
-    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
             <Grid VerticalOptions="FillAndExpand">

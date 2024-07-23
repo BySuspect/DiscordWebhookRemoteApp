@@ -51,7 +51,7 @@ public partial class SavedEmbedsViewPopup : Popup
 
     private string type;
 
-    public SavedEmbedsViewPopup(string type = null)
+    public SavedEmbedsViewPopup(string? type = null)
     {
         InitializeComponent();
         EmbedList = SavedEmbedsService.SavedEmbeds.ToObservableCollection();

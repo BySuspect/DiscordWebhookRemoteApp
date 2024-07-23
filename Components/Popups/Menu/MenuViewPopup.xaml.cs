@@ -10,9 +10,9 @@ namespace DiscordWebhookRemoteApp.Components.Popups.Menu;
 
 public partial class MessagePreviewPopupViews : Popup
 {
-    private SavedWebhooksView savedWebhooksView;
+    private readonly SavedWebhooksView savedWebhooksView;
 
-    public MessagePreviewPopupViews(SavedWebhooksView swView = null)
+    public MessagePreviewPopupViews(SavedWebhooksView? swView = null)
     {
         InitializeComponent();
         savedWebhooksView = swView;

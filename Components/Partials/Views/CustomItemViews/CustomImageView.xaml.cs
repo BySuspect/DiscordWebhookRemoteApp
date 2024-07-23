@@ -3,7 +3,7 @@ namespace DiscordWebhookRemoteApp.Components.Partials.Views.CustomItemViews;
 public partial class CustomImageView : ContentView
 {
     #region WidthRequest Binding
-    public static readonly BindableProperty WidthRequestProperty = BindableProperty.Create(
+    public static new readonly BindableProperty WidthRequestProperty = BindableProperty.Create(
         nameof(WidthRequest),
         typeof(int),
         typeof(CustomImageView),
@@ -14,7 +14,7 @@ public partial class CustomImageView : ContentView
             var control = bindable as CustomImageView;
         }
     );
-    public int WidthRequest
+    public new int WidthRequest
     {
         get { return (int)GetValue(WidthRequestProperty); }
         set
@@ -26,7 +26,7 @@ public partial class CustomImageView : ContentView
     #endregion
 
     #region HeightRequest Binding
-    public static readonly BindableProperty HeightRequestProperty = BindableProperty.Create(
+    public static new readonly BindableProperty HeightRequestProperty = BindableProperty.Create(
         nameof(HeightRequest),
         typeof(int),
         typeof(CustomImageView),
@@ -37,7 +37,7 @@ public partial class CustomImageView : ContentView
             var control = bindable as CustomImageView;
         }
     );
-    public int HeightRequest
+    public new int HeightRequest
     {
         get { return (int)GetValue(HeightRequestProperty); }
         set
@@ -106,7 +106,7 @@ public partial class CustomImageView : ContentView
     #region Clicked Event
     public event EventHandler<ClickedEventArgs> Clicked;
 
-    protected virtual void OnClicked(ClickedEventArgs e)
+    protected virtual void OnClicked(ClickedEventArgs? e)
     {
         EventHandler<ClickedEventArgs> handler = Clicked;
         handler?.Invoke(this, e);

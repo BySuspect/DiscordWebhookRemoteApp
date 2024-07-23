@@ -9,9 +9,13 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Shell.FlyoutBehavior="Disabled">
 
+    <Shell.ToolbarItems>
+        <ToolbarItem Clicked="Support_Clicked" IconImageSource="hearticon.png" />
+        <ToolbarItem Clicked="Discord_Clicked" IconImageSource="discordlogo.png" />
+    </Shell.ToolbarItems>
     <ShellContent
         NavigationPage.HasNavigationBar="True"
-        Route="MainPage" 
+        Route="MainPage"
         Shell.BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}">
         <ShellContent.ContentTemplate>
             <DataTemplate>
@@ -21,8 +25,8 @@
     </ShellContent>
 
     <!--<Shell.FlyoutContent>
-        <StackLayout>
-            <Label Text="TEST" />
-        </StackLayout>
+    <StackLayout>
+    <Label Text="TEST" />
+    </StackLayout>
     </Shell.FlyoutContent>-->
 </Shell>

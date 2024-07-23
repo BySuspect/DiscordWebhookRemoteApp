@@ -1,7 +1,5 @@
 using CommunityToolkit.Maui.Views;
-
 using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWebhooksView;
-
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -66,6 +64,7 @@ public partial class SavedWebhookAddOrEditPopup : Popup
     {
         await GetWebhookDetails();
     }
+
     private async Task GetWebhookDetails()
     {
         try

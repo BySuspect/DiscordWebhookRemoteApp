@@ -4,7 +4,7 @@ namespace DiscordWebhookRemoteApp.Components.Popups.Common;
 
 public partial class CustomAlertPopup : Popup
 {
-    public CustomAlertPopup(string title, string content, string ok, string cancel = null)
+    public CustomAlertPopup(string title, string content, string ok, string? cancel = null)
     {
         InitializeComponent();
         lblTitle.Text = title;

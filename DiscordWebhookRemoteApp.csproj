@@ -127,6 +127,7 @@
         <None Remove="Resources\Images\deleteicon.png" />
         <None Remove="Resources\Images\discordlogo.png" />
         <None Remove="Resources\Images\editicon.png" />
+        <None Remove="Resources\Images\hearticon.png" />
         <None Remove="Resources\Images\imageerroricon.png" />
         <None Remove="Resources\Images\menuicon.png" />
         <None Remove="Resources\Images\plusicon.png" />

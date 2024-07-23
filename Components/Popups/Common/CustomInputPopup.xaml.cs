@@ -9,7 +9,7 @@ public partial class CustomInputPopup : Popup
         string input,
         string placeholder,
         string ok,
-        string cancel = null,
+        string? cancel = null,
         int inputMaxLength = 0,
         bool hasTitle = false,
         bool hasCharCounterText = false

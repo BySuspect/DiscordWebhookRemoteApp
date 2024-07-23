@@ -256,7 +256,7 @@ public partial class CustomEntryView : ContentView
 
     public event EventHandler<EventArgs> TextComplated;
 
-    private void OnTextComplated(object sender, EventArgs e)
+    private void OnTextComplated(object sender, EventArgs? e)
     {
         EventHandler<EventArgs> handler = TextComplated;
         handler?.Invoke(sender, e);
