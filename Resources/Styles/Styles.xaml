@@ -8,10 +8,13 @@
     <Style TargetType="ScrollView">
         <Setter Property="HorizontalScrollBarVisibility" Value="Never" />
         <Setter Property="VerticalScrollBarVisibility" Value="Never" />
+        <Setter Property="VerticalOptions" Value="FillAndExpand" />
     </Style>
     <Style TargetType="ListView">
         <Setter Property="HorizontalScrollBarVisibility" Value="Never" />
         <Setter Property="VerticalScrollBarVisibility" Value="Never" />
+        <Setter Property="SeparatorColor" Value="Transparent" />
+        <Setter Property="HasUnevenRows" Value="True" />
     </Style>
 
     <Style TargetType="Frame">

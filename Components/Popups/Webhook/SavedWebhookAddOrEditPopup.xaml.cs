@@ -1,5 +1,7 @@
 using CommunityToolkit.Maui.Views;
+
 using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWebhooksView;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -36,11 +38,18 @@ public partial class SavedWebhookAddOrEditPopup : Popup
         entryName.Text = item.Name;
     }
 
-    private void Save_Clicked(object sender, EventArgs e)
+    private async void Save_Clicked(object sender, EventArgs e)
     {
         if (string.IsNullOrEmpty(entryWebhookUrl.Text.Trim()))
             return;
+
         btnSave.IsEnabled = false;
+
+        if (string.IsNullOrEmpty(entryImageUrl.Text) && string.IsNullOrEmpty(entryName.Text))
+        {
+            await GetWebhookDetails();
+        }
+
         var webhook = new SavedWebhookViewItems
         {
             WebhookUrl = entryWebhookUrl.Text.Trim(),
@@ -55,8 +64,13 @@ public partial class SavedWebhookAddOrEditPopup : Popup
 
     private async void WebhookUrl_TextComplated(object sender, EventArgs e)
     {
+        await GetWebhookDetails();
+    }
+    private async Task GetWebhookDetails()
+    {
         try
         {
+            ApplicationService.ShowLoadingView();
             if (
                 (
                     string.IsNullOrEmpty(entryWebhookUrl.Text.Trim())
@@ -96,6 +110,7 @@ public partial class SavedWebhookAddOrEditPopup : Popup
         }
         catch { }
 
+        ApplicationService.HideLoadingView();
         entryWebhookUrl.IsEnabled = true;
         entryImageUrl.IsEnabled = true;
         entryName.IsEnabled = true;

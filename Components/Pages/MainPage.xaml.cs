@@ -234,7 +234,11 @@ public partial class MainPage : ContentPage
         try
         {
             Console.WriteLine("Test Clicked");
-            ApplicationService.ShowPopup(new PrivacyPolicyPopup());
+            await LoggingService.Log("test",
+                LoggingService.LogLevel.Info,
+                "test"
+            );
+
         }
         catch (Exception ex)
         {
