@@ -67,6 +67,15 @@ namespace DiscordWebhookRemoteApp.Services
             return Task.CompletedTask;
         }
 
+        public static string ExportSavedWebhoks()
+        {
+            var webhooks = JsonConvert.SerializeObject(SavedWebhookList);
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(webhooks);
+            string base64String = Convert.ToBase64String(bytes);
+
+            return base64String;
+        }
+
         private class OldSavedWebhookItems
         {
             public int ID { get; set; }

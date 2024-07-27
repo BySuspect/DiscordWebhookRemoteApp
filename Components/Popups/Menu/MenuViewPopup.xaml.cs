@@ -147,4 +147,15 @@ public partial class MessagePreviewPopupViews : Popup
         else
             return true;
     }
+
+    private async void btnExportWebhooks_Clicked(object sender, EventArgs e)
+    {
+        var webhooks = WebhookService.ExportSavedWebhoks();
+        await Clipboard.SetTextAsync(webhooks);
+        ApplicationService.ShowCustomAlert(
+            "Success.",
+            "Webhooks copied to clipboard. \nMake sure backup webhook data on somewhere.",
+            "Ok"
+        );
+    }
 }
