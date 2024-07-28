@@ -247,12 +247,6 @@
         <MauiXaml Update="Components\Popups\Common\LoadingViewPopup.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
-        <MauiXaml Update="Components\Popups\Common\NoticePopup.xaml">
-          <Generator>MSBuild:Compile</Generator>
-        </MauiXaml>
-        <MauiXaml Update="Components\Popups\Common\PrivacyPolicyPopup.xaml">
-            <Generator>MSBuild:Compile</Generator>
-        </MauiXaml>
         <MauiXaml Update="Components\Popups\Embed\ColorPickPopup.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>

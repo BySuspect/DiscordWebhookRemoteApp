@@ -1,8 +1,10 @@
 using Discord;
+
 using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView;
 using DiscordWebhookRemoteApp.Components.Popups.Common;
 using DiscordWebhookRemoteApp.Components.Popups.Menu;
 using DiscordWebhookRemoteApp.Components.Popups.Message;
+
 using Newtonsoft.Json;
 
 namespace DiscordWebhookRemoteApp.Components.Pages;
@@ -23,15 +25,6 @@ public partial class MainPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-
-        ApplicationService.ShowPopup(
-            new NoticePopup(
-                "In light of Google's new policies, I�ve decided to remove my apps from the Play Store. I will make them fully open source and share updates as APKs on GitHub. If you'd like to stay informed about developments, please join my Discord server."
-            )
-        );
-
-        if (!Preferences.Get("PrivacyPolicyV1Accepted", false))
-            ApplicationService.ShowPopup(new PrivacyPolicyPopup());
 
         /*ApplicationService.ShowPopup(
             new MessagePreviewPopup(
@@ -241,7 +234,6 @@ public partial class MainPage : ContentPage
         try
         {
             Console.WriteLine("Test Clicked");
-            ApplicationService.ShowPopup(new NoticePopup("aaaaaaaaaaaaaa test"));
         }
         catch (Exception ex)
         {
