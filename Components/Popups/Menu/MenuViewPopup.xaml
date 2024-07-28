@@ -54,15 +54,15 @@
                         VerticalOptions="Center"
                         WidthRequest="150" />
                     <CustomItems:CustomButton
-                        x:Name="btnImportOldWebhooks"
+                        x:Name="btnImportWebhooks"
                         BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
                         BorderColor="{x:Static services:AppThemeColors.BorderColor}"
                         BorderWidth="1"
-                        Clicked="btnImportOldWebhooks_Clicked"
+                        Clicked="btnImportWebhooks_Clicked"
                         CornerRadius="15"
                         FontSize="Caption"
                         HorizontalOptions="Center"
-                        Text="Import old Webhooks"
+                        Text="Import Webhooks"
                         TextColor="{x:Static services:AppThemeColors.TextColor}"
                         VerticalOptions="Center"
                         WidthRequest="150" />

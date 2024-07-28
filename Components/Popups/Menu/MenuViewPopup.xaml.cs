@@ -1,9 +1,12 @@
 using System.Text;
+
 using CommunityToolkit.Maui.Views;
+
 using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWebhooksView;
 using DiscordWebhookRemoteApp.Components.Popups.Common;
 using DiscordWebhookRemoteApp.Components.Popups.Embed;
 using DiscordWebhookRemoteApp.Helpers;
+
 using Newtonsoft.Json;
 
 namespace DiscordWebhookRemoteApp.Components.Popups.Menu;
@@ -33,7 +36,7 @@ public partial class MessagePreviewPopupViews : Popup
         ApplicationService.ShowPopup(new SavedEmbedsViewPopup("View"));
     }
 
-    private async void btnImportOldWebhooks_Clicked(object sender, EventArgs e)
+    private async void btnImportWebhooks_Clicked(object sender, EventArgs e)
     {
         this.Close();
         var webhooksData = await App.Current.MainPage.DisplayPromptAsync(
@@ -43,7 +46,7 @@ public partial class MessagePreviewPopupViews : Popup
         );
         if (webhooksData != null)
         {
-            await WebhookService.ImportSavedWebhoksFromOldApp(webhooksData);
+            await WebhookService.ImportSavedWebhoks(webhooksData);
             await savedWebhooksView.RefreshList();
         }
     }

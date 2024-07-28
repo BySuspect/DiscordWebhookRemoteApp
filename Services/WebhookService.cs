@@ -1,6 +1,8 @@
 ﻿using Discord;
 using Discord.Webhook;
+
 using DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWebhooksView;
+
 using Newtonsoft.Json;
 
 namespace DiscordWebhookRemoteApp.Services
@@ -22,31 +24,21 @@ namespace DiscordWebhookRemoteApp.Services
             }
         }
 
-        public static async Task<Task> ImportSavedWebhoksFromOldApp(string input)
+        public static async Task ImportSavedWebhoks(string input)
         {
             try
             {
                 if (string.IsNullOrWhiteSpace(input))
-                    return Task.CompletedTask;
+                    return;
 
                 byte[] bytes = Convert.FromBase64String(input);
                 string jsonstring = System.Text.Encoding.UTF8.GetString(bytes);
 
-                var json = JsonConvert.DeserializeObject<List<OldSavedWebhookItems>>(jsonstring);
-                var _list = SavedWebhookList;
-                foreach (var item in json)
-                {
-                    _list.Add(
-                        new SavedWebhookViewItems()
-                        {
-                            WebhookId = (_list.Count > 0) ? _list.Last().WebhookId + 1 : 1,
-                            WebhookUrl = item.url,
-                            Name = item.name,
-                            ImageSource = "discordlogo.png"
-                        }
-                    );
-                }
-                SavedWebhookList = _list;
+                var _list = JsonConvert.DeserializeObject<List<SavedWebhookViewItems>>(jsonstring);
+
+                var savedWebhooks = SavedWebhookList;
+                savedWebhooks.AddRange(_list);
+                SavedWebhookList = savedWebhooks;
             }
             catch (Exception ex)
             {
@@ -61,10 +53,10 @@ namespace DiscordWebhookRemoteApp.Services
                 await LoggingService.Log(
                     JsonConvert.SerializeObject(logContent),
                     LoggingService.LogLevel.Error,
-                    "ImportSavedWebhoksFromOldApp error"
+                    "ImportSavedWebhoks error"
                 );
             }
-            return Task.CompletedTask;
+            return;
         }
 
         public static string ExportSavedWebhoks()

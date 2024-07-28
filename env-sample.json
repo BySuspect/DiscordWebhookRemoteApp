@@ -1,4 +1,6 @@
 {
+  //Firabase realtime database url for logging
   "LOGGING_API_URL": "",
+  //Firabase realtime database key for logging
   "LOGGING_API_KEY": ""
 }
