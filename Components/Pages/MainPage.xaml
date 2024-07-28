@@ -9,7 +9,6 @@
     xmlns:SavedWebhooksView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.SavedWebhooksView"
     xmlns:WebhookItemsView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView"
     xmlns:WebhookProfileView="clr-namespace:DiscordWebhookRemoteApp.Components.Partials.Views.WebhookItemsView.WebhookProfileView"
-    xmlns:controls="clr-namespace:Plugin.MauiMTAdmob.Controls;assembly=Plugin.MauiMtAdmob"
     xmlns:services="clr-namespace:DiscordWebhookRemoteApp.Services"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     BackgroundColor="{x:Static services:AppThemeColors.BackgroundColor}"
@@ -24,13 +23,11 @@
                 <StackLayout>
                     <ScrollView Margin="0,5" VerticalOptions="FillAndExpand">
                         <StackLayout Margin="10,0,10,10">
-                            <controls:MTAdView AdsId="ca-app-pub-3881259676793306/1418745998" HeightRequest="{OnIdiom Phone=50, Tablet=90}" />
                             <SavedWebhooksView:SavedWebhooksView x:Name="SavedWebhooksView" Margin="0,5,0,5" />
                             <WebhookProfileView:WebhookProfileView x:Name="WebhookProfileView" Margin="0,0,0,5" />
                             <WebhookItemsView:MessageContentView x:Name="MessageContentView" Margin="0,0,0,5" />
                             <EmbedViews:EmbedsView x:Name="EmbedsView" Margin="0,0,0,5" />
                             <WebhookItemsView:FileSendView x:Name="FileSendView" Margin="0,0,0,5" />
-                            <controls:MTAdView AdsId="ca-app-pub-3881259676793306/1418745998" HeightRequest="{OnIdiom Phone=50, Tablet=90}" />
                         </StackLayout>
                     </ScrollView>
                     <StackLayout HorizontalOptions="Fill" VerticalOptions="End">

@@ -1,8 +1,6 @@
 ﻿using Android.App;
 using Android.Content.PM;
-using Android.Gms.Ads;
 using Android.OS;
-using Plugin.MauiMTAdmob;
 
 namespace DiscordWebhookRemoteApp
 {
@@ -21,9 +19,6 @@ namespace DiscordWebhookRemoteApp
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            MobileAds.Initialize(this);
-            CrossMauiMTAdmob.Current.Init(this, "ca-app-pub-3881259676793306~9834360439");
-
             base.OnCreate(savedInstanceState);
         }
     }

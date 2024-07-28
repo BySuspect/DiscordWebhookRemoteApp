@@ -75,7 +75,7 @@
         <ApplicationId>com.discordwebhookremote</ApplicationId>
         <ApplicationTitle>Discord Webhook Remote</ApplicationTitle>
         <ApplicationDisplayVersion>1.0.5</ApplicationDisplayVersion>
-        <AndroidPackageFormat>aab</AndroidPackageFormat>
+        <AndroidPackageFormat>apk</AndroidPackageFormat>
         <AndroidEnableMultiDex>True</AndroidEnableMultiDex>
         <AndroidLinkTool>r8</AndroidLinkTool>
         <ApplicationVersion>11</ApplicationVersion>
@@ -149,10 +149,8 @@
         <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.70" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-        <PackageReference Include="Plugin.MauiMTAdmob" Version="1.4.5" />
         <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.8" />
         <PackageReference Include="System.Text.Json" Version="8.0.4" />
-        <PackageReference Include="Xamarin.Google.iOS.MobileAds" Version="8.13.0.3" />
     </ItemGroup>
 
     <ItemGroup>
